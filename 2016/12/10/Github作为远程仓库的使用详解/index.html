@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Github作为远程仓库的使用详解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="远程仓库，即可理解为把本地仓库丢到了某个服务器上，然后别人把你的仓库clone(克隆)或者说拷贝下来而已！又或者说是多人协作时，各个人本地仓库更改整合的一个媒介而已！我们可以自己创建远程仓库，搞台服务器，然后自己搭建，也可以将项目托管到代码托管网站，比如Github，GitCafe，Git@OSC，GitLab，coding.net等。介绍下面几款远程仓库：
+
+Github：是最大的代码托管网站，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github作为远程仓库的使用详解">
+<meta property="og:url" content="http://yoursite.com/2016/12/10/Github作为远程仓库的使用详解/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="远程仓库，即可理解为把本地仓库丢到了某个服务器上，然后别人把你的仓库clone(克隆)或者说拷贝下来而已！又或者说是多人协作时，各个人本地仓库更改整合的一个媒介而已！我们可以自己创建远程仓库，搞台服务器，然后自己搭建，也可以将项目托管到代码托管网站，比如Github，GitCafe，Git@OSC，GitLab，coding.net等。介绍下面几款远程仓库：
+
+Github：是最大的代码托管网站，">
+<meta property="og:updated_time" content="2016-12-05T13:49:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github作为远程仓库的使用详解">
+<meta name="twitter:description" content="远程仓库，即可理解为把本地仓库丢到了某个服务器上，然后别人把你的仓库clone(克隆)或者说拷贝下来而已！又或者说是多人协作时，各个人本地仓库更改整合的一个媒介而已！我们可以自己创建远程仓库，搞台服务器，然后自己搭建，也可以将项目托管到代码托管网站，比如Github，GitCafe，Git@OSC，GitLab，coding.net等。介绍下面几款远程仓库：
+
+Github：是最大的代码托管网站，">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/head.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Github作为远程仓库的使用详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Github作为远程仓库的使用详解
+    </h1>
+  
+
+        <a href="/2016/12/10/Github作为远程仓库的使用详解/" class="archive-article-date">
+  	<time datetime="2016-12-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>远程仓库，即可理解为把本地仓库丢到了某个服务器上，然后别人把你的仓库clone(克隆)或者说拷贝下来而已！又或者说是多人协作时，各个人本地仓库更改整合的一个媒介而已！<br>我们可以自己创建远程仓库，搞台服务器，然后自己搭建，也可以将项目托管到代码托管网站，比如Github，GitCafe，Git@OSC，GitLab，coding.net等。介绍下面几款远程仓库：</p>
+<ul>
+<li>Github：是最大的代码托管网站，大部分的开发者都喜欢使用这个，但是开源项<br>目不收费，而私有项目是要交”保护费”的，而且Github服务器毕竟在国外，国内访<br>问可能会有些缓慢！</li>
+<li>GitCafe：同样私有仓库收保护费，开源仓库免费，但是相比起github有点坑，而且是不时会挂掉，不是很推荐…</li>
+<li>Git@OSC：开源中国社区的，仓库免费，不过协作功能还没有完全体现。</li>
+<li>GitLab：开源的版本管理系统，可以安装Gitlab CE源码，自己搭服务器；也可以使用GitLab EE企业版，GitLab可以配合着其他IM工作使用，比如我司用的瀑布IM，当有人推送更新的时候收到推送信息等！</li>
+<li>coding.net：国内体验最接近Github的产品，有免费版和开发版，高级版，内容可自行到官网查看。</li>
+</ul>
+<p>1.Github账号注册与创建新仓库</p>
+<ul>
+<li>注册Github账号：<br>注册链接：<a href="https://github.com/join" target="_blank" rel="external">https://github.com/join</a></li>
+<li>创建新仓库：Create repository创建一个仓库<br>2.把本地仓库推送到新仓库<br>git init将你所创建的项目变成带有git仓库的项目，then指定远程主机：<a href="https://github.com/hmqqk/hmqqk.github.io.git" target="_blank" rel="external">https://github.com/hmqqk/hmqqk.github.io.git</a> 用git remote查看状态然后将本地仓库push到远程仓库github中（-u参数作为第一次提交使用，作用是把本地master分支和远程master分支关联起来(设置默认远程主机)，后续提交不需要这个参数！）。<br>liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>$ git remote add origin <a href="https://github.com/hmqqk/hmqqk.github.io.git" target="_blank" rel="external">https://github.com/hmqqk/hmqqk.github.io.git</a></li>
+</ul>
+<p>liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>$ git remote<br>origin</p>
+<p>liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>$ git remote -v<br>origin  <a href="https://github.com/hmqqk/hmqqk.github.io.git" target="_blank" rel="external">https://github.com/hmqqk/hmqqk.github.io.git</a> (fetch)<br>origin  <a href="https://github.com/hmqqk/hmqqk.github.io.git" target="_blank" rel="external">https://github.com/hmqqk/hmqqk.github.io.git</a> (push)</p>
+<p>则即可看到Github上有我们push的文件。</p>
+<p>3.为项目添加SSH Key免去提交输入账号密码的麻烦<br>第一点：使用Https url可以任意克隆Github上的项目；而是用SSH url<br>克隆的话，你必须是项目的拥有者或管理员，而且还要添加SSH Key，否则会无法克隆。<br>还有一点是，Https每次push都需要输入用户名和密码，而使用SSH则不需要输入用户名<br>如果配置SSH Key时设置了密码，则需要输入密码，否则直接git push就可以了！<br>另外，SSH，Secure shell(安全外壳协议)，专为远程登陆会话与其他网络服务提供安全性<br>的协议， 而SSH传输的数据是可以经过压缩的，可以加快传输的速度，出于安全性与速度，<br>我们优先考虑使用SSH协议，而SSH的安全验证规则又分为基于密码和基于密钥两种！<br>我们这里用的是基于第二种的，即在本地创建一对密钥，公钥(id_rsa.pub)和私钥(id_rsa),<br>然后把公钥的内容贴到Github账号的ssh keys中，这样就建立了本地和远程的认证关系，<br>当我们再push到远程仓库，会将你本地的公共密钥与服务器的进行匹配，如果一致验证通过<br>直接推送更新！<br>目录：C:\Users\liuhong.ssh(有.ssh目录则无需创建，否则手动创建该目录) 在此目录下打开Git Bash<br>ssh-keygen -t rsa -C “2442501113@qq.com” 一直回车会生成秘钥SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。将id_rsa.pub添加到github中的ssh keys中去<br>输入之后，可能会看到一下提示：<br>The authenticity of host ‘[ssh.github.com]:443([192.30.252.150]:443)’ can’t be established.<br>RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes/no)?<br>不用担心确保fingerprint是对的，然后根据提示输入命令：yes即可.而且，ssh目录下还会多出一个文件：known_hosts<br>为什么GitHub需要SSH Key呢？因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。<br>最后友情提示，在GitHub上免费托管的Git仓库，任何人都可以看到（但只有你自己才能改）。所以，不要把敏感信息放进去。<br>如果你不想让别人看到Git库，有两个办法，一个是交点保护费，让GitHub把公开的仓库变成私有的，这样别人就看不见了（不可读更不可写）。另一个办法是自己动手，搭一个Git服务器，因为是你自己的Git服务器，所以别人也是看不见的。这个方法我们后面会讲到，相当简单，公司内部开发必备。<br>4.添加远程库<br>我们已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作。<br>5.将本地库的内容push到远程库中<br>具体内容见Git本地仓库详解部分的介绍<br>6.从远程库克隆到本地<br>先在本地新建一个空的文件夹作为工作目录，我新建的目录是：D:workspace。因为接下来要将远程的文件克隆到这个目录下。<br>然后跳到D:workspace目录下，使用git clone命令开始克隆：<br>git clone git@github.com:hmqqk/hmqqk.github.io.git<br>则回到本地D:workspace目录下即可查看克隆好的文件。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/10/Git和Github错误汇总/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：Git和Github错误汇总</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Github作为远程仓库的使用详解" data-title="Github作为远程仓库的使用详解" data-url="http://yoursite.com/2016/12/10/Github作为远程仓库的使用详解/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+<script src="/./myJs.js"></script>
+<script src="/./jquery-1.10.2.min.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 12.5px;">Github</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/jade/" style="font-size: 10px;">jade</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/jquery/" style="font-size: 12.5px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/life/" style="font-size: 20px;">life</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>

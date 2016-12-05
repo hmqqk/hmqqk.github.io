@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Git本地仓库详解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="大纲：一、前言二、概述三、在Windows上安装Git四、创建本地仓库五、本地仓库管理详解六、总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git本地仓库详解">
+<meta property="og:url" content="http://yoursite.com/2015/12/10/Git本地仓库详解/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="大纲：一、前言二、概述三、在Windows上安装Git四、创建本地仓库五、本地仓库管理详解六、总结">
+<meta property="og:image" content="http://yoursite.com/images/Git/1_1.png">
+<meta property="og:image" content="http://yoursite.com/images/Git/1_2.png">
+<meta property="og:image" content="http://yoursite.com/images/Git/1_3.png">
+<meta property="og:image" content="http://yoursite.com/images/Git/1_4.png">
+<meta property="og:image" content="http://yoursite.com/images/Git/1_5.png">
+<meta property="og:updated_time" content="2016-12-05T12:37:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git本地仓库详解">
+<meta name="twitter:description" content="大纲：一、前言二、概述三、在Windows上安装Git四、创建本地仓库五、本地仓库管理详解六、总结">
+<meta name="twitter:image" content="http://yoursite.com/images/Git/1_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/head.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Git本地仓库详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git本地仓库详解
+    </h1>
+  
+
+        <a href="/2015/12/10/Git本地仓库详解/" class="archive-article-date">
+  	<time datetime="2015-12-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大纲：<br>一、前言<br>二、概述<br>三、在Windows上安装Git<br>四、创建本地仓库<br>五、本地仓库管理详解<br>六、总结<br><a id="more"></a><br>一. 前言<br>    清晰理解Git，力求适用于所有读者阅读。<br>二. 概述<br>Git 本地仓库详解<br>Git与GitHub总结<br>三. 在Windows上安装Git    </p>
+<ul>
+<li>下载地址：<a href="http://msysgit.github.io/" target="_blank" rel="external">http://msysgit.github.io/</a> 双击安装即可</li>
+<li>开始菜单——Git Bash,出现如下界面则安装成功<div align="center"><br><img src="/images/Git/1_1.png"><br></div></li>
+<li>基本测试<br>  $ git config –global user.name “Your Name”<br>  $ git config –global user.email “email@example.com”<br>  注：我设置的情况如下<br>  $    git config –global user.name “hmqqk”<br>  $ git config –global user.email “2442501113@qq.com”<br>P.S. Git是分布式控制系统，所以，每个客户端都必须设置：你的名字和邮箱。这样才容易区分是哪个用户提交的Git版本.git config 后面接的是–global参数，这表示你的机器上所有的Git仓库都会使用这个配置，当然你也可以对不同的仓库指定不同的用户名和邮箱。<br>四. 创建本地仓库</li>
+<li>版本库又称仓库<br>版本库或者是仓库，英文名Repository，可简易理解为目录且这个目录中的所以文件都被git管理，所有操作如增加、删除、修改文件等都会被记录下来，以便后来跟踪与修改相关记录，甚至被还原。<br>创建一个版本库（即创建目录，避免用中文，一方带来不必要的麻烦）<div align="center"><br><img src="/images/Git/1_2.png"><br></div></li>
+<li>目录变仓库<br><div align="center"><br><img src="/images/Git/1_3.png"><br></div><br>P.S. git init为初始化一个空目录，在该目录下生成了.git目录，git目录下即为控制和管理版本库相关文件。</li>
+<li><p>向本地仓库中增加文件<br>版本库中只能跟踪和管理文本文件，如txt文件、js文件、php文件、java文件等所有的程序代码均可。但如视频、图片等二进制文件，虽然能由git管理，但是只能记录大小，无法跟踪具体修改。<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ vim readme.txt</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ ls<br>  readme.txt</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ cat readme.txt<br>  This is git test</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $<br>P.S 切记上述代码是在hmqqk目录下，否则Git无法管理</p>
+</li>
+</ul>
+<ul>
+<li><p>git status:查询文件当前状态</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git status<br>  On branch master</p>
+<p>  Initial commit</p>
+<p>  Untracked files:</p>
+<pre><code>(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+      readme.txt
+</code></pre><p>  nothing added to commit but untracked files present (use “git add” to track)</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)</p>
+</li>
+<li><p>git add：提交文件到仓库中去<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git add readme.txt<br>  warning: LF will be replaced by CRLF in readme.txt.<br>  The file will have its original line endings in your working directory.</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $</p>
+</li>
+<li><p>git commit：提交<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git commit -m “add readme.txt”<br>  [master (root-commit) 5b5157f] add readme.txt<br>   1 file changed, 1 insertion(+)<br>   create mode 100644 readme.txt</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $<br>P.S. -m后面输入的是本次提交的版本说明，可以输入任意内容，但需要说明的是，最好写有意义的说明，便于以后查看。</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git status<br>  On branch master<br>  nothing to commit, working tree clean</p>
+</li>
+<li>总结</li>
+<li>初始化一个Git仓库，使用git init命令</li>
+<li>添加文件到本地Git仓中，分为两步：<ul>
+<li>使用git add命令，注意，可以多次使用，添加多个文件</li>
+<li>使用git commit命令，完成添加。</li>
+<li>为什么Git添加文件需要两步呢？一步add，一步commit。嘿嘿，因为commit命令可以一次提交多个文件，所以你可以多次使用add命令呢。<br>五. 本地仓库管理详解 </li>
+</ul>
+</li>
+<li>git status git diff 当文件等有所改动时可通过这2个文件进行查看</li>
+<li>版本回滚：git log git reset</li>
+<li>工作区、提交区/暂存区（stage/index）、版本库<br><div align="center"><br><img src="/images/Git/1_4.png"><br></div><br>工作区即开发目录，如hmqqk.上面所述的hmqqk下的.git是Git的版本库。在“.git”目录中有很多文件，其中一个重要的文件index，就是我们说的提交区/暂存区（stage/index）。暂存区（stage, index）是 Git 最重要的概念之一。<br><div align="center"><br><img src="/images/Git/1_5.png"><br></div><br>在上图中，我们可以看到部分 Git 命令是如何影响工作区和暂存区（stage/index）的。<br>图中左侧为工作区，右侧为版本库。在版本库中标记为 “index” 的区域是暂存区（stage/index），标记为 “master” 的是 master 分支所代表的目录树。图中我们可以看出此时 “HEAD” 实际是指向 master 分支的一个“指针”。所以，图示的命令中出现 HEAD 的地方可以用 master 来替换。图中的 objects 标识的区域为 Git 的对象库，实际位于 “.git/objects” 目录下。<br>当对工作区新增或修改的文件执行 “git add” 命令时，暂存区的目录树被更新，同时工作区新增或修改的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。（如上图）<br>当执行提交操作 “git commit” 时，暂存区的目录树写到版本库的对象库（objects）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。（如上图）<br>当执行 “git reset HEAD” 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。 当执行 “git rm –cached <file>“ 命令时，会直接从暂存区删除文件，工作区则不做出改变。<br>当执行 “git checkout .” 或者 “git checkout – <file>“ 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。<br>当执行 “git checkout HEAD .” 或者 “git checkout HEAD <file>“ 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</file></file></file></li>
+<li>修改管理<ul>
+<li>关于修改<br>为什么Git比其它版本控制软件优秀？<br>因为Git跟踪管理的是我们每一次的修改（或操作），而不是文件。比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</li>
+</ul>
+</li>
+<li>取消（撤消）修改<br>Git会告诉你有你个文件被修改，你有两个选择，一个用 git add 提交到暂存区，另一个是用git checkout可以丢弃工作区的修改。命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>一种是readme.txt自修改后还没有被放到暂存区，现在撤销修改就回到和版本库一模一样的状态；<br>另一种是readme.txt已经添加到暂存区后，又作了修改，现在撤销修改就回到添加到暂存区后的状态。<br>总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>P.S. git checkout – file命令中的“–”很重要，没有“–”，就变成了“创建一个新分支”的命令<br>git reset HEAD file 可以把暂存区中的修改撤消掉，重新放回工作区,git reset命令既可以回退版本，也可以把工作区的某些文件替换为版本库中的文件。当我们用HEAD时，表示最新的版本。我们再用 git status 查看一下发现，现在的暂存区是干净的，工作区有修改。</li>
+<li>文件删除<br>git rm 命令用于删除一个文件<br>六. 总结<br>Git 本地版本库的讲解</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/07/01/nodejs API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：nodejs API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/25/谈web中静态页面和动态页面的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：谈web中静态页面和动态页面的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Git本地仓库详解" data-title="Git本地仓库详解" data-url="http://yoursite.com/2015/12/10/Git本地仓库详解/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+<script src="/./myJs.js"></script>
+<script src="/./jquery-1.10.2.min.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 12.5px;">Github</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/jade/" style="font-size: 10px;">jade</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/jquery/" style="font-size: 12.5px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/life/" style="font-size: 20px;">life</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>
