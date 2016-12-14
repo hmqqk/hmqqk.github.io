@@ -3,30 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="blog.css">
-    <link rel="stylesheet" type="text/css" href="myStyle.css">
+  
     <title>Title</title>
 </head>
 <body id="public">
-
-
-<!--
-<header>
-    <div class="userMsg">
-        <span class="name">轻刻美</span>
-        <span class="line">&nbsp;|&nbsp;</span>
-        <span class="motto">因在努力,果在随缘</span>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="">精文汇总</a></li>
-            <li><a href="">学习</a></li>
-            <li><a href="">生活</a></li>
-            <li><a href="">随笔</a></li>
-        </ul>
-    </nav>
-
-</header>
--->
 <div class="wrap">
     <div class="menu">
         <div class="bar top"></div>
@@ -52,37 +32,264 @@
     <section id="part1" class="run">
         <img class="run" src="images/2.png">
         <div class="textExp">
-            <p>轻刻美的自我小介绍</p>
+        	<div>
+        		  姓名：刘红<br/>
+            	学院：计算机学院<br/>
+            	专业：计算机科学技术<br/>
+            	个人标签：随时、随性、随缘、随喜、随遇而安<br/>
+            	人生箴言：因在努力，果在随缘
+        		
+        	</div>
         </div>
         <a href="#part2" class="scroll"></a>
     </section>
     <section id="part2">
         <img src="images/studies.png">
         <div class="textExp">
-            <p>学习的介绍</p>
+            <div id="ball">
+							  <a class="myTag" href="#" title="html">html</a>
+						    <a class="myTag" href="#" title="css">css</a>
+						    <a class="myTag" href="#" title="javascript">javascript</a>
+						    <a class="myTag" href="#" title="jquery">jquery</a>
+						    <a class="myTag" href="#" title="bootstrap">bootstrap</a>
+						    <a class="myTag" href="#" title="nodejs">nodejs</a>
+						    <a class="myTag" href="#" title="jade">jade</a>
+						    <a class="myTag" href="#" title="ejs">ejs</a>
+						    <a class="myTag" href="#" title="karma">karma</a>
+						    <a class="myTag" href="#" title="jasmine">jasmine</a>
+						    <a class="myTag" href="#" title="git">git</a>
+						    <a class="myTag" href="#" title="github">github</a>
+						    <a class="myTag" href="#" title="ajax">ajax</a>
+						    <a class="myTag" href="#" title="hexo">hexo</a>
+						    <a class="myTag" href="#" title="grunt">grunt</a>
+						    <a class="myTag" href="#" title="http">http</a>
+						    <a class="myTag" href="#" title="h5移动开发">h5移动开发</a>
+						    <a class="myTag" href="#" title="zend">zend</a>
+						    <a class="myTag" href="#" title="yeoman">yeoman</a>
+						    <a class="myTag" href="#" title="sass">sass</a>
+						    <a class="myTag" href="#" title="less">less</a>
+						    <canvas ></canvas>
+
+	</div>
         </div>
         <a href="#part3" class="scroll"></a>
     </section>
+    <script type="text/javascript">
+	(function(){
+		var tagsE=document.getElementsByClassName("myTag"),
+			tags=[],
+			box=document.getElementById("ball"),
+			radius=180,
+			angleX=Math.PI/180,
+			angleY=Math.PI/180,
+			fullLength=300,
+			offsetLeft=box.offsetLeft,
+			offsetTop=box.offsetTop,
+			CX=box.offsetWidth/2,
+			CY=box.offsetHeight/2,
+			animated=false,
+			cvs=document.querySelector("canvas"),
+			ctx=cvs.getContext("2d");
+
+			cvs.width="600";
+			cvs.height="600";
+			cvs.style.zIndex=tagsE.length/2;
+
+			function tag(e,x,y,z){
+				this.e=e;
+				this.x=x;
+				this.y=y;
+				this.z=z;
+			}
+
+
+			function initial(){
+				for(var i=0;i<tagsE.length;i++){
+					var a=Math.acos((2*(i+1)-1)/tagsE.length - 1);
+					var b = a*Math.sqrt(tagsE.length*Math.PI);
+					var x = radius * Math.sin(a) * Math.cos(b);
+	                var y = radius * Math.sin(a) * Math.sin(b); 
+	                var z = radius * Math.cos(a);
+	                tags.push(new tag(tagsE[i],x,y,z));
+
+				}
+				tags.forEach(function(e,index,group){
+
+					e.move();
+				});
+			}
+
+			tag.prototype.move=function(){
+				var scale=(fullLength+this.z)/fullLength/1.1;
+				var opacity=(this.z+radius*2)/(radius*2);
+				this.e.style.fontSize=scale*18+"px";
+				this.e.style.opacity=opacity;
+				this.e.style.left=this.x+CX-this.e.offsetWidth/2+"px";
+				this.e.style.top=this.y+CY-this.e.offsetHeight/2+"px";
+				this.e.style.zIndex=parseInt(scale*10);
+				
+			}
+			box.onmousemove=function(e){
+				animated=true;
+				angleY=-(e.clientY-offsetTop-CY)*0.0002;
+				angleX=(e.clientX-offsetLeft-CX)*0.0002;
+			};
+
+			box.onmouseout=function(){
+				animated=false;
+			}
+
+			function rotate(){
+				ca=Math.cos(angleY);
+				sa=Math.sin(angleY);
+				cb=Math.cos(angleX);
+				sb=Math.sin(angleX);
+				
+				tags.forEach(function(element,index,group){
+				var rx1=element.x;
+                var ry1=element.y*ca+element.z*(-sa);
+                var rz1=element.y*sa+element.z*ca;
+ 
+                var rx2=rx1*cb+rz1*sb;
+                var ry2=ry1;
+                var rz2=rx1*(-sb)+rz1*cb;
+ 
+                
+ 
+                element.x=rx2;
+                element.y=ry2;
+                element.z=rz2;
+
+           	 });
+			}
+
+			function animate(){
+
+
+				
+				rotate();
+				tags.forEach(function(e,index,group){
+					e.move();
+				});
+				if(!animated){
+					angleX*=0.98;
+					angleY*=0.98;
+				}
+				drawCanvas();
+				requestAnimationFrame(animate);
+			}
+
+			function drawCanvas(){
+				ctx.clearRect(0,0,CX*2,CY*2);
+				ctx.strokeStyle="rgba(141,141,141,.6)";
+				
+				tags.forEach(function(element,index,group){
+					ctx.beginPath();
+					ctx.moveTo(CX,CY);
+					ctx.lineWidth=(element.z+radius*2)/(radius*2);
+					ctx.lineTo(element.x+CX+parseInt(element.e.offsetWidth)/2,element.y+CY+parseInt(element.e.offsetHeight)/2);
+					ctx.stroke();
+
+				});
+			}
+
+			initial();
+			animate();
+
+	})();
+</script>
     <section id="part3">
         <img src="images/2.png">
         <div class="textExp">
-            <p>生活的介绍</p>
+            <div>嫁给幸福，快乐守望人生的这片风景！<br>跟轻刻美小姐一起，<br>去旅行、去摄影、去阅读、去体验、去思考。<br>一起来玩转生活，拥抱每一个当下。</div>
         </div>
         <a href="#part4" class="scroll"></a>
     </section>
     <section id="part4">
+    	
         <img src="images/studies.png">
         <div class="textExp">
-            <p>随笔的介绍</p>
-        </div>
-        <a href="#part5" class="scroll"></a>
+            <div id="wrap_footer">
+						    <img src="images/studies.png" alt="" class="pos_1" name="img1">
+						    <img src="images/2.png" alt="" class="pos_2" name="img1">
+						    <img src="images/1.jpg" alt="" class="pos_3" name="img1">
+						    <img src="images/home.jpg" alt="" class="pos_4" name="img1">
+						    <img src="images/studies.png" alt="" class="pos_5" name="img1">
+						    <img src="images/studies.png" alt="" class="pos_6" name="img1">
+						    <img src="images/studies.png" alt="" class="pos_7" name="img1">
+						    <div id="Prev"></div>
+						    <div id="Next"></div>
+		
+        		</div>
+        </div>		
     </section>
-    <section id="part5">
-        <img src="images/studies.png">
-        <div class="textExp">
-            <p>footer部分</p>
-        </div>
-    </section>
+        <script>
+window.onload=function(){
+    var oLeft=document.getElementById('left');
+    var oRight=document.getElementById('right');
+    var oNext=document.getElementById('Next');
+    var oPrev=document.getElementById('Prev');
+    var oImg=document.getElementsByName('img1');
+    var arr=[];
+    var timer=null;
+    jQuery.extend(jQuery.easing,{
+        easeOutBounce: function (x, t, b, c, d) {
+            if ((t/=d) < (1/2.75)) {
+                return c*(7.5625*t*t) + b;
+            } else if (t < (2/2.75)) {
+                return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+            } else if (t < (2.5/2.75)) {
+                return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+            } else {
+                return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+            }
+        },
+    });
+    for(var i=0;i<oImg.length;i++){
+        //保存每个图片的left,width，opacity,zIndex到二维数组中
+        arr.push([parseInt(getStyle(oImg[i],"left")),parseInt(getStyle(oImg[i],"top")),parseInt(getStyle(oImg[i],"width")),parseFloat(getStyle(oImg[i],"opacity"))*100,parseInt(getStyle(oImg[i],"zIndex"))]);
+    }
+    oNext.onclick=function(){
+        clearInterval(timer);
+        arr.unshift(arr[arr.length-1]);
+        arr.pop();
+        for(var i=0;i<oImg.length;i++){
+            startMove(oImg[i],{'left':arr[i][0],'top':arr[i][1],'width':arr[i][2],'opacity':arr[i][3],'zIndex':arr[i][4]});
+        }
+    };
+    oPrev.onclick=function(){
+        clearInterval(timer);
+        tab();
+
+    };
+    function tab(){
+        arr.push(arr[0]);
+        arr.shift();
+        for(var i=0;i<oImg.length;i++){
+                startMove(oImg[i],{'left':arr[i][0],'top':arr[i][1],'width':arr[i][2],'opacity':arr[i][3],'zIndex':arr[i][4]});
+        }
+    }
+    function startMove(obj,json,fn){
+            obj=$(obj);
+        obj.css({zIndex:json.zIndex});
+        obj.stop(true).animate({
+            opacity:json.opacity/100,
+            top:json.top+'px',
+            width:json.width+'px',
+            left:[json.left+'px','easeOutBounce']
+        },300);
+    }
+    /*
+    * 通用获取dom对象的非行间属性*/
+    function getStyle(obj,attr){
+        if(obj.currentStyle){//兼容IEcurrentStyle和getComputedStyle两个返回的都是一个对象
+            return obj.currentStyle[attr];
+        }
+        else {
+            return getComputedStyle(obj,false)[attr];
+        }
+    }
+}</script>	
 </div>
 <script type='text/javascript', src='jquery-1.7.2.min.js'></script>
 <script type='text/javascript', src='jquery.easing.min.js'></script>

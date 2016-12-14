@@ -183,7 +183,7 @@ header nav{
     position:relative;
 }
 
-#part1,#part2,#part3,#part4,#part5{
+#part1,#part2,#part3,#part4{
     position:relative;
     width:100%;
     height:100%;
@@ -194,18 +194,16 @@ header nav{
     background-color:#000;
 }
 #part2{
-    background-color:#2D3E50;
+    background-color:#81979B;
 }
 #part3{
-    background-color:#81979B;
+    background-color:#2D3E50;
 }
 #part4{
-    background-color:green;
+    background-color:gray;
 }
-#part5{
-    background-color:#81979B;
-}
-#part1 img,#part2 img,#part3 img,#part4 img,#part5 img{
+
+#part1 img,#part2 img,#part3 img,#part4 img{
     position:relative;
     top:30px;
 }
@@ -288,26 +286,25 @@ header nav{
 .textExp{
    position:absolute;
     bottom:-500px;
-    right:260px;
+    right:20px;
     color:white;
-    font-size:80px;
+    font-size:50px;
     font-weight:bold;
+}
+.textExp div{
+   line-height:90px;
+   text-align:left;
 }
 .move{
     transition:All 0.4s ease-in-out;
     -webkit-transition:All 0.4s ease-in-out;
     -moz-transition:All 0.4s ease-in-out;
     -o-transition:All 0.4s ease-in-out;
-    transform:translate(0,-800px);
-    -webkit-transform:translate(0,-800px);
-    -moz-transform:translate(0,-800px);
-    -o-transform:translate(0,-800px);
-    -ms-transform:translate(0,-800px);
-}
-.part5{
-    position:relative;
-    width:100%;
-    height:100%;
+    transform:translate(0,-900px);
+    -webkit-transform:translate(0,-900px);
+    -moz-transform:translate(0,-900px);
+    -o-transform:translate(0,-900px);
+    -ms-transform:translate(0,-900px);
 }
 
 .scroll {
@@ -352,4 +349,136 @@ header nav{
     50% {
         top:80px;
     }
+}
+
+@keyframes fadeInUpBig {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+            transform: translate3d(0, 2000px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+.fadeInUpBig {
+  -webkit-animation-name: fadeInUpBig;
+          animation-name: fadeInUpBig;
+}
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+canvas{position: absolute;width: 600px;height:600px;}
+#ball{position:relative;width: 600px;height:600px;margin: 0 auto;line-height:20px;right:400px;}
+#ball a{position: absolute;text-decoration: none;color:#666;border-right:1px solid #666;border-bottom:1px solid #666;}
+#ball a:hover{color:#000;}
+
+
+#wrap_footer{width:500px;height:333px;margin:0 auto;position:relative;margin-top:100px;top:-60px;right:400px;}
+#wrap_footer img{position:absolute;  border-radius: 20px;
+    box-shadow: 0px 0px 10px #6F8363}
+#Prev {
+    width: 76px;
+    height: 112px;
+    left: 0;
+    bottom:0;
+    background:url("images/sl.png")no-repeat left  center;
+    position: absolute;
+    z-index: 100;
+    cursor:pointer;
+}
+
+#Next {
+    width: 76px;
+    height: 112px;
+    bottom:0;
+    right: 0;
+    background:url("images/sr.png")no-repeat right  center;
+    position: absolute;
+    z-index: 100;
+    cursor:pointer;
+
+}
+
+.pos_1{
+    width:280px;
+    left:-180px;
+    top:-290px;
+    z-index: 0;
+    opacity:1;
+    filter:alpha(opacity:1);
+}
+.pos_2{
+    width:280px;
+    left:-180px;
+    top:68px;
+    z-index: 1;
+    opacity:0.4;
+    filter:alpha(opacity:40);
+}
+.pos_3 {
+   width:380px;
+    left:-105px;
+    top:35px;
+    z-index:2;
+    opacity:0.8;
+    filter:alpha(opacity:80);
+}
+.pos_4{
+    width:500px;
+    left:0px;
+    top:0px;
+    z-index: 3;
+    opacity:1;
+    filter:alpha(opacity:1);
+}
+.pos_5{
+    width:380px;
+    left:225px;
+    top:35px;
+    z-index:2;
+    opacity:0.8;
+    filter:alpha(opacity:80);
+}
+.pos_6{
+    width:280px;
+    left:400px;
+    top:68px;
+    z-index: 1;
+    opacity:0.4;
+    filter:alpha(opacity:40);
+}
+.pos_7{
+    width:280px;
+    left:400px;
+    top:-290px;
+    z-index: 0;
+    opacity:0;
+    filter:alpha(opacity:0);
 }

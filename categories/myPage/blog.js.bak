@@ -7,7 +7,7 @@
      $(".menu").click(function(){
          if($(".bar").hasClass("active")){
              $(".bar.top,.bar.center,.bar.bottom").removeClass("active");
-             $('.menu_wrap').removeClass('show').removeClass('fadeInUpBig').addClass('hide').addClass('fadeOut');
+             $('.menu_wrap').removeClass('show').addClass('hide');
          }
 
          else{
