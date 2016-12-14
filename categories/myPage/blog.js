@@ -1,6 +1,7 @@
 /**
  * Created by liuhong on 2016/12/4.
  */
+
 (function(){
 
      $(".menu").click(function(){
@@ -29,7 +30,7 @@
     });
 
     var top=$(window).scrollTop();
-    var t1=$("#part1").offset().top;
+    var t1=$("#part1").offset().top;  
     var t2=$("#part2").offset().top;
     var t3=$("#part3").offset().top;
     var t4=$("#part4").offset().top;

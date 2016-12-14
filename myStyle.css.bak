@@ -4,7 +4,7 @@
 	max-width:107%;
 	}
 .left-col .overlay{
-	background-color:#EA6753;
+	background-color:#FF2A33;
 	}
 
 .switch-btn {
@@ -31,7 +31,21 @@
     transform: scale(.6);
     cursor: pointer;
 }
-
+.left-col #header .header-author{
+	margin:5px;
+	height:50px;
+	}
+.left-col #header .header-author a{
+	color:#FF2A33;
+	font-weight: bold;
+	}	
+.left-col #header .header-subtitle{
+	padding-bottom:10px;
+	}
+.left-col #header a:hover {
+    color: #FF2A33;
+}	
+	
 .switch-btn .icon-ctn {
     width: 34px;
     height: 34px;
@@ -39,6 +53,13 @@
     overflow: hidden;
 }
 
+.left-col #header .header-menu{
+	padding-bottom:15px;
+	border-bottom:2px solid #e6e6e6;
+	}
+	
+	#header .header-nav .social{
+		margin-top:20px;}
 .switch-btn .icon-ctn .birdhouse {
     width: 0;
     height: 0;
@@ -147,8 +168,79 @@
     content: "\e6fe";
 }
 .icon-book{
-	    color: #999;
+	  color: #999;
     float: left;
     margin-right: 10px;
     margin-top: 6px;
 	}
+	
+.search{
+	position:relative;
+	top:-30px;
+	padding 1em 0 0 2.5em;
+	 }
+.search input {
+  line-height: 23em;
+  border: 1px solid color-white;
+  color: color-white;
+  background: transparent;
+  padding-left: 4em;
+}
+@media tablet {
+  .search input {
+    width: 4em;
+    -webkit-transition: 0.5s width;
+    -moz-transition: 0.5s width;
+    -ms-transition: 0.5s width;
+    transition: 0.5s width;
+  }
+  .search input:focus {
+    width: 8em;
+  }
+}
+form input.st-search-input_my {
+  font-size: 12px;
+  padding: 4px 9px 4px 32px;
+  height: 25px;
+  width: 190px;
+  color: #666;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+  -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+  -webkit-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);
+  outline: none;
+  background: #fcfcfc url("/images/search.png") no-repeat 5px 1px;
+}
+
+.category-list{
+	font-size 0.9em
+  padding 15px 20px
+	}
+.category-list .category-list-count{
+	margin-left 8px
+    font-size 0.8em
+    color color-meta
+	}    
+.category-list .category-list-count:before{
+	content '(';
+	}    
+.category-list .category-list-count:after{
+	content ')';
+	}    
+
+ul, ol, dl{
+list-style none;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: red;
+    background-image: none;
+    color: rgb(0, 0, 0);
+}

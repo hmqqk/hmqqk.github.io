@@ -36,9 +36,11 @@ header{
     -ms-transform: scale(0.95);
     -o-transform: scale(0.95);
     transform: scale(0.95);
-    cursor:pointer;
 }
-.userMsg{ z-index:8; }
+.userMsg{ 
+	z-index:8;
+	cursor:pointer;
+	 }
 .echo{ z-index:7; }
 /* 心 初始化 */
 .userMsg::before,.userMsg::after,.echo::before, .echo::after{

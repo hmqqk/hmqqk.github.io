@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>karma-jasmine | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Karma和Jasmine自动化单元测试
+前言在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="karma-jasmine">
+<meta property="og:url" content="http://yoursite.com/2016/03/10/karma-jasmine/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Karma和Jasmine自动化单元测试
+前言在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做node">
+<meta property="og:image" content="http://yoursite.com/images/karma-jasmine/1_1.png">
+<meta property="og:image" content="http://yoursite.com/images/karma-jasmine/1_2.png">
+<meta property="og:updated_time" content="2016-12-13T15:05:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="karma-jasmine">
+<meta name="twitter:description" content="Karma和Jasmine自动化单元测试
+前言在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做node">
+<meta name="twitter:image" content="http://yoursite.com/images/karma-jasmine/1_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/head.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-karma-jasmine" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      karma-jasmine
+    </h1>
+  
+
+        <a href="/2016/03/10/karma-jasmine/" class="archive-article-date">
+  	<time datetime="2016-03-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Karma和Jasmine自动化单元测试</p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。<br>Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做nodejs的包依赖管理，bower做javascript的包依赖管理。Java领域：JUnit做单元测试, Maven自动化单元测试，统一项目管理，构建项目原型模板，包依赖管理。</p>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li>Karma的介绍</li>
+<li>Karma的安装</li>
+<li>Karma + Jasmine配置</li>
+<li>自动化单元测试</li>
+<li>Karma和istanbul代码覆盖率</li>
+<li>Karma第一次启动时出现的问题</li>
+</ul>
+<ol>
+<li>Karma的介绍<br>Karma是Testacular的新名字，在2012年google开源了Testacular，2013年Testacular改名为Karma。Karma是一个让人感到非常神秘的名字，表示佛教中的缘分，因果报应，比Cassandra这种名字更让人猜不透！</li>
+</ol>
+<p>Karma是一个基于Node.js的JavaScript测试执行过程管理工具（Test Runner）。该工具可用于测试所有主流Web浏览器，也可集成到CI（Continuous integration）工具，也可和其他代码编辑器一起使用。这个测试工具的一个强大特性就是，它可以监控(Watch)文件的变化，然后自行执行，通过console.log显示测试结果。</p>
+<p>Jasmine是单元测试框架，本单将介绍用Karma让Jasmine测试自动化完成。Jasmine的介绍，请参考文章：jasmine行为驱动,测试先行</p>
+<p>istanbul是一个单元测试代码覆盖率检查工具，可以很直观地告诉我们，单元测试对代码的控制程度。</p>
+<ol>
+<li>Karma的安装<br>系统环境:</li>
+</ol>
+<p>win7 64bit, node v0.10.5, npm 1.2.19<br>安装Karma</p>
+<p>~ D:\workspace\javascript&gt;mkdir karma<br>~ D:\workspace\javascript&gt;cd karma<br>~ D:\workspace\javascript\karma&gt;npm install -g karma</p>
+<p>测试是否安装成功<br>~ D:\workspace\javascript\karma&gt;karma start<br>INFO [karma]: Karma v0.10.2 server started at <a href="http://localhost:9876/" target="_blank" rel="external">http://localhost:9876/</a><br>INFO [Chrome 28.0.1500 (Windows 7)]: Connected on socket nIlM1yUy6ELMp5ZTN9Ek</p>
+<ol>
+<li>Karma + Jasmine配置<br>初始化karma配置文件karma.conf.js</li>
+</ol>
+<p>~ D:\workspace\javascript\karma&gt;karma init</p>
+<p>Which testing framework do you want to use ?<br>Press tab to list possible options. Enter to move to the next question.</p>
+<blockquote>
+<p>jasmine</p>
+</blockquote>
+<p>Do you want to use Require.js ?<br>This will add Require.js plugin.<br>Press tab to list possible options. Enter to move to the next question.</p>
+<blockquote>
+<p>no</p>
+</blockquote>
+<p>Do you want to capture a browser automatically ?<br>Press tab to list possible options. Enter empty string to move to the next question.</p>
+<blockquote>
+<p>Chrome</p>
+</blockquote>
+<p>What is the location of your source and test files ?<br>You can use glob patterns, eg. “js/<em>.js” or “test/**/</em>Spec.js”.<br>Enter empty string to move to the next question.<br>&gt;</p>
+<p>Should any of the files included by the previous patterns be excluded ?<br>You can use glob patterns, eg. “<em>*/</em>.swp”.<br>Enter empty string to move to the next question.<br>&gt;</p>
+<p>Do you want Karma to watch all the files and run the tests on change ?<br>Press tab to list possible options.</p>
+<blockquote>
+<p>yes</p>
+</blockquote>
+<p>Config file generated at “D:\workspace\javascript\karma\karma.conf.js”.<br>安装集成包karma-jasmine</p>
+<p>~ D:\workspace\javascript\karma&gt;npm install karma-jasmine</p>
+<ol>
+<li><p>自动化单元测试<br>3步准备工作：</p>
+</li>
+<li><p>创建源文件：用于实现某种业务逻辑的文件，就是我们平时写的js脚本</p>
+</li>
+<li>创建测试文件：符合jasmineAPI的测试js脚本</li>
+<li>修改karma.conf.js配置文件<br>1). 创建源文件：用于实现某种业务逻辑的文件，就是我们平时写的js脚本<br>有一个需求，要实现单词倒写的功能。如：”ABCD” ==&gt; “DCBA”</li>
+</ol>
+<p>~ vi src.js</p>
+<p>function reverse(name){<br>    return name.split(“”).reverse().join(“”);<br>}<br>2). 创建测试文件：符合jasmineAPI的测试js脚本</p>
+<p>describe(“A suite of basic functions”, function() {<br>    it(“reverse word”,function(){<br>        expect(“DCBA”).toEqual(reverse(“ABCD”));<br>    });<br>});<br>3). 修改karma.conf.js配置文件<br>我们这里需要修改：files和exclude变量</p>
+<p>module.exports = function (config) {<br>    config.set({<br>        basePath: ‘’,<br>        frameworks: [‘jasmine’],<br>        files: [‘*.js’],<br>        exclude: [‘karma.conf.js’],<br>        reporters: [‘progress’],<br>        port: 9876,<br>        colors: true,<br>        logLevel: config.LOG_INFO,<br>        autoWatch: true,<br>        browsers: [‘Chrome’],<br>        captureTimeout: 60000,<br>        singleRun: false<br>    });<br>};<br>启动karma<br>单元测试全自动执行</p>
+<p>~ D:\workspace\javascript\karma&gt;karma start karma.conf.js<br>INFO [karma]: Karma v0.10.2 server started at <a href="http://localhost:9876/" target="_blank" rel="external">http://localhost:9876/</a><br>INFO [launcher]: Starting browser Chrome<br>WARN [launcher]: The path should not be quoted.<br>  Normalized the path to C:\Program Files (x86)\Google\Chrome\Application\chrome.exe<br>INFO [Chrome 28.0.1500 (Windows 7)]: Connected on socket bVGffDWpc1c7QNdYye_6<br>INFO [Chrome 28.0.1500 (Windows 7)]: Connected on socket DtTdVbd4ZsgnMQrgye_7<br>Chrome 28.0.1500 (Windows 7): Executed 1 of 1 SUCCESS (3.473 secs / 0.431 secs)<br>Chrome 28.0.1500 (Windows 7): Executed 1 of 1 SUCCESS (0.068 secs / 0.021 secs)<br>TOTAL: 2 SUCCESS<br>我们修改test.js</p>
+<p>~ vi test.js</p>
+<p>describe(“A suite of basic functions”, function() {<br>    it(“reverse word”,function(){<br>        expect(“DCBA”).toEqual(reverse(“ABCD”));<br>        expect(“Conan”).toEqual(reverse(“nano”));<br>    });<br>});<br>由于karma.conf.js配置文件中autoWatch: true, 所以test.js文件保存后，会自动执行单元测试。</p>
+<p>执行日志如下：提示我们单元测试出错了。</p>
+<p>INFO [watcher]: Changed file “D:/workspace/javascript/karma/test.js”.<br>Chrome 28.0.1500 (Windows 7) A suite of basic functions reverse word FAILED<br>        Expected ‘Conan’ to equal ‘onan’.<br>        Error: Expected ‘Conan’ to equal ‘onan’.<br>            at null. (D:/workspace/javascript/karma/test.js:4:25)<br>Chrome 28.0.1500 (Windows 7): Executed 1 of 1 (1 FAILED) ERROR (0.3 secs / 0.006 secs)</p>
+<ol>
+<li>Karma和istanbul代码覆盖率<br>增加代码覆盖率检查和报告，增加istanbul依赖</li>
+</ol>
+<p>~ D:\workspace\javascript\karma&gt;npm install karma-coverage<br>修改karma.conf.js配置文件</p>
+<p>~ vi karma.conf.js</p>
+<p>reporters: [‘progress’,’coverage’],<br>preprocessors : {‘src.js’: ‘coverage’},<br>coverageReporter: {<br>    type : ‘html’,<br>    dir : ‘coverage/‘<br>}<br>启动karma start，在工程目录下面找到index.html文件，coverage/chrome/index.html</p>
+<p>打开后，我们看到代码测试覆盖绿报告</p>
+<h4 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h4><p>jasmine支持异步测试，这个非常常见！需要好好重视！</p>
+<p>在beforeEach、it、和afterEach中，使用done作为函数参数，当异步工作结束以后，这些done函数才会被调用！</p>
+<p>例如，在一个describe中，只用当 beforeEach中的done函数被调用了，下面的it中的done才会被调用，直到所有的done函数被调用，整个describe才会结束。</p>
+<p>jasmine超时默认等待5秒，可以根据需要设置 jasmine.DEFAULT_TIMEOUT_INTERVAL的值。</p>
+<p>对于这个异步测试，还不是很清楚！以后在实践中一定要好好注意！认真总结！</p>
+<p>1、spy 可以监听函数是否被调用，以及对应的参数的值！如果被调用 toHaveBeenCalled返回true，如果参数的值是指定的值，则toHaveBeenCalledWith（args）返回true</p>
+<p>2、spyOn(….).and.callThrough()，这个函数，比较难懂，附上英文解释：<br>     By chaining the spy with  and.callThrough ，the spy will still track all calls to it but in addition it will delegate to the actual implementation.</p>
+<p>3、spyOn(…).and.returnValue(val) 这个函数是用val替换监听函数的返回值！</p>
+<p>4、spyOn(…).and.callFake(function(){…}) ,这个函数表示结果返回指定的函数。</p>
+<p>5、spyOn(…).and.throwError(val)，这个函数是用指定的val作为抛出的错误</p>
+<p>6、and.stub()  这个方法是配合callThrough使用，相当于取出存根，原来的变量又重获自由！</p>
+<p>7、其他跟踪属性：calls，每次调用用spy监听的函数的过程都会被calls跟踪和暴露！ </p>
+<p>8、xxx.calls.any()，如果监听的函数没有被调用过 返回 false，如果起码调用了一次就返回 true</p>
+<p>9、xxx.calls.count(num), 监听函数被调用的次数，num表示几次</p>
+<p>10、xxx.calls.argsFor(index), 表示第index次调用监听函数使用的参数</p>
+<p>11、xxx.calls.allArgs()，表示所有调用监听函数使用过的参数</p>
+<p>12、xxx.calls.all()：表示调用监听函数的所有的参数的this上下文内容</p>
+<p>13、xxx.calls.mostRecent()，表示返回最近一次调用监听函数的参数的this上下文内容</p>
+<p>14、xxx.calls.first()，表示返回第一次调用监听函数的参数的this上下文内容</p>
+<p>15、不管all、mostRecent、first都带有object属性，返回的是对象<br>          eg: expect ( xxx.calls.first().object ).toBe( Myobj )</p>
+<p>16、xxx.calls.reset()，表示清空监听函数的跟踪信息！</p>
+<p>1、Jasmine以 describe开头，里面可以包含多个 it ，而且定义在describe中的变量，任何在describe内声明的 it 都可以调用这个变量，要明确变量的作用域！</p>
+<p>2、expect 语法：</p>
+<pre><code>expect( exp ).toBe (true / false / undefined)
+
+expect( exp ).not.toBe( true /false / undefined)
+</code></pre><p>3、自定义的匹配测试方法 custom matchers</p>
+<p>4、toMatch 专门是为了：正则表达式！<br>     . not . toMatch :(和上面toMatch相反)</p>
+<p>5、toBeDefined() 是为了比较是否定义 （‘undefined ’）<br>     . not . toBeDefined() ：表示未定义！</p>
+<p>6、toBeUndefined() 含义整好和上面的相反， .not.tobeUndefined() 表示已经定义！</p>
+<p>7、toBeNull() 匹配变量是否为null，相反加 not 即：.not.toBeNull()</p>
+<p>8、toBeTruthy() 表示布尔值的真<br>      toBeFalsy()  表示布尔值的假</p>
+<p>9、toContain(‘ele’) 表示数组中是否含 ‘ele’，不包含加 not，即：.not.toContain(‘ele’)</p>
+<p>10、toBeLessThan( ‘ele ‘) 小于ele ,  not.toBeLessThan(‘ ele ‘)  不小于ele</p>
+<p>11、 toBeGreaterThan( ‘ele ‘)  大于ele ，不大于 前面加 not</p>
+<p>12、toBeCloseTo(ele,num) 比较是否和ele接近，num表示精度</p>
+<p>13、toThrow() :表示一个函数抛出异常，不抛出异常，加 not ， 即 .not.toThrow()</p>
+<p>14、beforeEach(function(){…}) ,全局函数，这个函数在测试之前调用，而且只调用一次！</p>
+<p>15、afterEach(function(){…})，全局函数，这个函数在所有测试结束后调用。</p>
+<p>16、this关键字，通过this可以在beforeEach、it、afterEach之间共享变量！但是不能在 it….it 之间共享变量！</p>
+<p>17、支持嵌套的describe，会依然先访问beforeEach，结束以后再访问afterEach，先由外到里，访问beforeEach，然后再由外向里，访问afterEach。</p>
+<p>18、可以设置 xdescribe 和 xit  使对应的代码块不可用！如果设置了，尽管里面的断言代码报错了，也不会被响应</p>
+<p>19、pending()，相当于 ”挂起 “  ，如果 it函数声明没有实现function，那么也相当于pending()，测试结果会以黄色的文字显示。<br>1、jasmine.createSpy(’spyName’)：创建监听对象，这个监听对象是JavaScript对象，可以用“笔记二”中的那些属性方法。</p>
+<p>2、jasmine.createSpyObj 用于模拟创建多个监听函数，带一个字符串数组 ，它返回一个对象，这个对象的属性就是那些字符串数组的元素。</p>
+<p>3、jasmine.any(obj)：表示返回obj的构造函数或者类型名称</p>
+<p>4、jasmine.objectContaining()：表示局部匹配，这个函数不要全看字面意思</p>
+<p>5、jasmine.clock().install：当使用setTimeOut和setInterval回调函数时，会模拟一个JavaScript时间回调函数。这个函数使时间回调函数同步，当时间一到就执行注册的函数。</p>
+<p>6、相对应的，在结束后使用 jasmine.clock().uninstall，恢复原始的时间调用函数！</p>
+<h4 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h4><p>问题1</p>
+<p><div align="center"><br> <img src="/images/karma-jasmine/1_1.png"><br></div><br>解决办法：如果出现上述问题，则我们就在其所提示的安装路径下全局安装该模块。例如 npm install -g fs-access，如果还缺少其它模块，则处理方式类同。<br>问题2</p>
+<p><div align="center"><br> <img src="/images/karma-jasmine/1_2.png"><br></div><br>解决办法：</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/07/01/nodejs API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：nodejs API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/22/hexo中主题yilia下的搜索功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：hexo中主题yilia下的搜索功能</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="karma-jasmine" data-title="karma-jasmine" data-url="http://yoursite.com/2016/03/10/karma-jasmine/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+<script type="text/javascript">
+(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+<script type="text/javascript">
+(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./jquery-1.10.2.min.js"></script>
+<script src="/./main.js"></script>
+<script src="/./myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 12.5px;">Github</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/html/" style="font-size: 17.5px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 10px;">jade</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/jquery/" style="font-size: 12.5px;">jquery</a> <a href="/tags/js/" style="font-size: 12.5px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>
