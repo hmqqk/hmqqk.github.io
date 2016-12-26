@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>nodejs总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题1 ：解决node_modules目录太长无法删除的问题解决：使用npm里面一个专门用于删除的模块插件 ：rimraf操作：npm install -g rimrafcd xxxrimraf node_modules
+rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Status devDepe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs总结">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/nodejs总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="问题1 ：解决node_modules目录太长无法删除的问题解决：使用npm里面一个专门用于删除的模块插件 ：rimraf操作：npm install -g rimrafcd xxxrimraf node_modules
+rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Status devDepe">
+<meta property="og:image" content="http://yoursite.com/images/nodejs/1_1.png">
+<meta property="og:image" content="http://yoursite.com/images/nodejs/1_2.png">
+<meta property="og:image" content="http://yoursite.com/images/nodejs/1_3.png">
+<meta property="og:image" content="http://yoursite.com/images/nodejs/1_4.png">
+<meta property="og:updated_time" content="2016-12-24T09:23:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs总结">
+<meta name="twitter:description" content="问题1 ：解决node_modules目录太长无法删除的问题解决：使用npm里面一个专门用于删除的模块插件 ：rimraf操作：npm install -g rimrafcd xxxrimraf node_modules
+rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Status devDepe">
+<meta name="twitter:image" content="http://yoursite.com/images/nodejs/1_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/title.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/title.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-nodejs总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nodejs总结
+    </h1>
+  
+
+        <a href="/2016/08/18/nodejs总结/" class="archive-article-date">
+  	<time datetime="2016-08-18T01:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问题1 ：解决node_modules目录太长无法删除的问题<br>解决：<br>使用npm里面一个专门用于删除的模块插件 ：rimraf<br>操作：<br>npm install -g rimraf<br>cd xxx<br>rimraf node_modules</p>
+<p>rimraf<br>A deep deletion module for node (like rm -rf)<br>Build Status Dependency Status devDependency Status</p>
+<p>The UNIX command rm -rf for node.</p>
+<p>Install with npm install rimraf, or just drop rimraf.js somewhere.</p>
+<p>API<br>rimraf(f, [opts], callback)</p>
+<p>The first parameter will be interpreted as a globbing pattern for files. If you want to disable globbing you can do so with opts.disableGlob (defaults to false). This might be handy, for instance, if you have filenames that contain globbing wildcard characters.</p>
+<p>The callback will be called with an error if there is one. Certain errors are handled for you:</p>
+<p>Windows: EBUSY and ENOTEMPTY - rimraf will back off a maximum of opts.maxBusyTries times before giving up, adding 100ms of wait between each attempt. The default maxBusyTries is 3.<br>ENOENT - If the file doesn’t exist, rimraf will return successfully, since your desired outcome is already the case.<br>EMFILE - Since readdir requires opening a file descriptor, it’s possible to hit EMFILE if too many file descriptors are in use. In the sync case, there’s nothing to be done for this. But in the async case, rimraf will gradually back off with timeouts up to opts.emfileWait ms, which defaults to 1000.<br>options<br>unlink, chmod, stat, lstat, rmdir, readdir, unlinkSync, chmodSync, statSync, lstatSync, rmdirSync, readdirSync</p>
+<p>In order to use a custom file system library, you can override specific fs functions on the options object.</p>
+<p>If any of these functions are present on the options object, then the supplied function will be used instead of the default fs method.</p>
+<p>Sync methods are only relevant for rimraf.sync(), of course.</p>
+<p>For example:</p>
+<p>var myCustomFS = require(‘some-custom-fs’)</p>
+<p>rimraf(‘some-thing’, myCustomFS, callback)<br>maxBusyTries</p>
+<p>If an EBUSY, ENOTEMPTY, or EPERM error code is encountered on Windows systems, then rimraf will retry with a linear backoff wait of 100ms longer on each try. The default maxBusyTries is 3.</p>
+<p>Only relevant for async usage.</p>
+<p>emfileWait</p>
+<p>If an EMFILE error is encountered, then rimraf will retry repeatedly with a linear backoff of 1ms longer on each try, until the timeout counter hits this max. The default limit is 1000.</p>
+<p>If you repeatedly encounter EMFILE errors, then consider using graceful-fs in your program.</p>
+<p>Only relevant for async usage.</p>
+<p>glob</p>
+<p>Set to false to disable glob pattern matching.</p>
+<p>Set to an object to pass options to the glob module. The default glob options are { nosort: true, silent: true }.</p>
+<p>Glob version 6 is used in this module.</p>
+<p>Relevant for both sync and async usage.</p>
+<p>disableGlob</p>
+<p>Set to any non-falsey value to disable globbing entirely. (Equivalent to setting glob: false.)</p>
+<p>rimraf.sync<br>It can remove stuff synchronously, too. But that’s not so good. Use the async API. It’s better.</p>
+<p>CLI<br>If installed with npm install rimraf -g it can be used as a global command rimraf <path></path> [<path></path> …] which is useful for cross platform support.</p>
+<p>mkdirp<br>If you need to create a directory recursively, check out mkdirp.</p>
+<p>问题2： nodejs mkdirp<br>能够生成创建文件夹中间所有层级</p>
+<p>demo</p>
+<p>var mkdirp = require(“mkdirp”);<br>mkdirp(‘/a/b/c/d’, function (err) {<br>    if (err) console.error(err)<br>    else console.log(‘pow!’)<br>});</p>
+<p>问题3：node.js中的fs.rmdir方法使用说明<br>方法说明：<br>以异步的方式删除文件目录。<br>语法：<br>复制代码 代码如下:</p>
+<p>fs.rmdir(path, [callback(err)])<br>由于该方法属于fs模块，使用前需要引入fs模块（var fs= require(“fs”) ）<br>接收参数：<br>path  目录路径<br>callback   回调，回调函数传递一个err异常参数。<br>例子：<br>复制代码 代码如下:</p>
+<p>var fs = require(‘fs’);<br>fs.rmdir(‘deldir’, function(err){<br> if(err){<br>  console.log(err);<br> }else{<br>  console.log(“done”);<br> }<br>});<br>源码：<br>复制代码 代码如下:</p>
+<p>fs.rmdir = function(path, callback) {<br>  callback = makeCallback(callback);<br>  if (!nullCheck(path, callback)) return;<br>  binding.rmdir(pathModule._makeLong(path), callback);<br>};</p>
+<p>问题4:nodejs-ueditor（富文本编辑器）的实现<br>1.介绍<br>UEditor是由百度web前端研发部开发所见即所得富文本web编辑器，<br>具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码…</p>
+<p>2.下载<br>下载地址 ：<a href="http://ueditor.baidu.com/website/download.html#ueditor" target="_blank" rel="external">http://ueditor.baidu.com/website/download.html#ueditor</a>.<br>选择开发版 ，因为我们使用node ,所以随便下一个版本，这里下载1.4.3.3 jsp 版本<br>下载完成解压。<br>3.webstorm下创建nodejs项目<br>4.修改index.jade界面<br>    doctype html<br>    head<br>      meta(http-equiv=”Content-Type” content=”text/html;charset=utf-8”)<br>      script(type=”text/javascript” charset=”utf-8” src=”../ueditor/ueditor.config.js”)<br>      script(type=”text/javascript” charset=”utf-8” src=”../ueditor/ueditor.all.min.js”)<br>      script(type=”text/javascript” charset=”utf-8” src=”../ueditor/lang/zh-cn/zh-cn.js”)<br>    body<br>     script(id=”editor” type=”text/plain” style=”width:1024px;height:500px;”)</p>
+<pre><code>script(type=&quot;text/javascript&quot;).var ue = UE.getEditor(&apos;editor&apos;)
+</code></pre><p>然后启动项目，编辑器初始化成功！（注意引入文件路径的问题，如果初始化失败可以f12查看报错进行调试）<br>4.后端配置<br>仅仅这样是不能进行上传的<br>我们需要要配置后端文件。<br>修改 ueditor.config.js 文件</p>
+<p>//找到这一行代码 修改成这样，这里的url为请求的路径<br>// 服务器统一请求接口路径<br>        ,serverUrl: URL + “ue”  </p>
+<p>接下来我们安装ueditor 模块<br>UEditor API <a href="http://ueditor.baidu.com/doc/" target="_blank" rel="external">http://ueditor.baidu.com/doc/</a><br>$npm install ueditor –save  </p>
+<p>修改app.js：<br>//加载ueditor 模块<br>    var ueditor = require(“ueditor”);  </p>
+<pre><code>//使用模块  
+app.use(&quot;/ueditor/ue&quot;, ueditor(path.join(__dirname, &apos;public&apos;), function (req, res, next) {  
+    // ueditor 客户发起上传图片请求  
+    if (req.query.action === &apos;uploadimage&apos;) {  
+        var foo = req.ueditor;  
+
+        var imgname = req.ueditor.filename;  
+
+        var img_url = &apos;/images/ueditor/&apos;;  
+        res.ue_up(img_url); //你只要输入要保存的地址 。保存操作交给ueditor来做  
+        res.setHeader(&apos;Content-Type&apos;, &apos;text/html&apos;);//IE8下载需要设置返回头尾text/html 不然json返回文件会被直接下载打开  
+    }  
+    //  客户端发起图片列表请求  
+    else if (req.query.action === &apos;listimage&apos;) {  
+        var dir_url = &apos;/images/ueditor/&apos;;  
+        res.ue_list(dir_url); // 客户端会列出 dir_url 目录下的所有图片  
+    }  
+    // 客户端发起其它请求  
+    else {  
+        // console.log(&apos;config.json&apos;)  
+        res.setHeader(&apos;Content-Type&apos;, &apos;application/json&apos;);  
+        res.redirect(&apos;/ueditor/jsp/config.json&apos;);  
+    }  
+}));        
+</code></pre><p>修改完成重启一下服务即可</p>
+<div align="center"><br><img src="/images/nodejs/1_1.png"><br></div>      
+
+
+<p>问题：node.js模块之socket IO<br>解决：<br>Socket.IO的为了在浏览器和移动设备上创建实时应用而产生的，它可以模糊不同传输机制之间的差异。<br>Socket.IO是一个WebSocket库，包括了客户端的js和服务器端的nodejs，它的目标是构建可以在不同浏览器和移动设备上使用的实时应用。它会自动根据浏览器从WebSocket、AJAX长轮询、Iframe流等等各种方式中选择最佳的方式来实现网络实时应用，非常方便和人性化，而且支持的浏览器最低达IE5.5，应该可以满足绝大部分需求了。</p>
+<ol>
+<li>安装部署<br>2.1 安装<br>首先安装非常简单，在node.js环境下只要一句：<br>npm install socket.io<br>2.2 结合express来构建服务器<br>express是一个小巧的Node.js的Web应用框架，在构建HTTP服务器时经常使用到，所以直接以Socket.IO和express为例子来讲解。<br>var express = require(‘express’)<br> , app = express()<br> , server = require(‘http’).createServer(app)<br> , io = require(‘socket.io’).listen(server);<br> server.listen(3001);<br>若不使用express，请参考socket.io/#how-to-use</li>
+<li><p>基本使用方法<br>主要分为服务器端和客户端两段代码，都非常简单。<br>Server（app.js）：<br>//接上面的代码<br>app.get(‘/‘, function (req, res) {<br> res.sendfile(__dirname + ‘/index.html’);});<br>io.sockets.on(‘connection’, function (socket) {<br> socket.emit(‘news’, { hello: ‘world’ });<br> socket.on(‘other event’, function (data) {</p>
+<pre><code>console.log(data);
+</code></pre><p> });<br>});<br>首先io.sockets.on函数接受字符串”connection”作为客户端发起连接的事件，当连接成功后，调用带有socket参数的回调函数。我们在使用socket.IO的时候，基本上都在这个回调函数里面处理用户的请求。<br>socket最关键的是emit和on两个函数，前者提交（发出）一个事件（事件名称用字符串表示），事件名称可以自定义，也有一些默认的事件名称，紧接着是一个对象，表示向该socket发送的内容；后者接收一个事件（事件名称用字符串表示），紧接着是收到事件调用的回调函数，其中data是收到的数据。<br>在上面的例子中，我们发送了news事件和收到了other event事件，那么客户端应该会有对应的接收和发送事件。没错，客户端代码和服务器正好相反，而且非常相似。<br>Client（client.js）<br><script src="/socket.io/socket.io.js"></script><br><script><br> var socket = io.connect(‘<a href="http://localhost">http://localhost</a>‘);<br> socket.on(‘news’, function (data) {</p>
+<pre><code>console.log(data);
+socket.emit(&apos;other event&apos;, { my: &apos;data&apos; });
+</code></pre><p> });<br></script><br>有两点要注意的：socket.io.js路径要写对，这个js文件实际放在了服务器端的node_modules文件夹中，在请求这个文件时会重定向，因此不要诧异服务器端不存在这个文件但为什么还能正常工作。当然，你可以把服务器端的socket.io.js这个文件拷贝到本地，使它成为客户端的js文件，这样就不用每次都向Node服务器请求这个js文件，增强稳定性。第二点是要用var socket = io.connect(‘网站地址或ip’);来获取socket对象，接着就可以使用socket来收发事件。关于事件处理，上面的代码表示收到“news”事件后，打印收到的数据，并向服务器发送“other event”事件。<br>注：内置默认的事件名例如“disconnect”表示客户端连接断开，“message”表示收到消息等等。自定义的事件名称，尽量不要跟Socket.IO中内置的默认事件名重名，以免造成不必要的麻烦。</p>
+</li>
+<li><p>其他常用API<br>1).向所有客户端广播：socket.broadcast.emit(‘broadcast message’);<br>2).进入一个房间（非常好用！相当于一个命名空间，可以对一个特定的房间广播而不影响在其他房间或不在房间的客户端）：socket.join(‘your room name’);<br>3).向一个房间广播消息（发送者收不到消息）：socket.broadcast.to(‘your room name’).emit(‘broadcast room message’);<br>4).向一个房间广播消息（包括发送者都能收到消息）（这个API属于io.sockets）：io.sockets.in(‘another room name’).emit(‘broadcast room message’);<br>5).强制使用WebSocket通信：（客户端）socket.send(‘hi’)，（服务器）用socket.on(‘message’, function(data){})来接收。</p>
+</li>
+<li>使用Socket.IO构建一个聊天室<br>最后，我们通过一个简单的实例来结束本篇。用Socket.IO构建一个聊天室就是50行左右的代码的事情，实时聊天效果也非常好。以下贴出关键代码：<br>Server（socketChat.js）<br>//一个客户端连接的字典，当一个客户端连接到服务器时，<br>//会产生一个唯一的socketId，该字典保存socketId到用户信息（昵称等）的映射<br>var connectionList = {};<br>exports.startChat = function (io) {<br> io.sockets.on(‘connection’, function (socket) {<pre><code>//客户端连接时，保存socketId和用户名
+var socketId = socket.id;
+connectionList[socketId] = {
+    socket: socket
+};
+//用户进入聊天室事件，向其他在线用户广播其用户名
+socket.on(&apos;join&apos;, function (data) {
+    socket.broadcast.emit(&apos;broadcast_join&apos;, data);
+    connectionList[socketId].username = data.username;
+});
+//用户离开聊天室事件，向其他在线用户广播其离开
+socket.on(&apos;disconnect&apos;, function () {
+    if (connectionList[socketId].username) {
+        socket.broadcast.emit(&apos;broadcast_quit&apos;, {
+            username: connectionList[socketId].username
+        });
+    }
+    delete connectionList[socketId];
+});
+//用户发言事件，向其他在线用户广播其发言内容
+socket.on(&apos;say&apos;, function (data) {
+    socket.broadcast.emit(&apos;broadcast_say&apos;,{
+        username: connectionList[socketId].username,
+        text: data.text
+    });
+});
+</code></pre> })<br>};<br>Client(socketChatClient.js)<br>var socket = io.connect(‘<a href="http://localhost" target="_blank" rel="external">http://localhost</a>‘);<br>//连接服务器完毕后，马上提交一个“加入”事件，把自己的用户名告诉别人<br>socket.emit(‘join’, {<br> username: ‘Username hehe’<br>});<br>//收到加入聊天室广播后，显示消息<br>socket.on(‘broadcast_join’, function (data) {<br> console.log(data.username + ‘加入了聊天室’);<br>});<br>//收到离开聊天室广播后，显示消息<br>socket.on(‘broadcast_quit’, function(data) {<br> console.log(data.username + ‘离开了聊天室’);<br>});<br>//收到别人发送的消息后，显示消息<br>socket.on(‘broadcast_say’, function(data) {<br> console.log(data.username + ‘说: ‘ + data.text);<br>});<br>//这里我们假设有一个文本框textarea和一个发送按钮.btn-send<br>//使用jQuery绑定事件<br>$(‘.btn-send’).click(function(e) {<br> //获取文本框的文本<br> var text = $(‘textarea’).val();<br> //提交一个say事件，服务器收到就会广播<br> socket.emit(‘say’, {<pre><code>username: &apos;Username hehe&apos;
+text: text
+</code></pre> });<br>});<br>这就是一个简单的聊天室DEMO，你可以根据你的需要随意扩展。Socket.IO基本上就是各种事件的提交和接收处理，思想非常简单。</li>
+</ol>
+<p>问题：npm发布自己的代码<br>解决：<br>1.验证npm<br>新建一个文件夹用来存包，进入该文件夹（windows的同学可以按住shift键+右键，选择’在此处打开命令窗口‘来快速调出控制台）。<br>首先需要验证一下你是否安装了npm，如果确认已装请跳过此步,在控制台输入命令:<br>npm -v<br>2.新建package.json<br>在项目根目录下新建一个package.json，这是一个用来描述你的包的json文件，例如包名，依赖的其他包，作者等等。<br>借助npm来初始化可快速新建，在根目录下输入命令：<br>npm init<br>接着npm会提示你输入一些关于你的包的信息，如果你暂时不知道怎么填那一项就直接按回车就好：<br>你会发现你的根目录下多了一个package.json文件。<br>当然’name’要注意填，它将是你发布出去的npm包名，如果不小心填错了，可以直接在新建好的package.json修改’name’字段。<br>3.编写代码<br>虽然npm是允许发布一个空包（只含有package.json的包），但是这样的一个包是没有意义的。<br>我们如果没有代码，可以先加一个README.md（给使用者看的说明书）来说明一下自己的包：<br>在根目录下新建一个README.md文件，输入如下内容：</p>
+<h1 id="这是我的一个npm包"><a href="#这是我的一个npm包" class="headerlink" title="这是我的一个npm包"></a>这是我的一个npm包</h1><p>未完待续…<br>如果你想好了写说明代码(js,html,css等)请试着放进来。</p>
+<p>4.创建npm账号<br>如果你没有创建过npm账号，可输入如下命令添加一个npm账号，并跟着提示填写要注册的账号和密码：<br>npm adduser</p>
+<p>5.发布！<br>现在可以发布了。还是在根目录下输入命令：<br>npm publish<br>这样你就可以在<a href="https://www.npmjs.com/搜索并找到你刚才发布的npm包名（例如我的是：article-npm-publish，如果需要登录，请使用刚才你在控制台注册的账号）：" target="_blank" rel="external">https://www.npmjs.com/搜索并找到你刚才发布的npm包名（例如我的是：article-npm-publish，如果需要登录，请使用刚才你在控制台注册的账号）：</a><br>现在，你可以试着使用npm install xxx（xxx为你的包名）来安装自己的包啦。</p>
+<p>常见问题<br>1.如果需要更新包，在修改完代码后请记得修改package.json包的’version’字段，然后 npm publish。否则会无法发布；<br>2.如果在发布中显示类似’请确认你是否有权限更新xxx包’的英文提示，这就说明你的包名有人使用了。换个名字就好啦。<br>3.如果你想删除一个自己发布过的包，请使用命令 npm unpublish –force xxx （xxx为包名），一些没有意义的包还是建议删掉。</p>
+<p>问题：Node.js监控工具：nodemon<br>解决：<br>Nodemon 是一款非常实用的工具，用来监控你 node.js 源代码的任何变化和自动重启你的服务器。 Nodemon 是一款完美的开发工具，可以使用 npm 安装。<br>npm install -g nodemon<br>在doc下输入上面的，就安装成功了，以后我们启动我们的项目的时候，就输入nodemon server.js</p>
+<p>以前是node server.js<br>这样，每次我们的js文件修改后，node就会自动重启，就省的我们手动去重启了，这样方便了很多。<br>还有一个工具也可以实现同样的需求——supervisor</p>
+<p>例如测试结果如下：</p>
+<div align="center"><br><img src="/images/nodejs/1_2.png" <="" div="">
+
+<p>P.S. 这里有一个坑：我一直使用下面的方法启动node: node<br>这样启动是没有问题的，因为环境变量中配置了node了嘛，但是如果nodemon d:/js/node/app.js<br>这样nodemon监视的是启动目录，而不是d:/js/node这个目录，比如 c:\program&gt;nodemon d:/js/node/app.js<br>他实际上监视的是c:\program这个目录，你需要修改启动目录里才可以。<br>[热启动需要全局安装nodemon 另外nodeJS最好安装稳定版本]</p>
+<p>问题：<br>解决：<br>背景<br>一个网站必然会涉及很多功能，tab选项卡、slide轮播图、pop弹出层、美化alert、paging分页等等等等，如果是企业网站那整合成一个js文件就够了，即 插件库 。</p>
+<p>但是对于一个大的网站平台来说需要的功能可能会有很多，而且随着平台的发展，功能会越来越多。到最后会发展成怎样的情况呢？<br>我们希望一个页面按需引入，这个页面需要什么功能就引入什么功能。现在主流的工具有两种，amd规范的RequireJS、cmd规范的Seajs。<br>什么是Seajs<br>Seajs是一个加载器 <a href="http://kb.cnblogs.com/page/211942/" target="_blank" rel="external">http://kb.cnblogs.com/page/211942/</a><br>遵循 CMD 规范模块化开发，依赖的自动加载、配置的简洁清晰。<br>兼容性</p>
+<p>Chrome 3+<br>Firefox 2+<br>Safari 3.2+<br>Opera 10+<br>IE 5.5+<br>基本应用<br>导入Seajs库<br>去官网下载最新的seajs文件， <a href="http://seajs.org/docs/#downloads" target="_blank" rel="external">http://seajs.org/docs/#downloads</a><br>在页尾引入seajs： </p>
+<p><script src="/site/script/sea.js"></script><br>然后在它下面写模块的配置和入口。</p>
+<p>// seajs 的简单配置<br>seajs.config({<br>  base: “../sea-modules/“,<br>  alias: {<br>    “jquery”: “jquery/jquery/1.10.1/jquery.js”<br>  }<br>});</p>
+<p>// 加载入口模块<br>seajs.use(“../static/hello/src/main”);<br>配置和入口<br>这里解释下配置和入口的意思。</p>
+<p>配置</p>
+<p>通常在配置上修改seajs的路径和别名。</p>
+<p>seajs的 路径是相对于前面引入的seajs文件的 。假如是这样的目录结构：<br>examples/<br>  |– index.html<br>  |<br>  <code>--about
+  |     |-- news.html
+  |</code>– script<br>        |– seajs.js<br>        |– jquery.js<br>        `– main.js</p>
+<p>我们平时如果我们在index.html上引用main.js路径应该是这样写的 script/main.js ，从news.html引用main.js就要这样写， ../script/main.js 。</p>
+<p>而在seajs是相对于seajs文件的，一律直接使用 main.js 就OK了，是不是很方便呢？</p>
+<p>既然这么方便那在什么情况需要配置呢？一般情况是用不到的。但是假如你的路径特别深 或者要做路径映射的时候它的作用就来了。下面介绍下常用的几个配置。</p>
+<p>seajs.config({<br>    // Sea.js 的基础路径（修改这个就不是路径就不是相对于seajs文件了）<br>    base: ‘<a href="http://example.com/path/to/base/" target="_blank" rel="external">http://example.com/path/to/base/</a>‘,<br>    // 别名配置（用变量表示文件，解决路径层级过深和实现路径映射）<br>    alias: {<br>        ‘es5-safe’: ‘gallery/es5-safe/0.9.3/es5-safe’,<br>        ‘json’: ‘gallery/json/1.0.2/json’,<br>        ‘jquery’: ‘jquery/jquery/1.10.1/jquery’<br>    },<br>    // 路径配置（用变量表示路径，解决路径层级过深的问题）<br>    paths: {<br>        ‘gallery’: ‘<a href="https://a.alipayobjects.com/gallery" target="_blank" rel="external">https://a.alipayobjects.com/gallery</a>‘<br>    }<br>});</p>
+<p>入口</p>
+<p>入口即加载，需要加载什么文件（模块加载器）就在这里引入。 sea.js 在下载完成后，会自动加载入口模块。</p>
+<p>seajs.use(“abc/main”);  //导入seajs.js同级的abc文件夹下的main.js模块的（后缀名可略去不写）<br>seajs.use()还有另外一种用法。</p>
+<p>有时候我们写一个简单的单页并不想为它单独写一个js文件，选择在直接把js代码写在页面上，seajs通过 seajs.use() 实现了这个。 接收两个参数第一个是文件依赖(单个用字符串数组都可以，多个需用数组表示)，第二个是回调函数。</p>
+<p>加载单个依赖</p>
+<p>//加载模块 main，并在加载完成时，执行指定回调<br>seajs.use(‘./main’, function(main) {<br>  main.init();<br>});<br>加载多个依赖</p>
+<p>//并发加载模块 a 和模块 b，并在都加载完成时，执行指定回调<br>seajs.use([‘./a’, ‘./b’], function(a, b) {<br>  a.init();<br>  b.init();<br>});<br>这里回掉函数中的a和b参数是与前面的模块暴露出来的接口一一对应的。有时候也许只需要使用b的接口，但是也要把a参数写上。什么是暴露接口下面会解释。</p>
+<p>模块开发<br>这里才是重点，其实也很简单就是一个书写规范（CMD）而已。</p>
+<p>// 所有模块都通过 define 来定义<br>define(function(require, exports, module) {</p>
+<p>  // 通过 require 引入依赖<br>  var $ = require(‘jquery’);<br>  var Spinning = require(‘./spinning’);</p>
+<p>  // 通过 exports 对外提供接口<br>  exports.doSomething = …</p>
+<p>  // 或者通过 module.exports 提供整个接口<br>  module.exports = …</p>
+<p>});<br>模块是通过define()方法包装的，然后内部痛过require()方法引入需要的依赖文件(模块)。（也可以引入.css文件哦~）</p>
+<p>模块最好是面向对象开发的，这样最后可以方便的通过 exports.doSomething 或 module.exports 把模块的接口给暴露出来。如果你是写的是jq插件的话就不需要这个功能了，因为你的接口是写在jquery的对象里的。如果你不需要提供接口的话也可以不使用这两个属性哦！</p>
+<p>事实上define方法还有另外几个参数，一般情况我们用不到。具体看 官方API 。</p>
+<p>小结<br>其实Seajs的基本使用就这么简单，日常使用足够了，之前看官网的 5分钟教程 楞是没看懂，后来想想真的是5分钟学会啊,悟性太低- -||</p>
+<p>注意事项<br>模块内的函数依赖必须交代清楚，防止模块在函数依赖加载前先加载出来。而且还增强了模块的独立性。<br>引入seajs的时候最好给 <script> 标签加个id，可以快速访问到这个标签（我是在模块合并时用到它的）<br>还有前面提到的使用 seajs.use() 在.html页面上写js时如果有多个模块依赖，需要使用暴露出来的接口就要让参数与它一一对应。</p>
+<p>5分钟上手sea.js  <a href="http://seajs.org/docs/#quick-start">http://seajs.org/docs/#quick-start</a><br>sea.js官网 <a href="http://seajs.org/docs/">http://seajs.org/docs/</a></p>
+<p>问题：gulp（自动化构建工具）<br>解决：<br>PS：细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。<br>简介：<br>gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。<br>gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入，使得在操作上非常简单。通过本文，我们将学习如何使用Gulp来改变开发流程，从而使开发更加快速高效。<br>gulp 和 grunt 非常类似，但相比于 grunt 的频繁 IO 操作，gulp 的流操作，能更快地更便捷地完成构建工作。<br>本示例以gulp-less为例（将less编译成css的gulp插件）展示gulp的常规用法，只要我们学会使用一个gulp插件后，其他插件就差看看其帮助文档了。让我们一起来学习gulp吧！ ^_^</p>
+<p>gulp常用地址：<br>gulp官方网址：<a href="http://gulpjs.com">http://gulpjs.com</a><br>gulp插件地址：<a href="http://gulpjs.com/plugins">http://gulpjs.com/plugins</a><br>gulp 官方API：<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md">https://github.com/gulpjs/gulp/blob/master/docs/API.md</a><br>gulp 中文API：<a href="http://www.ydcss.com/archives/424">http://www.ydcss.com/archives/424</a><br>目录：<br>1、安装nodejs<br>2、使用命令行<br>3、npm介绍<br>4、选装cnpm<br>5、全局安装gulp<br>6、新建package.json文件<br>7、本地安装gulp插件<br>8、新建gulpfile.js文件<br>9、运行gulp<br>10、使用webstorm运行gulp任务<br>11、总结<br>在学习前，先谈谈大致使用gulp的步骤，给读者以初步的认识。首先当然是安装nodejs，通过nodejs的npm全局安装和项目安装gulp，其次在项目里安装所需要的gulp插件，然后新建gulp的配置文件gulpfile.js并写好配置信息（定义gulp任务），最后通过命令提示符运行gulp任务即可。<br>安装nodejs -&gt; 全局安装gulp -&gt; 项目安装gulp以及gulp插件 -&gt; 配置gulpfile.js -&gt; 运行任务</p>
+<p>1、安装nodejs<br>1.1、说明：gulp是基于nodejs，理所当然需要安装nodejs；<br>1.2、安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（.msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。<br>2、使用命令行（如果你熟悉命令行，可以直接跳到第3步）<br>2.1、说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command Prompt）；<br>2.2、注：之后操作都是在windows系统下；<br>2.3、简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window + r 输入cmd回车）：<br>node -v查看安装的nodejs版本，出现版本号，说明刚刚已正确安装nodejs。PS：未能出现版本号，请尝试注销电脑重试；<br>npm -v查看npm的版本号，npm是在安装nodejs时一同安装的nodejs包管理器，那它有什么用呢？稍后解释；<br>cd定位到目录，用法：cd + 路径 ；<br>dir列出文件列表；<br>cls清空命令提示符窗口内容。<br>3、npm介绍<br>3.1、说明：npm（node package manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；<br>3.2、使用npm安装插件：命令提示符执行npm install <name> [-g] [–save-dev]；<br>3.2.1、<name>：node插件名称。例：npm install gulp-less –save-dev<br>3.2.2、-g：全局安装。将会安装在C:\Users\Administrator\AppData\Roaming\npm，并且写入系统环境变量；  非全局安装：将会安装在当前定位目录；  全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node_modules文件夹下，通过require()调用；<br>3.2.3、–save：将保存配置信息至package.json（package.json是nodejs项目配置文件）；<br>3.2.4、-dev：保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express/ejs/body-parser等等。<br>3.2.5、为什么要保存至package.json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package.json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm install，则会根据package.json下载所有需要的包，npm install –production只下载dependencies节点的包）。<br>3.3、使用npm卸载插件：npm uninstall <name> [-g] [–save-dev]  PS：不要直接删除本地插件包<br>3.3.1、删除全部插件：npm uninstall gulp-less gulp-uglify gulp-concat ……???太麻烦<br>3.3.2、借助rimraf：npm install rimraf -g 用法：rimraf node_modules<br>3.4、使用npm更新插件：npm update <name> [-g] [–save-dev]<br>3.4.1、更新全部插件：npm update [–save-dev]<br>3.5、查看npm帮助：npm help<br>3.6、当前目录已安装插件：npm list<br>PS：npm安装插件过程：从<a href="http://registry.npmjs.org下载对应的插件包（该网站服务器位于国外，所以经常下载缓慢或出现异常），解决办法往下看↓↓↓↓↓↓。">http://registry.npmjs.org下载对应的插件包（该网站服务器位于国外，所以经常下载缓慢或出现异常），解决办法往下看↓↓↓↓↓↓。</a><br>4、选装cnpm<br>4.1、说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；<br>4.2、官方网址：<a href="http://npm.taobao.org；">http://npm.taobao.org；</a><br>4.3、安装：命令提示符执行npm install cnpm -g –registry=<a href="https://registry.npm.taobao.org；">https://registry.npm.taobao.org；</a>  注意：安装完后最好查看其版本号cnpm -v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；<br>注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）。<br>5、全局安装gulp<br>5.1、说明：全局安装gulp目的是为了通过她执行gulp任务；<br>5.2、安装：命令提示符执行cnpm install gulp -g；<br>5.3、查看是否正确安装：命令提示符执行gulp -v，出现版本号即为正确安装。<br>6、新建package.json文件<br>6.1、说明：package.json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；<br>6.2、它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）：<br>JavaScript<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>{<br>  “name”: “test”,   //项目名称（必须）<br>  “version”: “1.0.0”,   //项目版本（必须）<br>  “description”: “This is for study gulp project !”,   //项目描述（必须）<br>  “homepage”: “”,   //项目主页<br>  “repository”: {    //项目资源库<br>    “type”: “git”,<br>    “url”: “<a href="https://git.oschina.net/xxxx">https://git.oschina.net/xxxx</a>“<br>  },<br>  “author”: {    //项目作者信息<br>    “name”: “surging”,<br>    “email”: “surging2@qq.com”<br>  },<br>  “license”: “ISC”,    //项目许可协议<br>  “devDependencies”: {    //项目依赖的插件<br>    “gulp”: “^3.8.11”,<br>    “gulp-less”: “^3.0.0”<br>  }<br>}<br>6.3、当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm init<br>6.4、查看package.json帮助文档，命令提示符执行cnpm help package.json<br>特别注意：package.json是一个普通json文件，所以不能添加任何注释。参看 <a href="http://www.zhihu.com/question/23004511">http://www.zhihu.com/question/23004511</a><br>7、本地安装gulp插件<br>7.1、安装：定位目录命令后提示符执行cnpm install –save-dev；<br>7.2、本示例以gulp-less为例（编译less文件），命令提示符执行cnpm install gulp-less –save-dev；<br>7.3、将会安装在node_modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README.md；<br>7.4、为了能正常使用，我们还得本地安装gulp：cnpm install gulp –save-dev；<br>PS：细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。<br>8、新建gulpfile.js文件（重要）<br>8.1、说明：gulpfile.js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile.js放入其他文件夹下亦可）。<br>8.2、它大概是这样一个js文件（更多插件配置请查看这里）：<br>JavaScript<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>//导入工具包 require(‘node_modules里对应模块’)<br>var gulp = require(‘gulp’), //本地安装gulp所用到的地方<br>    less = require(‘gulp-less’);</p>
+<p>//定义一个testLess任务（自定义任务名称）<br>gulp.task(‘testLess’, function () {<br>    gulp.src(‘src/less/index.less’) //该任务针对的文件<br>        .pipe(less()) //该任务调用的模块<br>        .pipe(gulp.dest(‘src/css’)); //将会在src/css下生成index.css<br>});</p>
+<p>gulp.task(‘default’,[‘testLess’, ‘elseTask’]); //定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务</p>
+<p>//gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数<br>//gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组)<br>//gulp.dest(path[, options]) 处理完后文件生成路径<br>8.3、该示例文件请下载查看<br>9、运行gulp<br>9.1、说明：命令提示符执行gulp 任务名称；<br>9.2、编译less：命令提示符执行gulp testLess；<br>9.3、当执行gulp default或gulp将会调用default任务里的所有任务[‘testLess’,’elseTask’]。<br>10、使用webstorm运行gulp任务<br>10.1、说明：使用webstorm可视化运行gulp任务；<br>10.2、使用方法：将项目导入webstorm，右键gulpfile.js 选择”Show Gulp Tasks”打开Gulp窗口，若出现”No task found”，选择右键”Reload tasks”，双击运行即可。<br>11、总结<br>11.1、安装nodejs；<br>11.2、新建package.json文件；<br>11.3、全局和本地安装gulp；<br>11.4、安装gulp插件；<br>11.5、新建gulpfile.js文件；<br>11.6、通过命令提示符运行gulp任务。</p>
+<p>P.S. 学习网址 <a href="http://www.ydcss.com/">http://www.ydcss.com/</a></p>
+<p>gulp再总结<br>gulp作为前端构建项目的一个工具，自己理解gulp主要方面的作用：<br>1.构建本地服务器。<br>2.快速构建项目。<br>3.对代码进行压缩合并，使代码简洁，减少频繁的请求工作。</p>
+<p>gulp学习地址： gulp中文网：<a href="http://www.gulpjs.com.cn/。">http://www.gulpjs.com.cn/。</a></p>
+<p>一、gulp安装<br>1.1 全局安装gulp，前提是必须安装了node.js/npm;<br>npm install –global gulp<br>1.2作为项目的开发依赖（需要在项目目录下）<br>npm install –save-dev gulp<br>1.3 根据自己的项目需求，安装其他开发依赖<br>npm  install gulp-connect gulp-concat gulp-uglify –save-dev<br>1.4在项目根目录创建一个名为gulpfile.js文件，看项目需要依赖哪些开发项，进行依赖注入在gulpfile.js中，并创建gulp任务。<br>var gulp=require(‘gulp’);<br>var connnect=require(‘gulp-connect’);<br>……<br>gulp.task(‘kathie’,function(){<br>//此任务要做的事情。<br>})；<br>gulp.task(‘default’,[‘kathie’]);//默认执行的任务<br>1.5在项目跟目录创建一个package.json的文件，这个文件是一个严格的json文件。主要是项目的配置文件。其中很多属性可以通过npm-config来生成。主要信息有以下。其中除了devDependencies之外，可以通过npm init来配置；devDependencies依赖的插件需要通过npm install gulp-connect –save-dev 来安装。<br>1.6 package.json 配置详解：<a href="http://www.cnblogs.com/tzyy/p/5193811.html#_h1_27">http://www.cnblogs.com/tzyy/p/5193811.html#_h1_27</a></p>
+<p>[图片]<br>二、npm中的开发依赖项学习。<br>2.1 gulp-connect：  run a webserver。具体用法：<br>//1.引入插件：<br>var gulp = require(‘gulp’);<br>    var connect = require(‘gulp-connect’);<br>//2.创建watch任务去检测html文件，其定义了一个当html改动之后，去调用一个gulp的task<br>gulp.task(‘watch’,function(){<br>        gulp.watch([‘./www/<em>.html’],[‘html’]);<br>})<br>//3.使用connect启动一个web服务器<br>gulp.task(‘connect’,function(){<br>        connect.server({<br>                root: “www”,<br>                livereload : true,<br>                //port:8090,   可以更改本地默认端口号<br>                //host:’gulp.dev’<br>        });<br>});<br>//4.加载www中的一个主页面<br>gulp.task(‘html’,function(){<br>        gulp.src(‘./www/</em>.html’)<br>                .pipe(connect.reload());<br>});<br>//5.设置默认任务<br>gulp.task(‘default’,[‘connect’,’watch’]);<br>//6.不要关闭dos命令行，如果没有修改端口号，直接浏览器输入<a href="http://localhost:8080">http://localhost:8080</a></p>
+<p>2.2 browser-sync ：<br>启动一个本地服务器，配置启动页面；同时修改代码之后能自动刷新页面，免按F5；<br>browser-sync与gulp一起使用方法。<br>//1.引入插件：<br>var browserSync=require(‘browser-sync’).create();<br>//2.创建任务，并使用browserSync创建服务器。</p>
+<p>gulp.task(‘serve’,function(){<br>        browserSync.init({<br>                server:{<br>                        basedir : ‘./‘      //初始化项目根目录为“./”<br>                },<br>                files:[<br>                        ‘www/css/<em>.css’,<br>                        ‘www</em>.js’,<br>                        ‘www<em>.html’,<br>                        ‘www/img/</em>‘,<br>                        ‘www/fonts/*’</p>
+<pre><code>        ]        });
+gulp.watch([&apos;./www/*.html&apos;],[&apos;html&apos;]);
+gulp.watch(&quot;www*.html&quot;).on(&quot;change&quot;,browserSync.reload);
+</code></pre><p>//3.watch这个api是监控当前文件发生变化时触发的任务；这里是当html文档发生变化时，浏览器会自动reload。</p>
+<p>});</p>
+<p>以下为案例：<br>//引入gulp、gulp插件以及browser-sync<br>        var gulp = require(‘gulp’),<br>                   browserSync = require(‘browser-sync’).create(),<br>                    less = require(‘gulp-less’);<br>        //创建一个新的gulp任务<br>        gulp.task(‘serve’,[‘less’],function(){<br>              //初始化项目跟目录为’./‘（也可以使用代理proxy: “yourlocal.dev”）<br>           browserSync.init({<br>                                server: ‘./‘<br>              });<br>            //创建gulp监听器，监听less文件的变化，自动执行’less’任务，编译less并生成css文件<br>            gulp.watch(‘./less/<em>.less’, [‘less’]).on(‘change’, function(event){<br>                 console.log(‘File ‘ + event.path + ‘ was ‘ + event.type + ‘, running       tasks…’);<br>          });<br>           //监听html文件的变化，自动重新载入<br>          gulp.watch(‘./</em>.html’).on(‘change’, browserSync.reload);<br>      });<br>//创建自动编译less的任务，这边需要return stream以保证browserSync.reload在正确的时机调用<br>gulp.task(‘less’, function(){<br>    return gulp.src(‘./less/*.less’)<br>        .pipe(less())<br>        .pipe(gulp.dest(‘./css’))<br>        .pipe(browserSync.stream());<br>});<br>//默认启动的gulp任务数组[‘serve’]gulp.task(‘default’, [‘serve’]);</p>
+<p>2.3 gulp-rev  and  gulp-rev-collector<br>目的是对css和js文件命名进行加密处理；同时在对应的html中的路径进行更新。<br>var gulp = require(‘gulp’);</p>
+<p>var concat = require(‘gulp-concat’);                            //- 多个文件合并为一个；<br>var minifyCss = require(‘gulp-minify-css’);                     //- 压缩CSS为一行；<br>var rev = require(‘gulp-rev’);                                  //- 对文件名加MD5后缀<br>var revCollector = require(‘gulp-rev-collector’);               //- 路径替换</p>
+<p>gulp.task(‘cssConcat’, function() {        //- 创建一个名为 concat 的 task<br>    gulp.src(‘www/css/*.css’)    //- 需要处理的css文件，放到一个字符串数组里<br>        .pipe(minifyCss())                           //- 压缩处理成一行<br>        .pipe(rev())                               //- 文件名加MD5后缀<br>        .pipe(gulp.dest(‘dist/css’))         //- 输出文件本地<br>        .pipe(rev.manifest())       //- 生成一个rev-manifest.json<br>        .pipe(gulp.dest(‘./rev’));    //- 将 rev-manifest.json 保存到 rev 目录内<br>});</p>
+<p>gulp.task(‘rev’,[‘cssConcat’],function() {console.log(111)<br>    gulp.src([‘./rev/rev-manifest.json’, ‘dist/index.html’])<br>//- 读取 rev-manifest.json 文件以及需要进行css名替换的文件<br>        .pipe(revCollector())                                   //- 执行文件内css名的替换<br>        .pipe(gulp.dest(‘dist’));                     //- 替换后的文件输出的目录<br>});<br>gulp.task(‘default’, [ ‘rev’]);</p>
+<p>这里踩的坑：<br>2.3.1  第一个坑：只能对同名的css或者js文件进行md5加密，然后进行替换。对于先拷贝再修改名再加密的情况，html中的引用无法更新。<br>我存在的问题：<br>  ● 源文件www/index.html中引用的是<link rel="stylesheet" href="css/bootstrap.css"><br>  ● 对css进行了拷贝，再rename并加密。<br>gulp.task(‘cssConcat’,function(){<br>        return gulp.src(‘www/css/*.css’)<br>                        .pipe(minifyCss({     //先对源文件进行压缩<br>                            keepSpecialComments: 0<br>                }))<br>                .pipe(rename({<br>                            extname: ‘.min.css’   //再重命名<br>                        }))<br>                .pipe(rev())         //再加密<br>                .pipe(gulp.dest(‘dist/css’)) //输出到dist文件中<br>                .pipe(rev.manifest())<br>                .pipe(gulp.dest(‘./rev’)); //将rev-manifest.json文件放到rev文件夹<br>});<br>  ● 此时dist中的css文件名是bootstrap-87we8fuiehfjhdj.min.css<br>  ● 但拷贝过来的html中的css文件还是<link rel="stylesheet" href="css/bootstrap.css"><br>  ● 尽管此时生产了rev-manifest.json文件；但还是无法替换html中的css引用名称。<br>  ● 解决办法：  不要先对其rename。注释掉.pipe(rename({  extname: ‘.min.css’ }))<br>2.3.2 第二个坑： 目前不能同时对css和js进行加密。后面的会覆盖掉前面的rev-manifest.json文件。<br>[图片][图片]如图： 这样rev-manifest.json文件只有对js的加密的文件；没有css的。<br>解决办法：<br>在网上看到可以使用.pipe(rev.manifest({     merge: true  }))，但实际操作过了，不行；<br>目前的解决办法就是将css和js分别备份到rev存两个文件夹；一个css；一个js。如下：<br>[图片]<br>2.4 gulp-uglify<br>对js进行压缩；这里踩的坑—–对js进行压缩之后，启动项目，发现报错。<br>原因： gulpfile.js必须是严格模式的。第一行必须写“use strict”。所以压缩的文件也必须按照严格模式来写。所以angular中的写法都必须定义变量。采用严格模式：<br>angular.module(‘app’,[]).controller(‘myCtrl’,function($scope){})—-这个写法是错误的，必须变成加中括号，定义变量：<br>angular.module(‘app’,[]).controller(‘myCtrl’,[‘$scope’,function($scope){}])–正确写法</p>
+<p>如果不使用严格模式的写法；针对angularJs的js文件；也可以使用gulp-ng-annotate插件。此插件的作用是：使用ng-annotate进行angular模块依赖自动注入, 引入模块自动加[],防止被混淆</p>
+<p>2.5 gulp-dom-src  and  gulp-cheerio<br>gulp-dom-src  可以对html中的script和link进行操作。<br>eg：–这样可以直接操作index.html中的script 和link的引用文件。<br>[图片]因为我们要复制一个dist文件出来，对原有的www的文件不要做变更；所以我们还是不是直接对index.html中的文件进行操作。<br>gulp-cheerio有点强大；他可以帮忙我们操作html中的dom元素；我们在合并了js、css之后，要修改index.html中的引用文件；可以直接使用gulp-cheerio进行操作；其使用的还是jq中的方法。<br>eg：<br>[图片]如上；可以使用append()进行插入；但因为append()只是插入到当前元素内部最后一个；害怕位置不一样的话导致引用效果不一样的话，我们可以变更引用的位置。如：<br>$(‘<link rel="stylesheet" href="css/bootstrap.min.css">‘).insertBefore(‘head&gt;style’);</p>
+<p>还有一个坑需要注意下：index.html中引用的文件是有顺序的，合并的时候是否需要按照顺序来合并？<br>  ● 普通的只使用gulp-src目前就是按照文件的顺序(在文件夹中的首字母排序)进行合并的；这样访问页面有错误；<br>  ● 使用gulp-src([‘a.js’,’b.js’,’c.js’]).pipe(concat())可以实现按照自己想要的顺序进行排序，这样js依赖就不会出错；<br>  ● 看网上有介绍gulp-order可以进行排序；实验了下，不能按照自己想要的顺序进行排序。至于为什么不能排序；以后再研究。</p>
+<p>2.6 gulp-src<br>gulp-src 中匹配对应的文件；可使用正则。<br>排除kaifanla.js的写法如下：<br>gulp.src([‘www/js/*.js’,’!kaifanla.js’]);<br>2.7 gulp-ng-html2js<br>gulp-ng-html2js是对angularjs中的templates html片段整合成js文件；angular项目的混淆作用。</p>
+<p>用法步骤如下：<br>  ● 先复制index.html  和 aaa.js文件到dist文件；<br>  ● 合并外部js文件到dist。—all.min.js文件；<br>  ● 使用ng-html2js插件，对tpl中的html文档进行整合。<br>gulp.task(‘html2js’, function () {<br>  return gulp.src(“www/tpl/*.html”)//原路径<br>                            .pipe(html2js({<br>                             moduleName: “template”<br>    }))//html模板转js文件<br>    .pipe(concat(“templates.js”))//合并<br>//  .pipe(uglify({compress:false}))//压缩<br>    .pipe(gulp.dest(“dist/js/“));//目标路径<br>});<br>  ● 这样dist的目录是这样的：<br>[图片]  ●   修改index.html中文件的引用为：</p>
+<p><script src="js/libs.min.js"></script></p>
+<p><script src="js/aaa.js"></script></p>
+<p><script src="js/templates.js"></script><br>  ● 接下来修改aaa.js文件：<br>第一处：因为templates.js中的module为template；所以aaa.js中的module就要依赖template<br>[图片]第二处： 修改路由。<br>[图片]按照如上的这个方法；找到templates.js中查看a,b分别代表什么；将aaa.js中的路由都替换成a。<br>[图片][图片][图片]</p>
+<p>问题：Handlebars.js 模板引擎<br>解决：<br>Handlebars.js同jade和ejs一样都是模板引擎。<br>Handlebars 是 JavaScript 一个语义模板库，通过对view和data的分离来快速构建Web模板。它采用”Logic-less template”（无逻辑模版）的思路，在加载时被预编译，而不是到了客户端执行到代码时再去编译， 这样可以保证模板加载和运行的速度。Handlebars兼容Mustache，你可以在Handlebars中导入Mustache模板。 </p>
+<p>问题：Node批量处理文件名<br>解决：<br>node使用fs模块进行批量修改文件名<br>注意：需要node环境</p>
+<p>使用：1：代码目录新建src文件夹<br>           2：需要处理的文件存入src文件夹<br>           3：当前目录运行node rename -n 文件名 -i 文件名增量</p>
+<pre><code>var fs = require(&apos;fs&apos;),
+    src = &apos;src&apos;,
+    dist = &apos;dist&apos;,
+    stat = fs.stat;
+
+var args = process.argv.slice(2),name,index=0;
+
+//show help
+if (args.length === 0 || args[0].match(&apos;help&apos;)) {
+    console.log(&apos;--help\n\t-n  file name 文件名\n\t-i  file name index 文件索引\n&apos;);
+}
+
+args.forEach(function (item, _index) {
+    if (item.match(&apos;-n&apos;)) {
+        name = args[_index + 1];
+    } else if (item.match(&apos;-i&apos;)) {
+        index = args[_index + 1];
+    }
+});
+
+//read file directors
+fs.readdir(src, function (err, files) {
+    if (err) {
+        console.log(err);
+    } else {
+        fs.exists(dist, function (exist) {
+            if (exist) {
+                copy(files);
+            } else {
+                fs.mkdir(dist, function () {
+                    copy(files);
+                })
+            }
+        });
+    }
+
+    function copy(_files) {
+        //foreach files
+        _files.forEach(function (filename) {
+            var readStream, writeStream;
+            var arr = filename.split(&apos;.&apos;);
+            var oldPath = src + &apos;/&apos; + filename,
+                newPath = dist + &apos;/&apos; + name + index + &apos;.&apos; + arr[arr.length - 1];
+            stat(oldPath, function (err, file) {
+                if (err) {
+                    console.log(err);
+                } else if (file.isFile()) {
+                    //create read stream
+                    readStream = fs.createReadStream(oldPath);
+                    //create write stream
+                    writeStream = fs.createWriteStream(newPath);
+                    //pipe copy
+                    readStream.pipe(writeStream);
+                }
+            });
+            index++;
+        })
+    }
+});           
+</code></pre><p>效果：</p>
+<div align="center"><br><img src="/images/nodejs/1_3.png"><br><img src="/images/nodejs/1_4.png"><br></div>
+
+
+<p>问题：Grunt讲解<br>解决：<br>Grunt和Grunt的插件都是通过Node.js的包管理器npm来安装和管理的。</p>
+<p>Grunt 0.4.x要求Node.js的版本&gt;=0.8.0(也就是0.8.0及以上版本的Node.js才能很好的运行Grunt)。</p>
+<p>安装Grunt之前，可以在命令行中运行node -v查看你的Node.js版本。<br>安装CLI<br>如果你是从Grunt 0.3升级而来的，请查看Grunt 0.3的说明。(在这篇文档的底部)</p>
+<p>为了方便使用Grunt，你应该在全局范围内安装Grunt的命令行接口(CLI)。要做到这一点，你可能需要使用sudo(OS X，*nix，BSD等平台中)权限或者作为超级管理员(Windows平台)来运行shell命令。</p>
+<p>npm install -g grunt-cli<br>这条命令将会把grunt命令植入到你的系统路径中，这样就允许你从任意目录来运行它(定位到任意目录运行grunt命令)。</p>
+<p>注意，安装grunt-cli并不等于安装了grunt任务运行器！Grunt CLI的工作很简单：在Gruntfile所在目录调用运行已经安装好的相应版本的Grunt。这就意味着可以在同一台机器上同时安装多个版本的Grunt。</p>
+<p>CLI如何工作<br>每次运行grunt时，它都会使用node的require()系统查找本地已安装好的grunt。正因为如此，你可以从你项目的任意子目录运行grunt。</p>
+<p>如果找到本地已经安装好的Grunt，CLI就会加载这个本地安装好的Grunt库，然后应用你项目中的Gruntfile中的配置(这个文件用于配置项目中使用的任务，Grunt也正是根据这个文件中的配置来处理相应的任务)，并执行你所指定的所有任务。</p>
+<p>想要真正的了解这里发生了什么，可以阅读源码。这份代码很短。</p>
+<p>用一个现有的Grunt项目进行工作<br>假设已经安装好Grunt CLI并且项目也已经使用一个package.json和一个Gruntfile文件配置好了，那么接下来用Grunt进行工作就非常容易了：</p>
+<p>进入到项目的根目录(在命令行面板定位到项目根目录。在windows系统下，也可以进入项目根目录的文件夹后，按Shift+鼠标右键，打开右键菜单，选择“在此处打开命令窗口(W)”)。<br>运行npm install安装项目相关依赖(插件，Grunt内置任务等依赖)。<br>使用grunt(命令)运行Grunt。<br>就是这么简单。已经安装的Grunt任务可以通过运行grunt –help列出来，但是通常最好还是先查看一下项目的文档。</p>
+<p>准备一个新的Grunt项目<br>一个典型的配置过程通常只涉及到两个文件：package.json和Gruntfile。</p>
+<p>package.json：这个文件被用来存储已经作为npm模块发布的项目元数据(也就是依赖模块)。你将在这个文件中列出你的项目所依赖的Grunt(通常我们在这里配置Grunt版本)和Grunt插件(相应版本的插件)。</p>
+<p>Gruntfile：通常这个文件被命名为Gruntfile.js或者Gruntfile.coffee，它用于配置或者定义Grunt任务和加载Grunt插件。</p>
+<p>package.json</p>
+<p>package.json与Gruntfile相邻，它们都应该归属于项目的根目录中，并且应该与项目的源代码一起被提交。在上述目录(package.json所在目录)中运行npm install将依据package.json文件中所列出的每个依赖来自动安装适当版本的依赖。</p>
+<p>这里有一些为项目创建package.json文件的方式：</p>
+<p>大多数的grunt-init模板都会自动创建一个项目特定的package.json文件。</p>
+<p>npm init命令会自动创建一个基本的package.json文件。</p>
+<p>从下面的例子开始并根据规范来按需扩展。</p>
+<p>{<br>    “name”: “my-project-name”, // 项目名称<br>    “version”: “0.1.0”, // 项目版本<br>    “devDependencies”: { // 项目依赖<br>        “grunt”: “~0.4.1”, // Grunt库<br>        “grunt-contrib-jshint”: “~0.6.0”, //以下三个是Grunt内置任务<br>        “grunt-contrib-nodeunit”: “~0.2.0”,<br>        “grunt-contrib-uglify”: “~0.2.2”<br>    }<br>}<br>原文中注释仅作说明，使用时请自行检查编辑。其他地方如有雷同，参考这条提示。<br>安装Grunt和grunt插件</p>
+<p>添加Grunt和Grunt插件到一个现有的package.json中最简单的方式就是使用npm install <module> –save-dev命令。这不仅会在本地安装<module>，它还会使用一个波浪形字符的版本范围自动将所安装的<module>添加到项目依赖中。</module></module></module></p>
+<p>例如使用下面的命令将会安装最新版的Grunt到你的项目中，并自动将它添加到你的项目依赖中：</p>
+<p>npm install grunt –save-dev<br>上述命令也可以用于Grunt插件和其他的node模块的安装。当完成操作后请确保更新后的package.json文件也要与你的项目一起提交。</p>
+<p>Gruntfile</p>
+<p>Gruntfile.js或者Gruntfile.coffee文件都是归属于你项目根目录中的一个有效的JavaScript或者CoffeeScript文件(和package.json文件一样都在根目录中)，并且它(Gruntfile)也应该与你的项目源文件一起提交。</p>
+<p>一个Gruntfile由下面几部分组成：</p>
+<p>“wrapper”函数(包装函数)<br>项目和任务配置<br>加载的Grunt插件和任务<br>自定义任务<br>一个Gruntfile示例</p>
+<p>在下面的Gruntfile中，项目的元数据会从项目的package.json文件中导入到grunt配置中，同时grunt-contrib-uglify插件的uglify任务被配置用于压缩一个源文件，同时使用该元数据(导入的元数据)动态的生成一个标语(banner)注释。在命令行运行grunt时默认会运行uglify任务。</p>
+<p>module.exports = function(grunt){</p>
+<pre><code>// 项目配置
+grunt.initConfig({
+    pkg: grunt.file.readJSON(&apos;package.json&apos;),
+    uglify: {
+        options: {
+            banner: &apos;/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today(&quot;yyyy-mm-dd&quot;) %&gt; */\n&apos;
+        },
+        build: {
+            src: &apos;src/&lt;%=pkg.name %&gt;.js&apos;,
+            dest: &apos;build/&lt;%= pkg.name %&gt;.min.js&apos;
+        }               
+    }
+});
+
+// 加载提供&quot;uglify&quot;任务的插件
+grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);
+
+// 默认任务
+grunt.registerTask(&apos;default&apos;, [&apos;uglify&apos;]);
+</code></pre><p>}<br>现在你已经看到到了一个完整的Gruntfile，下面让我们来看看它的各个组成部分：</p>
+<p>”wrapper”函数</p>
+<p>每个Gruntfile(和Grunt插件)都使用这个基本格式，并且所有你的Grunt代码都必须指定在这个函数里面：</p>
+<p>module.exports = function(grunt) {<br>    // 在这里处理Grunt相关的事情<br>}<br>项目和任务配置</p>
+<p>大多数Grunt任务所依赖的配置数据都被定义在传递给grunt.initConfig方法的一个对象中。</p>
+<p>在这个例子中，grunt.file.readJSON(‘package.json’)会把存储在package.json中的JSON元数据导入到Grunt配置中。由于&lt;% %&gt;模板字符串可以引用任意的配置属性，因此可以通过这种方式来指定诸如文件路径和文件列表类型的配置数据，从而减少一些重复的工作(比如我们通常需要通过复制粘贴的方式来在不同的地方引用同一属性, 使用&lt;% %&gt;的方式可以简单的理解为将某些特定的数据存储在变量中，然后在其他地方像使用变量一样就可以使用这些数据属性)。</p>
+<p>你可以在这个配置对象中(传递给initConfig()方法的对象)存储任意的数据，只要它不与你任务配置所需的属性冲突，否则会被忽略。此外，由于这本身就是JavaScript，你不仅限于使用JSON；你可以在这里使用任意的有效的JS代码。如果有必要，你甚至可以以编程的方式生成配置。</p>
+<p>与大多数任务一样，grunt-contrib-uglify插件的uglify任务要求它的配置被指定在一个同名属性中。在这里有一个例子, 我们指定了一个banner选项(用于在文件顶部生成一个注释)，紧接着是一个单一的名为build的uglify目标，用于将一个js文件压缩为一个目标文件(比如将src目录jquery-1.9.0.js压缩为jquery-1.9.0.min.js然后存储到dest目录)。</p>
+<p>// 项目配置<br>grunt.initConfig({<br>    pkg: grunt.file.readJSON(‘package.json’),<br>    uglify: {<br>        options: {<br>            banner: ‘/<em>! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today(“yyyy-mm-dd”) %&gt; </em>/\n’<br>        },<br>        build: {<br>            src: ‘src/&lt;%=pkg.name %&gt;.js’,<br>            dest: ‘build/&lt;%= pkg.name %&gt;.min.js’<br>        }<br>    }<br>});<br>加载grunt插件和任务</p>
+<p>许多常用的任务像concatenation，minification和linting都被作为grunt插件来使用。只要一个插件被作为一个依赖指定在项目的package.json文件中，并且已经通过npm install安装好，都可以在你的Gruntfile文件中使用下面这个简单的命令启用它(所依赖的任务)。</p>
+<p>// 加载提供”uglify”任务的插件<br>grunt.loadNpmTasks(‘grunt-contrib-uglify’);<br>注意: grunt –help命令可以列出所有可用的任务。</p>
+<p>自定义任务</p>
+<p>你可以通过定义一个default任务来配置Grunt，让它默认运行一个或者多个任务。在下面的例子中，在命令行中运行grunt而不指定特定的任务将自动运行uglify任务。这个功能与显示的运行grunt uglify或者等价的grunt default一样。你可以在任务参数数组中指定任意数量的任务(这些任务可以带参数，也可以不带参数)。</p>
+<p>// 默认任务<br>grunt.registerTask(‘default’, [‘uglify’]);<br>如果你的项目所需的任务没有对应的Grunt插件提供相应的功能，你可以在Gruntfile内定义自定义的任务。例如，下面的Gruntfile就定义了一个完整的自定义的default任务，它甚至没有利用任务配置(没有使用grunt.initConfig()方法)：</p>
+<p>module.exports = function(grunt) {<br>    // 一个非常基础的default任务<br>    grunt.registerTask(‘default’, ‘Log some stuff.’, function() {<br>        grunt.log.write(‘Logging some stuff…’).ok();<br>    });<br>};<br>自定义的项目特定的任务可以不定义在Gruntfile中；它们可以定义在一个外部.js文件中，然后通过grunt.loadTasks方法来加载。</p>
+<p>扩展阅读<br>安装Grunt指南中有关于安装特定版本的，发布的或者开发中版本的Grunt和Grunt-cli的详细信息。</p>
+<p>配置任务指南中有对于如何在Gruntfile中配置任务，目标，选项和文件的详细解释，还有模板，匹配模式和导入外部数据相关的说明。</p>
+<p>创建任务指南列出了Grunt任务类型之间的不同，还展示了许多实例任务和配置。</p>
+<p>对于关于编写自定义任务或者Grunt插件的更多信息，请参考开发者文档。</p>
+<p>Grunt 0.3说明<br>如果你从Grunt 0.3升级而来的，请确保先卸载全局的grunt(使用下面的命令)：</p>
+<p>npm uninstall -g grunt<br>上面这些说明文档是针对Grunt 0.4.x编写的，但仍然适用于Grunt 0.3.x。只是注意0.3.x版本中的插件名称和任务配置选项可能与上面的”Gruntfile”中所展示的不同。</p>
+<p>对于0.3.x版本的Grunt, Grunfile名为grunt.js。</p>
+<p>问题：</p>
+<ul>
+<li>解决：<br>目前主流的node版本管理工具有两种，nvm和n。<br>管理 node 版本，选择 nvm 还是 n？总的来说，nvm有点类似于 Python 的 virtualenv 或者 Ruby 的 rvm，每个node版本的模块都会被安装在各自版本的沙箱里面（因此切换版本后模块需重新安装），因此考虑到需要时常对node版本进行切换测试兼容性和一些模块对node版本的限制，我选择了使用nvm作为管理工具，下面就来说说nvm的安装和使用过程。</li>
+</ul>
+<p>问题：node之assert<br>node.js 组件 – assert</p>
+<p>概念<br>assert模块是Node的内置模块，主要用于断言。如果表达式不符合预期，就抛出一个错误。该模块提供11个方法，但只有少数几个是常用的。</p>
+<ol>
+<li><p>assert()<br>assert方法接受两个参数，当第一个参数对应的布尔值为true时，不会有任何提示，返回undefined。当第一个参数对应的布尔值为false时，会抛出一个错误，该错误的提示信息就是第二个参数设定的字符串。</p>
+<p> // 格式<br> assert(value, message)</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> function add (a, b) {<br>   return a + b;<br> }</p>
+<p> var expected = add(1,2);<br> assert( expected === 3, ‘预期1加2等于3’);</p>
+</li>
+</ol>
+<p>上面代码不会有任何输出，因为assert方法的第一个参数是true。</p>
+<pre><code>assert( expected === 4, &apos;预期1加2等于3&apos;)
+// AssertionError: 预期1加2等于3
+</code></pre><p>上面代码会抛出一个错误，因为assert方法的第一个参数是false。</p>
+<ol>
+<li><p>assert.ok()<br>ok是assert方法的另一个名字，与assert方法完全一样。</p>
+</li>
+<li><p>assert.equal()<br>equal方法接受三个参数，第一个参数是实际值，第二个是预期值，第三个是错误的提示信息。</p>
+<p> // 格式<br> assert.equal(actual, expected, [message])</p>
+<p> assert.equal(true, value, message);<br> // 等同于<br> assert(value, message);</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> function add (a, b) {<br>   return a + b;<br> }</p>
+<p> var expected = add(1,2);</p>
+<p> // 以下三句效果相同<br> assert(expected == 3, ‘预期1+2等于3’);<br> assert.ok(expected == 3, ‘预期1+2等于3’);<br> assert.equal(expected, 3, ‘预期1+2等于3’);    </p>
+</li>
+</ol>
+<p>equal方法内部使用的是相等运算符（==），而不是严格运算符（===），进行比较运算。</p>
+<ol>
+<li><p>assert.notEqual()<br>notEqual方法的用法与equal方法类似，但只有在实际值等于预期值时，才会抛出错误。</p>
+<p> // 格式<br> assert.equal(actual, expected, [message])</p>
+<p> assert.equal(true, value, message);<br> // 等同于<br> assert(value, message);</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> function add (a, b) {<br>   return a + b;<br> }</p>
+<p> var expected = add(1,2);</p>
+<p> // 以下三句效果相同<br> assert(expected == 3, ‘预期1+2等于3’);<br> assert.ok(expected == 3, ‘预期1+2等于3’);<br> assert.equal(expected, 3, ‘预期1+2等于3’);    </p>
+</li>
+</ol>
+<p>equal方法内部使用的是相等运算符（==），而不是严格运算符（===），进行比较运算。</p>
+<ol>
+<li><p>assert. deepEqual()<br>deepEqual方法用来比较两个对象。只要它们的属性一一对应，且值都相等，就认为两个对象相等，否则抛出一个错误。</p>
+<p> // 格式<br> assert.deepEqual(actual, expected, [message])</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> var list1 = [1, 2, 3, 4, 5];<br> var list2 = [1, 2, 3, 4, 5];</p>
+<p> assert.deepEqual(list1, list2, ‘预期两个数组应该有相同的属性’);</p>
+<p> var person1 = { “name”:”john”, “age”:”21” };<br> var person2 = { “name”:”john”, “age”:”21” };</p>
+<p> assert.deepEqual(person1, person2, ‘预期两个对象应该有相同的属性’);    </p>
+</li>
+<li><p>assert. notDeepEqual()<br>notDeepEqual方法与deepEqual方法正好相反，用来断言两个对象是否不相等。</p>
+<p> // 格式<br> assert.notDeepEqual(actual, expected, [message])</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> var list1 = [1, 2, ,3, 4, 5];<br> var list2 = [1, 2, 3, 4, 5];</p>
+<p> assert.notDeepEqual(list1, list2, ‘预期两个对象不相等’);</p>
+<p> var person1 = { “name”:”john”, “age”:”21” };<br> var person2 = { “name”:”jane”, “age”:”19” };</p>
+<p> // deepEqual checks the elements in the objects are identical<br> assert.notDeepEqual(person1, person2, ‘预期两个对象不相等’);    </p>
+</li>
+<li><p>assert. strictEqual()<br>strictEqual方法使用严格相等运算符（===），比较两个表达式。</p>
+<p> // 格式<br> assert.strictEqual(actual, expected, [message])</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> assert.strictEqual(1, ‘1’, ‘预期严格相等’);<br> // AssertionError: 预期严格相等    </p>
+</li>
+<li><p>assert. notStrictEqual()<br>assert.notStrictEqual方法使用严格不相等运算符（!==），比较两个表达式。</p>
+<p> // 格式<br> assert.notStrictEqual(actual, expected, [message])</p>
+<p> // 例子<br> var assert = require(‘assert’);</p>
+<p> assert.notStrictEqual(1, true, ‘预期严格不相等’);    </p>
+</li>
+<li><p>assert. throws()<br>throws方法预期某个代码块会抛出一个错误，且抛出的错误符合指定的条件。</p>
+<p> // 格式<br> assert.throws(block, [error], [message])</p>
+<p> // 例一，抛出的错误符合某个构造函数<br> assert.throws(<br>   function() {</p>
+<pre><code>throw new Error(&quot;Wrong value&quot;);
+</code></pre><p>   },<br>   Error,<br>   ‘不符合预期的错误类型’<br> );</p>
+<p> // 例二、抛出错误的提示信息符合正则表达式<br> assert.throws(<br>   function() {</p>
+<pre><code>throw new Error(&quot;Wrong value&quot;);
+</code></pre><p>   },<br>   /value/,<br>   ‘不符合预期的错误类型’<br> );</p>
+<p> // 例三、抛出的错误符合自定义函数的校验<br> assert.throws(<br>   function() {</p>
+<pre><code>throw new Error(&quot;Wrong value&quot;);
+</code></pre><p>   },<br>   function(err) {</p>
+<pre><code>if ( (err instanceof Error) &amp;&amp; /value/.test(err) ) {
+  return true;
+}
+</code></pre><p>   },<br>   ‘不符合预期的错误类型’<br> );    </p>
+</li>
+<li><p>assert. doesNotThrow()<br>doesNotThrow方法与throws方法正好相反，预期某个代码块不抛出错误。</p>
+<p>// 格式<br>assert.doesNotThrow(block, [message])</p>
+<p>// 用法<br>assert.doesNotThrow(<br>  function() {</p>
+<pre><code>console.log(&quot;Nothing to see here&quot;);
+</code></pre><p>  },<br>  ‘预期不抛出错误’<br>);    </p>
+</li>
+<li><p>assert. ifError()<br>ifError方法断言某个表达式是否false，如果该表达式对应的布尔值等于true，就抛出一个错误。它对于验证回调函数的第一个参数十分有用，如果该参数为true，就表示有错误。</p>
+<p>// 格式<br>assert.ifError(value)</p>
+<p>// 用法<br>function sayHello(name, callback) {<br>  var error = false;<br>  var str   = “Hello “+name;<br>  callback(error, str);<br>}</p>
+<p>// use the function<br>sayHello(‘World’, function(err, value){<br>  assert.ifError(err);<br>  // …<br>})    </p>
+</li>
+<li><p>assert. fail()<br>fail方法用于抛出一个错误。</p>
+<p>// 格式<br>assert.fail(actual, expected, message, operator)</p>
+<p>// 例子<br>var assert = require(‘assert’);</p>
+<p>assert.fail(21, 42, ‘Test Failed’, ‘###’)<br>// AssertionError: Test Failed<br>assert.fail(21, 21, ‘Test Failed’, ‘###’)<br>// AssertionError: Test Failed<br>assert.fail(21, 42, undefined, ‘###’)<br>// AssertionError: 21 ### 42</p>
+</li>
+</ol>
+<p>该方法共有四个参数，但是不管参数是什么值，它总是抛出一个错误。如果message参数对应的布尔值不为false，抛出的错误信息就是message，否则错误信息就是“实际值 + 分隔符 + 预期值”    </p>
+<p>问题：node之buffer<br>Buffer对象是Node处理二进制数据的一个接口。它是Node原生提供的全局对象，可以直接使用，不需要require(‘buffer’)。<br>JavaScript比较擅长处理字符串，对于处理二进制数据（比如TCP数据流），就不太擅长。Buffer对象就是为了解决这个问题而设计的。它是一个构造函数，生成的实例代表了V8引擎分配的一段内存，是一个类似数组的对象，成员都为0到255的整数值，即一个8位的字节。<br><a href="http://www.qdfuns.com/notes/15571/0f382a1878c9716eabc486ac853a8cba.html" target="_blank" rel="external">http://www.qdfuns.com/notes/15571/0f382a1878c9716eabc486ac853a8cba.html</a></p>
+<p>问题:webpack<br>细说 webpack 之流程篇<br>目前，几乎所有业务的开发构建都会用到 webpack 。的确，作为模块加载和打包神器，只需配置几个文件，加载各种 loader 就可以享受无痛流程化开发。<br>Webpack 是一个前端资源加载/打包工具，React 是一个Facebook 和Instagram 用来创建用户界面的JavaScript 库。两个都是非常有用的技术，如果同时使用他们，前端开发会更加有趣。<br>问题：node之node-schedule<br>node-schedule实现定时任务</p>
+<p>问题；node之nodemailer<br>nodemailer发送邮件</p>
+<p>问题：node之Events<br>Events模块是Node对“发布/订阅”模式（publish/subscribe）的实现。一个对象通过这个模块，向另一个对象传递消息。<br><a href="http://www.qdfuns.com/notes/15571/ab98cf32de6e4258b75204b2027942f9.html" target="_blank" rel="external">http://www.qdfuns.com/notes/15571/ab98cf32de6e4258b75204b2027942f9.html</a></p>
+<p>问题：node之mime<br>概述<br>先说说什么是mime类型？ 然后介绍两种设置mime类型的方法，第一种是通过后缀名判断文件类型，从而进行响应；第二种是使用第三方mime模块进行响应。<br>MIME(Multipurpose Internet Mail Extensions)多用途互联网邮件扩展类型。是设定某种扩展名的文件用一种应用程序来打开的方式类型，当该扩展名文件被访问的时候，浏览器会自动使用指定应用程序来打开。多用于指定一些客户端自定义的文件名，以及一些媒体文件打开方式。（百度百科）<br>简单点说，mime是一个互联网标准，通过设定它就可以设定文件在浏览器的打开方式。<br><a href="http://www.qdfuns.com/notes/15571/042cfeed2e04a4158d630bfcabb0cb13.html" target="_blank" rel="external">http://www.qdfuns.com/notes/15571/042cfeed2e04a4158d630bfcabb0cb13.html</a></p>
+<p>问题：node之child Process<br>child_process模块用于新建子进程。子进程的运行结果储存在系统缓存之中（最大200KB），等到子进程运行结束以后，主进程再用回调函数读取子进程的运行结果<br>通过child_process模块可以创建子进程，从而实现多进程模式，更好地利用CPU多核计算资源。该模块提供了四种方法创建子进程，分别是child_process.spawn()、child_process.exec()、child_process.execFile()，child_process.fork()，这四个方法都返回一个childProcess对象，该对象实现了EventEmitter的接口，带有stdout，stdin，stderr的对象。<br><a href="http://www.qdfuns.com/notes/15571/bcdd087c62122c9f9923a1967889a2c1.html" target="_blank" rel="external">http://www.qdfuns.com/notes/15571/bcdd087c62122c9f9923a1967889a2c1.html</a></p>
+<p>问题：node之cluster<br>. 概述<br>1.1 基本用法<br>Node.js默认单进程运行，对于32位系统最高可以使用512MB内存，对于64位最高可以使用1GB内存。对于多核CPU的计算机来说，这样做效率很低，因为只有一个核在运行，其他核都在闲置。cluster模块就是为了解决这个问题而提出的。<br>cluster模块允许设立一个主进程和若干个worker进程，由主进程监控和协调worker进程的运行。worker之间采用进程间通信交换消息，cluster模块内置一个负载均衡器，采用Round-robin算法协调各个worker进程之间的负载。运行时，所有新建立的链接都由主进程完成，然后主进程再把TCP连接分配给指定的worker进程。<br>Node.js是单线程运行的，不管你的机器有多少个内核，只能用到其中的一个，为了能利用多核计算资源，需要使用多进程来处理应用。cluster模块让我们可以很容易地创建一个负载均衡的集群，自动分配CPU多核资源。<br>    var cluster = require(‘cluster’);<br>    var os = require(‘os’);</p>
+<pre><code>if (cluster.isMaster){
+  for (var i = 0, n = os.cpus().length; i &lt; n; i += 1){
+    cluster.fork();
+  }
+} else {
+  http.createServer(function(req, res) {
+    res.writeHead(200);
+    res.end(&quot;hello world\n&quot;);
+  }).listen(8000);
+}
+</code></pre><p>上面代码先判断当前进程是否为主进程（cluster.isMaster），如果是的，就按照CPU的核数，新建若干个worker进程；如果不是，说明当前进程是worker进程，则在该进程启动一个服务器程序。<br>上面这段代码有一个缺点，就是一旦work进程挂了，主进程无法知道。为了解决这个问题，可以在主进程部署online事件和exit事件的监听函数。</p>
+<pre><code>var cluster = require(&apos;cluster&apos;);
+
+if(cluster.isMaster) {
+  var numWorkers = require(&apos;os&apos;).cpus().length;
+  console.log(&apos;Master cluster setting up &apos; + numWorkers + &apos; workers...&apos;);
+
+  for(var i = 0; i &lt; numWorkers; i++) {
+    cluster.fork();
+  }
+
+  cluster.on(&apos;online&apos;, function(worker) {
+    console.log(&apos;Worker &apos; + worker.process.pid + &apos; is online&apos;);
+  });
+
+  cluster.on(&apos;exit&apos;, function(worker, code, signal) {
+    console.log(&apos;Worker &apos; + worker.process.pid + &apos; died with code: &apos; + code + &apos;, and signal: &apos; + signal);
+    console.log(&apos;Starting a new worker&apos;);
+    cluster.fork();
+  });
+}
+</code></pre><p>上面代码中，主进程一旦监听到worker进程的exit事件，就会重启一个worker进程。worker进程一旦启动成功，可以正常运行了，就会发出online事件。<br>1.2 worker对象<br>worker对象是cluster.fork()的返回值，代表一个worker进程。<br>它的属性和方法如下。<br>（1）worker.id<br>worker.id返回当前worker的独一无二的进程编号。这个编号也是cluster.workers中指向当前进程的索引值。</p>
+<p>（2）worker.process<br>所有的worker进程都是用child_process.fork()生成的。child_process.fork()返回的对象，就被保存在worker.process之中。通过这个属性，可以获取worker所在的进程对象。<br>（3）worker.send()<br>该方法用于在主进程中，向子进程发送信息。    </p>
+<pre><code>if (cluster.isMaster) {
+  var worker = cluster.fork();
+  worker.send(&apos;hi there&apos;);
+} else if (cluster.isWorker) {
+  process.on(&apos;message&apos;, function(msg) {
+    process.send(msg);
+  });
+}
+</code></pre><p>上面代码的作用是，worker进程对主进程发出的每个消息，都做回声。<br>在worker进程中，要向主进程发送消息，使用process.send(message)；要监听主进程发出的消息，使用下面的代码。</p>
+<pre><code>process.on(&apos;message&apos;, function(message) {
+  console.log(message);
+});    
+</code></pre><p>发出的消息可以字符串，也可以是JSON对象。下面是一个发送JSON对象的例子。</p>
+<pre><code>worker.send({
+  type: &apos;task 1&apos;,
+  from: &apos;master&apos;,
+  data: {
+    // the data that you want to transfer
+  }
+});    
+</code></pre><p>1.3 cluster.workers对象<br>该对象只有主进程才有，包含了所有worker进程。每个成员的键值就是一个worker进程对象，键名就是该worker进程的worker.id属性。</p>
+<pre><code>function eachWorker(callback) {
+  for (var id in cluster.workers) {
+    callback(cluster.workers[id]);
+  }
+}
+eachWorker(function(worker) {
+  worker.send(&apos;big announcement to all workers&apos;);
+});
+</code></pre><p>上面代码用来遍历所有worker进程。<br>当前socket的data事件，也可以用id属性识别worker进程。    </p>
+<pre><code>socket.on(&apos;data&apos;, function(id) {
+  var worker = cluster.workers[id];
+});
+</code></pre><ol>
+<li>cluster模块的属性与方法<br>2.1 isMaster，isWorker<br>isMaster属性返回一个布尔值，表示当前进程是否为主进程。这个属性由process.env.NODE_UNIQUE_ID决定，如果process.env.NODE_UNIQUE_ID为未定义，就表示该进程是主进程。</li>
+</ol>
+<p>isWorker属性返回一个布尔值，表示当前进程是否为work进程。它与isMaster属性的值正好相反。</p>
+<p>2.2 fork<br>fork方法用于新建一个worker进程，上下文都复制主进程。只有主进程才能调用这个方法。</p>
+<p>该方法返回一个worker对象。</p>
+<p>2.3 kill<br>kill方法用于终止worker进程。它可以接受一个参数，表示系统信号。</p>
+<p>如果当前是主进程，就会终止与worker.process的联络，然后将系统信号法发向worker进程。如果当前是worker进程，就会终止与主进程的通信，然后退出，返回0。</p>
+<p>在以前的版本中，该方法也叫做 worker.destroy() 。</p>
+<p>2.4 listening事件<br>worker进程调用listening方法以后，“listening”事件就传向该进程的服务器，然后传向主进程。</p>
+<p>该事件的回调函数接受两个参数，一个是当前worker对象，另一个是地址对象，包含网址、端口、地址类型（IPv4、IPv6、Unix socket、UDP）等信息。这对于那些服务多个网址的Node应用程序非常有用。</p>
+<pre><code>cluster.on(&apos;listening&apos;, function (worker, address) {
+  console.log(&quot;A worker is now connected to &quot; + address.address + &quot;:&quot; + address.port);
+});    
+</code></pre><ol>
+<li>不中断地重启Node服务<br>3.1 思路<br>重启服务需要关闭后再启动，利用cluster模块，可以做到先启动一个worker进程，再把原有的所有work进程关闭。这样就能实现不中断地重启Node服务。</li>
+</ol>
+<p>首先，主进程向worker进程发出重启信号。</p>
+<p>workers[wid].send({type: ‘shutdown’, from: ‘master’});</p>
+<p>worker进程监听message事件，一旦发现内容是shutdown，就退出。</p>
+<p>process.on(‘message’, function(message) {<br>  if(message.type === ‘shutdown’) {<br>    process.exit(0);<br>  }<br>});</p>
+<p>下面是一个关闭所有worker进程的函数。</p>
+<pre><code>function restartWorkers() {
+  var wid, workerIds = [];
+  for(wid in cluster.workers) {
+    workerIds.push(wid);
+  }
+
+  workerIds.forEach(function(wid) {
+    cluster.workers[wid].send({
+      text: &apos;shutdown&apos;,
+      from: &apos;master&apos;
+     });
+    setTimeout(function() {
+      if(cluster.workers[wid]) {
+        cluster.workers[wid].kill(&apos;SIGKILL&apos;);
+      }
+    }, 5000);
+  });
+};    
+</code></pre><p>3.2 实例<br>下面是一个完整的实例，先是主进程的代码master.js。</p>
+<p>var cluster = require(‘cluster’);</p>
+<p>console.log(‘started master with ‘ + process.pid);</p>
+<p>// 新建一个worker进程<br>cluster.fork();</p>
+<p>process.on(‘SIGHUP’, function () {<br>  console.log(‘Reloading…’);<br>  var new_worker = cluster.fork();<br>  new_worker.once(‘listening’, function () {<br>    // 关闭所有其他worker进程<br>    for(var id in cluster.workers) {<br>      if (id === new_worker.id.toString()) continue;<br>      cluster.workers[id].kill(‘SIGTERM’);<br>    }<br>  });<br>});</p>
+<p>上面代码中，主进程监听SIGHUP事件，如果发生该事件就关闭其他所有worker进程。之所以是SIGHUP事件，是因为nginx服务器监听到这个信号，会创造一个新的worker进程，重新加载配置文件。另外，关闭worker进程时，主进程发送SIGTERM信号，这是因为Node允许多个worker进程监听同一个端口。</p>
+<p>下面是worker进程的代码server.js。</p>
+<pre><code>var cluster = require(&apos;cluster&apos;);
+
+if (cluster.isMaster) {
+  require(&apos;./master&apos;);
+  return;
+}
+
+var express = require(&apos;express&apos;);
+var http = require(&apos;http&apos;);
+var app = express();
+
+app.get(&apos;/&apos;, function (req, res) {
+  res.send(&apos;ha fsdgfds gfds gfd!&apos;);
+});
+
+http.createServer(app).listen(8080, function () {
+  console.log(&apos;http://localhost:8080&apos;);
+});
+</code></pre><p>使用时代码如下。</p>
+<pre><code>$ node server.js
+started master with 10538
+http://localhost:8080      
+</code></pre><p>然后，向主进程连续发出两次SIGHUP信号。</p>
+<pre><code>$ kill -SIGHUP 10538
+$ kill -SIGHUP 10538    
+</code></pre><p>主进程会连续两次新建一个worker进程，然后关闭所有其他worker进程，显示如下。</p>
+<pre><code>Reloading...
+http://localhost:8080
+Reloading...
+http://localhost:8080    
+</code></pre><p>最后，向主进程发出SIGTERM信号，关闭主进程。</p>
+<pre><code>$ kill 10538
+</code></pre><ol>
+<li><p>PM2模块<br>PM2模块是cluster模块的一个包装层。它的作用是尽量将cluster模块抽象掉，让用户像使用单进程一样，部署多进程Node应用。</p>
+<p> // app.js<br> var http = require(‘http’);</p>
+<p> http.createServer(function(req, res) {<br>   res.writeHead(200);<br>   res.end(“hello world”);<br> }).listen(8080);    </p>
+</li>
+</ol>
+<p>上面代码是标准的Node架设Web服务器的方式，然后用PM2从命令行启动这段代码。</p>
+<pre><code>$ pm2 start app.js -i 4    
+</code></pre><p>上面代码的i参数告诉PM2，这段代码应该在cluster_mode启动，且新建worker进程的数量是4个。如果i参数的值是0，那么当前机器有几个CPU内核，PM2就会启动几个worker进程。<br>如果一个worker进程由于某种原因挂掉了，会立刻重启该worker进程。    </p>
+<pre><code># 重启所有worker进程
+$ pm2 reload all
+</code></pre><p>每个worker进程都有一个id，可以用下面的命令查看单个worker进程的详情。</p>
+<pre><code>$ pm2 show &lt;worker id&gt;    
+</code></pre><p>正确情况下，PM2采用fork模式新建worker进程，即主进程fork自身，产生一个worker进程。pm2 reload命令则会用spawn方式启动，即一个接一个启动worker进程，一个新的worker启动成功，再杀死一个旧的worker进程。采用这种方式，重新部署新版本时，服务器就不会中断服务。</p>
+<pre><code>$ pm2 reload &lt;脚本文件名&gt;    
+</code></pre><p>关闭worker进程的时候，可以部署下面的代码，让worker进程监听shutdown消息。一旦收到这个消息，进行完毕收尾清理工作再关闭。</p>
+<pre><code>process.on(&apos;message&apos;, function(msg) {
+  if (msg === &apos;shutdown&apos;) {
+    close_all_connections();
+    delete_logs();
+    server.close();
+    process.exit(0);
+  }
+});    
+</code></pre><p>问题：gulp.spritesmith<br>使用gulp.spritesmith插件制作雪碧图<br>注意：插件是gulp.spritesmith，不是gulp-spritesmith<br>插件地址：<a href="https://github.com/twolfson/gulp.spritesmith" target="_blank" rel="external">https://github.com/twolfson/gulp.spritesmith</a></p>
+<pre><code>//javascript代码
+const gulp = require(&apos;gulp&apos;);
+const spritesmith = require(&apos;gulp.spritesmith&apos;);
+const dirname = __dirname;
+
+gulp.task(&apos;spritesmith&apos;, function(){
+    gulp.src(dirname + &apos;/src/*.png&apos;)
+        .pipe(spritesmith({
+            imgName: &apos;icons.png&apos;,     // 生成的图片
+            cssName: &apos;icons.sass&apos;,    // 生成的sass文件
+            padding: 20,              // 图标之间的距离
+            algorithm: &apos;binary-tree&apos;, // 图标的排序方式
+            cssTemplate: &apos;./handlebarsInheritance.sass.handlebars // 模板
+        }))
+        .pipe(gulp.dest(dirname + &apos;/build&apos;));
+});
+
+gulp.task(&apos;default&apos;, [&apos;spritesmith&apos;]);    
+
+//sass模板
+{
+// Default options
+&apos;functions&apos;: true,
+&apos;variableNameTransforms&apos;: [&apos;dasherize&apos;]
+}
+
+{{#extend "sass"}}
+    {{#content "sprites"}}
+.syin
+  display: inline-block
+$imageurl: &apos;&apos;
+        {{#each sprites}}
+${{strings.name}}: ({{px.x}}, {{px.y}}, {{px.offset_x}}, {{px.offset_y}}, {{px.width}}, {{px.height}}, {{px.total_width}}, {{px.total_height}}, ($imageurl + &apos;{{{escaped_image}}}&apos;), &apos;syin-{{name}}&apos;)
+        {{/each}}
+    {{/content}}
+    {{#content "spritesheet"}}
+${{spritesheet_info.strings.name_sprites}}: ({{#each sprites}}${{strings.name}}, {{/each}})
+    {{/content}}
+{{/extend}}
+</code></pre><p>问题：forever(守护进程)<br>forever作为node的守护进程而存在的，因为node服务端很容易遇到异常就崩溃，在用这个的时候最好给系统添加 异常报警，异常记录之类的措施，不然用了forver也没有起到任何真正的作用， 不能因为有了forever就忽略了try catch，代码里应该多加异常捕捉，防止程序经常出现崩溃的情况。让程序更加健壮。<br>1.下载地址<br><a href="https://github.com/foreverjs/forever" target="_blank" rel="external">https://github.com/foreverjs/forever</a><br>2.安装</p>
+<pre><code>npm install forever -gd
+</code></pre><p>3.操作</p>
+<pre><code>forever --help  //帮助
+forever start app.js //启动
+forever stop app.js  //停止
+forever list  //列表
+forever stopall //关闭所有
+forever restartall //重启所有    
+</code></pre><p>4.日志输出</p>
+<pre><code>//指定app.js中的日志信息和错误日志输出文件，  
+//  -o 就是console.log输出的信息，-e 就是console.error输出的信息
+forever start -o out.log -e err.log app.js 
+
+// 追加日志，forever默认是不能覆盖上次的启动日志，  
+//  所以如果第二次启动不加-a，则会不让运行  
+forever start -l forever.log -a app.js     
+</code></pre><p>5.查看进程</p>
+<pre><code>ps -ef|grep node    
+</code></pre></div>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/09/18/加油-谢谢肯定/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：加油,谢谢肯定
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/18/css之光晕效果/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：CSS之光晕效果</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="nodejs总结" data-title="nodejs总结" data-url="http://yoursite.com/2016/08/18/nodejs总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/main.js"></script>
+<script src="/./js/myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>

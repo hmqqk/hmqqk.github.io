@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>jquery源码总结(下) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题：Queue队列中存储的必须是函数,且出队列时还要调用该相应的函数（这也说明进入队列的必定是函数，因为这样才能调用）
+队列相比回调更强大些，因为它可控制的去执行某些方法，对比如下图
+
+问题：Sizzle浏览器从下载文档到显示页面的过程是个复杂的过程，这里包含了重绘和重排。各家浏览器引擎的工作原理略有差别，但也有一定规则。简单讲，通常在文档初次加载时，浏览器引擎会解析HTML文档来构建DOM树，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery源码总结(下)">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/jquery源码总结(下) /index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="问题：Queue队列中存储的必须是函数,且出队列时还要调用该相应的函数（这也说明进入队列的必定是函数，因为这样才能调用）
+队列相比回调更强大些，因为它可控制的去执行某些方法，对比如下图
+
+问题：Sizzle浏览器从下载文档到显示页面的过程是个复杂的过程，这里包含了重绘和重排。各家浏览器引擎的工作原理略有差别，但也有一定规则。简单讲，通常在文档初次加载时，浏览器引擎会解析HTML文档来构建DOM树，">
+<meta property="og:image" content="http://yoursite.com/images/jquery/6_1.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/6_2.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/6_3.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/6_4.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/6_5.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/7_5.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/7_7.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/7_8.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/7_1.png">
+<meta property="og:updated_time" content="2016-12-24T11:07:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jquery源码总结(下)">
+<meta name="twitter:description" content="问题：Queue队列中存储的必须是函数,且出队列时还要调用该相应的函数（这也说明进入队列的必定是函数，因为这样才能调用）
+队列相比回调更强大些，因为它可控制的去执行某些方法，对比如下图
+
+问题：Sizzle浏览器从下载文档到显示页面的过程是个复杂的过程，这里包含了重绘和重排。各家浏览器引擎的工作原理略有差别，但也有一定规则。简单讲，通常在文档初次加载时，浏览器引擎会解析HTML文档来构建DOM树，">
+<meta name="twitter:image" content="http://yoursite.com/images/jquery/6_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/title.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/title.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-jquery源码总结(下) " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jquery源码总结(下)
+    </h1>
+  
+
+        <a href="/2016/08/18/jquery源码总结(下) /" class="archive-article-date">
+  	<time datetime="2016-08-18T01:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="问题：Queue"><a href="#问题：Queue" class="headerlink" title="问题：Queue"></a>问题：Queue</h5><p>队列中存储的必须是函数,且出队列时还要调用该相应的函数（这也说明进入队列的必定是函数，因为这样才能调用）</p>
+<div align="center"><br><img src="/images/jquery/6_1.png"><br><img src="/images/jquery/6_2.png"><br><img src="/images/jquery/6_3.png"><br></div><br>队列相比回调更强大些，因为它可控制的去执行某些方法，对比如下图<br><div align="center"><br><img src="/images/jquery/6_4.png"><br><img src="/images/jquery/6_5.png"><br></div>
+
+<h5 id="问题：Sizzle"><a href="#问题：Sizzle" class="headerlink" title="问题：Sizzle"></a>问题：Sizzle</h5><p>浏览器从下载文档到显示页面的过程是个复杂的过程，这里包含了重绘和重排。各家浏览器引擎的工作原理略有差别，但也有一定规则。<br>简单讲，通常在文档初次加载时，浏览器引擎会解析HTML文档来构建DOM树，之后根据DOM元素的几何属性构建一棵用于渲染的树。渲染树的每个节点都有大小和边距等属性，类似于盒子模型（由于隐藏元素不需要显示，渲染树中并不包含DOM树中隐藏的元素）。<br>当渲染树构建完成后，浏览器就可以将元素放置到正确的位置了，再根据渲染树节点的样式属性绘制出页面。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成</p>
+<div align="center"><br><img src="" images.jquery="" 7_1.jpg=""><br></div><br>HTML 经过解析生成 DOM Tree（这个我们比较熟悉）；而在 CSS 解析完毕后，需要将解析的结果与 DOM Tree 的内容一起进行分析建立一棵 Render Tree，最终用来进行绘图。Render Tree 中的元素（WebKit 中称为「renderers」，Firefox 下为「frames」）与 DOM 元素相对应，但非一一对应：一个 DOM 元素可能会对应多个 renderer，如文本折行后，不同的「行」会成为 render tree 种不同的 renderer。也有的 DOM 元素被 Render Tree 完全无视，比如 display:none 的元素。<br>在建立 Render Tree 时（WebKit 中的「Attachment」过程），浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 renderer。对于每个 DOM 元素，必须在所有 Style Rules 中找到符合的 selector 并将对应的规则进行合并。选择器的「解析」实际是在这里执行的，在遍历 DOM Tree 时，从 Style Rules 中去寻找对应的 selector。<br>因为所有样式规则可能数量很大，而且绝大多数不会匹配到当前的 DOM 元素（因为数量很大所以一般会建立规则索引树），所以有一个快速的方法来判断「这个 selector 不匹配当前元素」就是极其重要的。<br>如果正向解析，例如「div div p em」，我们首先就要检查当前元素到 html 的整条路径，找到最上层的 div，再往下找，如果遇到不匹配就必须回到最上层那个 div，往下再去匹配选择器中的第一个 div，回溯若干次才能确定匹配与否，效率很低。<br>逆向匹配则不同，如果当前的 DOM 元素是 div，而不是 selector 最后的 em，那只要一步就能排除。只有在匹配时，才会不断向上找父节点进行验证。<br>但因为匹配的情况远远低于不匹配的情况，所以逆向匹配带来的优势是巨大的。同时我们也能够看出，在选择器结尾加上「*」就大大降低了这种优势，这也就是很多优化原则提到的尽量避免在选择器末尾添加通配符的原因。<br>　简单的来说浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素<br><br>P.S. 注意【浏览器渲染原理】 渲染树和页面渲染<br><br>【浏览器渲染原理】 渲染树和页面渲染<br><br>我们主要讨论以下列出的几个问题：<br>什么是渲染树？和DOM树及CSSOM树有什么关系？<br>渲染树是如何形成的？<br>浏览器渲染顺序问题<br>1.什么是渲染树？和DOM树及CSSOM树有什么关系？<br><br>首先我们得先了解一下渲染的基本步骤<br>当用户请求的资源通过浏览器网络层到达渲染引擎后。渲染工作就会开始。<br>第一步：浏览器解析HTML文档和解析CSS样式表形成DOM树和CSSOM树<br>第二步 : 结合DOM树和CSSDOM树形成 render树。 也就是我们所说的渲染树。渲染树<br>第三步： 浏览器在render树内对每个render节点进行布局处理，计算出每一个元素的大小和位置。确定其在屏幕上的位置<br>第四步：绘制。通过遍历render树将实际的像素显示到屏幕上<br><br>以上的步骤是一个渐进的步骤，但是为了提高用户体验，浏览器并不会等待所有html文档加载完成之后才建立渲染树并渲染。 他会在从网络层获取html文档的同时把已经接收到的局部内容先渲染出来<br><br>2.渲染树是如何形成的？<br>基于DOM树的一些可视化的节点，WebKit根据需要来创建相应的RenderObject节点，这些节点也构成了一颗树，称为render树。<br><br>Render树是基于Dom树建立起来的新的一棵树，Render节点和Dom节点并不是一一对应。所以什么情况下需要建立新的render节点呢？<br>- DOM树document节点<br>- DOM树种的可视化节点<br>- 某些情况下建立匿名的render节点<br>有一个问题就是什么算可视化节点呢？<br>比如 Html,Body,Div,P等就是可视化结点， 而非可视化节点就是 Head, Meta, Script等。<br>比如一个DIV的display属性是none，那么它就是非可视节点。<br>但是注意. 如果DIV的visibility属性是hidden，它是可视节点。<br>这是一个细节需要注意。<br>什么情况下建立匿名的render节点？<br>RenderBlock用来是用来表示块级元素， 为了处理上的方便，某些情况下需要建立匿名的RenderBlock对象，因为RenderBlock的子女必须都是内嵌的元素或者都是非内嵌的元素。所以，当它包含两种元素的时候，那么它会为相邻的内嵌元素创建一个块级RenderBlock节点，然后设置该节点为自己的子女并且设置这些内嵌元素为它的子女。<br><br>浏览器的渲染顺序问题（摘抄）<br><br>1.浏览器加载和渲染html的顺序<br>1、IE下载的顺序是从上到下，渲染的顺序也是从上到下，下载和渲染是同时进行的。<br>2、在渲染到页面的某一部分时，其上面的所有部分都已经下载完成（并不是说所有相关联的元素都已经下载完）<br>3、如果遇到语义解释性的标签嵌入文件（JS脚本，CSS样式），那么此时IE的下载过程会启用单独连接进行下载。<br>4、并且在下载后进行解析，解析过程中，停止页面所有往下元素的下载。阻塞加载<br>5、样式表在下载完成后，将和以前下载的所有样式表一起进行解析，解析完成后，将对此前所有元素（含以前已经渲染的）重新进行渲染。<br>6、JS、CSS中如有重定义，后定义函数将覆盖前定义函数<br>2. JS的加载<br>2.1 不能并行下载和解析（阻塞下载）<br>2.2 当引用了JS的时候，浏览器发送1个js request就会一直等待该request的返回。因为浏览器需要1个稳定的DOM树结构，而JS中很有可能有代码直接改变了DOM树结构，比如使用 document.write 或 appendChild,甚至是直接使用的location.href进行跳转，浏览器为了防止出现JS修改DOM树，需要重新构建DOM树的情况，所以 就会阻塞其他的下载和呈现.<br><br> DOM树和渲染树的对应关系如下图：<br> <div align="center"><br> <img src="/images/jquery/7_5.png"><br> </div><br>CSS选择器(以下面为例)：<br>div &gt; div.Aaron p span.red<br>关于解析机制<br>在预编译的时候通过词法分析器与语法分析器的规则处理<br>在词法分析过程中，js解析器要下把脚本代码的字符流转换成记号流<br>比如：<br><br>    a=(b-c);<br><br>解析后转换成：<br><br>    NAME “a”<br>    EQUALS<br>    OPEN_PARENTHESIS<br>    NAME “b”<br>    MINUS<br>    NAME “c”<br>    CLOSE_PARENTHESIS<br>    SEMICOLON<br><br>把代码解析成Token的阶段在编译阶段里边称为词法分析<br>代码经过词法分析后就得到了一个Token序列，紧接着拿Token序列去其他事情<br>经过tokenize处理器处理过后分解为<br><div align="center"><br><img src="" images.jquery="" 7_2.png=""><br></div>
+
+<p>一个数组对象，展开后</p>
+<div align="center"><br><img src="" images.jquery="" 7_3.png=""><br></div>
+
+<p>Sizzle的Token格式如下 ：</p>
+<pre><code>Token：{  
+   value:&apos;匹配到的字符串&apos;, 
+   type:&apos;对应的Token类型&apos;, 
+   matches:&apos;正则匹配到的一个结构&apos;
+}
+</code></pre><p>1．拆分选择器，把每一个选择器组成能够处理的最小化单元。<br>div.aaron这行代码原生的API不认识，但是div与.aaron都是有API能直接获取到的，所以拆分出后提供后面进行关联匹配筛选等等。这里sizzle就引入了词法分析器与种子合集。<br>2．Sizzle也是遵循从右到左开始查找，但是不仅仅是这样。<br>浏览器提供的查找接口，基本靠谱的就只有三个：<br>Expr.find = {<br>      ‘ID’    : context.getElementById,<br>      ‘CLASS’ : context.getElementsByClassName,<br>      ‘TAG’   : context.getElementsByTagName<br>}<br>所以我们开始第一查找，从右到左边依次取出最小的单元选择器，通过ID、CLASS.TAG去查找，如果能找到就放到结果集中，这样第一时间定位到了最终的元素必须会存在的合集。<br>3．这样只能找出可能存在的合集，但是没有精确到具体的选择器上，所以还需要一个筛选的过程，这个过程也是最复杂的。</p>
+<p>这里要提出几点：<br>比如解析的规则</p>
+<pre><code>div &gt; p + .aaron[type=&quot;checkbox&quot;], #id:first-child
+</code></pre><p>1：groups收集并联关系的处理</p>
+<p>div &gt; p + .aaron[type=”checkbox”], #id:first-child</p>
+<p>分解成</p>
+<p>groups：[</p>
+<p>0:div &gt; p + .aaron[type=”checkbox”],</p>
+<p>1:#id:first-child</p>
+<p>]</p>
+<p>然后往下还是会细分的</p>
+<p>画一张直观图便于理解</p>
+<div align="center"><br><img src="" images.jquery="" 7_4.png=""><br></div>
+
+<p>seed是通过getElementsByTagName方法返回的是一个合集，seed - 种子合集（搜索器搜到符合条件的标签），放入到这个初始集合seed中。这种我们找到了最终的一个合集，那么我们需要的就是根据剩余的条件筛选出真正的选择器就OK了，这里暂停了，不再往下匹配了，如果再用这样的方式往下匹配效率就慢了。<br>开始整理重组一下选择器，剔掉已经在用于处理的tag标签,input，所以选择器变成了：<br>selector:”div &gt; div.aaron [name=ttt]”<br>这里可以优化下，如果直接剔除后，为空了，就证明满足了匹配要求，直接返回结果了。到这一步为止，我们能够使用的东东：<br>1、seed合集</p>
+<div align="center"><br><img src="" images.jquery="" 7_6.jpg=""><br></div>
+
+<p>2、通过tokenize分析解析规则组成match合集,本来是7个规则快，因为匹配input，所以要对应的也要踢掉一个所以就是6个了。<br>3、选择器语句，对应的踢掉了input。</p>
+<pre><code>selector:&quot;div &gt; div.aaron [name=ttt]&quot;
+</code></pre><p>此时send目标合集有2个最终元素了，那么如何用最简单，最有效率的方式从2个条件中找到目标呢？这一过程叫做过滤器<br>怎么有效的从种子合集seed里面找到选择器指定的元素？这里sizzle引入了过滤器，其原理如下：</p>
+<pre><code>function addCombinator(elems) {
+   //代码右图所示
+}    
+</code></pre><p>这里只做了2层过滤查找，但是这个原理其实就很明了从右到左取出对应的条件，然后通过浏览器给出的原生的API判断是否能取到对应的指判断从而筛选其结果。<br>过滤处理我们需要考虑的问题:<br>1 怎么有效的匹配这些选择器的最小判断单元，也就是通过词法分割出后的结果<br>2 如果处理层级选择器的判断问题<br>如上可见，过滤是通过一层一层往上回溯不断的循环去查找，这样虽然结果可以拿到，但是效率是非常低的。所以sizzle从1.8后采用了空间换时间的方式，通过把各种过滤器编译成闭包的函数，所以这个过程也可说是”编译函数”。<br>在Sizzle中过滤器 Expr.filter主要分6大类型</p>
+<pre><code>“ID”，“TAG”、“CLASS”、“ATTR”、“CHILD”、“PSEUDO”
+</code></pre><p>ID的过滤器</p>
+<pre><code>Expr.filter[&quot;ID&quot;] = function(id) {
+    var attrId = id.replace(runescape, funescape);
+    return function(elem) {
+        return elem.getAttribute(&quot;id&quot;) === attrId;
+    };
+};
+</code></pre><p>TAG类型的过滤器</p>
+<pre><code>&quot;TAG&quot;: function(nodeNameSelector) {
+    var nodeName = nodeNameSelector.replace(runescape, funescape).toLowerCase();
+    return nodeNameSelector === &quot;*&quot; ?
+        function() {
+            return true;
+    } :
+        function(elem) {
+            return elem.nodeName &amp;&amp; elem.nodeName.toLowerCase() === nodeName;
+    };
+},    
+</code></pre><p>其实我们看过滤器的就是一个具体的判断方法，通过传递一个上下文元素，来判断是否存在，得到这一个布尔值，这样有效了缓存了重复的处理，来节约判断的过程，下章节就会提到的“函数编译”中具体集合使用。</p>
+<p>除了判断的过程，那么还涉及到节点的关系处理，如：</p>
+<pre><code>var selector = &quot;div &gt; div.Aaron [name=ttt]&quot;;
+</code></pre><p>节点与节点之间是有层级关系的，这里就遇到了“&gt;”与“空”。子元素组合器(E &gt; F)和(E F)都作为后代组合，但是他们有所不同，更具体的是(E &gt; F)它只会选择第一级的后代，那么我们从右边往左边匹配就会遇到这样的情况，[name=ttt]节点与div.Aaron中间的连接符“空”则为后代选择器，那么意味着[name=ttt]元素的可能是div.Aaron元素的一个孩子，孙子，曾孙等。<br>同理div.Aaron与div的连接符是“&gt;” 子元素选择器,这个简单只能是父子关系。除此之外，还有相邻兄弟选择器“+”与“~”，(prev + next) 和 (prev ~ siblings)之间最值得注意的不同点是他们各自的可及之范围。前者只达到紧随的同级元素，后者扩展了该达到跟随其的所有同级元素。<br>针对选择器的层级关系：<br>首先“&gt;”与“空”是祖辈关系，这样可以理解是线型的，那么我们只要递归检测每次元素的 parentNode 属性返回指定节点的父节点。<br>同理“+”与“~”也是类似的兄弟关系，无非就是扩展的范围不同，所以针对层级的关系问题。<br>jQuery引入了词素关系：</p>
+<pre><code>relative: {
+  &quot;&gt;&quot;: {
+    dir: &quot;parentNode&quot;,
+    first: true
+  },
+  &quot; &quot;: {
+    dir: &quot;parentNode&quot;
+  },
+  &quot;+&quot;: {
+    dir: &quot;previousSibling&quot;,
+    first: true
+  },
+  &quot;~&quot;: {
+    dir: &quot;previousSibling&quot;
+  }
+}
+</code></pre><p>这里的dir可以认为是查找的一个条件，就是查找父节点还是兄弟节点，那么first的意思就是一个快速条件，因为“&gt;”选择器是一个很明确的父子关系所以通过标记first只需要查找一层即可。我们可以看代码：</p>
+<pre><code>function addCombinator(elems) {
+        var elem;
+        while ((elem = elems[&apos;parentNode&apos;])) {
+               if (elem.nodeType === 1) {
+                       return elem
+               }
+        }
+};    
+</code></pre><p>总结：sizzle分析记录：分解流程</p>
+<pre><code>&lt;form&gt;
+  &lt;label&gt;Name:&lt;/label&gt;
+  &lt;input name=&quot;name&quot; /&gt;
+  &lt;fieldset&gt;
+      &lt;label&gt;Newsletter:&lt;/label&gt;
+      &lt;div name=&quot;newsletter&quot; /&gt;&lt;p&gt;1&lt;p&lt;/div&gt;
+      &lt;div name=&quot;letter&quot; /&gt;&lt;p name=&apos;aaron&apos;&gt;2&lt;p&gt;&lt;/div&gt;
+      &lt;div name=&quot;tter&quot; /&gt;&lt;p&gt;3&lt;p&lt;/div&gt;
+ &lt;/fieldset&gt;
+&lt;/form&gt;
+</code></pre><p>js</p>
+<pre><code>$(&quot;form div &gt; p[name=aaron]&quot;)
+</code></pre><p>解析的流程：<br>编译器：分5个步骤<br>涉及： TAG元素 关系选择器 属性选择器<br>1:通过tokenize词法分析器分组</p>
+<div align="center"><br><img src="/images/jquery/7_7.png"><br></div>
+
+<p>2:遍历tokens，从右边往左边开始筛选，最快定位到目标元素合集</p>
+<pre><code>//先看看有没有搜索器find，搜索器就是浏览器一些原生的取DOM接口，简单的表述就是以下对象了
+            // Expr.find = {
+            // &apos;ID&apos;    : context.getElementById,
+            // &apos;CLASS&apos; : context.getElementsByClassName,
+            // &apos;TAG&apos;   : context.getElementsByTagName
+            //        }
+</code></pre><p>操作如下</p>
+<pre><code>Expr.find[&quot;TAG&quot;] = support.getElementsByTagName ?
+    function( tag, context ) {
+        if ( typeof context.getElementsByTagName !== strundefined ) {
+            return context.getElementsByTagName( tag );
+        }
+    } :       
+</code></pre><p>那么第一筛选找到的定位元素，就形成了一个 seed种子合集,那么余下的所有的操作都是围绕这个种子合集处理<br>因为节点总是存在各种关系的，所以不管是通过这个最靠近的目标的元素，往上还是往下 都是可以处理的<br>3：重组选择器，开始执行继续分解”form div &gt; [name=aaron]”<br>因为种子合已经抽出了，所以选择器就需要重新排列<br>    “form div &gt; [name=aaron]”<br>踢掉了P元素，已经被抽离了<br>4 : 生成编译处理器<br>这里为什么要这么复杂，因为生成了编译闭包可以缓存起来，通过这种机制，增加了重复选择器的效率<br>在matcherFromTokens方法中通过分解tokens生成对应的处理器<br>例如：form div [name=aaron]<br>在分解过程中分2大块<br>A：关系选择器的处理  &gt; + ~ 空<br>B: ATTR CHILD CLASS ID PSEUDO TAG的处理<br>用matchers保留组合关系<br>1：分解第一个TAG：form 保存处理器到matchers.push( Expr.filter[“TAG”]) ;<br>2：分解第二个“空”的关系选择器，此时<br> A：用elementMatcher把之前的matchers压入到这个匹配里面，生成一个遍历方法的处理</p>
+<pre><code> function elementMatcher( matchers ) {
+    return matchers.length &gt; 1 ?
+        function( elem, context, xml ) {
+            var i = matchers.length;
+            while ( i-- ) {
+                if ( !matchers[i]( elem, context, xml ) ) {
+                    return false;
+                }
+            }
+            return true;
+        } :
+        matchers[0];
+}
+</code></pre><p>B：用addCombinator再次包装，生成一个位置关系的查找关系</p>
+<pre><code>function addCombinator( matcher, combinator, base ) {
+    var dir = combinator.dir,
+        checkNonElements = base &amp;&amp; dir === &quot;parentNode&quot;,
+        doneName = done++;
+
+    return 
+        // Check against all ancestor/preceding elements
+        // 检查所有祖先/元素
+        function( elem, context, xml ) {
+            var oldCache, outerCache,
+                newCache = [ dirruns, doneName ];
+                while ( (elem = elem[ dir ]) ) {
+                    if ( elem.nodeType === 1 || checkNonElements ) {
+                        outerCache = elem[ expando ] || (elem[ expando ] = {});
+                        if ( (oldCache = outerCache[ dir ]) &amp;&amp;
+                            oldCache[ 0 ] === dirruns &amp;&amp; oldCache[ 1 ] === doneName ) {
+
+                            // Assign to newCache so results back-propagate to previous elements
+                            return (newCache[ 2 ] = oldCache[ 2 ]);
+                        } else {
+                            // Reuse newcache so results back-propagate to previous elements
+                            outerCache[ dir ] = newCache;
+
+                            // A match means we&apos;re done; a fail means we have to keep checking
+                            if ( (newCache[ 2 ] = matcher( elem, context, xml )) ) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+        };
+}    
+</code></pre><p>所以此时的matchers的关系是一个层级的包含结构，然后依次这样递归</p>
+<p><div align="center"><br><img src="/images/jquery/7_8.png"><br></div><br>这个地方相当绕！！！！<br>生成的最后<br>cached = matcherFromTokens( match[i] );<br>变成了一个超大的嵌套闭包<br>5: 通过matcherFromGroupMatchers这个函数来生成最终的匹配器</p>
+<pre><code>var bySet = setMatchers.length &gt; 0,
+        byElement = elementMatchers.length &gt; 0,
+
+        superMatcher = function(seed, context, xml, results, outermost) {
+            //分解这个匹配处理器
+        }
+
+
+    return superMatcher
+</code></pre><p>通过matcherFromGroupMatchers的处理最直接的就是能看出，elementMatchers, setMatchers 2个结果不需要再返回出去，直接形成curry的方法，在内部就合并参数<br>外面就直接调用了，这样    </p>
+<pre><code>var compileFunc = compiled || compile( selector, match );
+
+compileFunc(
+    seed,
+    context,
+    !documentIsHTML,
+    results,
+    outermost
+);  
+</code></pre><p>compileFunc 一直是持有elementMatchers, setMatchers 的引用的，这个设计的手法还是值得借鉴的<br>执行期：<br>至此之前的5个步骤都是编译成函数处理器的过程，然后就是开始执行了<br>粗的原理就是把直接分解出来的seed种子合集丢到这个处理器中，然后处理器就会根据各种关系进行分解匹配<br>从而得到结果集<br>superMatcher：</p>
+<pre><code>while ( (matcher = elementMatchers[j++]) ) {
+    if ( matcher( elem, context, xml ) ) {
+        results.push( elem );
+        break;
+    }
+}
+</code></pre><p>抽出第一个seed元素，p<br>然后把p丢到atrr是过滤筛选器中去匹配下，看看是否能找到对应的这个属性<br>当然还是继续从右往左边匹配过滤了<br>一次是【name=aaron】 =&gt; div =&gt; from<br>matchers[i] =&gt; Expr.filter.ATTR =&gt;<br>p.getAttribute(‘name=aaron’) =&gt; 得到结果    </p>
+<pre><code>function elementMatcher( matchers ) {
+    return matchers.length &gt; 1 ?
+        function( elem, context, xml ) {
+            var i = matchers.length;
+            while ( i-- ) {
+                if ( !matchers[i]( elem, context, xml ) ) {
+                    return false;
+                }
+            }
+            return true;
+        } :
+        matchers[0];
+}
+</code></pre><p>如果匹配失败，自然就退出了  return false ，就不需要在往前找了 ，然后再次递归seed</p>
+<p>如果成功，就需要再深入的匹配了</p>
+<p>因为是从右到左逐个匹配，所以往前走就会遇到关系选择器的问题，</p>
+<p>那么jQuery把四种关系 &gt; + ~ 空的处理给抽出一个具体的方法就是addCombinator</p>
+<p>1 “form div &gt; p[name=aaron]”<br>2 seed =&gt; p<br>3 筛选[name=aaron]<br>4 &gt; =&gt; addCombinator方法 找到对应关系映射的父节点elem<br>5 elem中去匹配div 递归elementMatcher方法<br>6 “空” =&gt;  addCombinator方法找到祖先父节点elem<br>7 elem中去找form为止</p>
+<p>可见这个查找是及其复杂繁琐的<br>总结：<br>sizzle对选择器的大概是思路：<br>分解所有的选择器为最小单元，从右往左边开始挑出一个浏览器的API能快速定位的元素TAG,ID,CLASS节点，这样就能确定最终的元素跟这个元素是有关系的<br>然后把剩余的选择器单元开始生成一个匹配器，主要是用来做筛选，最后根据关系分组<br>如果就依次匹配往上查找，通过关系处理器定位上一个节点的元素，通过普通匹配器去确定是否为可选的内容</p>
+<p>P.S.<br>Sizzle引擎的在处理css选择器的时候有个原则：如果能使用浏览器原生的解析器来解析CSS选择器就使用之，不能的才使用Sizzle自定的解析方式来解析。可以肯定的是Sizzle引擎号称业界最快的CSS选择器解析引擎，但也快不过浏览器自带的解析器。<br>Sizzle的词法解析入口函数是内部函数tokenize。tokenize的作用是把CSS选择器（其实也就是一段字符串）解析成一组基础词法的序列。这个序列里面的每一个元素格式是</p>
+<p>　　Token：{ </p>
+<p>　　　　value:’匹配到的字符串’,</p>
+<p>　　　　type:’对应的Token类型’,</p>
+<p>　　　　matches:’正则匹配到的一个结构’</p>
+<p>　　}<br>jQuery在词法解析函数tokenize开始解析之前用到了一个比较巧妙的地方，Sizzle把每次查询结果缓存了起来，如果下一次有相同的查询，则直接使用缓存中的查询结果，而不需要重新查询。</p>
+<pre><code>var tokenCache = createCache(),
+...
+function createCache() {
+　　var cache, keys = [];
+　　return (cache = function( key, value ) {
+　　　　// 使用 (key + &quot; &quot;)避免命名冲突，最大缓存Expr.cacheLength:50
+
+　　　　if ( keys.push( key += &quot; &quot; ) &gt; Expr.cacheLength ) {
+　　　　　　// Only keep the most recent entries
+　　　　　　delete cache[ keys.shift() ];
+　　　　}
+　　　　return (cache[ key ] = value);
+　　});
+}
+...
+
+//设置缓存
+tokenCache( selector, groups );
+
+//tokenize函数中获取缓存
+cached = tokenCache[ selector + &quot; &quot; ]
+</code></pre><p>解析：<br>　　createCache()返回的是一个回调函数，对于这个回调函数来说cache，和keys都是他的类全局变量，在回调函数中可以直接使用。这里的巧妙在于return (cache = function( key, value )…)，将cache赋值给了tokenCache，这样使本来不能在外面使用的cache变成了tokenCache，tokenCache保存的就是最新的缓存，直接调用tokenCache[key]即可访问缓存。<br>　　这里还有一个点就是return (cache = function( key, value )…)中cache先被赋值，然后被填充cache[key].如果是先填充cache[key],然后再赋值则cache会被新赋值覆盖。<br>还是以上次的那个CSS选择器为例：#chua &gt; a + .group labe[for=”age”]。按照我们正常解析CSS的思路从右往左解析(这是效率较高的处理方法)，解析之前词法分析完毕，词法分析结果保存在tokens中。</p>
+<p>　　正常的思路：我们正常情况下的想法是这样的，先取出tokens的最后一个元素（pop出来），然后判断他是选择器的那种情况（这里会有一大堆if/else），然后进入某个分支，将满足条件的DOM节点先取出来存在seed中。然后再次取出最后一个元素，然后又是一大堆判断，进入某个分支，遍历先前的seed剔除掉不满足条件的节点。然后继续先前的处理，直到tokens中的东东没有为止。这是典型的边解析（解析词语：if/else判断）边处理（执行查找）的方式，在解析下一个词语之前，我们是不知道他将要进入那个分支进行处理。</p>
+<p>　　Sizzle的思路：先准备备选种子【Sizzle最终执行结果是其子集】elems（指定或者document.getElementsByTagName(“*”)）;对每一个tokens的词语，我都有相应的匹配函数来判断某个备选种子是否满足条件【分为两种情况：实体选择器（除开关系选择器外的其他选择器）直接比较种子是否满足实体条件即可；关系选择器（”&gt;”/“+”/“ “/“~”）需要和前一个实体选择器共同组成一个判断函数】，我们将所有的匹配函数连接起来返回一个整体的匹配函数，最后我们将所有的种子一一遍历，代入这个整体匹配函数中执行，返回真表示是我们需要的结果，压入缓存数组中保存起来；返回假直接剔除即可。遍历匹配完所有的种子，我们就得到了想要的结果了。这和我们正常的思路（边解析边处理）完全不一样，属于先解析（解析tokens生成一个整体匹配函数）再处理（遍历所有种子带入整体匹配函数得到匹配结果）。举一个简单的例子：”p &gt; span”,假设”span”的匹配函数为match1，”p &gt; “的匹配函数为match2，那么我必须满足匹配条件：allMatch = match1+match2才是我们想要的结果，需要注意的是我们添加最终匹配函数的时候是根据CSS选择器从左到右添加，但是执行最终匹配函数的时候是确实从右到左执行的（match2 -&gt; match1）,有点像栈先入后出的赶脚，后续分析生成最终匹配函数的时候我们在详细说明。调用匹配函数的。遍历种子集合seeds,将seeds[0]代入allMatch中执行，返回结果为true则保存起来，返回结果为false则略过；接着讲seeds[1]代入allMatch中执行<br>可以直接使用浏览器自带的处理的：查询ID（getElementById）、查询TAG(getElementsByTagName)、浏览器支持高级查询querySelectorAll。其他情况进入Sizzle自定义解析方式。</p>
+<p>　　我们不禁要问：为啥木有包括Class查询？说明一下，老版本的浏览器中不是所有的浏览器都支持Class查询，但是ID和TAG查询是所有浏览器都支持的。而支持使用Class查询（getElementsByClassName）的浏览器基本都支持querySelectorAll高级查询，so，不用说，用querySelectorAll即可。<br>词法解析结果<br>（1）　以#chua &gt; a + .group labe[for=”age”]为例：</p>
+<p><div align="center"><br><img src="/images/jquery/7_1.png"><br></div><br>（2）如果是多组CSS选择器如：”p &gt; .chua , #chen input”这样使用逗号分隔的，则会得到一个二维数组[tokens1,tokens2],tokens1表示两个”p &gt; .chua”的词法解析结果，tokens2表示 “#chen input”的词法解析结果</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/08/18/jade/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：jade
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/01/nodejs API/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：nodejs API</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jquery源码总结(下) " data-title="jquery源码总结(下)" data-url="http://yoursite.com/2016/08/18/jquery源码总结(下) /"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/main.js"></script>
+<script src="/./js/myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>

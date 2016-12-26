@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>jquery源码总结(中) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题：初始化与链式调用基础答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。
+jQuery = function(selector,context){
+  return new jQuery.fn.init(selector,context,rootjQuery);
+}
+...
+rootjQuery = jQuery(document);
+...
+jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery源码总结(中)">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/jquery源码总结(中) /index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="问题：初始化与链式调用基础答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。
+jQuery = function(selector,context){
+  return new jQuery.fn.init(selector,context,rootjQuery);
+}
+...
+rootjQuery = jQuery(document);
+...
+jQuery">
+<meta property="og:image" content="http://yoursite.com/images/jquery/5_1.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/5_3.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/5_4.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/3_1.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/3_2.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/3_3.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/3_4.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/3_5.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_1.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_2.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_3.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_4.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_5.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_6.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_7.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_8.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_9.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_10.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_11.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_12.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/2_13.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/4_1.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/4_2.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/4_3.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/4_4.png">
+<meta property="og:updated_time" content="2016-12-23T11:36:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jquery源码总结(中)">
+<meta name="twitter:description" content="问题：初始化与链式调用基础答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。
+jQuery = function(selector,context){
+  return new jQuery.fn.init(selector,context,rootjQuery);
+}
+...
+rootjQuery = jQuery(document);
+...
+jQuery">
+<meta name="twitter:image" content="http://yoursite.com/images/jquery/5_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/title.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/title.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-jquery源码总结(中) " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jquery源码总结(中)
+    </h1>
+  
+
+        <a href="/2016/08/18/jquery源码总结(中) /" class="archive-article-date">
+  	<time datetime="2016-08-18T01:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="问题：初始化与链式调用基础"><a href="#问题：初始化与链式调用基础" class="headerlink" title="问题：初始化与链式调用基础"></a>问题：初始化与链式调用基础</h5><p>答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。</p>
+<pre><code>jQuery = function(selector,context){
+  return new jQuery.fn.init(selector,context,rootjQuery);
+}
+...
+rootjQuery = jQuery(document);
+...
+jQuery.fn = jQuery.prototype = {
+　　constructor: jQuery,
+　　init: function(selector,context,rootjQuery){
+　　　　...
+　　　　return this;
+　　　　...
+  }
+}
+...
+jQuery.fn.init.prototype = jQuery.fn;
+...
+window.jQuery = window.$ = jQuery;
+</code></pre><p>由上面的分析可知jQuery.fn.init.prototype = jQuery.fn目的就是将jQuery.fn上的所有属性都挂在jQuery实例$(…)上，使得实例拥有很多jQuery.fn上定义的函数。比如jQuery.fn.extend函数，实例就可以直接使用：$(…).extend({“name”: “chua”})。<br>由于每次都是一个新的实例new jQuery.fn.init(selector,context,rootjQuery)，所以各个实例是独立的。而jQuery全局的属性直接挂在jQuery上，比如jQuery.extend,这个和jQuery.fn.extend不一样了，因为jQuery.extend是全局的，比如jQuery.extend（{“test”: “chua”}）你可以随时通过jQuery.test就把值给取出来了，而jQuery实例则需要保证同一个实例的情况下才能取到值。比如var ps = $(“p”).extend({“test”: “chua”}),通过ps.test能够取到值，但是你使用$(“p”).test是取不到的。因为你使用$(…)又新建了一个实例。<br>至于jQuery的链式调用很好理解，源码初始化的时候返回了jQuery对象本身：</p>
+<pre><code>init: function(selector,context,rootjQuery){
+　　...
+　　return this;
+}    
+</code></pre><h6 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h6><pre><code>return new jQuery.fn.init( selector, context, rootjQuery );
+</code></pre><p>$(‘#casper’)跟new $(‘#casper’)是一样的。个人觉得这里设计的原因，一个减少写一堆new的麻烦，同时也可以避免开发者不小心遗漏了new导致的诡异bug。当然，不好的地方是，代码有点绕，这也算是jQuery源码的其中一个特点。</p>
+<pre><code>jQuery.fn = jQuery.prototype
+</code></pre><p>没什么好讲，jQuery.prototype为jQuery的原型方法，这里用jQuery.fn来代替jQuery.prototype，只是为了少写几个字符，平常写插件时就是在这东东上面做修改.    </p>
+<pre><code>jQuery.fn.init.prototype = jQuery.fn
+</code></pre><p>很好很绕的一个语句，上面说了$(’#casper‘)返回的其实是个jQuery.fn.init对象。所以，这里的作用，是让jQuery.fn上的方法都成为jQuery.fn.init对象的原型方法。 这个语句应该让很多刚接触jQuery源码的人感到困惑，包括我（=_=），可以试jQuery.fn.init.prototype.init.prototype.init…，如果你愿意可以一直写下去。</p>
+<h5 id="问题：jQuery-type函数用来识别对象类型"><a href="#问题：jQuery-type函数用来识别对象类型" class="headerlink" title="问题：jQuery.type函数用来识别对象类型"></a>问题：jQuery.type函数用来识别对象类型</h5><p>答：JavaScript也自带有一个typeof运算符，可以确定数据的类型。不过，对于绝大多数对象而言，typeof运算符都返回”object”，无法区分具体的类型。jQuery.type()可以更加精确地确定JS内置对象的类型。</p>
+<pre><code>jQuery.type( undefined ); // &quot;undefined&quot;
+jQuery.type( null ); // &quot;null&quot;
+
+jQuery.type( true ); // &quot;boolean&quot;
+jQuery.type( new Boolean(true) ); // &quot;boolean&quot;
+
+jQuery.type( 3 ); // &quot;number&quot;
+jQuery.type( new Number(3) ); // &quot;number&quot;
+
+jQuery.type( &quot;test&quot; ); // &quot;string&quot;
+jQuery.type( new String(&quot;test&quot;) ); // &quot;string&quot;
+
+jQuery.type( function(){} ); // &quot;function&quot;
+jQuery.type( new Function() ); // &quot;function&quot;
+
+jQuery.type( [] ); // &quot;array&quot;
+jQuery.type( new Array() ); // &quot;array&quot;
+
+jQuery.type( new Date() ); // &quot;date&quot;
+
+jQuery.type( new Error() ); // &quot;error&quot; // jQuery 1.9 新增支持
+
+jQuery.type( /test/ ); // &quot;regexp&quot;
+jQuery.type( new RegExp(&quot;\\d+&quot;) ); // &quot;regexp&quot;
+
+/* 除上述类型的对象外，其他对象一律返回&quot;object&quot; */
+
+jQuery.type( {} ); // &quot;object&quot;
+function User() { }
+jQuery.type( new User() ); // &quot;object&quot;    
+</code></pre><h5 id="问题：ownerDocument和-documentElement的区别"><a href="#问题：ownerDocument和-documentElement的区别" class="headerlink" title="问题：ownerDocument和 documentElement的区别"></a>问题：ownerDocument和 documentElement的区别</h5><p>ownerDocument是Node对象的一个属性，返回的是某个元素的根节点文档对象：即document对象；documentElement是Document对象的属性，返回的是文档根节点对于HTML文档来说，documentElement是<html>标签对应的Element对象，ownerDocument是document对象.接下开始正题。</html></p>
+<h5 id="问题：jQuery-noConflict-函数详解"><a href="#问题：jQuery-noConflict-函数详解" class="headerlink" title="问题：jQuery.noConflict() 函数详解"></a>问题：jQuery.noConflict() 函数详解</h5><p>jQuery.noConflict()函数用于让出jQuery库对变量$(和变量jQuery)的控制权。</p>
+<p>一般情况下，在jQuery库中，变量$是变量jQuery的别名，它们之间是等价的，例如jQuery(“p”)和$(“p”)是等价的。由于变量$只有一个字符，并且特点鲜明，因此我们更加习惯使用$来操作jQuery库。</p>
+<p>不过，其他JS库也可能使用变量$来进行操作，例如Prototype库。这个时候两个库可能会由于变量$的控制权问题而发生冲突。</p>
+<p>此时，你可以使用该函数让出jQuery库对变量$的控制权，将该变量交给上一个实现它的JS库，之后我们只能使用变量jQuery来操作jQuery库。</p>
+<p>此外，使用该函数，还可以同时让出变量$和变量jQuery的控制权，从而实现多个不同版本的jQuery库共存(详情见下面的示例说明)。</p>
+<p>该函数属于全局jQuery对象。</p>
+<p>语法</p>
+<p>静态函数jQuery.noConflict()的语法如下：</p>
+<pre><code>jQuery.noConflict( [ removeAll ] )
+</code></pre><p>参数</p>
+<p> 参数                                   描述<br>removeAll    可选/Boolean类型是否彻底移交对变量jQuery的控制权，默认为false。<br>如果省略了参数removeAll或该参数不为true，则表示只让出对变量$的控制权；如果该参数为true，则表示同时让出变量$和jQuery的控制权。</p>
+<p>返回值</p>
+<p>jQuery.noConflict()函数的返回值是jQuery类型，返回变量jQuery的引用。</p>
+<p>示例&amp;说明</p>
+<p>以下是加载Prototype和jQuery库的情况：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;prototype.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+// 让出对变量$的控制权
+jQuery.noConflict();
+
+// 使用jQuery进行DOM操作
+jQuery(&quot;#uname&quot;).hide();
+
+// 使用Prototype进行DOM操作
+$(&quot;myDiv&quot;).setStyle( {color: &quot;#ffffff&quot;} );
+&lt;/script&gt;    
+</code></pre><p>(以下代码请自行复制到演示页面运行，注意不要同时执行，请分别执行)</p>
+<p>此外，我们还可以使用其他自定义的变量名来操作jQuery：</p>
+<pre><code>// 让出对变量$的控制权，并将jQuery赋给新的别名j
+var j = jQuery.noConflict();
+
+// 基于jQuery进行DOM操作(使用变量j)
+j(&quot;#uname&quot;).hide();
+
+// 基于Prototype进行DOM操作
+$(&quot;myDiv&quot;).setStyle( {color: &quot;#ffffff&quot;} );
+</code></pre><p>即使是多个库共存，我们也可以在jQuery.ready()的回调函数或其他自定义函数中将局部变量$作为jQuery的别名使用：</p>
+<pre><code>// 让出jQuery库对变量$的控制权
+jQuery.noConflict();
+
+jQuery(document).ready(function($){
+    // 使用局部变量$进行jQuery操作
+    $(&quot;p&quot;).css(&quot;color&quot;, &quot;&quot;);    
+});
+
+
+(function($){
+    // 使用局部变量$进行jQuery操作
+    $(&quot;ul li&quot;).addClass(&quot;item&quot;);    
+}(jQuery));    
+</code></pre><p>如果要实现两个版本的jQuery库共存，我们可以编写如下代码：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.4.2.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.11.1.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+// 让出jQuery-1.11.1对变量$和变量jQuery的控制权
+var j = jQuery.noConflict( true );
+
+document.writeln( j.fn.jquery ); // 1.11.1
+
+document.writeln( $.fn.jquery ); // 1.4.2
+document.writeln( jQuery.fn.jquery ); // 1.4.2
+
+/*
+ * 如果前面的jQuery.noConflict()没有传入参数true，
+ * 也就是说只让出变量$的控制，则$表示1.4.2，jQuery表示1.11.1
+ * 此时，jQuery.fn.jquery为1.11.1
+ */
+ &lt;/script&gt;    
+</code></pre><p>三个版本的jQuery库共存，对应的jQuery示例代码如下：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.4.2.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.8.3.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.11.1.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+// 让出jQuery-1.11.1对变量$和变量jQuery的控制权，使用变量j来控制
+var j = jQuery.noConflict( true );
+
+// 让出jQuery-1.8.3对变量$的控制权
+jQuery.noConflict();
+
+document.writeln( j.fn.jquery ); // 1.11.1
+document.writeln( jQuery.fn.jquery ); // 1.8.3
+document.writeln( $.fn.jquery ); // 1.4.2
+&lt;/script&gt;     
+</code></pre><p>注意：多个可能存在全局变量重名冲突的JS库，变量的实际控制权一般取决于JS库的加载顺序。以上面三个版本的jQuery库的示例代码为例，后加载的jQuery库的变量覆盖了之前版本的变量，因此每次让出变量的控制权，控制权就会交给上一个JS库。</p>
+<h5 id="问题：jQuery-Data源码-数据缓存系统"><a href="#问题：jQuery-Data源码-数据缓存系统" class="headerlink" title="问题：jQuery.Data源码(数据缓存系统)"></a>问题：jQuery.Data源码(数据缓存系统)</h5><p>对于DOM元素，通过分配一个唯一的关联id把DOM元素和该DOM元素的数据缓存对象关联起来，关联id被附加到以jQuery.expando的值命名的属性上，数据存储在全局缓存对象jQuery.cache中。在读取、设置、移除数据时，将通过关联id从全局缓存对象jQuery.cache中找到关联的数据缓存对象，然后在数据缓存对象上执行读取、设置、移除操作。</p>
+<p>对于Javascript对象，数据则直接存储在该Javascript对象的属性jQuery.expando上。在读取、设置、移除数据时，实际上是对Javascript对象的数据缓存对象执行读取、设置、移除操作。</p>
+<p>为了避免jQuery内部使用的数据和用户自定义的数据发生冲突，数据缓存模块把内部数据存储在数据缓存对象上，把自定义数据存储在数据缓存对象的属性data上。<br><a href="http://www.cnblogs.com/yaoyinglong/p/5738979.html" target="_blank" rel="external">http://www.cnblogs.com/yaoyinglong/p/5738979.html</a><br>P.S. 下图解释了Data的处理机制（也阐明了不会出现内存泄露问题的原因）</p>
+<div align="center"><br><img src="/images/jquery/5_1.png"><br></div><br>相同的元素是只分配同一个id的，如下图<br><div align="center"><br><img src="/images/jquery/5_3.png"><br><img src="/images/jquery/5_4.png"><br></div><br>##### 问题：jauery回调Callbacks<br>jQuery.Callbacks()提供的回调函数队列管理本来是延时回调处理的一部分，但是后面将其独立出来作为一个模块。jQuery就是这样，各个模块间的代码耦合度是处理的比较好的，值得学习。虽然是从延时回调处理中独立出来的，但是它的功能非常强大，提供了一种强大的方法来管理回调函数队列。<br>　　大家都明白封装函数的目的：去耦合与简化操作。<br>　　通常情况下函数队列的处理方式<br><br>    //执行函数<br>    function runList(arr){<br>        for(var i = 0; i &lt; arr.length; i++){<br>            arr<a href="">i</a>;　　　　<br>        }<br>    　　arr.length = 0;<br>    }<br><br>    var list = [];<br>    //添加函数队列<br>    list[list.length] = function(){alert(1)};<br>    list[list.length] = function(){alert(2)};<br>    list[list.length] = function(){alert(3)};<br>    //执行<br>    runList(list);//三个函数顺序执行<br><br>使用$.callbacks封装以后的处理为<br><br>    var callbacks = $.Callbacks(“unique”);<br><br>    callbacks.add( function(){alert(1)} );<br>    callbacks.add( function(){alert(2)} );<br>    callbacks.add( function(){alert(3)} );<br>    //执行<br>    callbacks.fire();//三个函数顺序执行<br><br>干净了很多。而且代码可读性比最开始的那个要好很多。list[list.length]神马的最讨厌了。还有主要的是$.callbacks有四个属性可以组合，这个组合可就很强大了。<br><br>　　<br><br>a. Callbacks的四个可设置的属性分析<br><br><br><br>once: 确保这个回调列表只执行（ .fire() ）一次(像一个递延 Deferred).<br><br>       设置“once”在执行第一次fire后会直接禁用该Callbacks(fire函数代码段else {self.disable();})<br><br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once’);<br><br>    callbacks.add(f1);//无执行结果,添加一个回调<br>    callbacks.fire(1);//执行结果1。清除回调列表<br>    callbacks.add(f1);//没有添加回调直接返回<br>    callbacks.fire(2);//无执行结果<br>    callbacks.add(f1);//没有添加回调直接返回<br>    callbacks.fire(3);//无执行结果<br><br>memory: 保持以前的值（参数），将函数添加到这个列表的后面，并使用先前保存的参数立即执行该函数。 内部变量会保存上次执行的场景。<br><br>　　他有一个特点，就是在第一次fire之前使用add添加的回调都不会马上执行，只有调用了一次fire之后使用add添加的回调会马上执行。该设置本身不会清除之前的回调列表。<br><br>　　需要注意的是每次add内部执行fire函数都会将firingStart置为0，只有下次add的时候会从新设置firingStart的值。<br><br>　　eg:<br><br>    var f1 = function(value) {    console.log(value); };<br>    var callbacks = $.Callbacks(“memory”);<br><br>    callbacks.add( fn1 );//无执行结果<br>    callbacks.fire( “1” );//执行结果1。保存场景参数1<br><br>    callbacks.add( fn1 );//执行结果1。使用上次保存的场景参数1<br>    callbacks.fire( “2” );//执行结果2,2。保存场景参数2<br><br>    callbacks.add( fn1 );//执行结果2。使用上次保存的场景参数2<br>    callbacks.fire( “3” );//执行结果3,3,3。保存场景参数3<br><br>    callbacks.add( fn1 );//执行结果3。使用上次保存的场景参数3<br>    callbacks.fire( “4” );//执行结果4,4,4,4。保存场景参数4<br><br>　组合使用，组合使用中间使用空格隔开<br><br>　　设置“once memory”, options.once=options.memory=true。在执行第一次fire后会把回到列表清空，而且之后每次add马上执行后页同样会把回调列表清空（fire函数代码段else if ( memory ) {list = [];}）。<br><br>       eg:<br><br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once memory’);<br><br>    callbacks.add(f1);//无执行结果,添加一个回调<br>    callbacks.fire(1);//执行结果1。清除回调列表，保存场景参数1<br>    callbacks.add(f1);//添加一个回调并执行结果1，使用上次保存的场景参数。清除回调列表<br>    callbacks.fire(2);//无执行结果<br>    callbacks.add(f1);//添加一个回调并执行结果1，使用上次保存的场景参数。清除回调列表<br>    callbacks.fire(3);//无执行结果<br><br>两个设置之间用空格，不支持其他符号，比如设置“once,memory”等同于没有设置。<br><br>　　eg:<br><br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once,memory’);<br><br>    callbacks.add(f1);//无执行结果,添加一个回调<br>    callbacks.fire(1);//执行结果1<br>    callbacks.add(f1);//添加一个回调<br>    callbacks.fire(2);//执行结果2,2<br>    callbacks.add(f1);//添加一个回调<br>    callbacks.fire(3);//执行结果3,3,3<br>    callbacks.add(f1);//添加一个回调<br>    callbacks.fire(4);//执行结果4,4,4,4<br><br>unique: 确保一次只能添加一个回调(所以在列表中没有重复的回调).<br><br><br><br>stopOnFalse: 当一个回调返回false 时中断调用<br><br>       当有一个回调返回false的时候，会设置memory为false。导致memory失去作用（后续add的函数不会马上执行，当然先前memory保证了前面执行过得函数不再执行这也条也就不起作用了。下次fire会从回调列表的第一个开始执行）。<br><br><br><br>b. 整体结构<br><br>　　使用缓存是jQuery中最常见的技巧。$.Callbacks中也不例外。主要是缓存Callbacks中遇到的选项（字符串）。<br><br>    // 使用过的选项缓存<br>    var optionsCache = {};<br><br>    // 新增和缓存回调设置于optionsCache中<br>    function createOptions( options ) {<br>        var object = optionsCache[ options ] = {};<br>        jQuery.each( options.match( core<em>rnotwhite ) || [], function( </em>, flag ) {<br>            object[ flag ] = true;<br>        });<br>        return object;<br>    }<br><br>    jQuery.Callbacks = function( options ) {<br>        // 尽可能读取缓存，没有则新增缓存<br>        options = typeof options === “string” ?<br>        ( optionsCache[ options ] || createOptions( options ) ) :<br>        jQuery.extend( {}, options );<br><br>        var // 回调列表正在执行（为true的时候）的标志<br>            firing,<br>            // 最后执行的值（为memory选项下保存）<br>            memory,<br>            // 回调已经被执行过的标志<br>            fired,<br>            // 循环执行回调列表的结束位置<br>            firingLength,<br>            // 当前真正执行的回调的索引值 (执行下个回调的时候回更改【如果必要的话】)<br>            firingIndex,<br>            // 循环执行回调列表的开始位置(在函数add和fireWith中使用)<br>            firingStart,<br>            // 回调列表<br>            list = [],<br>            // Stack记录要重复执行的回调列表<br>            stack = !options.once &amp;&amp; [],<br>            // data数组一般第一个元素是上下文环境，第二个元素是参数<br>            //执行回调列表<br>            fire = function( data ) {…},<br>            // 回调对象<br>            self = {<br>                // 添加回调<br>                add: function() {…},<br>                // 移除回调<br>                remove: function() {…},<br>                …<br>                // 给定 context 和 arguments执行所有回调<br>                fireWith: function( context, args ) {<br>                    args = args || [];<br>                    //组装args，第一个元素为上下文环境，第二个元素为参数列表<br>                    args = [ context, args.slice ? args.slice() : args ];<br>                    //有list且函数列表没有被执行过或者存在要循环执行的函数列表<br>                    if ( list &amp;&amp; ( !fired || stack ) ) {<br>                        //如果正在fire，则把函数场景记录在stack中<br>                        if ( firing ) {<br>                            stack.push( args );<br>                        //否则，至此那个fire<br>                        } else {<br>                            fire( args );<br>                        }<br>                    }<br>                    return this;<br>                },<br>                // 使用给定的arguments执行所有回调<br>                fire: function() {<br>                    self.fireWith( this, arguments );<br>                    return this;<br>                },<br>                …<br>            };<br>        return self;<br>    };<br><br>下面分析两个最重要的两个函数，添加回调函数add和执行回调函数fire<br><br>c. add:添加回调<br><br>　　添加回调函数比较简单，针对可能传递的值（函数或者函数数组）将回调添加到回调列表中即可，这里使用了一个闭包，使用了外部变量list。<br><br>     (function add( args ) {<br>                jQuery.each( args, function( <em>, arg ) {<br>                    var type = jQuery.type( arg );<br>                    if ( type === “function” ) {<br>                        //当$.Callbacks(‘unique’)时，保证列表里面不会出现重复的回调<br>                        if ( !options.unique || !self.has( arg ) ) {<br>                            list.push( arg );<br>                        }<br>                    //如果是数组则递归添加<br>                    } else if ( arg &amp;&amp; arg.length &amp;&amp; type !== “string” ) {<br>                        add( arg );<br>                    }<br>                });<br>            })( arguments );<br><br>　但是这里需要对用户初始化设置的属性做一些特殊的处理。<br><br>　　如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义），直接返回list<br><br>    //如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义）<br>        if ( list ) {<br>            …<br>        }<br>        return this;<br><br>当有回调真正执行的时候，需要重新设定回调列表的结束位置firingLength，使后续添加的函数也会执行。实际上这个功能很受争议，不过正常情况一般不会出现添加函数的时候正在执行某个回调。<br><br>　　还有一个比较重要的判断：对于设置了’memory’选项并fire过了回调列表，并且没有还在等待中的回调要fire,则应当马上执行新添加的回调（执行fire(memory)）<br><br>    // 如果正在fire，则设定要执行结束的点firingLength，使后续添加的函数最后不会执行<br>            if ( firing ) {<br>                firingLength = list.length;<br>            // 对于memory（设置了’memory’ option并fire过了，memory才能通过该else if语句）,<br>            //如果没有回调真正fire,应当马上执行fire(memory)。<br>            } else if ( memory ) {<br>                //这里保证了前面执行过得函数不再执行<br>                firingStart = start;<br>                fire( memory );<br>            }<br><br>完整的源码如下<br><br>    add: function() {<br>        //如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义）<br>        if ( list ) {<br>            // 保存当前list长度，为memory处理备用<br>            var start = list.length;<br>            (function add( args ) {<br>                jQuery.each( args, function( </em>, arg ) {<br>                    var type = jQuery.type( arg );<br>                    if ( type === “function” ) {<br>                        //当$.Callbacks(‘unique’)时，保证列表里面不会出现重复的回调<br>                        if ( !options.unique || !self.has( arg ) ) {<br>                            list.push( arg );<br>                        }<br>                    //如果是数组则递归添加<br>                    } else if ( arg &amp;&amp; arg.length &amp;&amp; type !== “string” ) {<br>                        add( arg );<br>                    }<br>                });<br>            })( arguments );<br>            // 如果正在fire，则设定要执行结束的点firingLength，使后续添加的函数最后执行<br>            if ( firing ) {<br>                firingLength = list.length;<br>            // 对于memory（设置了’memory’ option并fire过了，memory才能通过该else if语句）,<br>            //如果我们后续没有fire,应当马上执行fire(memory)。<br>            } else if ( memory ) {<br>                //这里保证了前面执行过得函数不再执行<br>                firingStart = start;<br>                fire( memory );<br>            }<br>        }<br>        return this;<br>    }<br><br>d. fire函数详解<br><br>　　该函数执行回调，最终执行代码段为<br><br>    if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false &amp;&amp; options.stopOnFalse ) {<br>           memory = false; // 阻止未来可能由于add所产生的回调<br>           break;<br>    }<br>    fire = function( data ) {<br>    　　//有memory才给memory赋值当前场景data<br>    　　memory = options.memory &amp;&amp; data;<br>    　　fired = true;<br>    　　firingIndex = firingStart || 0;<br>    　　//每次fire后都会重置成0，下次$.callbacks.fire调用都会从0开始。当然设置为‘memory’使用add函数内部fire会设置firingStart的值导致回调函数列表执行起始位置更改<br>    　　firingStart = 0;<br>    　　firingLength = list.length;<br>    　　firing = true;<br><br>    　　//函数开始执行从firingStart到firingLength的所有函数<br>    　　for ( ; list &amp;&amp; firingIndex &lt; firingLength; firingIndex++ ) {<br>    　　　　//执行firingIndex对应的函数，如果设置是遇到false返回就停止，则设置memory，阻止后续函数执行<br>    　　　　if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false &amp;&amp; options.stopOnFalse ) {<br>    　　　　　　memory = false; // 阻止未来可能由于add所产生的回调<br>    　　　　　　break;<br>    　　　　}<br>    　　}<br><br>    　　//标记回调结束<br>    　　firing = false;<br><br>    　　//如果列表存在<br>    　　if ( list ) {<br>    　　　　//如果堆栈存在（一般没有设置once的时候都进入该分支）<br>    　　　　if ( stack ) {<br>    　　　　　　//如果堆栈不为空<br>    　　　　　　if ( stack.length ) {<br>    　　　　　　　　//执行stack中第一个元素<br>    　　　　　　　　fire( stack.shift() );<br>    　　　　　　}<br>    　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>    　　　　} else if ( memory ) {<br>    　　　　　　list = [];<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>    　　}<br>    },<br><br>真正重要的是执行完成回调以后的处理<br><br>    //如果列表存在<br>    　　if ( list ) {<br>    　　　　//如果堆栈存在（一般没有设置once的时候都进入该分支）<br>    　　　　if ( stack ) {<br>    　　　　　　//如果堆栈不为空<br>    　　　　　　if ( stack.length ) {<br>    　　　　　　　　//执行stack中第一个元素<br>    　　　　　　　　fire( stack.shift() );<br>    　　　　　　}<br>    　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>    　　　　} else if ( memory ) {<br>    　　　　　　list = [];<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>    　　}<br><br>首先看最外层的判断<br><br>    if ( list ){<br>        …<br>    }<br><br>什么时候会进不了这个分支呢？唯有当self.disable()被调用的时候，下一次fire就进入不了这个分支。查看self.disable源码<br><br>    disable: function() {<br>                        list = stack = memory = undefined;<br>                        return this;<br>                    }<br><br>根据里面的判断唯有当options选项有once，并且选项中没有memory或选项中有stopOnFalse且执行的回调返回false。这个时候回进入到里面的分支直接将整个回调禁用掉。<br><br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br><br>　　第一个内部分支if ( stack )主要是选项中没有once就进入。<br><br>　　第二个内部分支只有在选项至少有once和memory的时候才会进入。当然，如果还有stopOnFalse且执行的回调返回false会进入到第三个分支。<br><br>　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>　　　　<br>    } else if ( memory ) {<br><br><br><div align="center"><br>实例1<br><img src="/images/jquery/3_1.png"><br>实例2<br><img src="/images/jquery/3_2.png"><br>实例3<br><img src="/images/jquery/3_3.png"><br>实例4<br><img src="/images/jquery/3_4.png"><br>实例5<br><img src="/images/jquery/3_5.png"><br></div><br>##### 问题：Deferred<br><div align="center"><br>实例1<br><img src="/images/jquery/2_1.png"><br>实例2<br><img src="/images/jquery/2_2.png"><br>实例3<br><img src="/images/jquery/2_3.png"><br>实例4<br><img src="/images/jquery/2_4.png"><br>实例5<br><img src="/images/jquery/2_5.png"><br>实例6<br><img src="/images/jquery/2_6.png"><br>实例7<br><img src="/images/jquery/2_7.png"><br>实例8<br><img src="/images/jquery/2_8.png"><br>实例9<br><img src="/images/jquery/2_9.png"><br>实例10<br><img src="/images/jquery/2_10.png"><br>实例11<br><img src="/images/jquery/2_11.png"><br>实例12<br><img src="/images/jquery/2_12.png"><br></div><br>when方法要求返回的一定是延迟对象状态，若果某个函数不返回状态，则它将不会被认定为延迟对象。因此会被跳过。<br>如下图运行结果可证：<br><div align="center"><br><img src="/images/jquery/2_13.png"><br></div>    
+
+<p>详解</p>
+<pre><code>//document ready简便写法$(function(){…})
+} else if ( jQuery.isFunction( selector ) ) {
+    return rootjQuery.ready( selector );
+}        
+</code></pre><p>所以$(fn)===$(document).ready(fn)。</p>
+<p>　　来看一下jQuery.fn.ready的源码</p>
+<pre><code>ready: function( fn ) {
+    // Add the callback
+    jQuery.ready.promise().done( fn );
+
+    return this;
+}    
+</code></pre><p>很明显在jQuery.ready.promise函数中设置了延时，当延时对象解决的时候执行fn函数。<br>主要的处理流程：<br>　　创建一个延时对象，并将文档准备好后的处理事件添加到该延时对象成功事件列表上。    </p>
+<pre><code>jQuery.ready.promise = function( obj ) {
+　　if ( !readyList ) {
+　　　　readyList = jQuery.Deferred();
+
+　　　　...
+
+　　}
+    return readyList.promise( obj );
+}
+</code></pre><p>添加文档准备状态的监听函数(jQuery.ready.promise函数片段)</p>
+<pre><code>//标准浏览器支持DOMContentLoaded事件
+    } else if ( document.addEventListener ) {
+            //绑定DOMContentLoaded事件和响应函数，响应函数会解决延时
+            document.addEventListener( &quot;DOMContentLoaded&quot;, completed, false );
+
+            //回退到window.onload事件绑定，所有的浏览器都支持
+            window.addEventListener( &quot;load&quot;, completed, false );
+
+    //如果是IE事件模型
+    } else {
+            //确保在onload之前执行延时，可能时间比较迟，但是对于iframes来说比较安全
+            document.attachEvent( &quot;onreadystatechange&quot;, completed );
+
+            //回退到window.onload事件绑定，所有的浏览器都支持
+            window.attachEvent( &quot;onload&quot;, completed );
+
+            //如果IE并且不是一个frame
+            //不断地检查，看是否该文件已准备就绪
+            var top = false;
+            try {
+                top = window.frameElement == null &amp;&amp; document.documentElement;
+            } catch(e) {}
+            if ( top &amp;&amp; top.doScroll ) {
+                (function doScrollCheck() {
+                    if ( !jQuery.isReady ) {
+                        try {
+                            // Use the trick by Diego Perini
+                            // http://javascript.nwbox.com/IEContentLoaded/
+                            top.doScroll(&quot;left&quot;);
+                        } catch(e) {
+                            return setTimeout( doScrollCheck, 50 );
+                        }
+
+                        //移除之前绑定的事件
+                        detach();
+
+                        //执行延迟
+                        jQuery.ready();
+                    }
+                })();
+            }
+        }    
+</code></pre><p>一旦监听到文档准备完成，则调用jQuery.ready执行延时对象的成功回调列表：即所有通过jQuery.ready(fn)【或jQuery(fn)】方式添加的函数fn。</p>
+<pre><code>//ready事件处理函数
+completed = function( event ) {
+    // readyState === &quot;complete&quot;在老版本IE上适用
+    if ( document.addEventListener || event.type === &quot;load&quot; || document.readyState === &quot;complete&quot; ) {
+        detach();
+        jQuery.ready();
+    }
+},
+//清除ready事件绑定
+detach = function() {
+    if ( document.addEventListener ) {
+        document.removeEventListener( &quot;DOMContentLoaded&quot;, completed, false );
+        window.removeEventListener( &quot;load&quot;, completed, false );
+
+    } else {
+        document.detachEvent( &quot;onreadystatechange&quot;, completed );
+        window.detachEvent( &quot;onload&quot;, completed );
+    }
+};
+    //处理当DOM准备完成
+jQuery.ready: function( wait ) { 　　 　　
+    ... 　　　　 　　
+    //设置DOM已经准备好的标志 　　 　　
+    jQuery.isReady = true;  　　
+    ... 　　
+    //执行绑定的延时事件 　　
+    readyList.resolveWith( document, [ jQuery ] ); 　　
+    //触发任何绑定的就绪事件 　　
+    if ( jQuery.fn.trigger ) { 　　　　
+        jQuery( document ).trigger(&quot;ready&quot;).off(&quot;ready&quot;); 　　
+    }  
+}
+</code></pre><p>a. 文档加载状态document.readyState</p>
+<p>　　document.readyState用来判断文档加载状态，是一个只读属性，可能的值有：</p>
+<p>　　0-uninitialized：XML 对象被产生，但没有任何文件被加载。<br>　　1-loading：加载程序进行中，但文件尚未开始解析。<br>　　2-loaded：部分的文件已经加载且进行解析，但对象模型尚未生效。<br>　　3-interactive：仅对已加载的部分文件有效，在此情况下，对象模型是有效但只读的。<br>　　4-complete：文件已完全加载，代表加载成功。</p>
+<p>　　实例:</p>
+<pre><code>document.onreadystatechange = stateChange;//当页面加载状态改变的时候执行这个方法.
+function stateChange() { 　　
+　　if(document.readyState == &quot;complete&quot;){ //当页面加载状态为完全结束时进入 　　　　
+　　　　alert(&quot;文档加载成功&quot;) 　　
+　　} 
+}
+</code></pre><p>但是，老版本的Firefox并不支持document.readyState【最新的Firefox已经支持了】。所以想要兼容所有浏览器监听文档准备完成分两种情况来处理：</p>
+<p>　　- 标准浏览器使用addEventListener添加DOMContentLoaded和load监听，任何一个事件被触发即可</p>
+<p>　　- 老版本IE浏览器使用attachEvent添加onreadystatechange和onload来监听，任何一个被触发，并且onreadystatechange时document.readyState === “complete”即可。</p>
+<p>　　jQuery的处理也就是如此了</p>
+<pre><code>jQuery.ready.promise = function(){
+　　...
+　　//标准浏览器支持DOMContentLoaded事件
+　　else if ( document.addEventListener ) {
+            //绑定DOMContentLoaded事件和响应函数，响应函数会解决延时
+            document.addEventListener( &quot;DOMContentLoaded&quot;, completed, false );
+
+            //回退到window.onload事件绑定，所有的浏览器都支持
+            window.addEventListener( &quot;load&quot;, completed, false );
+
+    //如果是IE事件模型
+    } else {
+            //确保在onload之前执行延时，可能时间比较迟，但是对于iframes来说比较安全
+            document.attachEvent( &quot;onreadystatechange&quot;, completed );
+
+            //回退到window.onload事件绑定，所有的浏览器都支持
+            window.attachEvent( &quot;onload&quot;, completed );
+　　　　　　　...
+　　}
+}
+//ready事件处理函数
+completed = function( event ) {
+    // readyState === &quot;complete&quot;在老版本IE上适用
+    if ( document.addEventListener || event.type === &quot;load&quot; || document.readyState === &quot;complete&quot; ) {
+        detach();
+        jQuery.ready();
+    }
+}    
+</code></pre><p>b.doScroll检测文档加载完成</p>
+<p>　　这是Diego Perini 发现的一种检测IE是否加载完成的方式。详细链接</p>
+<p>　　原理是当页面 DOM 未加载完成时调用 doScroll 方法时会产生异常。那么不断的取检测异常是否发生就可以知道文档有没有加载完成。当没有发生异常，表明文档加载完成了。</p>
+<pre><code>(function doScrollCheck() {
+                    if ( !jQuery.isReady ) {
+                        try {
+                            // Use the trick by Diego Perini
+                            // http://javascript.nwbox.com/IEContentLoaded/
+                            top.doScroll(&quot;left&quot;);
+                        } catch(e) {
+                            return setTimeout( doScrollCheck, 50 );
+                        }
+
+                        //移除之前绑定的事件
+                        detach();
+
+                        //执行延迟
+                        jQuery.ready();
+                    }
+                })();    
+</code></pre><h5 id="问题：Support-功能检测，重点是内部使用-主要检测样式style的兼容性"><a href="#问题：Support-功能检测，重点是内部使用-主要检测样式style的兼容性" class="headerlink" title="问题：Support(功能检测，重点是内部使用,主要检测样式style的兼容性)"></a>问题：Support(功能检测，重点是内部使用,主要检测样式style的兼容性)</h5><p>Support所解决的并不是常用性的浏览器兼容问题</p>
+<p><div align="center"><br><img src="/images/jquery/4_1.png"><br><img src="/images/jquery/4_2.png"><br><img src="/images/jquery/4_3.png"><br></div><br>则上图中通过检测返回false的就需要我们做兼容性处理了（针对不同的浏览器）<br>Support只是用来检测不同浏览器存在哪些兼容性问题，而具体的解决是由Hooks(钩子机制)来完成的</p>
+<pre><code>jQuery.support = {
+　　//当使用.innerHTML的时候,IE吞掉开头的空白。
+　　leadingWhitespace:  true/false(空白还在/空白被吞掉（IE）), 
+
+　　//IE浏览器会自动给空表插入tbody标签。
+　　tbody:  true/false(tbody可用/tbody会被自动插入（IE）),
+　　
+　　// IE6-8下确保link/ script/ style或其他html5标签元素能使用innerHTML正确载入的前提是需要一个元素包裹他们。使用div元素来包裹，并且div之前要一个不换行的字符。例如“X&lt;div&gt;&lt;link/&gt;&lt;/div&gt;”。
+　　htmlSerialize:  true/false(不用包裹能正确加载/需要包裹（IE）),
+　　
+　　//获取节点的style属性时：现代浏览器使用elem.getAttribute(&quot;style&quot;),而IE使用elem.style.cssText
+　　style:  true/fasle(使用. getAttribute/IE下使用.cssTex),
+　　
+　　//确保节点的css特征opacity存在 (IE使用filter)
+　　opacity:  true/false(opacity存在/opacity不存在),
+　　
+　　//验证float样式存在, (IE使用styleFloat而不是cssFloat)
+　　cssFloat:  true/fasle(float样式使用cssFloat特征名/使用styleFloat特征名),
+　　
+　　//检查checkbox/radio的默认值(老版本WebKit 默认为&quot;&quot;，其他浏览器默认为&quot;on&quot;)
+　　checkOn:  true/false(默认值为on/默认值为空),
+　　
+　　//确保一个默认选项有一个可用的selected特征值.
+　　//(如果他是一个option组，WebKit的默认选项的selected特征值为false，IE也是。)
+　　optSelected:  true/false(有默认选中/没有默认选中，兼容处理时需要设置一个),
+　　 
+　　//确保克隆的html5节点（没有内容）不会出现问题。
+　　//比如document.createElement(&quot;nav&quot;).cloneNode( true ).outerHTML应该得到&quot;&lt;nav&gt;&lt;/nav&gt;&quot;,而IE却是&quot;&lt;:nav&gt;&lt;/:nav&gt;&quot;
+　　html5Clone:  true/false(能够正常克隆/IE下使用cloneNode有问题),
+　　 
+　　//确保节点的checked状态也能被克隆
+　　noCloneChecked:  true/false(能够正常克隆/IE下克隆checked状态没有被克隆),
+　　 
+　　//确保option选项disabled而select不被标记为disabled(WebKit会把两者都标记为disabled)
+　　optDisabled:  true/false(disabled正常/两者都会标记为disabled)
+　　 
+　　//测试是否能使用delete div.test的方式来删除特征，否则使用delete div[test]（IE&lt;9）
+　　deleteExpando: true/false(可以使用delete div.test/不能使用delete div.test)
+　　 
+　　//检查input标签是否可以使用getAttribute(&quot;value&quot;)来获取值（IE下不行，需要使用elem[‘value’]）
+　　input: true/false(能信任getAttribute(&quot;value&quot;)/不能信任getAttribute(&quot;value&quot;))
+　　 
+　　//检查一个input标签在更改为radio类型后他的值是否还是先前的值（ie会变成默认值”on”,其他浏览器不变）
+　　radioValue: true/false(值不会改变/会改变成默认值),
+　　 
+　　// webkit不能正确克隆fragments中的checked状态
+　　checkClone:  true/false(能正确克隆/不能正确克隆)
+　　 
+　　//判断事件是否被克隆。（兼容IE&lt;9。 Opera不克隆事件(并且typeof div.attachEvent === undefined). IE9-10克隆事件通过attachEvent,但是不能通过 .click()来触发）
+　　noCloneEvent:  true/false(现代浏览器克隆节点时事件不被克隆/ie8浏览器克隆节点的时候事件也被克隆)
+　　 
+　　// IE&lt;9 (缺少submit/change事件冒泡)，Firefox 17+ (缺少focusin事件)
+　　submitBubbles:  true/false(支持冒泡/不支持冒泡),
+　　changeBubbles:  true/false（支持冒泡/不支持冒泡）,
+　　focusinBubbles:  true/false（支持冒泡/不支持冒泡）,
+　　 
+　　//检查是否能准确克隆css样式，比如一些可以继承父节点的样式没有设值的时候值应该是inherit，但是并非每个浏览器都能获取到该值。
+　　clearCloneStyle：true/false（能准确克隆/不能准确克隆）,
+　　 
+　　//（判断前提条件：DOM加载完成）判断offsetWidth/Height是否可靠（主要用于判断元素是否占用空间，如果元素占用空间了，就认为是可见的，否则就认为是不可见：hidden）；IE8下表格的空cell依然有offsetWidth/Height。
+　　reliableHiddenOffsets： true/false（【offsetWidth/Height值可靠】/【offsetWidth/Height值不可靠】）
+　　 
+　　//（判断前提条件：DOM加载完成）测试getComputedStyle获取的位置是否是像素单位。webkit的bug,使用getComputedStyle返回的最终样式中top/left/right/bottom不一定是像素为单位的，可能是指定的百分比等
+　　pixelPosition： true/false（位置css样式以像素为单位返回/位置css样式以指定的格式返回）
+　　 
+　　//（判断前提条件：DOM加载完成）测试设置的boxSizing是否可靠。使用getComputedStyle获取的最总计算样式的浏览器可能会出现问题。
+　　boxSizingReliable:  true/false（可靠/不可靠）
+　　 
+　　//（判断前提条件：DOM加载完成）检测使用getComputedStyle 返回的margin-right值是否正确：WebKit Bug 13343 – getComputedStyle返回错误的margin-right值。解决办法：处理元素的display临时设置为inline-block的解决来计算。
+　　reliableMarginRight： true/false(返回值可靠/返回值不可靠)
+}
+
+//还有一部分没有在jQuery.support中，但是在Sizzle引擎中有描述
+support = {
+　　//IE8下对节点的一些没有存在的属性（attributes）获取值返回一个字符串
+　　attributes:  true/false(返回正确/返回字符串)
+　　
+　　//检测getElementsByClassName是否可靠。IE8不支持；Opera中如果同一个标签有多个classname,那么他只能找到第一个classname (在 9.6版本中)；Safari 3.2会缓存class属性并且使用. className修改后不会更改缓存。
+　　getByClassName： true/false(可以信赖/不值得信赖)
+　　
+　　//检测getElementsByName是否可靠。IE下某些标签是没有name属性的，比如div。
+　　getByName： true/false(可靠/不可靠)
+　　 
+　　//检测浏览器是否支持querySelectorAll方法。这里说一个关于context.querySelector/querySelectorAll的要点。context.querySelector查找的是context下匹配的第一个子元素。但是有一个特点就是选择器可以从context本身开始。比如有一个div如&lt;div id=’chua’ class=’chua’&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;。我们查找p可以使用document.getElementById(&apos;chua&apos;) .querySelector(&apos;p &apos;)。页可以是document.getElementById(&apos;chua&apos;) .querySelector(&apos;.chua p&apos;)。当然document.getElementById(&apos;chua&apos;) .querySelector(&apos;.chua&apos;)是查不到值的。
+　　qsa： ture/false(支持/不支持)
+　　 
+　　//检测对matchesSelector的支持情况。目前除IE6-IE8，Firefox/Chrome/Safari/Opera/IE 的最新版本均已实现，但方法都带上了各自的前缀
+　　matchesSelector： ture/false(支持/不支持)　　      
+}       
+</code></pre><p>知识小点：1.elem.getAttribute(“href”/”src”)都是写入什么返回什么，elem.href/elem.src都是返回绝对路径</p>
+<h6 id="钩子（hooks）机制"><a href="#钩子（hooks）机制" class="headerlink" title="钩子（hooks）机制"></a>钩子（hooks）机制</h6><p>钩子机制是jQuery用来处理浏览器兼容的手法。钩子在.attr(), .prop(), .val() and .css() 四种操作中会涉及。<br>钩子机制是怎么样的？<br>我们将以一个属性（attribute）钩子来举例。IE9-浏览器中，将input标签更改类型（type）为radio类型以后，value属性可能出现异常。所以我们定义了一个属性钩子（attrHooks）中类型（type）在更改设置（set）的一个处理。结构如下　</p>
+<pre><code>//属性钩子对象（所有的属性钩子都放在里面）
+attrHooks: {
+　　//属性为type的钩子
+　　type: {
+　　　　//操作为set的钩子
+　　　　set: function( elem, value ) {
+　　　　　　if ( !jQuery.support.radioValue &amp;&amp; value === &quot;radio&quot; &amp;&amp; jQuery.nodeName(elem, &quot;input&quot;) ) {
+　　　　　　　　//IE6-9设置完type后恢复value属性（attr）
+　　　　　　　　var val = elem.value;
+　　　　　　　　elem.setAttribute( &quot;type&quot;, value );
+　　　　　　　　if ( val ) { elem.value = val; }
+　　　　　　　　　　return value;
+　　　　　　　　}
+　　　　　　}
+　　　　}
+　　}
+}
+</code></pre><p>后续的钩子结构都是这样的：钩子对象：{钩子类型：{钩子操作：xxx},……}<br>　　钩子结构我们就清楚了。然后我们来看看jQuery如何使用这些钩子。只看与钩子例子相关的部分</p>
+<pre><code>//先获取钩子，此时name=&quot;type&quot;　　
+hooks = jQuery.attrHooks[ name ] || ( rboolean.test( name ) ? boolHook : nodeHook );
+　　
+//此时value=&quot;radio&quot;
+if ( value !== undefined ) {
+　　...
+　　} else if ( hooks &amp;&amp; notxml &amp;&amp; &quot;set&quot; in hooks &amp;&amp; (ret = hooks.set( elem, value, name )) !== undefined ) {
+　　　　return ret;
+　　} else {
+　　　　...
+　　}
+}
+</code></pre><p>使用流程也比较清晰，先获取指定类型（”type”）的钩子(hooks)对象，然后判断如果钩子操作(“set”)在钩子对象中，则执行之。<br>　　可以想象，任何标签属性的任何类型的操作需要做兼容就都可以放在钩子对象中，如果是新的没有出现过的新操作则在实现的时候添加一行对新操作的判断语句处理即可；绝大多数情况是不会出现新操作兼容的，执行添加一个新的钩子对象的元素即可。可以说拓展性非常好。<br>接下来一一分析各种钩子，顺便了解相关的浏览器的兼容问题。</p>
+<p>a. 属性操作的钩子</p>
+<p>　　属性钩子种类：</p>
+<p>　　propFix</p>
+<p>　　propHooks</p>
+<p>　　attrHooks</p>
+<p>　　valHooks</p>
+<p>jQuery.propFix</p>
+<pre><code>propFix: {
+        tabindex: &quot;tabIndex&quot;,
+        readonly: &quot;readOnly&quot;,
+        &quot;for&quot;: &quot;htmlFor&quot;,
+        &quot;class&quot;: &quot;className&quot;,
+        maxlength: &quot;maxLength&quot;,
+        cellspacing: &quot;cellSpacing&quot;,
+        cellpadding: &quot;cellPadding&quot;,
+        rowspan: &quot;rowSpan&quot;,
+        colspan: &quot;colSpan&quot;,
+        usemap: &quot;useMap&quot;,
+        frameborder: &quot;frameBorder&quot;,
+        contenteditable: &quot;contentEditable&quot;
+}
+</code></pre><p>propFix对属性名称做了驼峰修正（修正为浏览器所支持的标签属性），即使用户大小写输入错误也能得到修正。<br>　　需要特别提示的是由于class属于JavaScript保留值，因此当我们要操作元素的class属性（attribute）值时，直接使用obj.getAttribute(‘class’)和obj.setAttribute(‘class’, ‘value’)可能会遭遇浏览器兼容性问题，W3C DOM标准为每个节点提供了一个可读写的className属性（attribute），作为节点class属性的映射，标准浏览器的都提供了这一属性的支持，因此，可以使用e.className访问元素的class属性值，也可对该属性进行重新斌值。而IE和Opera中也可使用e.getAttribute(‘className’)和e.setAttribute(‘className’, ‘value’)访问及修改class属性值。相比之下，e.className是W3C DOM标准，仍然是兼容性最强的解决办法。、<br>　　同理htmlFor用于读取label标签的for属性<br>jQuery.propHooks特征（property）方法</p>
+<pre><code>    propHooks: {
+    　　tabIndex: {
+    　　　　get: function( elem ) {
+    　　　　　　// elem.tabIndex在没有明确设置的情况下并不一定能返回正确值                                  
+    　　　　　　// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
+    　　　　　　var attributeNode = elem.getAttributeNode(&quot;tabindex&quot;);
+    　　　　　　return attributeNode &amp;&amp; attributeNode.specified ?
+               parseInt( attributeNode.value, 10 ) :
+               rfocusable.test( elem.nodeName ) || rclickable.test( elem.nodeName ) &amp;&amp; elem.href ?
+               0 :
+               undefined;
+            }
+        }
+    }
+    //其中
+    //rfocusable = /^(?:input|select|textarea|button|object)$/i,
+    //rclickable = /^(?:a|area)$/i,
+
+    // Safari 错误报告一个选项的默认选中状态
+    // 通过父节点的 selectedIndex特征（property）修正他
+    if ( !jQuery.support.optSelected ) {
+    　　jQuery.propHooks.selected =
+    　　　　jQuery.extend( jQuery.propHooks.selected, {
+    　　　　　　get: function( elem ) {
+    　　　　　　　　var parent = elem.parentNode;
+    　　　　　　　　if ( parent ) {
+    　　　　　　　　　　parent.selectedIndex;
+    　　　　　　　　　　// 确保他依然适用于option组,详见 #5701
+    　　　　　　　　　　if ( parent.parentNode ) {
+    　　　　　　　　　　　　parent.parentNode.selectedIndex;
+    　　　　　　　　　　}
+    　　　　　　　　}
+    　　　　　　　　return null;
+    　　　　　　}
+    　　　　});
+    }      
+
+jQuery.attrHooks 方法
+
+attrHooks: {
+　　type: {
+　　　　set: function( elem, value ) {
+　　　　　　if ( !jQuery.support.radioValue &amp;&amp; value === &quot;radio&quot; &amp;&amp; jQuery.nodeName(elem, &quot;input&quot;) ) {
+　　　　　　　　//IE6-9设置完type后恢复value属性（attr）
+　　　　　　　　...
+　　　　　　}
+　　　　}
+　　},
+
+
+//修正老版本IE value属性（attr）获取和设置 fix oldIE value attroperty
+if ( !getSetInput || !getSetAttribute ) {
+　　jQuery.attrHooks.value = {
+　　　　get: function( elem, name ) {
+　　　　　　var ret = elem.getAttributeNode( name );
+　　　　　　return jQuery.nodeName( elem, &quot;input&quot; ) ?
+　　　　　　//input返回defaultValue，而非特征（property）
+　　　　　　elem.defaultValue :
+　　　　　　ret &amp;&amp; ret.specified ? ret.value : undefined;
+　　　　},
+　　　　set: function( elem, value, name ) {
+　　　　　　if ( jQuery.nodeName( elem, &quot;input&quot; ) ) {
+　　　　　　　　//input设置defaultValue
+　　　　　　　　elem.defaultValue = value;
+　　　　　　} else {
+　　　　　　　　//使用nodeHook，否则将有误
+　　　　　　　　return nodeHook &amp;&amp; nodeHook.set( elem, value, name );
+　　　　　　}
+　　　　}
+　　};
+}    
+</code></pre><p>拓展</p>
+<pre><code>//其中nodeName判断节点名称的小写是否和参数name的小写相同
+jQuery.nodeName: function( elem, name ) {
+　　return elem.nodeName &amp;&amp; elem.nodeName.toLowerCase() === name.toLowerCase();
+}
+//bool类型属性（attr）还用到boolHook
+boolHook = {
+　　get: function( elem, name ) {
+　　　　var
+　　　　//使用 .prop来确定这个属性是否能被理解成布尔类型
+　　　　prop = jQuery.prop( elem, name ),
+　　　　//获取
+　　　　attr = typeof prop === &quot;boolean&quot; &amp;&amp; elem.getAttribute( name ),
+　　　　//备注getSetInput = jQuery.support.input;
+　　　　//getSetAttribute = jQuery.support.getSetAttribute
+　　　　detail = typeof prop === &quot;boolean&quot; ?
+　　　　getSetInput &amp;&amp; getSetAttribute ?
+　　　　attr != null :
+
+　　　　// 老IE对缺失的布尔属性会会构造一个空字符
+　　　　// checked/selected需要使用&quot;default-&quot; +
+　　　　//备注ruseDefault = /^(?:checked|selected)$/i
+　　　　ruseDefault.test( name ) ?
+　　　　elem[ jQuery.camelCase( &quot;default-&quot; + name ) ] :
+　　　　!!attr :
+　　　　//非布尔类型的属性处理 
+　　　　elem.getAttributeNode( name );
+
+　　　　return detail &amp;&amp; detail.value !== false ?
+　　　　　　name.toLowerCase() :
+　　　　　　undefined;
+　　},
+　　set: function( elem, value, name ) {
+　　　　if ( value === false ) {
+　　　　　　// 如果设置false则移除布尔属性
+　　　　　　jQuery.removeAttr( elem, name );
+　　　　} else if ( getSetInput &amp;&amp; getSetAttribute || !ruseDefault.test( name ) ) {
+　　　　　　// IE&lt;8对input的checked/selected 需要特征（property）名称
+　　　　　　elem.setAttribute( !getSetAttribute &amp;&amp; jQuery.propFix[ name ] || name, name );
+
+　　　　// 老IE使用defaultChecked 和defaultSelected
+　　　　} else {
+　　　　　　elem[ jQuery.camelCase( &quot;default-&quot; + name ) ] = elem[ name ] = true;
+　　　　}
+
+　　　　return name;
+　　}
+};
+
+
+// IE一些attributes需要特殊处理
+if ( !jQuery.support.style ) {
+　　jQuery.attrHooks.style = {
+　　　　get: function( elem ) {
+　　　　　　// 参数为空字符串返回undefined
+　　　　　　// 备注: IE会将css属性名称大写，但是如果我们使用 .toLowerCase()，那么将破坏url中的敏感度导致错误，比如background中设置了url
+　　　　　　return elem.style.cssText || undefined;
+　　　　},
+　　　　set: function( elem, value ) {
+　　　　　　return ( elem.style.cssText = value + &quot;&quot; );
+　　　　}
+　　};
+}     
+</code></pre><p>jQuery.valHooks 方法</p>
+<pre><code>valHooks: {
+　　option: {
+　　　　get: function( elem ) {
+           // Blackberry 4.7没有定义.attributes.value而使用.value
+           var val = elem.attributes.value;
+           return !val || val.specified ? elem.value : elem.text;
+        }
+　　},
+　　select: {
+        get: function( elem ) {
+            var value, option,
+               options = elem.options,
+               index = elem.selectedIndex,
+               one = elem.type === &quot;select-one&quot; || index &lt; 0,
+               values = one ? null : [],
+               max = one ? index + 1 : options.length,
+
+               i = index &lt; 0 ?
+               max :
+               one ? index : 0;
+
+           // Loop through all the selected options
+           for ( ; i &lt; max; i++ ) {
+               option = options[ i ];
+               //IE6-9在重置后不会更新选中状态
+               if ( ( option.selected || i === index ) &amp;&amp;
+               //不可用或在不可用option组的option不要返回值
+                ( jQuery.support.optDisabled ? !option.disabled : option.getAttribute(&quot;disabled&quot;) === null ) &amp;&amp;
+               ( !option.parentNode.disabled || !jQuery.nodeName( option.parentNode, &quot;optgroup&quot; ) ) ) {
+                    //获取置顶的option值
+                    value = jQuery( option ).val();
+
+                    //单选select直接返回值
+                   if ( one ) {
+                       return value;
+                   }
+
+                   //多选Selects循环
+                   values.push( value );
+                }
+           }
+
+           return values;
+        },
+        set: function( elem, value ) {
+           var values = jQuery.makeArray( value );
+
+           jQuery(elem).find(&quot;option&quot;).each(function() {
+                this.selected = jQuery.inArray( jQuery(this).val(), values ) &gt;= 0;
+               });
+
+           if ( !values.length ) {
+               elem.selectedIndex = -1;
+           }
+           return values;
+        }
+    }
+},
+
+// Radios and checkboxes getter/setter
+if ( !jQuery.support.checkOn ) {
+    jQuery.each([ &quot;radio&quot;, &quot;checkbox&quot; ], function() {
+           jQuery.valHooks[ this ] = {
+               get: function( elem ) {
+                // Webkit在没有置顶值的时候会返回 &quot;&quot;，我们用on替代
+                return elem.getAttribute(&quot;value&quot;) === null ? &quot;on&quot; : elem.value;
+               }
+           };
+    });
+}
+jQuery.each([ &quot;radio&quot;, &quot;checkbox&quot; ], function() {
+    jQuery.valHooks[ this ] = jQuery.extend( jQuery.valHooks[ this ], {
+           set: function( elem, value ) {
+               if ( jQuery.isArray( value ) ) {
+                return ( elem.checked = jQuery.inArray( jQuery(elem).val(), value ) &gt;= 0 );
+               }
+           }
+    });
+});     
+</code></pre><p>对于val方法的取值部分</p>
+<pre><code>if ( elem ) {
+    hooks = jQuery.valHooks[ elem.type ] || jQuery.valHooks[ elem.nodeName.toLowerCase() ]; 
+
+    if ( hooks &amp;&amp; &quot;get&quot; in hooks &amp;&amp; (ret = hooks.get( elem, &quot;value&quot; )) !== undefined ) {
+        return ret;
+    }
+    ret = elem.value;
+    return typeof ret === &quot;string&quot; ?
+        // handle most common string cases
+        ret.replace(rreturn, &quot;&quot;) :
+        // handle cases where value is null/undef or number
+        ret == null ? &quot;&quot; : ret;
+}    
+</code></pre><p>通过jQuery.valHooks匹配对应的钩子处理方法</p>
+<p><div align="center"><br><img src="/images/jquery/4_4.png"><br></div><br>节点属性的差异对比:<br>　　select : 创建单选或多选菜单 </p>
+<pre><code>type:&quot;select-one&quot;
+tagName: &quot;SELECT&quot;
+value: &quot;111&quot;
+textContent: &quot;↵ Single↵ Single2&quot;  
+</code></pre><p>option : 元素定义下拉列表中的一个选项</p>
+<pre><code>tagName: &quot;OPTION&quot;
+value: &quot;111&quot;
+text: &quot;Single&quot;
+textContent: &quot;Single&quot;
+</code></pre><p>radio : 表单中的单选按钮</p>
+<pre><code>type: &quot;radio&quot;
+value: &quot;11111&quot;
+</code></pre><p>　　<br>checkbox : 选择框</p>
+<pre><code>type: &quot;checkbox&quot;
+value: &quot;11111&quot;     
+</code></pre><p>根据对比select的节点type是’select-one’与其余几个还不同，所以jQuery在适配的时候采用优先查找type,否则就找nodeName的策略</p>
+<pre><code>hooks = jQuery.valHooks[ elem.type ] || jQuery.valHooks[ elem.nodeName.toLowerCase() ];
+//如果钩子匹配到了，并且还存在get方法，那么就要调用这个方法了,如果有返回值就返回当前的这个最终值
+if ( hooks &amp;&amp; &quot;get&quot; in hooks &amp;&amp; (ret = hooks.get( elem, &quot;value&quot; )) !== undefined ) {
+    return ret;
+} 
+</code></pre><p>上面分析了jQuery.support、钩子原理和属性钩子。下面主要分析CSS钩子<br>b. css操作的钩子</p>
+<p>　　CSS钩子种类：</p>
+<p>　　cssHooks</p>
+<p>　　cssNumber</p>
+<p>　　cssProps</p>
+<p>jQuery.cssHooks的对象</p>
+<p>　　不过cssHooks中的set函数的作用有些不同，set函数并没有真正的设置相应的值，而是修正要设置到CSS中的值。获取到修正值以后，设置在jQuery.style函数中进行。后面分析几个CSS钩子</p>
+<p>　　获取opacity返回的值需要时数字</p>
+<pre><code>cssHooks: {
+　　opacity: {
+　　　　get: function( elem, computed ) {
+　　　　　　if ( computed ) {
+　　　　　　　　//需要返回数字                      
+　　　　　　　　var ret = curCSS( elem, &quot;opacity&quot; );
+　　　　　　　　return ret === &quot;&quot; ? &quot;1&quot; : ret;
+　　　　　　}
+　　　　}
+　　}
+},
+</code></pre><p>当设置display为none等的时候是不能获取到宽高的，所以需要将元素设为display为block，visibility设置为hidden来获取宽高；设置宽高需要根据CSS样式boxSizing的取值来确定。</p>
+<pre><code>jQuery.each([ &quot;height&quot;, &quot;width&quot; ], function( i, name ) {
+　　jQuery.cssHooks[ name ] = {
+　　　　get: function( elem, computed, extra ) {
+　　　　　　if ( computed ) {
+               //当设置display为none等的时候是不能获取到宽高的，
+                //所以需要将元素设为display为block,
+               //visibility设置为hidden来获取宽高
+               // rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+               //cssShow ={ position: &quot;absolute&quot;, visibility: &quot;hidden&quot;, display: &quot;block&quot; }
+
+               return elem.offsetWidth === 0 &amp;&amp; rdisplayswap.test( jQuery.css( elem, &quot;display&quot; ) ) ?
+                jQuery.swap( elem, cssShow, function() {
+                    return getWidthOrHeight( elem, name, extra );
+
+                }) :
+                getWidthOrHeight( elem, name, extra );
+           }
+       },
+
+       set: function( elem, value, extra ) {
+　　　　　　var styles = extra &amp;&amp; getStyles( elem );
+　　　　　　return setPositiveNumber( elem, value, extra ?
+　　　　　　　　augmentWidthOrHeight(elem, name, extra,
+　　　　　　　　　　jQuery.support.boxSizing &amp;&amp; jQuery.css( elem, &quot;boxSizing&quot;, false, styles ) === &quot;border-box&quot;,styles) : 
+　　　　　　　　0
+　　　　　　);
+　　　　}
+　　};
+});
+</code></pre><p>IE使用filters来设置不透明度；IE要设置不透明度更加复杂，需保证有布局，如果设置不透明度为1，并且没有别的filters存在，尝试移除filter属性等</p>
+<pre><code>if ( !jQuery.support.opacity ) {
+　　jQuery.cssHooks.opacity = {
+　　　　get: function( elem, computed ) {
+　　　　　　// IE使用filters来设置不透明度，ropacity = /opacity\s*=\s*([^)]*)/
+　　　　　　return ropacity.test( (computed &amp;&amp; elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || &quot;&quot; ) ?
+　　　　　　( 0.01 * parseFloat( RegExp.$1 ) ) + &quot;&quot; :
+　　　　　　computed ? &quot;1&quot; : &quot;&quot;;
+　　　　},
+　　　　set: function( elem, value ) {
+　　　　　　var style = elem.style,
+　　　　　　currentStyle = elem.currentStyle,
+　　　　　　opacity = jQuery.isNumeric( value ) ? &quot;alpha(opacity=&quot; + value * 100 + &quot;)&quot; : &quot;&quot;,
+　　　　　　filter = currentStyle &amp;&amp; currentStyle.filter || style.filter || &quot;&quot;;
+
+　　　　　　//IE7中滤镜（filter）必须获得布局才能生效，我们用zoom这个IE私有属性让其获得布局
+　　　　　　style.zoom = 1;
+
+　　　　　　//ie处理，如果设置不透明度为1，并且没有别的filters存在，尝试移除filter属性
+　　　　　　//如果只为“”，删除内联的opacity，ralpha = /alpha\([^)]*\)/i
+　　　　　　if ( ( value &gt;= 1 || value === &quot;&quot; ) &amp;&amp; jQuery.trim( filter.replace( ralpha, &quot;&quot; ) ) === &quot;&quot; &amp;&amp; style.removeAttribute ) {
+　　　　　　　　//设置style.filter为null, &quot;&quot; 或 &quot; &quot;，结果是&quot;filter:&quot;依然在cssText中
+　　　　　　　　//如果当下&quot;filter:&quot;存在则清除类型不可用，我们应当避免
+　　　　　　　　// style.removeAttribute是IE独有
+　　　　　　　　style.removeAttribute( &quot;filter&quot; );
+
+　　　　　　　　//如果当前没有filter样式应用于css rule或未设置内联的不透明则返回
+　　　　　　　　if ( value === &quot;&quot; || currentStyle &amp;&amp; !currentStyle.filter ) {
+　　　　　　　　　　return;
+　　　　　　　　}
+　　　　　　}
+
+　　　　　　// 其他情况设置filter values
+　　　　　　style.filter = ralpha.test( filter ) ?
+　　　　　　filter.replace( ralpha, opacity ) :
+　　　　　　filter + &quot; &quot; + opacity;
+　　　　}
+　　};
+}
+</code></pre><p>webkit的bug:getComputedStyle返回margin-right值错误；当指定为top/left/bottom/right时，使用getComputedStyle 返回百分比结果，使用jQuery( elem ).position()来获取。</p>
+<pre><code>//DOM加载完成后才能做support测试，在添加下面的Hooks
+jQuery(function() {
+    if ( !jQuery.support.reliableMarginRight ) {
+           jQuery.cssHooks.marginRight = {
+               get: function( elem, computed ) {
+                   if ( computed ) {
+                       // WebKit Bug 13343 - getComputedStyle返回margin-right值错误
+                       //设置元素的display为inline-block来解决
+                       return jQuery.swap( elem, { &quot;display&quot;: &quot;inline-block&quot; },
+                               curCSS, [ elem, &quot;marginRight&quot; ] );
+                   }
+               }
+           };
+    }
+
+    // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+    // getComputedStyle 返回百分比当指定为top/left/bottom/right
+    //我们使用jQuery( elem ).position()来获取
+    if ( !jQuery.support.pixelPosition &amp;&amp; jQuery.fn.position ) {
+           jQuery.each( [ &quot;top&quot;, &quot;left&quot; ], function( i, prop ) {
+               jQuery.cssHooks[ prop ] = {
+                    get: function( elem, computed ) {
+                       if ( computed ) {
+                               computed = curCSS( elem, prop );
+                               // if curCSS returns percentage, fallback to offset
+                               //rnumnonpx = new RegExp( &quot;^(&quot; + core_pnum + &quot;)(?!px)[a-z%]+$&quot;, &quot;i&quot; ),
+                               return rnumnonpx.test( computed ) ?
+                               jQuery( elem ).position()[ prop ] + &quot;px&quot; :
+                               computed;
+                       }
+                   }
+               };
+           });
+    }
+});    
+</code></pre><p>后面这个钩子与众不同，他使用在动画的展开上。我们知道margin/padding/borderWidth实际上不是一个CSS属性，而是四个CSS属性的集合。所以三个CSS的expand钩子实际上是将他们拆分成四个属性给提取出来。</p>
+<pre><code>// 这里的hooks用在动画的展开特征上
+　　jQuery.each({
+        margin: &quot;&quot;,
+        padding: &quot;&quot;,
+        border: &quot;Width&quot;
+        }, function( prefix, suffix ) {
+            jQuery.cssHooks[ prefix + suffix ] = {
+                expand: function( value ) {
+                    var i = 0,
+                    expanded = {},
+
+                        //如果不是字符串则假设为一个单独的数字
+                        parts = typeof value === &quot;string&quot; ? value.split(&quot; &quot;) : [ value ];
+
+                        for ( ; i &lt; 4; i++ ) {
+                            //cssExpand = [ &quot;Top&quot;, &quot;Right&quot;, &quot;Bottom&quot;, &quot;Left&quot; ],
+                            expanded[ prefix + cssExpand[ i ] + suffix ] =
+                            parts[ i ] || parts[ i - 2 ] || parts[ 0 ];
+                        }
+
+                        return expanded;
+                    }
+            };
+
+            if ( !rmargin.test( prefix ) ) {
+            jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+        }
+    });    
+</code></pre><p>jQuery. cssNumber和jQuery.cssProps的对象</p>
+<pre><code>//下面的css特征值后面不能添加“px”字段
+cssNumber: {
+    &quot;columnCount&quot;: true,
+    &quot;fillOpacity&quot;: true,
+    &quot;fontWeight&quot;: true,
+    &quot;lineHeight&quot;: true,
+    &quot;opacity&quot;: true,
+    &quot;orphans&quot;: true,
+    &quot;widows&quot;: true,
+    &quot;zIndex&quot;: true,
+    &quot;zoom&quot;: true
+},
+
+//float对应的css特征名需要在使用前修正
+cssProps: {
+    // normalize float css property
+    &quot;float&quot;: jQuery.support.cssFloat ? &quot;cssFloat&quot; : &quot;styleFloat&quot;
+},
+</code></pre><p>拓展：</p>
+<p>　　有一些CSS属性需要在某些特定条件下才能获取正确。这种情况需要模拟场景获取值，然后恢复先前的场景。swap就是用来专门模拟场景，获取值以后恢复场景的函数。</p>
+<pre><code>// 一种快速切换输入/输出css特征值（计算前保存css特征，计算中更改css特征以获取计算结果，计算结束后恢复先前保存的css特征）以获取正确计算结果的方法
+swap: function( elem, options, callback, args ) {
+    var ret, name,
+        old = {};
+
+    // 保存原来的特征值,设置为保证计算成功而修改的特征（property）值
+    for ( name in options ) {
+           old[ name ] = elem.style[ name ];
+           elem.style[ name ] = options[ name ];
+    }
+    //调用回调计算结果
+    ret = callback.apply( elem, args || [] );
+
+    // 恢复原来的特征值
+    for ( name in options ) {
+           elem.style[ name ] = old[ name ];
+    }
+    //返回计算结果
+    return ret;
+}
+</code></pre><p>　　setPositiveNumber函数对要设置给CSS属性的值做修正，比如添加”px”结尾等</p>
+<pre><code>// rnumsplit = new RegExp( &quot;^(&quot; + core_pnum + &quot;)(.*)$&quot;, &quot;i&quot; ),
+//用来匹配数字，.source返回表达式字符串自身
+//core_pnum = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,
+//返回指定value和subtract对应应该设置的css样式值
+function setPositiveNumber( elem, value, subtract ) {
+    var matches = rnumsplit.exec( value );
+    return matches ?
+    // 注意没有定义的&quot;subtract&quot;,例如在cssHooks中使用时
+    Math.max( 0, matches[ 1 ] - ( subtract || 0 ) ) + ( matches[ 2 ] || &quot;px&quot; ) :
+    value;
+}
+</code></pre><p>　　getWidthOrHeight函数提供获取CSS宽高属性的计算方法</p>
+<pre><code>//获取宽度或高度
+function getWidthOrHeight( elem, name, extra ) {
+    //首先获取offset特征值，相当于包括边框在内的盒宽高
+    var valueIsBorderBox = true,
+        val = name === &quot;width&quot; ? elem.offsetWidth : elem.offsetHeight,
+        styles = getStyles( elem ),
+        isBorderBox = jQuery.support.boxSizing &amp;&amp; jQuery.css( elem, &quot;boxSizing&quot;, false, styles ) === &quot;border-box&quot;;
+
+    //一些非html元素offsetWidth返回undefined,因此检查null/undefined
+    if ( val &lt;= 0 || val == null ) {
+        //如果计算失败则在必要的情况下使用未计算的结果
+        val = curCSS( elem, name, styles );
+        if ( val &lt; 0 || val == null ) {
+            val = elem.style[ name ];
+        }
+
+        //已计算的单元为非像素单位则终止并返回
+        if ( rnumnonpx.test(val) ) {
+            return val;
+        }
+
+        //我们需要检查style,避免浏览器使用getComputedStyle返回不可靠的值而悄悄的回到可靠的elem.style值
+        valueIsBorderBox = isBorderBox &amp;&amp; ( jQuery.support.boxSizingReliable || val === elem.style[ name ] );
+
+        //规范“”,auto为拓展做准备
+        val = parseFloat( val ) || 0;
+    }
+
+    //使用动态box-sizing模型来添加/减少不相干的样式
+    return ( val +
+        augmentWidthOrHeight(
+            elem,
+            name,
+            extra || ( isBorderBox ? &quot;border&quot; : &quot;content&quot; ),
+            valueIsBorderBox,
+            styles
+            )
+        ) + &quot;px&quot;;
+}
+
+//extra表示计算时要包括的部分
+function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
+    //在循环中遍历cssExpand时使用
+    //其中cssExpand = [ &quot;Top&quot;, &quot;Right&quot;, &quot;Bottom&quot;, &quot;Left&quot; ],
+    var i = extra === ( isBorderBox ? &quot;border&quot; : &quot;content&quot; ) ?
+        //如果我们有了正确的测量结果，避免增大，正常情况下会走这一步
+        4 :
+        //否则初始化为水平或垂直特征（property)
+        name === &quot;width&quot; ? 1 : 0,
+
+    val = 0;
+
+    for ( ; i &lt; 4; i += 2 ) {
+        //两种盒模型都排除margin,如果计算要包括margin，则加上他
+        if ( extra === &quot;margin&quot; ) {
+            val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
+        }
+
+        //如果是border-box模型
+        if ( isBorderBox ) {
+            // border-box包括padding,如果我们需要内容部分因此要减去他
+            if ( extra === &quot;content&quot; ) {
+                val -= jQuery.css( elem, &quot;padding&quot; + cssExpand[ i ], true, styles );
+            }
+
+            //此时，extra不是边框也非margin时,减去边框
+            if ( extra !== &quot;margin&quot; ) {
+                val -= jQuery.css( elem, &quot;border&quot; + cssExpand[ i ] + &quot;Width&quot;, true, styles );
+            }
+        //如果是content-box模型
+        } else {
+            //此时，extra不是内容，所以加上padding
+            val += jQuery.css( elem, &quot;padding&quot; + cssExpand[ i ], true, styles );
+
+            //此时，extra不是内容也不是padding，所以加上边框
+            if ( extra !== &quot;padding&quot; ) {
+                val += jQuery.css( elem, &quot;border&quot; + cssExpand[ i ] + &quot;Width&quot;, true, styles );
+            }
+        }
+    }
+    return val;
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/08/18/jquery-2.0.3源码及解析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：jquery2.0.3源码及解析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/18/jquery源码总结(上)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：jquery源码总结(上)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jquery源码总结(中) " data-title="jquery源码总结(中)" data-url="http://yoursite.com/2016/08/18/jquery源码总结(中) /"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/main.js"></script>
+<script src="/./js/myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>

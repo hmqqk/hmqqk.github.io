@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>jquery源码总结(上) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jquery整体架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery源码总结(上)">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/jquery源码总结(上)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="jquery整体架构">
+<meta property="og:image" content="http://yoursite.com/images/jquery/1_1.png">
+<meta property="og:image" content="http://yoursite.com/images/jquery/1_2.jpg">
+<meta property="og:image" content="http://yoursite.com/images/jquery/1_3.jpg">
+<meta property="og:updated_time" content="2016-12-22T01:50:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jquery源码总结(上)">
+<meta name="twitter:description" content="jquery整体架构">
+<meta name="twitter:image" content="http://yoursite.com/images/jquery/1_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/title.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/title.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-jquery源码总结(上)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jquery源码总结(上)
+    </h1>
+  
+
+        <a href="/2016/08/18/jquery源码总结(上)/" class="archive-article-date">
+  	<time datetime="2016-08-18T01:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="jquery整体架构"><a href="#jquery整体架构" class="headerlink" title="jquery整体架构"></a>jquery整体架构</h5><div align="center"><br><img src="/images/jquery/1_1.png"><br></div><br><a id="more"></a><br>jquery可理解为总-分结构，在 jQuery 中，只有全局都会用到的变量、正则表达式定义在了代码最开头，而每个模块一开始，又会定义一些只在本模块会使用到的变量、正则、方法等。<br>##### jquery主要贡献（个人feelings）<br>提供工具方法；<br>以下方法是在jQuery的core定义的工具方法（可以去github的jQuery项目），core是整个jQuery最核心的组成部分，所以从这部分先剖析： $.trim() 去除字符串两端的空格。（内部调用7次） $.each() 遍历数组或对象，这个方法在jQuery内部中被使用很多次，有几个不错的用法，之后剖析再举例吧。（内部调用59次） $.inArray() 返回一个值在数组中的索引位置。如果该值不在数组中，则返回-1。（内部调用9次） $.grep() 返回数组中符合某种标准的元素。（内部调用6次） $.merge() 合并两个数组。（内部调用11次） $.map() 将一个数组中的元素转换到另一个数组中。（内部调用12次） $.makeArray() 将对象转化为数组。（内部调用6次） $.globalEval() 在全局作用域下执行一段js脚本。（内部调用2次） $.proxy() 接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文(context)语境。（内部调用0次） $.nodeName() 返回DOM节点的节点名字，或者判断DOM节点名是否为某某名字。（内部调用51次） $.extend() 将多个对象，合并到第一个对象。（内部调用42次）<br><br>以下均是对类型的判断，本文只是针对$.type做一下讨论，isXXX的方法基本都是调用$.type来实现，不对它们做细节探讨。 $.type() 判断对象的类别（函数对象、日期对象、数组对象、正则对象等等）。这个方法的实现就是用$.each辅助的。（内部调用65次） $.isArray() 判断某个参数是否为数组。（内部调用12次） $.isEmptyObject() 判断某个对象是否为空（不含有任何属性）。（内部调用4次） $.isFunction() 判断某个参数是否为函数。（内部调用32次） $.isPlainObject() 判断某个参数是否为用”{}”或”new Object”建立的对象。（内部调用4次） $.isWindow() 判断是否为window对象。（内部调用6次）<br><br>以下三个函数比较简单，没必要在文章剖析。 $.noop() 一个空函数，个人觉得是用来作为一个默认的回调函数，无需每次去定义一个空的function消耗资源。（内部调用2次） $.now() 获取当前时间戳，代码很简单：return (new Date()).getTime();。（内部调用4次） $.error() 报错，对外抛出一个异常，代码很简单：throw new Error(msg);。（内部调用2次）<br><br>以下三个是jQuery主要用来在ajax处理返回数据时使用，其中parseJSON这个接口在实际工程中被用得最多，经常用来把一段文本解析成json格式 $.parseHTML() 解析HTML，之后再单独一节写。（内部调用2次） $.parseJSON() 解析JSON，之后再单独一节写。（内部调用2次） $.parseXML() 解析XML，之后再单独一节写。（内部调用1次）<br><br>其中我认为是内部辅助函数如下： $.access() 这个函数我更认为是jQuery内部的辅助函数，没必要暴漏出来，在内部用于去一些对象的属性值等，在之后剖析到DOM操作等再细细探讨一下。（内部调用9次） $.camelCase() 转化成骆驼峰命名。（内部调用12次）<br>$.trim<br><br>jQuery的trim函数是用来去除字符串两端空格（jQuery源码里边使用了7次），这个函数也是使用频率很高的，因为时常要对用户在页面上输入的文本trim一下~<br><br>用法：$.trim(“ 前尾有空格 “) === “前尾有空格”<br>    core_version = “1.9.0”,<br>    core_trim = core_version.trim,<br>    rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,<br><br>    trim: core_trim &amp;&amp; !core_trim.call(“\uFEFF\xA0”) ?<br>      function( text ) {<br>        return text == null ?<br>          “” :<br>          core_trim.call( text );<br>      } :<br><br>      // Otherwise use our own trimming functionality<br>      function( text ) {<br>        return text == null ?<br>          “” :<br>          ( text + “” ).replace( rtrim, “” );<br>      }<br>剖析之:<br><br>var core_trim = String.prototype.trim; if (core_trim &amp;&amp; !core_trim.call(“\uFEFF\xA0”)) 相当于： if (String.prototype.trim &amp;&amp; “\uFEFF\xA0”.trim() !== “”) 高级的浏览器已经支持原生的String的trim方法，但是jQuery还为了避免它没法解析全角空白，所以加多了一个判断：”\uFEFF\xA0”.trim() !== “”<br><br>\uFEFF是utf8的字节序标记，详见：字节顺序标记 “\xA0”是全角空格 如果以上条件成立了，那就直接用原生的trim函数就好了，展开也即是：<br>    $.trim = function( text ) {<br>        return text == null ?<br>            “” :<br>            text.trim();<br>    }<br>如果上述条件不成立了，那jQuery就自己实现一个trim方法：<br>    $.trim = function( text ) {<br>        return text == null ?<br>            “” :<br>            ( text + “” ).replace( rtrim, “” );<br>    }<br>当然你还得自己看懂rtrim这个正则表达的意思了。<br>$.each<br>jQuery的each是我使用最频繁的方法，在它内部也是使用很频繁的一个API（一共用了59处），使得遍历一个数组或者对象的代码段变得十分的简洁，API的设计准则应当如此。<br><br>先看几个each的例子：<br>    //each接受2个参数， 数组[1,2,3],回调函数<br>    $.each([1,2,3], function(key, value){<br>      console.log(“[“ + key + “]=” + value);<br>      return false;<br>    });<br>    //输出：<br>    [0]=1<br>    [1]=2<br>    [2]=3<br>    [1,2,3]<br>    //可以看到回调函数具有两个参数，key是数组的索引，value是对应的元素<br><br>    //each接受3个参数， 数组[1,2,3],回调函数，一个额外的参数数组args=[4,5]<br>    $.each([1,2,3], function(arg1, arg2){<br>      console.log(this + “,” + arg1 + “,” + arg2);<br>    }, [4, 5]);<br>    //输出：<br>    1,4,5<br>    2,4,5<br>    3,4,5<br>    [1,2,3]<br>    //可以看到回调函数的两个参数就是each的第三个参数args，在函数里边的this就是遍历元素自己<br>接着我们来看jQuery的each实现。<br>//其实我觉得jQuery这段each代码写得一点也不好<br>//代码重复率太高了！我下边对它进行解析并改造<br>//貌似看注释是为了让代码运行更快，具体没测试。<br>//源码如下<br>    $.each = function( obj, callback, args ) {<br>      //obj 是需要遍历的数组或者对象<br>      //callback是处理数组/对象的每个元素的回调函数，它的返回值实际会中断循环的过程<br>      //<br><br>      var value,<br>        i = 0,<br>        length = obj.length,<br>        isArray = isArraylike( obj );//判断是不是数组<br><br>      if ( args ) {<br>        if ( isArray ) {//数组<br>          for ( ; i &lt; length; i++ ) {<br>            value = callback.apply( obj[ i ], args );<br>            //相当于:<br>            //args = [arg1, arg2, arg3];<br>            //callback(args1, args2, args3)。然后callback里边的this指向了obj[i]<br><br>            if ( value === false ) {<br>              //注意到，当callback函数返回值会false的时候，注意是全等！循环结束<br>              break;<br>            }<br>          }<br>        } else {//非数组<br>          for ( i in obj ) {//遍历对象的做法<br>            value = callback.apply( obj[ i ], args );<br><br>            if ( value === false ) {<br>              break;<br>            }<br>          }<br>        }<br><br>      // A special, fast, case for the most common use of each<br>      } else {<br>        if ( isArray ) {<br>          for ( ; i &lt; length; i++ ) {<br>            value = callback.call( obj[ i ], i, obj[ i ] );<br>            //相当于callback(i, obj[i])。然后callback里边的this指向了obj[i]<br><br>            if ( value === false ) {<br>                break;<br>              }<br>            }<br>          } else {<br>            for ( i in obj ) {<br>              value = callback.call( obj[ i ], i, obj[ i ] );<br><br>              if ( value === false ) {<br>                break;<br>              }<br>            }<br>          }<br>        }<br><br>      return obj;<br>    }<br>each的实现比较简单，但是我不是很明白为什么jQuery的实现需要这么长，如果说jQuery为了效率写成以上那么长的代码的话，那我宁愿牺牲那一点点效率把代码量降低<br>//我改写的版本<br>//这里并不是代表我的代码没有bug，for in对于数组来说性能比较低而且存在某些bug<br>//这里想表达的意思只是我希望用更简洁的代码来减少原先代码的重复性<br>    $.each = function( obj, callback, args ) {<br>      var value,<br>        i = 0,<br>        length = obj.length;<br><br>      for ( i in obj ) {<br>        value =<br>          args ?<br>          callback.apply( obj[ i ], args ) :<br>          callback.call( obj[ i ], i, obj[ i ] );<br><br>        if ( value === false ) {<br>          break;<br>        }<br>      }<br>      return obj;<br>    }<br>要熟记$.each的用法，因为在之后的剖析中肯定会多次用到each函数。<br>$.inArray<br>jQuery的inArray实现比较简单，有一个小小的点在这里讨论一下，代码如下：<br>    core_deletedIds = [],<br>    core_indexOf = core_deletedIds.indexOf,<br>    //相当于 core_indexOf = Array.indexOf;<br><br>    //elem 规定需检索的值。<br>    //arr 数组<br>    //i 可选的整数参数。规定在数组中开始检索的位置。它的合法取值是 0 到 arr.length - 1。如省略该参数，则将从数组首元素开始检索。<br>    inArray: function( elem, arr, i ) {<br>      var len;<br><br>      if ( arr ) {<br>        //原生的Array对象支持indexOf方法，直接调用<br>        if ( core_indexOf ) {<br>          return core_indexOf.call( arr, elem, i );<br>        }<br><br>        len = arr.length;<br>        //当i为负数的时候，从数组后边len+i的位置开始索引<br>        i = i ? i &lt; 0 ? Math.max( 0, len + i ) : i : 0;<br><br>        for ( ; i &lt; len; i++ ) {<br>          // Skip accessing in sparse arrays<br>          //jQuery这里的(i in arr)判断是为了跳过稀疏数组中的元素<br>          //例如 var arr = []; arr[2] = 1;<br>          //此时 arr == [undefined, undefined, 1]<br>          //结果是 =&gt; (0 in arr == false) (1 in arr == false) (2 in arr == true)<br>          //但是不解的是这里<br>          //测试了一下 $.inArray(undefined, arr, 0)是返回-1的<br>          //也许你很不解，因为数组中明明第一个元素就是undefined，后边举个例子探讨一下<br>          if ( i in arr &amp;&amp; arr[ i ] === elem ) {<br>            return i;<br>          }<br>        }<br>      }<br><br>      //全部都不符合，返回-1<br>      return -1;<br>    },<br>测试了一下（在火狐下）： var arr = [undefined, 1]; 输出是： arr == [undefined, 1] 0 in arr == true; arr.indexOf(undefined) == 0; arr[0] == undefined; 但是如果是以下代码： var arr = []; a[1] = 1; 输出是： arr == [undefined, 1] 0 in arr == false; arr.indexOf(undefined) == -1; arr[0] == undefined;<br><br>这就说明了在第二种情况中（就是注释中提到的稀疏数组），不能只是通过arr[ i ] === elem来得到元素在数组中的位置 而应该加入多一个条件；i in arr<br><br> $.grep<br><br>jQuery的grep是为了传入一个数组elems，通过过滤器callback后，等到过滤后的结果。 其中callback就是过滤器，$.grep是根据其返回值过滤； inv为true表示是callback过滤器返回true的那些被过滤掉。 说起来有点绕，看两个小例子就完全明白了：<br><br><br>$.grep( [0,1,2], function(n,i){<br>  return n &lt;= 0;<br>});<br>//结果是：[0]<br><br>$.grep( [0,1,2], function(n,i){<br>  return n &lt;= 0;<br>}, true);<br>//结果是：[1, 2]<br>实现比较简单，但是不知道在这里设计的callback接受的参数顺序没跟$.each的callback一致，我认为这里这样设计的原因是往往过滤器只需使用value，这样就可以忽略第二个参数了 代码如下：<br><br><br>grep: function( elems, callback, inv ) {<br>  var retVal,<br>    ret = [],<br>    i = 0,<br>    length = elems.length;<br>  inv = !!inv;//转成布尔型<br><br>  // Go through the array, only saving the items<br>  // that pass the validator function<br>  for ( ; i &lt; length; i++ ) {<br>    retVal = !!callback( elems[ i ], i );//注意这里的callback参数是先value,后key<br>    if ( inv !== retVal ) {<br>      ret.push( elems[ i ] );<br>    }<br>  }<br><br>  return ret;<br>}<br>$.merge<br><br>$.merge([0,1,2], [2,3,4]) == [0, 1, 2, 2, 3, 4] merge的两个参数必须为数组，作用就是修改第一个数组，使得它末尾加上第二个数组。 其实单单从例子或者说明来看，merge函数的两个参数貌似必须为数组，但是看其源码就知道有个小细节，jQuery允许第二个参数不为数组。 $.merge()源码如下：<br><br><br><br>merge: function( first, second ) {<br>  //难道first 跟second参数必须为数组？<br>  var l = second.length,<br>    i = first.length,<br>    j = 0;<br><br>  //从这个判断来看，second可以是一个对象<br>  if ( typeof l === “number” ) {//如果second是数组<br>    for ( ; j &lt; l; j++ ) {<br>      first[ i++ ] = second[ j ];<br>    }<br>  } else {//如果second不是数组<br>    //假设second = {}; second[0] = 1; second[1] = 2; second[2] = 3;<br>    //那这里的逻辑也是可以成立的<br>    while ( second[j] !== undefined ) {<br>      first[ i++ ] = second[ j++ ];<br>    }<br>  }<br><br>  first.length = i;<br><br>  return first;<br>}<br>从上边源码来看，貌似jQuery的merge函数的first参数貌似是要数组类型，其实不然，first={length:3};first[0] = 1; first[1] = 2; first[2] = 3; 同样也是可以达到merge目的。 当然了，这里这样分析的目的是赞一下javascript的灵活性，实际使用merge函数时，我们应当保证两个参数都是数组类型，避免了书写出上述分析那样难以理解意思的代码。<br><br>$.map<br><br>从$.map代码上看，还算比较容易理解，把数组每一项经过callback处理后的值依次加入到返回数组中 例如<br><br><br><br>$.map( [0,1,2], function(n){<br>  return n + 4;<br>});<br>//结果：[4, 5, 6]<br>$.map源码如下：<br><br><br><br>core_deletedIds = [],<br>core_concat = core_deletedIds.concat,<br>// arg is for internal usage only<br>map: function( elems, callback, arg ) {<br>  var value,<br>    i = 0,<br>    length = elems.length,<br>    isArray = isArraylike( elems ),<br>    ret = [];<br><br>  // Go through the array, translating each of the items to their<br>  if ( isArray ) {<br>    for ( ; i &lt; length; i++ ) {<br>      value = callback( elems[ i ], i, arg );<br><br>      if ( value != null ) {//如果返回值是null,则不加入结果中<br>        ret[ ret.length ] = value;<br>      }<br>    }<br><br>  // Go through every key on the object,<br>  } else {<br>    for ( i in elems ) {<br>      value = callback( elems[ i ], i, arg );<br><br>      if ( value != null ) {<br>        ret[ ret.length ] = value;<br>      }<br>    }<br>  }<br><br>  // Flatten any nested arrays<br>  //这里相当于 var a = [];a.concat(ret)<br>  return core_concat.apply( [], ret );<br>},<br>但是看到map实现代码的最后一句，为什么不直接return ret呢？ 一开始很费解这里，但是如果看了以下例子之后，你就焕然大悟了，:)<br><br><br><br>$.map( [0,1,2], function(n){<br>  return [ n, n + 1 ];<br>});<br>//输出：[0, 1, 1, 2, 2, 3]<br>//如果是return ret的话，输出将会是：[[0,1], [1,2], [2,3]]<br>在w3cschool里边对此方法的描述有误：.map(callback(index,domElement)) 其实应该是：.map(callback(domElement,index))<br><br>$.makeArray<br><br>$.makeArray将类数组对象转换为数组对象，源码简单，注释如下：<br><br><br><br>makeArray: function( arr, results ) {<br>  var ret = results || [];//不由得不赞js这个技巧<br>  //等同于:var ret = (!results) ? [] : results;<br><br>  if ( arr != null ) {<br>    if ( isArraylike( Object(arr) ) ) {<br>      //如果arr是一个类数组对象，调用merge合到返回值<br>      jQuery.merge( ret,<br>        typeof arr === “string” ?<br>        [ arr ] : arr<br>      );<br>    } else {//如果不是数组，则将其放到返回数组末尾<br>      //等同于ret.push(arr);<br>      core_push.call( ret, arr );<br>    }<br>  }<br><br>  return ret;<br>},<br>$.globalEval<br><br>看名字就知道，这是一个在eval的变种而已，它的作用域是在window下，当然采用call方法。 源码如下：<br><br><br><br>// Evaluates a script in a global context<br>// Workarounds based on findings by Jim Driscoll<br>// <a href="http://weblogs.java.net/blog/driscoll/archive/2009/09/08/eval-javascript-global-context" target="_blank" rel="external">http://weblogs.java.net/blog/driscoll/archive/2009/09/08/eval-javascript-global-context</a><br>globalEval: function( data ) {<br>  if ( data &amp;&amp; jQuery.trim( data ) ) {<br>    // We use execScript on Internet Explorer<br>    // We use an anonymous function so that context is window<br>    // rather than jQuery in Firefox<br>    ( window.execScript || function( data ) {<br>      window[ “eval” ].call( window, data );<br>    } )( data );<br>  }<br>},<br>等同于<br>globalEval: function( data ) {<br>  if ( data &amp;&amp; jQuery.trim( data ) ) {//data不是空字符串<br>    var fn = window.execScript;<br>    //在IE跟旧版本的Chrome是支持此方法的<br>    if (!window.execScript){//新版浏览器没有此api<br>      fn = function( data ) {<br>        window[ “eval” ].call( window, data );<br>        //这里为何不能直接：eval.call( window, data );<br>        //查了以下，在chrome一些旧版本里eval.call( window, data )无效<br>      }<br>    }<br>    fn(data);<br>  }<br>},<br>那为什么需要使用globalEval呢？跟直接用eval的差别在于哪？ 我认为以下场景需要用到： a.js在某个函数域里边动态加载b.js内容，然后执行。 b.js的代码为：function B(){}，它是希望B函数暴漏在全局域的。 此时如果在a.js里边采用eval就会使得B只能成为一个局部域里边的函数，所以就必须借globalEval方法做到。 在jQuery源码里边，对于操作dom里边的script以及ajax拉回来的script都有globalEval的身影。<br><br>$.proxy<br><br>proxy这个函数用的较少，我认为使用它会造成一些困惑，所以还不如用一些比较好理解的方式去替代它。 源码如下：<br><br><br><br>// Bind a function to a context, optionally partially applying any<br>// arguments.<br>proxy: function( fn, context ) {<br>  var tmp, args, proxy;<br><br>  if ( typeof context === “string” ) {<br>    tmp = fn[ context ];<br>    context = fn;<br>    fn = tmp;<br>  }<br><br>  // Quick check to determine if target is callable, in the spec<br>  // this throws a TypeError, but we will just return undefined.<br>  if ( !jQuery.isFunction( fn ) ) {<br>    return undefined;<br>  }<br><br>  // Simulated bind<br>  //由此看出，proxy的参数必须是2个，否则有无法预料的bug<br>  args = core_slice.call( arguments, 2 );<br>  proxy = function(/<em>arguments</em>/) {<br>    //需要注意到的是这里的arguments是当前函数的参数列表<br>    return fn.apply( context || this, args.concat( core_slice.call( arguments ) ) );<br>  };<br><br>  // Set the guid of unique handler to the same of original handler, so it can be removed<br>  //之后再探讨以下guid是做什么的<br>  proxy.guid = fn.guid = fn.guid || jQuery.guid++;<br><br>  return proxy;<br>},<br>乍看之下，会把上述proxy函数里边的arguments跟其外层的arguments搞混。 看个例子：<br><br><br><br>function a(){<br>  console.log(arguments);//输出[1,2,3,4,5]<br>}<br>var b = $.proxy(a, this, 1, 2, 3);//这里arguments = [a, this, 1, 2, 3];<br>b(4,5);//这里arguments = [4,5];<br>如果分析不够准确地化会把上边输出认为是[1,2,3] 其实理解透上边proxy的arguments，就知道 proxy函数里边的args.concat( core_slice.call( arguments )其实就是[1,2,3].concat([4,5])<br><br>$.nodeName<br>nodeName函数是获取dom节点的节点名字或者判断其名字跟传入参数是否匹配。代码很简单，这里可以看到一个技巧，这是在javascript里边惯用的。（见代码注释） 源码如下：<br>    nodeName: function( elem, name ) {<br>      //IE下，DOM节点的nodeName是大写的，例如DIV<br>      //所以统一转成小写再判断<br>      //这里不return elem.nodeName.toLowerCase();<br>      //我认为原因是为了保持浏览器自身的对外的规则，避免所有引用nodeName都要做转换的动作<br>      return elem.nodeName &amp;&amp; elem.nodeName.toLowerCase() === name.toLowerCase();<br><br>      //可以看到这里的&amp;&amp;使用技巧，以上代码等同于：<br>      //if (elem.nodeName) return elem.nodeName.toLowerCase() === name.toLowerCase();<br>      //else return elem.nodeName;<br>      //如此之简洁<br>    },<br>$.type<br>接下来只需要介绍type函数，这里就是$.each的一个好样例。 先了解一下typeof以及toString：<br>    typeof 1 == ‘number’<br>    typeof {} == ‘object’<br>    typeof [] == ‘object’<br>    (1).toString() == “1”<br>    ({}).toString() == “[object Object]”<br>    //再针对一些边界的测试，<br>    typeof null == “object”<br>    typeof undefined == “undefined”<br>    (null).toString()//非法<br>    (undefined).toString()//非法<br><br>//再看看很诡异的几个：<br>    ([]).toString() == “”<br>    (new Error()).toString() == “Error”<br>    //出现以上两个的结果的原因是，Array跟Error类重写了toSting方法<br>    //如果用Object的toString方法的话，就是一下结果<br>    Object.prototype.toString.call([]) == “[object Array]”<br>    Object.prototype.toString.call(new Error()) == “[object Error]”<br>看完以上的实验，再回过头看一下$.type函数，其作用就是类似typeof这个操作符，简单来说，也即是： $.type = function(obj) { return typeof obj; } 但是对于数组来说，本质它还是算是一个对象，typeof并不能区分出它是Array类型，jQuery为了扩展typeof的表达力，因此扩展了type方法，针对一些特殊的对象（例如null，window，RegExp）也进行精准的类型判断。 它先将常见类型打表（打表的意思就是先存在一个Hash表class2type里边），源码如下：<br>    // Populate the class2type map<br>    jQuery.each(“Boolean Number String Function Array Date RegExp Object Error”.split(“ “), function(i, name) {<br>      class2type[ “[object “ + name + “]” ] = name.toLowerCase();<br>    });<br><br>    $.type = function( obj ) {<br>      if ( obj == null ) {//如果是null或者undefined，直接转成String返回<br>        //注意到这里是==而不是===<br>        return String( obj );<br>      }<br>      //RegExp，Array等都属于Object<br>      //为了精准判断类型，借由Object.prototype.toString跟class2type表<br>      //这里为什么要用core_toString而不用obj.toString的原因在刚刚试验中说明了<br>      return typeof obj === “object” || typeof obj === “function” ?<br>        class2type[ core_toString.call(obj) ] || “object” :<br>        typeof obj;<br>    },<br>isXXX在这里就不详细展开了，源码如下<br>    // See test/unit/core.js for details concerning isFunction.<br>    // Since version 1.3, DOM methods and functions like alert<br>    // aren’t supported. They return false on IE (#2968).<br>    isFunction: function( obj ) {<br>      return jQuery.type(obj) === “function”;<br>    },<br><br>    isArray: Array.isArray || function( obj ) {<br>      return jQuery.type(obj) === “array”;<br>    },<br><br>    isWindow: function( obj ) {<br>      return obj != null &amp;&amp; obj == obj.window;<br>    },<br><br>    isNumeric: function( obj ) {<br>      return !isNaN( parseFloat(obj) ) &amp;&amp; isFinite( obj );<br>    },<br>    isPlainObject: function( obj ) {<br>      // Must be an Object.<br>      // Because of IE, we also have to check the presence of the constructor property.<br>      // Make sure that DOM nodes and window objects don’t pass through, as well<br>      if ( !obj || jQuery.type(obj) !== “object” || obj.nodeType || jQuery.isWindow( obj ) ) {<br>        return false;<br>      }<br><br>      try {<br>        // Not own constructor property must be Object<br>        if ( obj.constructor &amp;&amp;<br>          !core_hasOwn.call(obj, “constructor”) &amp;&amp;<br>          !core_hasOwn.call(obj.constructor.prototype, “isPrototypeOf”) ) {<br>          return false;<br>        }<br>      } catch ( e ) {<br>        // IE8,9 Will throw exceptions on certain host objects #9897<br>        return false;<br>      }<br><br>      // Own properties are enumerated firstly, so to speed up,<br>      // if last one is own, then all properties are own.<br><br>      var key;<br>      for ( key in obj ) {}<br><br>      return key === undefined || core_hasOwn.call( obj, key );<br>    },<br><br>    isEmptyObject: function( obj ) {<br>      var name;<br>      for ( name in obj ) {<br>        return false;<br>      }<br>      return true;<br>    },<br>2.12 $.extend<br><br>extend函数(注意extends是js里边的保留关键字，所以这里命名末尾是没有s的)是使用频率很高的一个函数，通常你写一个插件，会利用extend传进来的参数来覆盖插件原有的配置。 例如：<br><br><br><br>  var Plugin = function(opt){<br>    //opt为传入的配置<br>    this.opt = $.extend({<br>      ‘title’:’默认标题’,<br>      ‘content’:’默认内容’<br>    }, opt);<br>  };<br><br>  var p = new Plugin({title:’传入标题’})<br>$.extend源码如下：<br>    jQuery.extend = jQuery.fn.extend = function() {<br>      var options, name, src, copy, copyIsArray, clone,<br>        target = arguments[0] || {},<br>        i = 1,<br>        length = arguments.length,<br>        deep = false;<br><br>      // Handle a deep copy situation<br>      if ( typeof target === “boolean” ) {<br>        //第一个参数表示是否要深递归，类型是布尔值<br>        deep = target;<br>        target = arguments[1] || {};<br>        // skip the boolean and the target<br>        i = 2;<br>      }<br><br>      // Handle case when target is a string or something (possible in deep copy)<br>      if ( typeof target !== “object” &amp;&amp; !jQuery.isFunction(target) ) {<br>        target = {};<br>      }<br><br>      // extend jQuery itself if only one argument is passed<br>      if ( length === i ) {<br>        //$(“#id”).extend(dest)的时候<br>        target = this;<br>        –i;<br>      }<br><br>      for ( ; i &lt; length; i++ ) {//可以传入多个复制源<br>        // Only deal with non-null/undefined values<br>        if ( (options = arguments[ i ]) != null ) {<br>          // Extend the base object<br>          //将每个源的属性全部复制到target上<br>          for ( name in options ) {<br>            src = target[ name ];<br>            copy = options[ name ];<br><br>            // Prevent never-ending loop<br>            if ( target === copy ) {<br>              //防止有环，例如 extend(true, target, {‘target’:target});<br>              continue;<br>            }<br><br>            // Recurse if we’re merging plain objects or arrays<br>            if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {<br>              //如果是深复制<br>              if ( copyIsArray ) {<br>                copyIsArray = false;//这句话我认为是多余的。<br>                //克隆原来target上的原属性<br>                clone = src &amp;&amp; jQuery.isArray(src) ? src : [];<br><br>              } else {<br>                clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : {};<br>              }<br><br>              // Never move original objects, clone them<br>              //递归深复制<br>              target[ name ] = jQuery.extend( deep, clone, copy );<br><br>            // Don’t bring in undefined values<br>            //可以看到undefined的属性对时不会复制到target上的<br>            } else if ( copy !== undefined ) {<br>              target[ name ] = copy;<br>            }<br>          }<br>        }<br>      }<br><br>      // Return the modified object<br>      return target;<br>    };<br>jQuery的trim源码如下：<br>DOM元素的操作，包括选取，属性取值等等。 jQuery在DOM操作这块的贡献巨大，jQuery把复杂的DOM选取映射到了简单的CSS选择器，对复杂的DOM操作（不同浏览器的DOM操作接口不一致）封装非常简单的委托API，以达到其核心的目的：The Write Less, Do More。<br>1.外层沙箱以及命名空间$<br>    (function( window, undefined ) {<br>         //用一个函数域包起来，就是所谓的沙箱<br>         //在这里边var定义的变量，属于这个函数域内的局部变量，避免污染全局<br>         //把当前沙箱需要的外部变量通过函数参数引入进来<br>         //只要保证参数对内提供的接口的一致性，你还可以随意替换传进来的这个参数<br>        “use strict”;<br>        window.jQuery = window.$ = jQuery;<br>    })( window );<br>jQuery 具体的实现，都被包含在了一个立即执行函数构造的闭包里面，为了不污染全局作用域，只在后面暴露 $ 和 jQuery 这 2 个变量给外界，尽量的避开变量冲突。常用的还有另一种写法：<br>    (function(window) {<br>       // JS代码<br>    })(window, undefined);<br>比较推崇的的第一种写法，也就是 jQuery 的写法。二者有何不同呢，当我们的代码运行在更早期的环境当中（pre-ES5，eg. Internet Explorer 8），undefined 仅是一个变量且它的值是可以被覆盖的。意味着你可以做这样的操作：<br>    undefined = 42<br>    console.log(undefined) // 42<br>当使用第一种方式，可以确保你需要的 undefined 确实就是 undefined。<br>P.S. 第二个参数undefined是jquery中针对压缩的小小策略<br>解释如下：<br>先看以下代码：<br>    (function( window, undefined ) {<br>      var a = undefined;<br>      if (a == undefined){blabla…}<br><br>      ….<br>      if (c == undefined) return;<br>    })( window );<br>经过压缩后，可以变成：<br>    (function(w, u) {<br>      var a = u;<br>      if (a == u){blabla…}<br><br>      ….<br>      if (c == u) return;<br>    })(w);<br>因为这个外层函数只传了一个参数，因此沙箱执行时，u自然会undefined，把9个字母缩成1个字母，可以看出压缩后的代码减少一些字节数。<br>在ECMAScript5之前undefined都是可写的，也就是undefined可以赋值的。jQuery作者这么做的目的还有防止2B程序员对undefined进行赋值后使得代码出现了不可预料的bug。<br>最后jQuery暴露一个全局的命名空间jQuery（为了书写更简单，一个简写就是$，幸好Javascript用$来做变量命名是合法的）<br>不得不提出的是，jQuery 在这里有一个针对压缩优化细节，使用第一种方式，在代码压缩的时候，window 和 undefined 都可以压缩为 1 个字母并且确保它们就是 window 和 undefined。<br>实际上jQuery是一个函数，为什么要这样设计呢，是因为：<br><br>函数也是对象，于是在jQuery这个命名空间上可以绑定工具方法<br>函数可以有原型prototype，每当通过dom = $(“#id”)取得的所谓jQuery对象，本质就是dom = new jQuery(‘#id’); 如果懂得原型的话，就知道如果在jQuery的原型上绑定方法，像上边那样生成的实例dom可以调用这些方法。<br>简单来说，就是把jQuery看成是一个类，在原型上绑定方法就相当于成员方法，在jQuery上绑定工具方法，相当于类的静态方法，举例如下：<br>    jQuery.A = function(){};<br>    jQuery.prototype.B = function(){};<br>相当于：<br>    Class jQuery{<br>        public static A(){}<br>        public B(){}<br>    }<br>面向对象的思想在jQuery是有所体现的，也给我很多思考，面向对象的思想指导了如何设计一个更合理的API，乃至于库。所谓的封装，继承，通通的都是为了前边那个目的，如何设计出更好的API，我认为这才是面向对象的精髓。<br>2.jquery无new构造<br>这也是 jQuery 十分便捷的一个地方。当我们使用第一种无 new 构造方式的时候，其本质就是相当于 new jQuery()，那么在 jQuery 内部是如何实现的呢？看看：<br>    (function(window, undefined) {<br>        var<br>        // …<br>        jQuery = function(selector, context) {<br>            // The jQuery object is actually just the init constructor ‘enhanced’<br>            // 看这里，实例化方法 jQuery() 实际上是调用了其拓展的原型方法 jQuery.fn.init<br>            return new jQuery.fn.init(selector, context, rootjQuery);<br>        },<br><br>        // jQuery.prototype 即是 jQuery 的原型，挂载在上面的方法，即可让所有生成的 jQuery 对象使用<br>        jQuery.fn = jQuery.prototype = {<br>            // 实例化化方法，这个方法可以称作 jQuery 对象构造器<br>            init: function(selector, context, rootjQuery) {<br>                // …<br>            }<br>        }<br>        // 这一句很关键，也很绕<br>        // jQuery 没有使用 new 运算符将 jQuery 实例化，而是直接调用其函数<br>        // 要实现这样,那么 jQuery 就要看成一个类，且返回一个正确的实例<br>        // 且实例还要能正确访问 jQuery 类原型上的属性与方法<br>        // jQuery 的方式是通过原型传递解决问题，把 jQuery 的原型传递给jQuery.prototype.init.prototype<br>        // 所以通过这个方法生成的实例 this 所指向的仍然是 jQuery.fn，所以能正确访问 jQuery 类原型上的属性与方法<br>        jQuery.fn.init.prototype = jQuery.fn;<br><br>    })(window);<br>jQuery.fn.init.prototype = jQuery.fn是 jQuery 的绝妙之处，理解如下：<br>2）将 jQuery.fn.init 的 prototype 属性设置为 jQuery.fn，那么使用 new jQuery.fn.init() 生成的对象的原型对象就是 jQuery.fn ，所以挂载到 jQuery.fn 上面的函数就相当于挂载到 jQuery.fn.init() 生成的 jQuery 对象上，所有使用 new jQuery.fn.init() 生成的对象也能够访问到 jQuery.fn 上的所有原型方法。<br><br>3）也就是实例化方法存在这么一个关系链<br><br>jQuery.fn.init.prototype = jQuery.fn = jQuery.prototype ;<br>new jQuery.fn.init() 相当于 new jQuery() ;<br>jQuery() 返回的是 new jQuery.fn.init()，而 var obj = new jQuery()，所以这 2 者是相当的，所以我们可以无 new 实例化 jQuery 对象。<br><br>3.jquery方法的重载<br>// 获取 title 属性的值<br>    $(‘#id’).attr(‘title’);<br>    // 设置 title 属性的值<br>    $(‘#id’).attr(‘title’,’jQuery’);<br><br>    // 获取 css 某个属性的值<br>    $(‘#id’).css(‘title’);<br>    // 设置 css 某个属性的值<br>    $(‘#id’).css(‘width’,’200px’);<br>方法的重载即是一个方法实现多种功能，经常又是 get 又是 set，虽然阅读起来十分不易，但是从实用性的角度考虑，这也是为什么 jQuery 如此受欢迎的原因，大多数人使用 jQuery() 构造方法使用的最多的就是直接实例化一个 jQuery 对象，但其实在它的内部实现中，有着 9 种不同的方法重载场景：<br>// 接受一个字符串，其中包含了用于匹配元素集合的 CSS 选择器<br>    jQuery([selector,[context]])<br>    // 传入单个 DOM<br>    jQuery(element)<br>    // 传入 DOM 数组<br>    jQuery(elementArray)<br>    // 传入 JS 对象<br>    jQuery(object)<br>    // 传入 jQuery 对象<br>    jQuery(jQuery object)<br>    // 传入原始 HTML 的字符串来创建 DOM 元素<br>    jQuery(html,[ownerDocument])<br>    jQuery(html,[attributes])<br>    // 传入空参数<br>    jQuery()<br>    // 绑定一个在 DOM 文档载入完成后执行的函数<br>    jQuery(callback)<br><br>4.jQuery.fn.extend 与 jQuery.extend<br>extend 方法在 jQuery 中是一个很重要的方法，jQuey 内部用它来扩展静态方法或实例方法，而且我们开发 jQuery 插件开发的时候也会用到它。但是在内部，是存在 jQuery.fn.extend 和 jQuery.extend 两个 extend 方法的，而区分这两个 extend 方法是理解 jQuery 的很关键的一部分。先看结论：<br><br>1）jQuery.extend(object) 为扩展 jQuery 类本身，为类添加新的静态方法；<br><br>2）jQuery.fn.extend(object) 给 jQuery 对象添加实例方法，也就是通过这个 extend 添加的新方法，实例化的 jQuery 对象都能使用，因为它是挂载在 jQuery.fn 上的方法（上文有提到，jQuery.fn = jQuery.prototype ）。<br><br>它们的官方解释是：<br><br>1）jQuery.extend(): 把两个或者更多的对象合并到第一个当中，<br><br>2）jQuery.fn.extend()：把对象挂载到 jQuery 的 prototype 属性，来扩展一个新的 jQuery 实例方法。<br><br>也就是说，使用 jQuery.extend() 拓展的静态方法，我们可以直接使用 $.xxx 进行调用（xxx是拓展的方法名），<br><br>而使用 jQuery.fn.extend() 拓展的实例方法，需要使用 $().xxx 调用。<br>    // 扩展合并函数<br>    // 合并两个或更多对象的属性到第一个对象中，jQuery 后续的大部分功能都通过该函数扩展<br>    // 虽然实现方式一样，但是要注意区分用法的不一样，那么为什么两个方法指向同一个函数实现，但是却实现不同的功能呢,<br>    // 阅读源码就能发现这归功于 this 的强大力量<br>    // 如果传入两个或多个对象，所有对象的属性会被添加到第一个对象 target<br>    // 如果只传入一个对象，则将对象的属性添加到 jQuery 对象中，也就是添加静态方法<br>    // 用这种方式，我们可以为 jQuery 命名空间增加新的方法，可以用于编写 jQuery 插件<br>    // 如果不想改变传入的对象，可以传入一个空对象：$.extend({}, object1, object2);<br>    // 默认合并操作是不迭代的，即便 target 的某个属性是对象或属性，也会被完全覆盖而不是合并<br>    // 如果第一个参数是 true，则是深拷贝<br>    // 从 object 原型继承的属性会被拷贝，值为 undefined 的属性不会被拷贝<br>    // 因为性能原因，JavaScript 自带类型的属性不会合并<br>    jQuery.extend = jQuery.fn.extend = function() {<br>        var src, copyIsArray, copy, name, options, clone,<br>            target = arguments[0] || {},<br>            i = 1,<br>            length = arguments.length,<br>            deep = false;<br><br>        // Handle a deep copy situation<br>        // target 是传入的第一个参数<br>        // 如果第一个参数是布尔类型，则表示是否要深递归，<br>        if (typeof target === “boolean”) {<br>            deep = target;<br>            target = arguments[1] || {};<br>            // skip the boolean and the target<br>            // 如果传了类型为 boolean 的第一个参数，i 则从 2 开始<br>            i = 2;<br>        }<br><br>        // Handle case when target is a string or something (possible in deep copy)<br>        // 如果传入的第一个参数是 字符串或者其他<br>        if (typeof target !== “object” &amp;&amp; !jQuery.isFunction(target)) {<br>            target = {};<br>        }<br><br>        // extend jQuery itself if only one argument is passed<br>        // 如果参数的长度为 1 ，表示是 jQuery 静态方法<br>        if (length === i) {<br>            target = this;<br>            –i;<br>        }<br><br>        // 可以传入多个复制源<br>        // i 是从 1或2 开始的<br>        for (; i &lt; length; i++) {<br>            // Only deal with non-null/undefined values<br>            // 将每个源的属性全部复制到 target 上<br>            if ((options = arguments[i]) != null) {<br>                // Extend the base object<br>                for (name in options) {<br>                    // src 是源（即本身）的值<br>                    // copy 是即将要复制过去的值<br>                    src = target[name];<br>                    copy = options[name];<br><br>                    // Prevent never-ending loop<br>                    // 防止有环，例如 extend(true, target, {‘target’:target});<br>                    if (target === copy) {<br>                        continue;<br>                    }<br><br>                    // Recurse if we’re merging plain objects or arrays<br>                    // 这里是递归调用，最终都会到下面的 else if 分支<br>                    // jQuery.isPlainObject 用于测试是否为纯粹的对象<br>                    // 纯粹的对象指的是 通过 “{}” 或者 “new Object” 创建的<br>                    // 如果是深复制<br>                    if (deep &amp;&amp; copy &amp;&amp; (jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)))) {<br>                        // 数组<br>                        if (copyIsArray) {<br>                            copyIsArray = false;<br>                            clone = src &amp;&amp; jQuery.isArray(src) ? src : [];<br><br>                            // 对象<br>                        } else {<br>                            clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : {};<br>                        }<br><br>                        // Never move original objects, clone them<br>                        // 递归<br>                        target[name] = jQuery.extend(deep, clone, copy);<br><br>                        // Don’t bring in undefined values<br>                        // 最终都会到这条分支<br>                        // 简单的值覆盖<br>                    } else if (copy !== undefined) {<br>                        target[name] = copy;<br>                    }<br>                }<br>            }<br>        }<br><br>        // Return the modified object<br>        // 返回新的 target<br>        // 如果 i &lt; length ，是直接返回没经过处理的 target，也就是 arguments[0]<br>        // 也就是如果不传需要覆盖的源，调用 $.extend 其实是增加 jQuery 的静态方法<br>        return target;<br>    };<br><br>需要注意的是这一句 jQuery.extend = jQuery.fn.extend = function() {} ，也就是 jQuery.extend 的实现和 jQuery.fn.extend 的实现共用了同一个方法，但是为什么能够实现不同的功能了，这就要归功于 Javascript 强大（怪异？）的 this 了。<br><br>1）在 jQuery.extend() 中，this 的指向是 jQuery 对象(或者说是 jQuery 类)，所以这里扩展在 jQuery 上；<br><br>2）在 jQuery.fn.extend() 中，this 的指向是 fn 对象，前面有提到 jQuery.fn = jQuery.prototype ，也就是这里增加的是原型方法，也就是对象方法。<br><br>6jQuery 的链式调用及回溯<br>当然，除了链式调用，jQuery 甚至还允许回溯<br>// 通过 end() 方法终止在当前链的最新过滤操作，返回上一个对象集合<br>$(‘div’).eq(0).show().end().eq(1).hide();<br>当选择了 (‘div’).eq(0) 之后使用 end() 可以回溯到上一步选中的 jQuery 对象 $(‘div’)，其内部实现其实是依靠添加了 prevObject 这个属性：<br>    <div align="center"><br>    <img src="/images/jquery/1_2.jpg"><br>    </div><br>    jQuery 完整的链式调用、增栈、回溯通过 return this 、 return this.pushStack() 、return this.prevObject 实现，看看源码实现：<br>    jQuery.fn = jQuery.prototype = {<br>        // 将一个 DOM 元素集合加入到 jQuery 栈<br>        // 此方法在 jQuery 的 DOM 操作中被频繁的使用, 如在 parent(), find(), filter() 中<br>        // pushStack() 方法通过改变一个 jQuery 对象的 prevObject 属性来跟踪链式调用中前一个方法返回的 DOM 结果集合<br>        // 当我们在链式调用 end() 方法后, 内部就返回当前 jQuery 对象的 prevObject 属性<br>        pushStack: function(elems) {<br>            // 构建一个新的jQuery对象，无参的 this.constructor()，只是返回引用this<br>            // jQuery.merge 把 elems 节点合并到新的 jQuery 对象<br>            // this.constructor 就是 jQuery 的构造函数 jQuery.fn.init，所以 this.constructor() 返回一个 jQuery 对象<br>            // 由于 jQuery.merge 函数返回的对象是第二个函数附加到第一个上面，所以 ret 也是一个 jQuery 对象，这里可以解释为什么 pushStack 出入的 DOM 对象也可以用 CSS 方法进行操作<br>            var ret = jQuery.merge(this.constructor(), elems);<br><br>            // 给返回的新 jQuery 对象添加属性 prevObject<br>            // 所以也就是为什么通过 prevObject 能取到上一个合集的引用了<br>            ret.prevObject = this;<br>            ret.context = this.context;<br><br>            // Return the newly-formed element set<br>            return ret;<br>        },<br>        // 回溯链式调用的上一个对象<br>        end: function() {<br>            // 回溯的关键是返回 prevObject 属性<br>            // 而 prevObject 属性保存了上一步操作的 jQuery 对象集合<br>            return this.prevObject || this.constructor(null);<br>        },<br>        // 取当前 jQuery 对象的第 i 个<br>        eq: function(i) {<br>            // jQuery 对象集合的长度<br>            var len = this.length,<br>                j = +i + (i &lt; 0 ? len : 0);<br><br>            // 利用 pushStack 返回<br>            return this.pushStack(j &gt;= 0 &amp;&amp; j &lt; len ? [this[j]] : []);<br>        },<br>    }<br>总的来说，<br><br>1）end() 方法返回 prevObject 属性，这个属性记录了上一步操作的 jQuery 对象合集；<br><br>2）而 prevObject 属性由 pushStack() 方法生成，该方法将一个 DOM 元素集合加入到 jQuery 内部管理的一个栈中，通过改变 jQuery 对象的 prevObject 属性来跟踪链式调用中前一个方法返回的 DOM 结果集合<br><br>3）当我们在链式调用 end() 方法后，内部就返回当前 jQuery 对象的 prevObject 属性，完成回溯。<br><br>7jQuery 正则与细节优化<br>jQuery 当中用了大量的正则表达式且质量较高<br>P.S.<br>如果是个正则小白，我建议在阅读之前先去了解以下几点：<br>1）了解并尝试使用 Javascript 正则相关 API，包括了 test() 、replace() 、match() 、exec() 的用法；<br>2）区分上面 4 个方法，哪个是 RegExp 对象方法，哪个是 String 对象方法；<br>3）了解简单的零宽断言，了解什么是匹配但是不捕获以及匹配并且捕获。<br><br>8jQuery 变量冲突处理<br>通过一开始保存全局变量的 window.jQuery 以及 windw.$ 。当需要处理冲突的时候，调用静态方法 noConflict()，让出变量的控制权，源码如下：<br>(function(window, undefined) {<br>    var<br>        // Map over jQuery in case of overwrite<br>        // 设置别名，通过两个私有变量映射了 window 环境下的 jQuery 和 $ 两个对象，以防止变量被强行覆盖<br>        <em>jQuery = window.jQuery,
+        </em>$ = window.$;<br><br>    jQuery.extend({<br>        // noConflict() 方法让出变量 $ 的 jQuery 控制权，这样其他脚本就可以使用它了<br>        // 通过全名替代简写的方式来使用 jQuery<br>        // deep – 布尔值，指示是否允许彻底将 jQuery 变量还原(移交 $ 引用的同时是否移交 jQuery 对象本身)<br>        noConflict: function(deep) {<br>            // 判断全局 $ 变量是否等于 jQuery 变量<br>            // 如果等于，则重新还原全局变量 $ 为 jQuery 运行之前的变量（存储在内部变量 <em>$ 中）<br>            if (window.$ === jQuery) {<br>                // 此时 jQuery 别名 $ 失效<br>                window.$ = </em>$;<br>            }<br>            // 当开启深度冲突处理并且全局变量 jQuery 等于内部 jQuery，则把全局 jQuery 还原成之前的状况<br>            if (deep &amp;&amp; window.jQuery === jQuery) {<br>                // 如果 deep 为 true，此时 jQuery 失效<br>                window.jQuery = _jQuery;<br>            }<br><br>            // 这里返回的是 jQuery 库内部的 jQuery 构造函数（new jQuery.fn.init()）<br>            // 像使用 $ 一样尽情使用它吧<br>            return jQuery;<br>        }<br>    })<br>}(window)<br>画了一幅简单的流程图帮助理解：<br><div align="center"><br><img src="/images/jquery/1_3.jpg"><br></div>
+
+<p>那么让出了这两个符号之后，是否就不能在我们的代码中使用 jQuery 或者呢 $ 呢？莫慌，还是可以使用的：<br>// 让出 jQuery 、$ 的控制权不代表不能使用 jQuery 和 $ ，方法如下：<br>var query = jQuery.noConflict(true);</p>
+<p>(function($) {</p>
+<p>// 插件或其他形式的代码，也可以将参数设为 jQuery<br>})(query);</p>
+<p>//  … 其他用 $ 作为别名的库的代码</p>
+<p>9短路表达式 与 多重短路表达式<br>短路表达式：作为”&amp;&amp;”和”||”操作符的操作数表达式，这些表达式在进行求值时，只要最终的结果已经可以确定是真或假，求值过程便告终止，这称之为短路求值。这是这两个操作符的一个重要属性。<br>    // ||短路表达式<br>    var foo = a || b;<br>    // 相当于<br>    if(a){<br>        foo = a;<br>    }else{<br>        foo = b;<br>    }</p>
+<pre><code>// &amp;&amp;短路表达式
+var bar = a &amp;&amp; b;
+// 相当于
+if(a){
+    bar = b;
+}else{
+    bar = a;
+}
+</code></pre><p>当然，上面两个例子是短路表达式最简单是情况，多数情况下，jQuery 是这样使用它们的：<br>    // 选自 jQuery 源码中的 Sizzle 部分<br>    function siblingCheck(a, b) {<br>        var cur = b &amp;&amp; a,<br>            diff = cur &amp;&amp; a.nodeType === 1 &amp;&amp; b.nodeType === 1 &amp;&amp;<br>            (~b.sourceIndex || MAX_NEGATIVE) -<br>            (~a.sourceIndex || MAX_NEGATIVE);</p>
+<pre><code>    // other code ...  
+}    
+</code></pre><p>diff 的值经历了多重短路表达式配合一些全等判断才得出，这种代码很优雅，但是可读性下降了很多，使用的时候权衡一下，多重短路表达式和简单短路表达式其实一样，只需要先把后面的当成一个整体，依次推进，得出最终值。<br>    var a = 1, b = 0, c = 3;</p>
+<pre><code>var foo = a &amp;&amp; b &amp;&amp; c, // 0 ,相当于 a &amp;&amp; (b &amp;&amp; c)
+  bar = a || b || c;  // 1
+</code></pre><p>这里需要提出一些值得注意的点：</p>
+<p>1、在 Javascript 的逻辑运算中，0、””、null、false、undefined、NaN 都会判定为 false ，而其他都为 true ；</p>
+<p>2、因为 Javascript 的内置弱类型域 (weak-typing domain)，所以对严格的输入验证这一点不太在意，即便使用 &amp;&amp; 或者 || 运算符的运算数不是布尔值，仍然可以将它看作布尔运算。虽然如此，还是建议如下：</p>
+<pre><code>if(foo){ ... }     //不够严谨
+if(!!foo){ ... }   //更为严谨，!!可将其他类型的值转换为boolean类型     
+</code></pre><p>9预定义常用方法的入口<br>jqery前几行代码如下：<br>(function(window, undefined) {<br>    var<br>        // 定义了一个对象变量，一个字符串变量，一个数组变量<br>        class2type = {},<br>        core_version = “1.10.2”,<br>        core_deletedIds = [],</p>
+<pre><code>// 保存了对象、字符串、数组的一些常用方法 concat push 等等...
+core_concat = core_deletedIds.concat,
+core_push = core_deletedIds.push,
+core_slice = core_deletedIds.slice,
+core_indexOf = core_deletedIds.indexOf,
+core_toString = class2type.toString,
+core_hasOwn = class2type.hasOwnProperty,
+core_trim = core_version.trim;
+</code></pre><p>})(window);<br>不得不说，jQuery 在细节上做的真的很好，这里首先定义了一个对象变量、一个字符串变量、数组变量，要注意这 3 个变量本身在下文是有自己的用途的（压榨每一个变量的作用，使其作用最大化）<br>其次，借用这三个变量，再定义些常用的核心方法，从上往下是数组的 concat、push 、slice 、indexOf 方法，对象的 toString 、hasOwnProperty 方法以及字符串的 trim 方法，core_xxxx 这几个变量事先存储好了这些常用方法的入口，如果下文行文当中需要调用这些方法，将会：<br>    jQuery.fn = jQuery.prototype = {<br>        // …</p>
+<pre><code>    // 将 jQuery 对象转换成数组类型
+    toArray: function() {
+        // 调用数组的 slice 方法，使用预先定义好了的 core_slice ，节省查找内存地址时间，提高效率
+        // 相当于 return Array.prototype.slice.call(this)
+        return core_slice.call(this);
+    }
+}
+</code></pre><p>可以看到，当需要使用这些预先定义好的方法，只需要借助 call 或者 apply（戳我详解）进行调用。<br>需要调用concat时可以通过以下方法调用，关于call跟apply的用法自行理解，:) var arr = []; 方式一：arr.concat(); 方式二：core_concat.call(arr); 方式三：core_concat.apply(arr);</p>
+<p>那么 jQuery 为什么要这样做呢，我觉得：</p>
+<p>1、以数组对象的 concat 方法为例，如果不预先定义好 core_concat = core_deletedIds.concat 而是调用实例 arr 的方法 concat 时，首先需要辨别当前实例 arr 的类型是 Array，在内存空间中寻找 Array 的 concat 内存入口，把当前对象 arr 的指针和其他参数压入栈，跳转到 concat 地址开始执行，而当保存了 concat 方法的入口 core_concat 时，完全就可以省去前面两个步骤，从而提升一些性能；</p>
+<p>2、另外一点，借助 call 或者 apply 的方式调用，让一些类数组可以直接调用数组的方法。就如上面是示例，jQuery 对象是类数组类型，可以直接调用数组的 slice 方法转换为数组类型。又譬如，将参数 arguments 转换为数组类型：<br>P.S. 另一种解释如下：<br>思考下边2个问题：</p>
+<p>jQuery为什么要先把这些方法存储起来？<br>jQuery为什么要采用方式二或者三，而不直接使用方式一的做法？ 在不查阅资料的前提下，唯一让我觉得作者这么做的原因是因为效率问题。 以下是我的理解：<br>调用实例arr的方法concat时，首先需要辨别当前实例arr的类型是Array，在内存空间中寻找Array的concat内存入口，把当前对象arr的指针和其他参数压入栈，跳转到concat地址开始执行。 当保存了concat方法的入口core_concat时，完全就可以省去前面两个步骤，从而提升一些性能。 nodejser在评论中也给出了另一种答案： var obj = {}; 此时调用obj.concat是非法的，但是如果jQuery采用上边方式二或者三的话，能够解决这个问题。 也即是让类数组也能用到数组的方法（这就是call跟apply带来的另一种用法），尤其在jQuery里边引用一些DOM对象时，也能完美的用这个方法去解决，妙！</p>
+<p>9钩子机制（hook）<br>在 jQuery 2.0.0 之前的版本，对兼容性做了大量的处理，正是这样才让广大开发人员能够忽略不同浏览器的不同特性的专注于业务本身的逻辑。而其中，钩子机制在浏览器兼容方面起了十分巨大的作用。</p>
+<p>钩子是编程惯用的一种手法，用来解决一种或多种特殊情况的处理。</p>
+<p>简单来说，钩子就是适配器原理，或者说是表驱动原理，我们预先定义了一些钩子，在正常的代码逻辑中使用钩子去适配一些特殊的属性，样式或事件，这样可以让我们少写很多 else if 语句。</p>
+<p>如果还是很难懂，看一个简单的例子，举例说明 hook 到底如何使用：</p>
+<p>现在考公务员，要么靠实力，要么靠关系，但领导肯定也不会弄的那么明显，一般都是暗箱操作，这个场景用钩子实现再合理不过了。</p>
+<pre><code>// 如果不用钩子的情况
+// 考生分数以及父亲名
+function examinee(name, score, fatherName) {
+    return {
+        name: name,
+        score: score,
+        fatherName: fatherName
+    };
+}
+
+// 审阅考生们
+function judge(examinees) {
+    var result = {};
+    for (var i in examinees) {
+        var curExaminee = examinees[i];
+        var ret = curExaminee.score;
+        // 判断是否有后门关系
+        if (curExaminee.fatherName === &apos;xijingping&apos;) {
+            ret += 1000;
+        } else if (curExaminee.fatherName === &apos;ligang&apos;) {
+            ret += 100;
+        } else if (curExaminee.fatherName === &apos;pengdehuai&apos;) {
+            ret += 50;
+        }
+        result[curExaminee.name] = ret;
+    }
+    return result;
+}
+
+
+var lihao = examinee(&quot;lihao&quot;, 10, &apos;ligang&apos;);
+var xida = examinee(&apos;xida&apos;, 8, &apos;xijinping&apos;);
+var peng = examinee(&apos;peng&apos;, 60, &apos;pengdehuai&apos;);
+var liaoxiaofeng = examinee(&apos;liaoxiaofeng&apos;, 100, &apos;liaodaniu&apos;);
+
+var result = judge([lihao, xida, peng, liaoxiaofeng]);
+
+// 根据分数选取前三名
+for (var name in result) {
+    console.log(&quot;name:&quot; + name);
+    console.log(&quot;score:&quot; + score);
+}    
+</code></pre><p>可以看到，在中间审阅考生这个函数中，运用了很多 else if 来判断是否考生有后门关系，如果现在业务场景发生变化，又多了几名考生，那么 else if 势必越来越复杂，往后维护代码也将越来越麻烦，成本很大，那么这个时候如果使用钩子机制，该如何做呢？<br>    // relationHook 是个钩子函数，用于得到关系得分<br>    var relationHook = {<br>        “xijinping”: 1000,<br>        “ligang”: 100,<br>        “pengdehuai”: 50,<br>    　　 // 新的考生只需要在钩子里添加关系分<br>    }</p>
+<pre><code>// 考生分数以及父亲名
+function examinee(name, score, fatherName) {
+    return {
+        name: name,
+        score: score,
+        fatherName: fatherName
+    };
+}
+
+// 审阅考生们
+function judge(examinees) {
+    var result = {};
+    for (var i in examinees) {
+        var curExaminee = examinees[i];
+        var ret = curExaminee.score;
+        if (relationHook[curExaminee.fatherName] ) {
+            ret += relationHook[curExaminee.fatherName] ;
+        }
+        result[curExaminee.name] = ret;
+    }
+    return result;
+}
+
+
+var lihao = examinee(&quot;lihao&quot;, 10, &apos;ligang&apos;);
+var xida = examinee(&apos;xida&apos;, 8, &apos;xijinping&apos;);
+var peng = examinee(&apos;peng&apos;, 60, &apos;pengdehuai&apos;);
+var liaoxiaofeng = examinee(&apos;liaoxiaofeng&apos;, 100, &apos;liaodaniu&apos;);
+
+var result = judge([lihao, xida, peng, liaoxiaofeng]);
+
+// 根据分数选取前三名
+for (var name in result) {
+    console.log(&quot;name:&quot; + name);
+    console.log(&quot;score:&quot; + score);
+}     
+</code></pre><p>可以看到，使用钩子去处理特殊情况，可以让代码的逻辑更加清晰，省去大量的条件判断，上面的钩子机制的实现方式，采用的就是表驱动方式，就是我们事先预定好一张表（俗称打表），用这张表去适配特殊情况。当然 jQuery 的 hook 是一种更为抽象的概念，在不同场景可以用不同方式实现。<br>看看 jQuery 里的表驱动 hook 实现，$.type 方法：<br>    (function(window, undefined) {<br>        var<br>            // 用于预存储一张类型表用于 hook<br>            class2type = {};</p>
+<pre><code>    // 原生的 typeof 方法并不能区分出一个变量它是 Array 、RegExp 等 object 类型，jQuery 为了扩展 typeof 的表达力，因此有了 $.type 方法
+    // 针对一些特殊的对象（例如 null，Array，RegExp）也进行精准的类型判断
+    // 运用了钩子机制，判断类型前，将常见类型打表，先存于一个 Hash 表 class2type 里边
+    jQuery.each(&quot;Boolean Number String Function Array Date RegExp Object Error&quot;.split(&quot; &quot;), function(i, name) {
+        class2type[&quot;[object &quot; + name + &quot;]&quot;] = name.toLowerCase();
+    });
+
+    jQuery.extend({
+        // 确定JavaScript 对象的类型
+        // 这个方法的关键之处在于 class2type[core_toString.call(obj)]
+        // 可以使得 typeof obj 为 &quot;object&quot; 类型的得到更进一步的精确判断
+        type: function(obj) {
+
+            if (obj == null) {
+                return String(obj);
+            }
+            // 利用事先存好的 hash 表 class2type 作精准判断
+            // 这里因为 hook 的存在，省去了大量的 else if 判断
+            return typeof obj === &quot;object&quot; || typeof obj === &quot;function&quot; ?
+                class2type[core_toString.call(obj)] || &quot;object&quot; :
+                typeof obj;
+        }
+    })
+})(window);    
+</code></pre><p>这里的 hook 只是 jQuery 大量使用钩子的冰山一角，在对 DOM 元素的操作一块，attr 、val 、prop 、css 方法大量运用了钩子，用于兼容 IE 系列下的一些怪异行为。在遇到钩子函数的时候，要结合具体情境具体分析，这些钩子相对于表驱动而言更加复杂，它们的结构大体如下，只要记住钩子的核心原则，保持代码整体逻辑的流畅性，在特殊的情境下去处理一些特殊的情况：<br>    var someHook = {<br>        get: function(elem) {<br>            // obtain and return a value<br>            return “something”;<br>        },<br>        set: function(elem, value) {<br>            // do something with value<br>        }<br>    }<br>从某种程度上讲，钩子是一系列被设计为以你自己的代码来处理自定义值的回调函数。有了钩子，你可以将差不多任何东西保持在可控范围内。</p>
+<p>10 连贯接口<br>无论 jQuery 如今的流行趋势是否在下降，它用起来确实让人大呼过瘾，这很大程度归功于它的链式调用，接口的连贯性及易记性。很多人将连贯接口看成链式调用，这并不全面，我觉得连贯接口包含了链式调用且代表更多。而 jQuery 无疑是连贯接口的佼佼者。</p>
+<p>1、链式调用：链式调用的主要思想就是使代码尽可能流畅易读，从而可以更快地被理解。有了链式调用，我们可以将代码组织为类似语句的片段，增强可读性的同时减少干扰。（链式调用的具体实现上一章有详细讲到）<br>    // 传统写法<br>    var elem = document.getElementById(“foobar”);<br>    elem.style.background = “red”;<br>    elem.style.color = “green”;<br>    elem.addEventListener(‘click’, function(event) {<br>      alert(“hello world!”);<br>    }, true);</p>
+<pre><code>// jQuery 写法
+$(&apos;xxx&apos;)
+    .css(&quot;background&quot;, &quot;red&quot;)
+    .css(&quot;color&quot;, &quot;green&quot;)
+    .on(&quot;click&quot;, function(event) {
+    　　alert(&quot;hello world&quot;);
+    });
+</code></pre><p>2、命令查询同体：这个上一章也讲过了，就是函数重载。正常而言，应该是命令查询分离（Command and Query Separation，CQS），是源于命令式编程的一个概念。那些改变对象的状态（内部的值）的函数称为命令，而那些检索值的函数称为查询。原则上，查询函数返回数据，命令函数返回状态，各司其职。而 jQuery 将 getter 和 setter 方法压缩到单一方法中创建了一个连贯的接口，使得代码暴露更少的方法，但却以更少的代码实现同样的目标。</p>
+<p>3、参数映射及处理：jQuery 的接口连贯性还体现在了对参数的兼容处理上，方法如何接收数据比让它们具有可链性更为重要。虽然方法的链式调用是非常普遍的，你可以很容易地在你的代码中实现，但是处理参数却不同，使用者可能传入各种奇怪的参数类型，而 jQuery 作者想的真的很周到，考虑了用户的多种使用场景，提供了多种对参数的处理。<br>    // 传入键值对<br>    jQuery(“#some-selector”)<br>      .css(“background”, “red”)<br>      .css(“color”, “white”)<br>      .css(“font-weight”, “bold”)<br>      .css(“padding”, 10);</p>
+<pre><code>// 传入 JSON 对象
+jQuery(&quot;#some-selector&quot;).css({
+  &quot;background&quot; : &quot;red&quot;,
+  &quot;color&quot; : &quot;white&quot;,
+  &quot;font-weight&quot; : &quot;bold&quot;,
+  &quot;padding&quot; : 10
+});
+</code></pre><p>jQuery 的 on() 方法可以注册事件处理器。和 CSS() 一样它也可以接收一组映射格式的事件，但更进一步地，它允许单一处理器可以被多个事件注册：<br>    // binding events by passing a map<br>    jQuery(“#some-selector”).on({<br>      “click” : myClickHandler,<br>      “keyup” : myKeyupHandler,<br>      “change” : myChangeHandler<br>    });</p>
+<pre><code>// binding a handler to multiple events:
+jQuery(&quot;#some-selector&quot;).on(&quot;click keyup change&quot;, myEventHandler);    
+</code></pre><p>核心讲解推荐：<a href="http://www.cnblogs.com/chuaWeb/p/jQuery-1-9-1-frame1.html" target="_blank" rel="external">http://www.cnblogs.com/chuaWeb/p/jQuery-1-9-1-frame1.html</a>            </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/08/18/jquery源码总结(中) /" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：jquery源码总结(中)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/18/jade/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：jade</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jquery源码总结(上)" data-title="jquery源码总结(上)" data-url="http://yoursite.com/2016/08/18/jquery源码总结(上)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/main.js"></script>
+<script src="/./js/myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>
