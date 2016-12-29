@@ -14,16 +14,16 @@
 <meta property="og:url" content="http://yoursite.com/2015/12/10/Git本地仓库详解/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="大纲：一、前言二、概述三、在Windows上安装Git四、创建本地仓库五、本地仓库管理详解六、总结">
-<meta property="og:image" content="http://yoursite.com/images/Git/1_1.png">
-<meta property="og:image" content="http://yoursite.com/images/Git/1_2.png">
-<meta property="og:image" content="http://yoursite.com/images/Git/1_3.png">
-<meta property="og:image" content="http://yoursite.com/images/Git/1_4.png">
-<meta property="og:image" content="http://yoursite.com/images/Git/1_5.png">
-<meta property="og:updated_time" content="2016-12-29T03:45:27.000Z">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/Git/1_1.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/Git/1_2.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/Git/1_3.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/Git/1_4.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/Git/1_5.png">
+<meta property="og:updated_time" content="2016-12-29T15:08:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git本地仓库详解">
 <meta name="twitter:description" content="大纲：一、前言二、概述三、在Windows上安装Git四、创建本地仓库五、本地仓库管理详解六、总结">
-<meta name="twitter:image" content="http://yoursite.com/images/Git/1_1.png">
+<meta name="twitter:image" content="http://oiyahh2nw.bkt.clouddn.com/Git/1_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -81,7 +81,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -162,7 +162,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -200,10 +200,10 @@
 <h5 id="二-概述"><a href="#二-概述" class="headerlink" title="二. 概述"></a>二. 概述</h5><p>Git 本地仓库详解<br>Git与GitHub总结</p>
 <h5 id="三-在Windows上安装Git"><a href="#三-在Windows上安装Git" class="headerlink" title="三. 在Windows上安装Git"></a>三. 在Windows上安装Git</h5><ul>
 <li>下载地址：<a href="http://msysgit.github.io/" target="_blank" rel="external">http://msysgit.github.io/</a> 双击安装即可</li>
-<li>开始菜单——Git Bash,出现如下界面则安装成功<div align="center"><br><img src="/images/Git/1_1.png"><br></div></li>
+<li>开始菜单——Git Bash,出现如下界面则安装成功<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/Git/1_1.png"><br></div></li>
 <li>基本测试<br>  $ git config –global user.name “Your Name”<br>  $ git config –global user.email “email@example.com”<br>  注：我设置的情况如下<br>  $    git config –global user.name “hmqqk”<br>  $ git config –global user.email “2442501113@qq.com”<br>P.S. Git是分布式控制系统，所以，每个客户端都必须设置：你的名字和邮箱。这样才容易区分是哪个用户提交的Git版本.git config 后面接的是–global参数，这表示你的机器上所有的Git仓库都会使用这个配置，当然你也可以对不同的仓库指定不同的用户名和邮箱。<h5 id="四-创建本地仓库"><a href="#四-创建本地仓库" class="headerlink" title="四. 创建本地仓库"></a>四. 创建本地仓库</h5></li>
-<li>版本库又称仓库<br>版本库或者是仓库，英文名Repository，可简易理解为目录且这个目录中的所以文件都被git管理，所有操作如增加、删除、修改文件等都会被记录下来，以便后来跟踪与修改相关记录，甚至被还原。<br>创建一个版本库（即创建目录，避免用中文，一方带来不必要的麻烦）<div align="center"><br><img src="/images/Git/1_2.png"><br></div></li>
-<li>目录变仓库<br><div align="center"><br><img src="/images/Git/1_3.png"><br></div><br>P.S. git init为初始化一个空目录，在该目录下生成了.git目录，git目录下即为控制和管理版本库相关文件。</li>
+<li>版本库又称仓库<br>版本库或者是仓库，英文名Repository，可简易理解为目录且这个目录中的所以文件都被git管理，所有操作如增加、删除、修改文件等都会被记录下来，以便后来跟踪与修改相关记录，甚至被还原。<br>创建一个版本库（即创建目录，避免用中文，一方带来不必要的麻烦）<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/Git/1_2.png"><br></div></li>
+<li>目录变仓库<br><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/Git/1_3.png"><br></div><br>P.S. git init为初始化一个空目录，在该目录下生成了.git目录，git目录下即为控制和管理版本库相关文件。</li>
 <li><p>向本地仓库中增加文件<br>版本库中只能跟踪和管理文本文件，如txt文件、js文件、php文件、java文件等所有的程序代码均可。但如视频、图片等二进制文件，虽然能由git管理，但是只能记录大小，无法跟踪具体修改。<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ vim readme.txt</p>
 <p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ ls<br>  readme.txt</p>
 <p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ cat readme.txt<br>  This is git test</p>
@@ -233,7 +233,7 @@
 <h5 id="五-本地仓库管理详解"><a href="#五-本地仓库管理详解" class="headerlink" title="五.本地仓库管理详解"></a>五.本地仓库管理详解</h5><ul>
 <li>git status git diff 当文件等有所改动时可通过这2个文件进行查看</li>
 <li>版本回滚：git log git reset</li>
-<li>工作区、提交区/暂存区（stage/index）、版本库<br><div align="center"><br><img src="/images/Git/1_4.png"><br></div><br>工作区即开发目录，如hmqqk.上面所述的hmqqk下的.git是Git的版本库。在“.git”目录中有很多文件，其中一个重要的文件index，就是我们说的提交区/暂存区（stage/index）。暂存区（stage, index）是 Git 最重要的概念之一。<br><div align="center"><br><img src="/images/Git/1_5.png"><br></div><br>在上图中，我们可以看到部分 Git 命令是如何影响工作区和暂存区（stage/index）的。<br>图中左侧为工作区，右侧为版本库。在版本库中标记为 “index” 的区域是暂存区（stage/index），标记为 “master” 的是 master 分支所代表的目录树。图中我们可以看出此时 “HEAD” 实际是指向 master 分支的一个“指针”。所以，图示的命令中出现 HEAD 的地方可以用 master 来替换。图中的 objects 标识的区域为 Git 的对象库，实际位于 “.git/objects” 目录下。<br>当对工作区新增或修改的文件执行 “git add” 命令时，暂存区的目录树被更新，同时工作区新增或修改的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。（如上图）<br>当执行提交操作 “git commit” 时，暂存区的目录树写到版本库的对象库（objects）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。（如上图）<br>当执行 “git reset HEAD” 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。 当执行 “git rm –cached <file>“ 命令时，会直接从暂存区删除文件，工作区则不做出改变。<br>当执行 “git checkout .” 或者 “git checkout – <file>“ 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。<br>当执行 “git checkout HEAD .” 或者 “git checkout HEAD <file>“ 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</file></file></file></li>
+<li>工作区、提交区/暂存区（stage/index）、版本库<br><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/Git/1_4.png"><br></div><br>工作区即开发目录，如hmqqk.上面所述的hmqqk下的.git是Git的版本库。在“.git”目录中有很多文件，其中一个重要的文件index，就是我们说的提交区/暂存区（stage/index）。暂存区（stage, index）是 Git 最重要的概念之一。<br><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/Git/1_5.png"><br></div><br>在上图中，我们可以看到部分 Git 命令是如何影响工作区和暂存区（stage/index）的。<br>图中左侧为工作区，右侧为版本库。在版本库中标记为 “index” 的区域是暂存区（stage/index），标记为 “master” 的是 master 分支所代表的目录树。图中我们可以看出此时 “HEAD” 实际是指向 master 分支的一个“指针”。所以，图示的命令中出现 HEAD 的地方可以用 master 来替换。图中的 objects 标识的区域为 Git 的对象库，实际位于 “.git/objects” 目录下。<br>当对工作区新增或修改的文件执行 “git add” 命令时，暂存区的目录树被更新，同时工作区新增或修改的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。（如上图）<br>当执行提交操作 “git commit” 时，暂存区的目录树写到版本库的对象库（objects）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。（如上图）<br>当执行 “git reset HEAD” 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。 当执行 “git rm –cached <file>“ 命令时，会直接从暂存区删除文件，工作区则不做出改变。<br>当执行 “git checkout .” 或者 “git checkout – <file>“ 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。<br>当执行 “git checkout HEAD .” 或者 “git checkout HEAD <file>“ 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</file></file></file></li>
 <li>修改管理<ul>
 <li>关于修改<br>为什么Git比其它版本控制软件优秀？<br>因为Git跟踪管理的是我们每一次的修改（或操作），而不是文件。比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</li>
 </ul>

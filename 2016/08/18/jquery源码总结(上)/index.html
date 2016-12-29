@@ -14,14 +14,14 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/18/jquery源码总结(上)/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="jquery整体架构">
-<meta property="og:image" content="http://yoursite.com/images/jquery/1_1.png">
-<meta property="og:image" content="http://yoursite.com/images/jquery/1_2.jpg">
-<meta property="og:image" content="http://yoursite.com/images/jquery/1_3.jpg">
-<meta property="og:updated_time" content="2016-12-29T03:01:52.000Z">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/jquery/1_1.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/jquery/1_2.jpg">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/jquery/1_3.jpg">
+<meta property="og:updated_time" content="2016-12-29T15:15:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery源码总结(上)">
 <meta name="twitter:description" content="jquery整体架构">
-<meta name="twitter:image" content="http://yoursite.com/images/jquery/1_1.png">
+<meta name="twitter:image" content="http://oiyahh2nw.bkt.clouddn.com/jquery/1_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -79,7 +79,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -160,7 +160,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -193,7 +193,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="jquery整体架构"><a href="#jquery整体架构" class="headerlink" title="jquery整体架构"></a>jquery整体架构</h5><p><div align="center"><br><img src="/images/jquery/1_1.png"><br></div><br><a id="more"></a><br>jquery可理解为总-分结构，在 jQuery 中，只有全局都会用到的变量、正则表达式定义在了代码最开头，而每个模块一开始，又会定义一些只在本模块会使用到的变量、正则、方法等。</p>
+        <h5 id="jquery整体架构"><a href="#jquery整体架构" class="headerlink" title="jquery整体架构"></a>jquery整体架构</h5><p><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/jquery/1_1.png"><br></div><br><a id="more"></a><br>jquery可理解为总-分结构，在 jQuery 中，只有全局都会用到的变量、正则表达式定义在了代码最开头，而每个模块一开始，又会定义一些只在本模块会使用到的变量、正则、方法等。</p>
 <h5 id="jquery主要贡献（个人feelings）"><a href="#jquery主要贡献（个人feelings）" class="headerlink" title="jquery主要贡献（个人feelings）"></a>jquery主要贡献（个人feelings）</h5><p>提供工具方法；<br>以下方法是在jQuery的core定义的工具方法（可以去github的jQuery项目），core是整个jQuery最核心的组成部分，所以从这部分先剖析： $.trim() 去除字符串两端的空格。（内部调用7次） $.each() 遍历数组或对象，这个方法在jQuery内部中被使用很多次，有几个不错的用法，之后剖析再举例吧。（内部调用59次） $.inArray() 返回一个值在数组中的索引位置。如果该值不在数组中，则返回-1。（内部调用9次） $.grep() 返回数组中符合某种标准的元素。（内部调用6次） $.merge() 合并两个数组。（内部调用11次） $.map() 将一个数组中的元素转换到另一个数组中。（内部调用12次） $.makeArray() 将对象转化为数组。（内部调用6次） $.globalEval() 在全局作用域下执行一段js脚本。（内部调用2次） $.proxy() 接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文(context)语境。（内部调用0次） $.nodeName() 返回DOM节点的节点名字，或者判断DOM节点名是否为某某名字。（内部调用51次） $.extend() 将多个对象，合并到第一个对象。（内部调用42次）<br>以下均是对类型的判断，本文只是针对$.type做一下讨论，isXXX的方法基本都是调用$.type来实现，不对它们做细节探讨。 $.type() 判断对象的类别（函数对象、日期对象、数组对象、正则对象等等）。这个方法的实现就是用$.each辅助的。（内部调用65次） $.isArray() 判断某个参数是否为数组。（内部调用12次） $.isEmptyObject() 判断某个对象是否为空（不含有任何属性）。（内部调用4次） $.isFunction() 判断某个参数是否为函数。（内部调用32次） $.isPlainObject() 判断某个参数是否为用”{}”或”new Object”建立的对象。（内部调用4次） $.isWindow() 判断是否为window对象。（内部调用6次）<br>以下三个函数比较简单，没必要在文章剖析。 $.noop() 一个空函数，个人觉得是用来作为一个默认的回调函数，无需每次去定义一个空的function消耗资源。（内部调用2次） $.now() 获取当前时间戳，代码很简单：return (new Date()).getTime();。（内部调用4次） $.error() 报错，对外抛出一个异常，代码很简单：throw new Error(msg);。（内部调用2次）<br>以下三个是jQuery主要用来在ajax处理返回数据时使用，其中parseJSON这个接口在实际工程中被用得最多，经常用来把一段文本解析成json格式 $.parseHTML() 解析HTML，之后再单独一节写。（内部调用2次） $.parseJSON() 解析JSON，之后再单独一节写。（内部调用2次） $.parseXML() 解析XML，之后再单独一节写。（内部调用1次）<br>其中我认为是内部辅助函数如下： $.access() 这个函数我更认为是jQuery内部的辅助函数，没必要暴漏出来，在内部用于去一些对象的属性值等，在之后剖析到DOM操作等再细细探讨一下。（内部调用9次） $.camelCase() 转化成骆驼峰命名。（内部调用12次）</p>
 <h5 id="trim"><a href="#trim" class="headerlink" title="$.trim"></a>$.trim</h5><p>jQuery的trim函数是用来去除字符串两端空格（jQuery源码里边使用了7次），这个函数也是使用频率很高的，因为时常要对用户在页面上输入的文本trim一下~<br>用法：$.trim(“ 前尾有空格 “) === “前尾有空格”</p>
 <pre><code>core_version = &quot;1.9.0&quot;,
@@ -880,7 +880,7 @@ jQuery.prototype.B = function(){};
     return target;
 };        
 </code></pre><p>需要注意的是这一句 jQuery.extend = jQuery.fn.extend = function() {} ，也就是 jQuery.extend 的实现和 jQuery.fn.extend 的实现共用了同一个方法，但是为什么能够实现不同的功能了，这就要归功于 Javascript 强大（怪异？）的 this 了。<br>1）在 jQuery.extend() 中，this 的指向是 jQuery 对象(或者说是 jQuery 类)，所以这里扩展在 jQuery 上；<br>2）在 jQuery.fn.extend() 中，this 的指向是 fn 对象，前面有提到 jQuery.fn = jQuery.prototype ，也就是这里增加的是原型方法，也就是对象方法。</p>
-<h5 id="jQuery-的链式调用及回溯"><a href="#jQuery-的链式调用及回溯" class="headerlink" title="jQuery 的链式调用及回溯"></a>jQuery 的链式调用及回溯</h5><p>当然，除了链式调用，jQuery 甚至还允许回溯<br>// 通过 end() 方法终止在当前链的最新过滤操作，返回上一个对象集合<br>$(‘div’).eq(0).show().end().eq(1).hide();<br>当选择了 (‘div’).eq(0) 之后使用 end() 可以回溯到上一步选中的 jQuery 对象 $(‘div’)，其内部实现其实是依靠添加了 prevObject 这个属性：<br>    <div align="center"><br>    <img src="/images/jquery/1_2.jpg"><br>    </div><br>    jQuery 完整的链式调用、增栈、回溯通过 return this 、 return this.pushStack() 、return this.prevObject 实现，看看源码实现：</p>
+<h5 id="jQuery-的链式调用及回溯"><a href="#jQuery-的链式调用及回溯" class="headerlink" title="jQuery 的链式调用及回溯"></a>jQuery 的链式调用及回溯</h5><p>当然，除了链式调用，jQuery 甚至还允许回溯<br>// 通过 end() 方法终止在当前链的最新过滤操作，返回上一个对象集合<br>$(‘div’).eq(0).show().end().eq(1).hide();<br>当选择了 (‘div’).eq(0) 之后使用 end() 可以回溯到上一步选中的 jQuery 对象 $(‘div’)，其内部实现其实是依靠添加了 prevObject 这个属性：<br>    <div align="center"><br>    <img src="http://oiyahh2nw.bkt.clouddn.com/jquery/1_2.jpg"><br>    </div><br>    jQuery 完整的链式调用、增栈、回溯通过 return this 、 return this.pushStack() 、return this.prevObject 实现，看看源码实现：</p>
 <pre><code>jQuery.fn = jQuery.prototype = {
     // 将一个 DOM 元素集合加入到 jQuery 栈
     // 此方法在 jQuery 的 DOM 操作中被频繁的使用, 如在 parent(), find(), filter() 中
@@ -943,7 +943,7 @@ jQuery.prototype.B = function(){};
     }
 })
 </code></pre><p>}(window)<br>画了一幅简单的流程图帮助理解：</p>
-<p><div align="center"><br><img src="/images/jquery/1_3.jpg"><br></div><br>那么让出了这两个符号之后，是否就不能在我们的代码中使用 jQuery 或者呢 $ 呢？莫慌，还是可以使用的：</p>
+<p><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/jquery/1_3.jpg"><br></div><br>那么让出了这两个符号之后，是否就不能在我们的代码中使用 jQuery 或者呢 $ 呢？莫慌，还是可以使用的：</p>
 <pre><code>// 让出 jQuery 、$ 的控制权不代表不能使用 jQuery 和 $ ，方法如下：
 var query = jQuery.noConflict(true);
 (function($) {
@@ -1270,8 +1270,8 @@ jQuery(&quot;#some-selector&quot;).on(&quot;click keyup change&quot;, myEventHan
     </a>
   
   
-    <a href="/2016/08/18/jquery源码总结(中) /" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">下一篇：jquery源码总结(中)</div>
+    <a href="/2016/08/18/nodejs总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：nodejs总结</div>
       <i class="icon-circle-right"></i>
     </a>
   

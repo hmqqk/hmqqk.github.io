@@ -14,15 +14,15 @@
 <meta property="og:url" content="http://yoursite.com/2015/10/25/谈web中静态页面和动态页面的区别/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="让我们一起先来了解静态web页面和动态web页面的定义。">
-<meta property="og:image" content="http://yoursite.com/images/html/1_1.png">
-<meta property="og:image" content="http://yoursite.com/images/html/1_2.png">
-<meta property="og:image" content="http://yoursite.com/images/html/1_3.png">
-<meta property="og:image" content="http://yoursite.com/images/html/1_4.png">
-<meta property="og:updated_time" content="2016-12-29T07:06:49.000Z">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/html/1_1.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/html/1_2.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/html/1_3.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/html/1_4.png">
+<meta property="og:updated_time" content="2016-12-29T15:14:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈web中静态页面和动态页面的区别">
 <meta name="twitter:description" content="让我们一起先来了解静态web页面和动态web页面的定义。">
-<meta name="twitter:image" content="http://yoursite.com/images/html/1_1.png">
+<meta name="twitter:image" content="http://oiyahh2nw.bkt.clouddn.com/html/1_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -80,7 +80,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -161,7 +161,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -200,7 +200,7 @@
 <li>为了让静态web页面显示更加好看，使用javascript／VBScript／ajax（AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。）但是这些特效都是在客户端上借助于浏览器展现给用户的，所以在服务器上本身并没有任何的变化。</li>
 <li>静态web无法连接数据库；</li>
 <li>静态web资源开发技术：HTML；</li>
-<li>由于现在的web页面中，大量使用JS，导致浏览器打开页面，就会占用大量的内存，服务端的压力是减轻了，但压力转移到了客户端。<h5 id="二-动态web页面："><a href="#二-动态web页面：" class="headerlink" title="二. 动态web页面："></a>二. 动态web页面：</h5>动态WEB中，程序依然使用客户端和服务端，客户端依然使用浏览器（IE、FireFox等），通过网络(Network)连接到服务器上，使用HTTP协议发起请求（Request），现在的所有请求都先经过一个WEB Server来处理。<br>如果客户端请求的是静态资源(<em>.htm或者是</em>.htm)，则将请求直接转交给WEB服务器，之后WEB服务器从文件系统中取出内容，发送回客户端浏览器进行解析执行。<br>如果客户端请求的是动态资源（<em>.jsp、</em>.asp/<em>.aspx、</em>.php），则先将请求转交给WEB Container(WEB容器)，在WEB Container中连接数据库，从数据库中取出数据等一系列操作后动态拼凑页面的展示内容，拼凑页面的展示内容后，把所有的展示内容交给WEB服务器，之后通过WEB服务器将内容发送回客户端浏览器进行解析执行。<br><div align="center"><br><img src="/images/html/1_1.png"><br></div><br>再进一步深入分析动态web的访问过程：浏览器访问web时，看似是直接访问的jsp页面，其实是，最先到达的地方是服务器，服务器创建好req和resp对象后再给jsp页面使用。在jsp中完成设置字符集和取得表单参数后再调用servlet，完成业务处理。然后返回到jsp，jsp就会生成相应的html页面。该页面会返回到服务器，再由服务器，通过response对象返回给客户端。<br><div align="center"><br><img src="/images/html/1_2.png"><br></div><br>为什么需要web服务器？(web server)</li>
+<li>由于现在的web页面中，大量使用JS，导致浏览器打开页面，就会占用大量的内存，服务端的压力是减轻了，但压力转移到了客户端。<h5 id="二-动态web页面："><a href="#二-动态web页面：" class="headerlink" title="二. 动态web页面："></a>二. 动态web页面：</h5>动态WEB中，程序依然使用客户端和服务端，客户端依然使用浏览器（IE、FireFox等），通过网络(Network)连接到服务器上，使用HTTP协议发起请求（Request），现在的所有请求都先经过一个WEB Server来处理。<br>如果客户端请求的是静态资源(<em>.htm或者是</em>.htm)，则将请求直接转交给WEB服务器，之后WEB服务器从文件系统中取出内容，发送回客户端浏览器进行解析执行。<br>如果客户端请求的是动态资源（<em>.jsp、</em>.asp/<em>.aspx、</em>.php），则先将请求转交给WEB Container(WEB容器)，在WEB Container中连接数据库，从数据库中取出数据等一系列操作后动态拼凑页面的展示内容，拼凑页面的展示内容后，把所有的展示内容交给WEB服务器，之后通过WEB服务器将内容发送回客户端浏览器进行解析执行。<br><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/html/1_1.png"><br></div><br>再进一步深入分析动态web的访问过程：浏览器访问web时，看似是直接访问的jsp页面，其实是，最先到达的地方是服务器，服务器创建好req和resp对象后再给jsp页面使用。在jsp中完成设置字符集和取得表单参数后再调用servlet，完成业务处理。然后返回到jsp，jsp就会生成相应的html页面。该页面会返回到服务器，再由服务器，通过response对象返回给客户端。<br><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/html/1_2.png"><br></div><br>为什么需要web服务器？(web server)</li>
 <li>不管什么web资源，想被远程计算机访问，都必须有一个与之对应的网络通信程序，当用户来访问时，这个网络通信程序读取web资源数据，并把数据发送给来访者。</li>
 <li>WEB服务器就是这样一个程序，它用于完成底层网络通迅，处理http协议。使用这些服务器，We应用的开发者只需要关注web资源怎么编写，而不需要关心资源如何发送到客户端手中，从而极大的减轻了开发者的开发工作量。<br>常用动态web资源开发技术：JSP/Servlet、ASP、PHP等。<h5 id="三-关于两者区别的简单直接的描述"><a href="#三-关于两者区别的简单直接的描述" class="headerlink" title="三. 关于两者区别的简单直接的描述"></a>三. 关于两者区别的简单直接的描述</h5></li>
 <li>静态页面就是设计者把页面上所有东西都设定好、做死了，然后放上去，不管是谁在任何时候看到的页面内容都是一样的，一成不变（除非手动修改页面内容）。静态html页面文件，可以直接用本地的浏览器打开。比如：file:///Users/Phil/Documents/DevOps/HBuilderProjects/testJSP/index.html。</li>
@@ -213,8 +213,8 @@
  &lt;label&gt;b&lt;label&gt;
  }
  %&gt;</code><br>服务器在读取到这段代码后，根据相应的业务逻辑，编译成相应的servlet，再由servlet输出到页面（输出的就是html）。<h5 id="四-实验测试"><a href="#四-实验测试" class="headerlink" title="四. 实验测试"></a>四. 实验测试</h5></li>
-<li>在HBuilder中创建jsp页面，其内置的web静态服务器不能解析jsp表头，只能作为文本显示输出，但是可以解析其中的html部分。浏览器不能直接打开jsp文件。jsp页面如果想正确的显示，需要web容器进行解析。<div align="center"><br><img src="/images/html/1_3.png"><br></div></li>
-<li>在IntelliJ中创建web application，需要启动tomcat，才能运行jsp，可以顺利解析jsp的表头。<div align="center"><br><img src="/images/html/1_4.png"><br></div>
+<li>在HBuilder中创建jsp页面，其内置的web静态服务器不能解析jsp表头，只能作为文本显示输出，但是可以解析其中的html部分。浏览器不能直接打开jsp文件。jsp页面如果想正确的显示，需要web容器进行解析。<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/html/1_3.png"><br></div></li>
+<li>在IntelliJ中创建web application，需要启动tomcat，才能运行jsp，可以顺利解析jsp的表头。<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/html/1_4.png"><br></div>
 </li>
 </ol>
 

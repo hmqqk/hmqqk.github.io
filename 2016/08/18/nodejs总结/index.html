@@ -16,16 +16,16 @@ rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Statu
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="问题1 ：解决node_modules目录太长无法删除的问题解决：使用npm里面一个专门用于删除的模块插件 ：rimraf操作：npm install -g rimrafcd xxxrimraf node_modules
 rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Status devDepe">
-<meta property="og:image" content="http://yoursite.com/images/nodejs/1_1.png">
-<meta property="og:image" content="http://yoursite.com/images/nodejs/1_2.png">
-<meta property="og:image" content="http://yoursite.com/images/nodejs/1_3.png">
-<meta property="og:image" content="http://yoursite.com/images/nodejs/1_4.png">
-<meta property="og:updated_time" content="2016-12-29T04:25:37.000Z">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_1.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_2.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_3.png">
+<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_4.png">
+<meta property="og:updated_time" content="2016-12-29T15:15:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nodejs总结">
 <meta name="twitter:description" content="问题1 ：解决node_modules目录太长无法删除的问题解决：使用npm里面一个专门用于删除的模块插件 ：rimraf操作：npm install -g rimrafcd xxxrimraf node_modules
 rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Status devDepe">
-<meta name="twitter:image" content="http://yoursite.com/images/nodejs/1_1.png">
+<meta name="twitter:image" content="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -83,7 +83,7 @@ rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Statu
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -164,7 +164,7 @@ rimrafA deep deletion module for node (like rm -rf)Build Status Dependency Statu
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/hmqqk" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -265,7 +265,7 @@ app.use(&quot;/ueditor/ue&quot;, ueditor(path.join(__dirname, &apos;public&apos;
     }  
 }));        
 </code></pre><p>修改完成重启一下服务即可</p>
-<div align="center"><br><img src="/images/nodejs/1_1.png"><br></div>      
+<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_1.png"><br></div>      
 
 
 <p>问题：node.js模块之socket IO<br>解决：<br>Socket.IO的为了在浏览器和移动设备上创建实时应用而产生的，它可以模糊不同传输机制之间的差异。<br>Socket.IO是一个WebSocket库，包括了客户端的js和服务器端的nodejs，它的目标是构建可以在不同浏览器和移动设备上使用的实时应用。它会自动根据浏览器从WebSocket、AJAX长轮询、Iframe流等等各种方式中选择最佳的方式来实现网络实时应用，非常方便和人性化，而且支持的浏览器最低达IE5.5，应该可以满足绝大部分需求了。</p>
@@ -318,7 +318,7 @@ text: text
 <p>问题：Node.js监控工具：nodemon<br>解决：<br>Nodemon 是一款非常实用的工具，用来监控你 node.js 源代码的任何变化和自动重启你的服务器。 Nodemon 是一款完美的开发工具，可以使用 npm 安装。<br>npm install -g nodemon<br>在doc下输入上面的，就安装成功了，以后我们启动我们的项目的时候，就输入nodemon server.js</p>
 <p>以前是node server.js<br>这样，每次我们的js文件修改后，node就会自动重启，就省的我们手动去重启了，这样方便了很多。<br>还有一个工具也可以实现同样的需求——supervisor</p>
 <p>例如测试结果如下：</p>
-<div align="center"><br><img src="/images/nodejs/1_2.png" <="" div="">
+<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_2.png" <="" div="">
 
 <p>P.S. 这里有一个坑：我一直使用下面的方法启动node: node<br>这样启动是没有问题的，因为环境变量中配置了node了嘛，但是如果nodemon d:/js/node/app.js<br>这样nodemon监视的是启动目录，而不是d:/js/node这个目录，比如 c:\program&gt;nodemon d:/js/node/app.js<br>他实际上监视的是c:\program这个目录，你需要修改启动目录里才可以。<br>[热启动需要全局安装nodemon 另外nodeJS最好安装稳定版本]</p>
 <p>问题：<br>解决：<br>背景<br>一个网站必然会涉及很多功能，tab选项卡、slide轮播图、pop弹出层、美化alert、paging分页等等等等，如果是企业网站那整合成一个js文件就够了，即 插件库 。</p>
@@ -449,7 +449,7 @@ fs.readdir(src, function (err, files) {
     }
 });           
 </code></pre><p>效果：</p>
-<div align="center"><br><img src="/images/nodejs/1_3.png"><br><img src="/images/nodejs/1_4.png"><br></div>
+<div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_3.png"><br><img src="http://oiyahh2nw.bkt.clouddn.com/nodejs/1_4.png"><br></div>
 
 
 <p>问题：Grunt讲解<br>解决：<br>Grunt和Grunt的插件都是通过Node.js的包管理器npm来安装和管理的。</p>
@@ -941,11 +941,11 @@ forever start -l forever.log -a app.js
   
 <nav id="article-nav">
   
-    <a href="/2016/09/18/加油-谢谢肯定/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/18/jquery源码总结(上)/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          上一篇：加油,谢谢肯定
+          上一篇：jquery源码总结(上)
         
       </div>
     </a>
