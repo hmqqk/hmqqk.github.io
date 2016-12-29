@@ -34,7 +34,8 @@
 <div class="intrude-less">
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -80,7 +81,37 @@
 		        
 			</div>
 		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
 	</header>		
+	
+	
 </div>
 
     </div>
@@ -138,268 +169,26 @@
       <div class="body-wrap">
         
   
-    <article id="post-jquery源码总结(下) " class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Git和Github错误汇总" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/18/jquery源码总结(下) /">jquery源码总结(下)</a>
+      <a class="article-title" href="/2016/07/03/Git和Github错误汇总/">Git和Github错误汇总</a>
     </h1>
   
 
-        <a href="/2016/08/18/jquery源码总结(下) /" class="archive-article-date">
-  	<time datetime="2016-08-18T01:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
+        <a href="/2016/07/03/Git和Github错误汇总/" class="archive-article-date">
+  	<time datetime="2016-07-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-03</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="问题：Queue"><a href="#问题：Queue" class="headerlink" title="问题：Queue"></a>问题：Queue</h5><p>队列中存储的必须是函数,且出队列时还要调用该相应的函数（这也说明进入队列的必定是函数，因为这样才能调用）</p>
-<div align="center"><br><img src="/images/jquery/6_1.png"><br><img src="/images/jquery/6_2.png"><br><img src="/images/jquery/6_3.png"><br></div><br>队列相比回调更强大些，因为它可控制的去执行某些方法，对比如下图<br><div align="center"><br><img src="/images/jquery/6_4.png"><br><img src="/images/jquery/6_5.png"><br></div>
-
-<h5 id="问题：Sizzle"><a href="#问题：Sizzle" class="headerlink" title="问题：Sizzle"></a>问题：Sizzle</h5><p>浏览器从下载文档到显示页面的过程是个复杂的过程，这里包含了重绘和重排。各家浏览器引擎的工作原理略有差别，但也有一定规则。<br>简单讲，通常在文档初次加载时，浏览器引擎会解析HTML文档来构建DOM树，之后根据DOM元素的几何属性构建一棵用于渲染的树。渲染树的每个节点都有大小和边距等属性，类似于盒子模型（由于隐藏元素不需要显示，渲染树中并不包含DOM树中隐藏的元素）。<br>当渲染树构建完成后，浏览器就可以将元素放置到正确的位置了，再根据渲染树节点的样式属性绘制出页面。由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成</p>
-<div align="center"><br><img src="" images.jquery="" 7_1.jpg=""><br></div><br>HTML 经过解析生成 DOM Tree（这个我们比较熟悉）；而在 CSS 解析完毕后，需要将解析的结果与 DOM Tree 的内容一起进行分析建立一棵 Render Tree，最终用来进行绘图。Render Tree 中的元素（WebKit 中称为「renderers」，Firefox 下为「frames」）与 DOM 元素相对应，但非一一对应：一个 DOM 元素可能会对应多个 renderer，如文本折行后，不同的「行」会成为 render tree 种不同的 renderer。也有的 DOM 元素被 Render Tree 完全无视，比如 display:none 的元素。<br>在建立 Render Tree 时（WebKit 中的「Attachment」过程），浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 renderer。对于每个 DOM 元素，必须在所有 Style Rules 中找到符合的 selector 并将对应的规则进行合并。选择器的「解析」实际是在这里执行的，在遍历 DOM Tree 时，从 Style Rules 中去寻找对应的 selector。<br>因为所有样式规则可能数量很大，而且绝大多数不会匹配到当前的 DOM 元素（因为数量很大所以一般会建立规则索引树），所以有一个快速的方法来判断「这个 selector 不匹配当前元素」就是极其重要的。<br>如果正向解析，例如「div div p em」，我们首先就要检查当前元素到 html 的整条路径，找到最上层的 div，再往下找，如果遇到不匹配就必须回到最上层那个 div，往下再去匹配选择器中的第一个 div，回溯若干次才能确定匹配与否，效率很低。<br>逆向匹配则不同，如果当前的 DOM 元素是 div，而不是 selector 最后的 em，那只要一步就能排除。只有在匹配时，才会不断向上找父节点进行验证。<br>但因为匹配的情况远远低于不匹配的情况，所以逆向匹配带来的优势是巨大的。同时我们也能够看出，在选择器结尾加上「*」就大大降低了这种优势，这也就是很多优化原则提到的尽量避免在选择器末尾添加通配符的原因。<br>　简单的来说浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素<br><br>P.S. 注意【浏览器渲染原理】 渲染树和页面渲染<br><br>【浏览器渲染原理】 渲染树和页面渲染<br><br>我们主要讨论以下列出的几个问题：<br>什么是渲染树？和DOM树及CSSOM树有什么关系？<br>渲染树是如何形成的？<br>浏览器渲染顺序问题<br>1.什么是渲染树？和DOM树及CSSOM树有什么关系？<br><br>首先我们得先了解一下渲染的基本步骤<br>当用户请求的资源通过浏览器网络层到达渲染引擎后。渲染工作就会开始。<br>第一步：浏览器解析HTML文档和解析CSS样式表形成DOM树和CSSOM树<br>第二步 : 结合DOM树和CSSDOM树形成 render树。 也就是我们所说的渲染树。渲染树<br>第三步： 浏览器在render树内对每个render节点进行布局处理，计算出每一个元素的大小和位置。确定其在屏幕上的位置<br>第四步：绘制。通过遍历render树将实际的像素显示到屏幕上<br><br>以上的步骤是一个渐进的步骤，但是为了提高用户体验，浏览器并不会等待所有html文档加载完成之后才建立渲染树并渲染。 他会在从网络层获取html文档的同时把已经接收到的局部内容先渲染出来<br><br>2.渲染树是如何形成的？<br>基于DOM树的一些可视化的节点，WebKit根据需要来创建相应的RenderObject节点，这些节点也构成了一颗树，称为render树。<br><br>Render树是基于Dom树建立起来的新的一棵树，Render节点和Dom节点并不是一一对应。所以什么情况下需要建立新的render节点呢？<br>- DOM树document节点<br>- DOM树种的可视化节点<br>- 某些情况下建立匿名的render节点<br>有一个问题就是什么算可视化节点呢？<br>比如 Html,Body,Div,P等就是可视化结点， 而非可视化节点就是 Head, Meta, Script等。<br>比如一个DIV的display属性是none，那么它就是非可视节点。<br>但是注意. 如果DIV的visibility属性是hidden，它是可视节点。<br>这是一个细节需要注意。<br>什么情况下建立匿名的render节点？<br>RenderBlock用来是用来表示块级元素， 为了处理上的方便，某些情况下需要建立匿名的RenderBlock对象，因为RenderBlock的子女必须都是内嵌的元素或者都是非内嵌的元素。所以，当它包含两种元素的时候，那么它会为相邻的内嵌元素创建一个块级RenderBlock节点，然后设置该节点为自己的子女并且设置这些内嵌元素为它的子女。<br><br>浏览器的渲染顺序问题（摘抄）<br><br>1.浏览器加载和渲染html的顺序<br>1、IE下载的顺序是从上到下，渲染的顺序也是从上到下，下载和渲染是同时进行的。<br>2、在渲染到页面的某一部分时，其上面的所有部分都已经下载完成（并不是说所有相关联的元素都已经下载完）<br>3、如果遇到语义解释性的标签嵌入文件（JS脚本，CSS样式），那么此时IE的下载过程会启用单独连接进行下载。<br>4、并且在下载后进行解析，解析过程中，停止页面所有往下元素的下载。阻塞加载<br>5、样式表在下载完成后，将和以前下载的所有样式表一起进行解析，解析完成后，将对此前所有元素（含以前已经渲染的）重新进行渲染。<br>6、JS、CSS中如有重定义，后定义函数将覆盖前定义函数<br>2. JS的加载<br>2.1 不能并行下载和解析（阻塞下载）<br>2.2 当引用了JS的时候，浏览器发送1个js request就会一直等待该request的返回。因为浏览器需要1个稳定的DOM树结构，而JS中很有可能有代码直接改变了DOM树结构，比如使用 document.write 或 appendChild,甚至是直接使用的location.href进行跳转，浏览器为了防止出现JS修改DOM树，需要重新构建DOM树的情况，所以 就会阻塞其他的下载和呈现.<br><br> DOM树和渲染树的对应关系如下图：<br> <div align="center"><br> <img src="/images/jquery/7_5.png"><br> </div><br>CSS选择器(以下面为例)：<br>div &gt; div.Aaron p span.red<br>关于解析机制<br>在预编译的时候通过词法分析器与语法分析器的规则处理<br>在词法分析过程中，js解析器要下把脚本代码的字符流转换成记号流<br>比如：<br><br>    a=(b-c);<br><br>解析后转换成：<br><br>    NAME “a”<br>    EQUALS<br>    OPEN_PARENTHESIS<br>    NAME “b”<br>    MINUS<br>    NAME “c”<br>    CLOSE_PARENTHESIS<br>    SEMICOLON<br><br>把代码解析成Token的阶段在编译阶段里边称为词法分析<br>代码经过词法分析后就得到了一个Token序列，紧接着拿Token序列去其他事情<br>经过tokenize处理器处理过后分解为<br><div align="center"><br><img src="" images.jquery="" 7_2.png=""><br></div>
-
-<p>一个数组对象，展开后</p>
-<div align="center"><br><img src="" images.jquery="" 7_3.png=""><br></div>
-
-<p>Sizzle的Token格式如下 ：</p>
-<pre><code>Token：{  
-   value:&apos;匹配到的字符串&apos;, 
-   type:&apos;对应的Token类型&apos;, 
-   matches:&apos;正则匹配到的一个结构&apos;
-}
-</code></pre><p>1．拆分选择器，把每一个选择器组成能够处理的最小化单元。<br>div.aaron这行代码原生的API不认识，但是div与.aaron都是有API能直接获取到的，所以拆分出后提供后面进行关联匹配筛选等等。这里sizzle就引入了词法分析器与种子合集。<br>2．Sizzle也是遵循从右到左开始查找，但是不仅仅是这样。<br>浏览器提供的查找接口，基本靠谱的就只有三个：<br>Expr.find = {<br>      ‘ID’    : context.getElementById,<br>      ‘CLASS’ : context.getElementsByClassName,<br>      ‘TAG’   : context.getElementsByTagName<br>}<br>所以我们开始第一查找，从右到左边依次取出最小的单元选择器，通过ID、CLASS.TAG去查找，如果能找到就放到结果集中，这样第一时间定位到了最终的元素必须会存在的合集。<br>3．这样只能找出可能存在的合集，但是没有精确到具体的选择器上，所以还需要一个筛选的过程，这个过程也是最复杂的。</p>
-<p>这里要提出几点：<br>比如解析的规则</p>
-<pre><code>div &gt; p + .aaron[type=&quot;checkbox&quot;], #id:first-child
-</code></pre><p>1：groups收集并联关系的处理</p>
-<p>div &gt; p + .aaron[type=”checkbox”], #id:first-child</p>
-<p>分解成</p>
-<p>groups：[</p>
-<p>0:div &gt; p + .aaron[type=”checkbox”],</p>
-<p>1:#id:first-child</p>
-<p>]</p>
-<p>然后往下还是会细分的</p>
-<p>画一张直观图便于理解</p>
-<div align="center"><br><img src="" images.jquery="" 7_4.png=""><br></div>
-
-<p>seed是通过getElementsByTagName方法返回的是一个合集，seed - 种子合集（搜索器搜到符合条件的标签），放入到这个初始集合seed中。这种我们找到了最终的一个合集，那么我们需要的就是根据剩余的条件筛选出真正的选择器就OK了，这里暂停了，不再往下匹配了，如果再用这样的方式往下匹配效率就慢了。<br>开始整理重组一下选择器，剔掉已经在用于处理的tag标签,input，所以选择器变成了：<br>selector:”div &gt; div.aaron [name=ttt]”<br>这里可以优化下，如果直接剔除后，为空了，就证明满足了匹配要求，直接返回结果了。到这一步为止，我们能够使用的东东：<br>1、seed合集</p>
-<div align="center"><br><img src="" images.jquery="" 7_6.jpg=""><br></div>
-
-<p>2、通过tokenize分析解析规则组成match合集,本来是7个规则快，因为匹配input，所以要对应的也要踢掉一个所以就是6个了。<br>3、选择器语句，对应的踢掉了input。</p>
-<pre><code>selector:&quot;div &gt; div.aaron [name=ttt]&quot;
-</code></pre><p>此时send目标合集有2个最终元素了，那么如何用最简单，最有效率的方式从2个条件中找到目标呢？这一过程叫做过滤器<br>怎么有效的从种子合集seed里面找到选择器指定的元素？这里sizzle引入了过滤器，其原理如下：</p>
-<pre><code>function addCombinator(elems) {
-   //代码右图所示
-}    
-</code></pre><p>这里只做了2层过滤查找，但是这个原理其实就很明了从右到左取出对应的条件，然后通过浏览器给出的原生的API判断是否能取到对应的指判断从而筛选其结果。<br>过滤处理我们需要考虑的问题:<br>1 怎么有效的匹配这些选择器的最小判断单元，也就是通过词法分割出后的结果<br>2 如果处理层级选择器的判断问题<br>如上可见，过滤是通过一层一层往上回溯不断的循环去查找，这样虽然结果可以拿到，但是效率是非常低的。所以sizzle从1.8后采用了空间换时间的方式，通过把各种过滤器编译成闭包的函数，所以这个过程也可说是”编译函数”。<br>在Sizzle中过滤器 Expr.filter主要分6大类型</p>
-<pre><code>“ID”，“TAG”、“CLASS”、“ATTR”、“CHILD”、“PSEUDO”
-</code></pre><p>ID的过滤器</p>
-<pre><code>Expr.filter[&quot;ID&quot;] = function(id) {
-    var attrId = id.replace(runescape, funescape);
-    return function(elem) {
-        return elem.getAttribute(&quot;id&quot;) === attrId;
-    };
-};
-</code></pre><p>TAG类型的过滤器</p>
-<pre><code>&quot;TAG&quot;: function(nodeNameSelector) {
-    var nodeName = nodeNameSelector.replace(runescape, funescape).toLowerCase();
-    return nodeNameSelector === &quot;*&quot; ?
-        function() {
-            return true;
-    } :
-        function(elem) {
-            return elem.nodeName &amp;&amp; elem.nodeName.toLowerCase() === nodeName;
-    };
-},    
-</code></pre><p>其实我们看过滤器的就是一个具体的判断方法，通过传递一个上下文元素，来判断是否存在，得到这一个布尔值，这样有效了缓存了重复的处理，来节约判断的过程，下章节就会提到的“函数编译”中具体集合使用。</p>
-<p>除了判断的过程，那么还涉及到节点的关系处理，如：</p>
-<pre><code>var selector = &quot;div &gt; div.Aaron [name=ttt]&quot;;
-</code></pre><p>节点与节点之间是有层级关系的，这里就遇到了“&gt;”与“空”。子元素组合器(E &gt; F)和(E F)都作为后代组合，但是他们有所不同，更具体的是(E &gt; F)它只会选择第一级的后代，那么我们从右边往左边匹配就会遇到这样的情况，[name=ttt]节点与div.Aaron中间的连接符“空”则为后代选择器，那么意味着[name=ttt]元素的可能是div.Aaron元素的一个孩子，孙子，曾孙等。<br>同理div.Aaron与div的连接符是“&gt;” 子元素选择器,这个简单只能是父子关系。除此之外，还有相邻兄弟选择器“+”与“~”，(prev + next) 和 (prev ~ siblings)之间最值得注意的不同点是他们各自的可及之范围。前者只达到紧随的同级元素，后者扩展了该达到跟随其的所有同级元素。<br>针对选择器的层级关系：<br>首先“&gt;”与“空”是祖辈关系，这样可以理解是线型的，那么我们只要递归检测每次元素的 parentNode 属性返回指定节点的父节点。<br>同理“+”与“~”也是类似的兄弟关系，无非就是扩展的范围不同，所以针对层级的关系问题。<br>jQuery引入了词素关系：</p>
-<pre><code>relative: {
-  &quot;&gt;&quot;: {
-    dir: &quot;parentNode&quot;,
-    first: true
-  },
-  &quot; &quot;: {
-    dir: &quot;parentNode&quot;
-  },
-  &quot;+&quot;: {
-    dir: &quot;previousSibling&quot;,
-    first: true
-  },
-  &quot;~&quot;: {
-    dir: &quot;previousSibling&quot;
-  }
-}
-</code></pre><p>这里的dir可以认为是查找的一个条件，就是查找父节点还是兄弟节点，那么first的意思就是一个快速条件，因为“&gt;”选择器是一个很明确的父子关系所以通过标记first只需要查找一层即可。我们可以看代码：</p>
-<pre><code>function addCombinator(elems) {
-        var elem;
-        while ((elem = elems[&apos;parentNode&apos;])) {
-               if (elem.nodeType === 1) {
-                       return elem
-               }
-        }
-};    
-</code></pre><p>总结：sizzle分析记录：分解流程</p>
-<pre><code>&lt;form&gt;
-  &lt;label&gt;Name:&lt;/label&gt;
-  &lt;input name=&quot;name&quot; /&gt;
-  &lt;fieldset&gt;
-      &lt;label&gt;Newsletter:&lt;/label&gt;
-      &lt;div name=&quot;newsletter&quot; /&gt;&lt;p&gt;1&lt;p&lt;/div&gt;
-      &lt;div name=&quot;letter&quot; /&gt;&lt;p name=&apos;aaron&apos;&gt;2&lt;p&gt;&lt;/div&gt;
-      &lt;div name=&quot;tter&quot; /&gt;&lt;p&gt;3&lt;p&lt;/div&gt;
- &lt;/fieldset&gt;
-&lt;/form&gt;
-</code></pre><p>js</p>
-<pre><code>$(&quot;form div &gt; p[name=aaron]&quot;)
-</code></pre><p>解析的流程：<br>编译器：分5个步骤<br>涉及： TAG元素 关系选择器 属性选择器<br>1:通过tokenize词法分析器分组</p>
-<div align="center"><br><img src="/images/jquery/7_7.png"><br></div>
-
-<p>2:遍历tokens，从右边往左边开始筛选，最快定位到目标元素合集</p>
-<pre><code>//先看看有没有搜索器find，搜索器就是浏览器一些原生的取DOM接口，简单的表述就是以下对象了
-            // Expr.find = {
-            // &apos;ID&apos;    : context.getElementById,
-            // &apos;CLASS&apos; : context.getElementsByClassName,
-            // &apos;TAG&apos;   : context.getElementsByTagName
-            //        }
-</code></pre><p>操作如下</p>
-<pre><code>Expr.find[&quot;TAG&quot;] = support.getElementsByTagName ?
-    function( tag, context ) {
-        if ( typeof context.getElementsByTagName !== strundefined ) {
-            return context.getElementsByTagName( tag );
-        }
-    } :       
-</code></pre><p>那么第一筛选找到的定位元素，就形成了一个 seed种子合集,那么余下的所有的操作都是围绕这个种子合集处理<br>因为节点总是存在各种关系的，所以不管是通过这个最靠近的目标的元素，往上还是往下 都是可以处理的<br>3：重组选择器，开始执行继续分解”form div &gt; [name=aaron]”<br>因为种子合已经抽出了，所以选择器就需要重新排列<br>    “form div &gt; [name=aaron]”<br>踢掉了P元素，已经被抽离了<br>4 : 生成编译处理器<br>这里为什么要这么复杂，因为生成了编译闭包可以缓存起来，通过这种机制，增加了重复选择器的效率<br>在matcherFromTokens方法中通过分解tokens生成对应的处理器<br>例如：form div [name=aaron]<br>在分解过程中分2大块<br>A：关系选择器的处理  &gt; + ~ 空<br>B: ATTR CHILD CLASS ID PSEUDO TAG的处理<br>用matchers保留组合关系<br>1：分解第一个TAG：form 保存处理器到matchers.push( Expr.filter[“TAG”]) ;<br>2：分解第二个“空”的关系选择器，此时<br> A：用elementMatcher把之前的matchers压入到这个匹配里面，生成一个遍历方法的处理</p>
-<pre><code> function elementMatcher( matchers ) {
-    return matchers.length &gt; 1 ?
-        function( elem, context, xml ) {
-            var i = matchers.length;
-            while ( i-- ) {
-                if ( !matchers[i]( elem, context, xml ) ) {
-                    return false;
-                }
-            }
-            return true;
-        } :
-        matchers[0];
-}
-</code></pre><p>B：用addCombinator再次包装，生成一个位置关系的查找关系</p>
-<pre><code>function addCombinator( matcher, combinator, base ) {
-    var dir = combinator.dir,
-        checkNonElements = base &amp;&amp; dir === &quot;parentNode&quot;,
-        doneName = done++;
-
-    return 
-        // Check against all ancestor/preceding elements
-        // 检查所有祖先/元素
-        function( elem, context, xml ) {
-            var oldCache, outerCache,
-                newCache = [ dirruns, doneName ];
-                while ( (elem = elem[ dir ]) ) {
-                    if ( elem.nodeType === 1 || checkNonElements ) {
-                        outerCache = elem[ expando ] || (elem[ expando ] = {});
-                        if ( (oldCache = outerCache[ dir ]) &amp;&amp;
-                            oldCache[ 0 ] === dirruns &amp;&amp; oldCache[ 1 ] === doneName ) {
-
-                            // Assign to newCache so results back-propagate to previous elements
-                            return (newCache[ 2 ] = oldCache[ 2 ]);
-                        } else {
-                            // Reuse newcache so results back-propagate to previous elements
-                            outerCache[ dir ] = newCache;
-
-                            // A match means we&apos;re done; a fail means we have to keep checking
-                            if ( (newCache[ 2 ] = matcher( elem, context, xml )) ) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-        };
-}    
-</code></pre><p>所以此时的matchers的关系是一个层级的包含结构，然后依次这样递归</p>
-<p><div align="center"><br><img src="/images/jquery/7_8.png"><br></div><br>这个地方相当绕！！！！<br>生成的最后<br>cached = matcherFromTokens( match[i] );<br>变成了一个超大的嵌套闭包<br>5: 通过matcherFromGroupMatchers这个函数来生成最终的匹配器</p>
-<pre><code>var bySet = setMatchers.length &gt; 0,
-        byElement = elementMatchers.length &gt; 0,
-
-        superMatcher = function(seed, context, xml, results, outermost) {
-            //分解这个匹配处理器
-        }
-
-
-    return superMatcher
-</code></pre><p>通过matcherFromGroupMatchers的处理最直接的就是能看出，elementMatchers, setMatchers 2个结果不需要再返回出去，直接形成curry的方法，在内部就合并参数<br>外面就直接调用了，这样    </p>
-<pre><code>var compileFunc = compiled || compile( selector, match );
-
-compileFunc(
-    seed,
-    context,
-    !documentIsHTML,
-    results,
-    outermost
-);  
-</code></pre><p>compileFunc 一直是持有elementMatchers, setMatchers 的引用的，这个设计的手法还是值得借鉴的<br>执行期：<br>至此之前的5个步骤都是编译成函数处理器的过程，然后就是开始执行了<br>粗的原理就是把直接分解出来的seed种子合集丢到这个处理器中，然后处理器就会根据各种关系进行分解匹配<br>从而得到结果集<br>superMatcher：</p>
-<pre><code>while ( (matcher = elementMatchers[j++]) ) {
-    if ( matcher( elem, context, xml ) ) {
-        results.push( elem );
-        break;
-    }
-}
-</code></pre><p>抽出第一个seed元素，p<br>然后把p丢到atrr是过滤筛选器中去匹配下，看看是否能找到对应的这个属性<br>当然还是继续从右往左边匹配过滤了<br>一次是【name=aaron】 =&gt; div =&gt; from<br>matchers[i] =&gt; Expr.filter.ATTR =&gt;<br>p.getAttribute(‘name=aaron’) =&gt; 得到结果    </p>
-<pre><code>function elementMatcher( matchers ) {
-    return matchers.length &gt; 1 ?
-        function( elem, context, xml ) {
-            var i = matchers.length;
-            while ( i-- ) {
-                if ( !matchers[i]( elem, context, xml ) ) {
-                    return false;
-                }
-            }
-            return true;
-        } :
-        matchers[0];
-}
-</code></pre><p>如果匹配失败，自然就退出了  return false ，就不需要在往前找了 ，然后再次递归seed</p>
-<p>如果成功，就需要再深入的匹配了</p>
-<p>因为是从右到左逐个匹配，所以往前走就会遇到关系选择器的问题，</p>
-<p>那么jQuery把四种关系 &gt; + ~ 空的处理给抽出一个具体的方法就是addCombinator</p>
-<p>1 “form div &gt; p[name=aaron]”<br>2 seed =&gt; p<br>3 筛选[name=aaron]<br>4 &gt; =&gt; addCombinator方法 找到对应关系映射的父节点elem<br>5 elem中去匹配div 递归elementMatcher方法<br>6 “空” =&gt;  addCombinator方法找到祖先父节点elem<br>7 elem中去找form为止</p>
-<p>可见这个查找是及其复杂繁琐的<br>总结：<br>sizzle对选择器的大概是思路：<br>分解所有的选择器为最小单元，从右往左边开始挑出一个浏览器的API能快速定位的元素TAG,ID,CLASS节点，这样就能确定最终的元素跟这个元素是有关系的<br>然后把剩余的选择器单元开始生成一个匹配器，主要是用来做筛选，最后根据关系分组<br>如果就依次匹配往上查找，通过关系处理器定位上一个节点的元素，通过普通匹配器去确定是否为可选的内容</p>
-<p>P.S.<br>Sizzle引擎的在处理css选择器的时候有个原则：如果能使用浏览器原生的解析器来解析CSS选择器就使用之，不能的才使用Sizzle自定的解析方式来解析。可以肯定的是Sizzle引擎号称业界最快的CSS选择器解析引擎，但也快不过浏览器自带的解析器。<br>Sizzle的词法解析入口函数是内部函数tokenize。tokenize的作用是把CSS选择器（其实也就是一段字符串）解析成一组基础词法的序列。这个序列里面的每一个元素格式是</p>
-<p>　　Token：{ </p>
-<p>　　　　value:’匹配到的字符串’,</p>
-<p>　　　　type:’对应的Token类型’,</p>
-<p>　　　　matches:’正则匹配到的一个结构’</p>
-<p>　　}<br>jQuery在词法解析函数tokenize开始解析之前用到了一个比较巧妙的地方，Sizzle把每次查询结果缓存了起来，如果下一次有相同的查询，则直接使用缓存中的查询结果，而不需要重新查询。</p>
-<pre><code>var tokenCache = createCache(),
-...
-function createCache() {
-　　var cache, keys = [];
-　　return (cache = function( key, value ) {
-　　　　// 使用 (key + &quot; &quot;)避免命名冲突，最大缓存Expr.cacheLength:50
-
-　　　　if ( keys.push( key += &quot; &quot; ) &gt; Expr.cacheLength ) {
-　　　　　　// Only keep the most recent entries
-　　　　　　delete cache[ keys.shift() ];
-　　　　}
-　　　　return (cache[ key ] = value);
-　　});
-}
-...
-
-//设置缓存
-tokenCache( selector, groups );
-
-//tokenize函数中获取缓存
-cached = tokenCache[ selector + &quot; &quot; ]
-</code></pre><p>解析：<br>　　createCache()返回的是一个回调函数，对于这个回调函数来说cache，和keys都是他的类全局变量，在回调函数中可以直接使用。这里的巧妙在于return (cache = function( key, value )…)，将cache赋值给了tokenCache，这样使本来不能在外面使用的cache变成了tokenCache，tokenCache保存的就是最新的缓存，直接调用tokenCache[key]即可访问缓存。<br>　　这里还有一个点就是return (cache = function( key, value )…)中cache先被赋值，然后被填充cache[key].如果是先填充cache[key],然后再赋值则cache会被新赋值覆盖。<br>还是以上次的那个CSS选择器为例：#chua &gt; a + .group labe[for=”age”]。按照我们正常解析CSS的思路从右往左解析(这是效率较高的处理方法)，解析之前词法分析完毕，词法分析结果保存在tokens中。</p>
-<p>　　正常的思路：我们正常情况下的想法是这样的，先取出tokens的最后一个元素（pop出来），然后判断他是选择器的那种情况（这里会有一大堆if/else），然后进入某个分支，将满足条件的DOM节点先取出来存在seed中。然后再次取出最后一个元素，然后又是一大堆判断，进入某个分支，遍历先前的seed剔除掉不满足条件的节点。然后继续先前的处理，直到tokens中的东东没有为止。这是典型的边解析（解析词语：if/else判断）边处理（执行查找）的方式，在解析下一个词语之前，我们是不知道他将要进入那个分支进行处理。</p>
-<p>　　Sizzle的思路：先准备备选种子【Sizzle最终执行结果是其子集】elems（指定或者document.getElementsByTagName(“*”)）;对每一个tokens的词语，我都有相应的匹配函数来判断某个备选种子是否满足条件【分为两种情况：实体选择器（除开关系选择器外的其他选择器）直接比较种子是否满足实体条件即可；关系选择器（”&gt;”/“+”/“ “/“~”）需要和前一个实体选择器共同组成一个判断函数】，我们将所有的匹配函数连接起来返回一个整体的匹配函数，最后我们将所有的种子一一遍历，代入这个整体匹配函数中执行，返回真表示是我们需要的结果，压入缓存数组中保存起来；返回假直接剔除即可。遍历匹配完所有的种子，我们就得到了想要的结果了。这和我们正常的思路（边解析边处理）完全不一样，属于先解析（解析tokens生成一个整体匹配函数）再处理（遍历所有种子带入整体匹配函数得到匹配结果）。举一个简单的例子：”p &gt; span”,假设”span”的匹配函数为match1，”p &gt; “的匹配函数为match2，那么我必须满足匹配条件：allMatch = match1+match2才是我们想要的结果，需要注意的是我们添加最终匹配函数的时候是根据CSS选择器从左到右添加，但是执行最终匹配函数的时候是确实从右到左执行的（match2 -&gt; match1）,有点像栈先入后出的赶脚，后续分析生成最终匹配函数的时候我们在详细说明。调用匹配函数的。遍历种子集合seeds,将seeds[0]代入allMatch中执行，返回结果为true则保存起来，返回结果为false则略过；接着讲seeds[1]代入allMatch中执行<br>可以直接使用浏览器自带的处理的：查询ID（getElementById）、查询TAG(getElementsByTagName)、浏览器支持高级查询querySelectorAll。其他情况进入Sizzle自定义解析方式。</p>
-<p>　　我们不禁要问：为啥木有包括Class查询？说明一下，老版本的浏览器中不是所有的浏览器都支持Class查询，但是ID和TAG查询是所有浏览器都支持的。而支持使用Class查询（getElementsByClassName）的浏览器基本都支持querySelectorAll高级查询，so，不用说，用querySelectorAll即可。<br>词法解析结果<br>（1）　以#chua &gt; a + .group labe[for=”age”]为例：</p>
-<p><div align="center"><br><img src="/images/jquery/7_1.png"><br></div><br>（2）如果是多组CSS选择器如：”p &gt; .chua , #chen input”这样使用逗号分隔的，则会得到一个二维数组[tokens1,tokens2],tokens1表示两个”p &gt; .chua”的词法解析结果，tokens2表示 “#chen input”的词法解析结果</p>
+        <a id="more"></a>
+<h5 id="git新建分支时出现错误-fatal-Not-a-valid-object-name-‘master’"><a href="#git新建分支时出现错误-fatal-Not-a-valid-object-name-‘master’" class="headerlink" title="git新建分支时出现错误 fatal: Not a valid object name: ‘master’."></a>git新建分支时出现错误 fatal: Not a valid object name: ‘master’.</h5><p>要先commit一次才会真正建立master分支，此时就可以新建立分支了。</p>
 
       
 
@@ -410,7 +199,7 @@ cached = tokenCache[ selector + &quot; &quot; ]
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li></ul>
 	</div>
 
       
@@ -423,7 +212,67 @@ cached = tokenCache[ selector + &quot; &quot; ]
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/18/jquery源码总结(下) /#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2016/07/03/Git和Github错误汇总/#more">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Github作为远程仓库的使用详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/03/Github作为远程仓库的使用详解/">Github作为远程仓库的使用详解</a>
+    </h1>
+  
+
+        <a href="/2016/07/03/Github作为远程仓库的使用详解/" class="archive-article-date">
+  	<time datetime="2016-07-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-03</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>远程仓库，即可理解为把本地仓库丢到了某个服务器上，然后别人把你的仓库clone(克隆)或者说拷贝下来而已！又或者说是多人协作时，各个人本地仓库更改整合的一个媒介而已！<br>
+        <a class="article-more-a"  href="/2016/07/03/Github作为远程仓库的使用详解/#more"></a>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/03/Github作为远程仓库的使用详解/#more">阅读全文 >></a>
         </p>
       
 
@@ -459,7 +308,7 @@ cached = tokenCache[ selector + &quot; &quot; ]
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="160-160-160-160-Node-js-是一个基于-Chrome-V8-引擎的-JavaScript-运行环境。Node-js-使用了一个事件驱动、非阻塞式-I-O-的模型，使其轻量又高效。Node-js-的包管理器-npm，是全球最大的开源库生态系统。"><a href="#160-160-160-160-Node-js-是一个基于-Chrome-V8-引擎的-JavaScript-运行环境。Node-js-使用了一个事件驱动、非阻塞式-I-O-的模型，使其轻量又高效。Node-js-的包管理器-npm，是全球最大的开源库生态系统。" class="headerlink" title="&#160; &#160;&#160; &#160;Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。"></a>&#160; &#160;&#160; &#160;Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。</h3>
+        <h5 id="Node-js-是一个基于-Chrome-V8-引擎的-JavaScript-运行环境。Node-js-使用了一个事件驱动、非阻塞式-I-O-的模型，使其轻量又高效。Node-js-的包管理器-npm，是全球最大的开源库生态系统。"><a href="#Node-js-是一个基于-Chrome-V8-引擎的-JavaScript-运行环境。Node-js-使用了一个事件驱动、非阻塞式-I-O-的模型，使其轻量又高效。Node-js-的包管理器-npm，是全球最大的开源库生态系统。" class="headerlink" title="Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。"></a>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。</h5>
         <a class="article-more-a"  href="/2016/07/01/nodejs API/#more"></a>
       
 
@@ -501,145 +350,25 @@ cached = tokenCache[ selector + &quot; &quot; ]
 
 
   
-    <article id="post-karma-jasmine" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-jade" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/10/karma-jasmine/">karma-jasmine</a>
+      <a class="article-title" href="/2016/04/18/jade/">jade</a>
     </h1>
   
 
-        <a href="/2016/03/10/karma-jasmine/" class="archive-article-date">
-  	<time datetime="2016-03-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-10</time>
+        <a href="/2016/04/18/jade/" class="archive-article-date">
+  	<time datetime="2016-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-18</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Karma和Jasmine自动化单元测试</p>
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。<br>Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做nodejs的包依赖管理，bower做javascript的包依赖管理。Java领域：JUnit做单元测试, Maven自动化单元测试，统一项目管理，构建项目原型模板，包依赖管理。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li>Karma的介绍</li>
-<li>Karma的安装</li>
-<li>Karma + Jasmine配置</li>
-<li>自动化单元测试</li>
-<li>Karma和istanbul代码覆盖率</li>
-<li>Karma第一次启动时出现的问题</li>
-</ul>
-<ol>
-<li>Karma的介绍<br>Karma是Testacular的新名字，在2012年google开源了Testacular，2013年Testacular改名为Karma。Karma是一个让人感到非常神秘的名字，表示佛教中的缘分，因果报应，比Cassandra这种名字更让人猜不透！</li>
-</ol>
-<p>Karma是一个基于Node.js的JavaScript测试执行过程管理工具（Test Runner）。该工具可用于测试所有主流Web浏览器，也可集成到CI（Continuous integration）工具，也可和其他代码编辑器一起使用。这个测试工具的一个强大特性就是，它可以监控(Watch)文件的变化，然后自行执行，通过console.log显示测试结果。</p>
-<p>Jasmine是单元测试框架，本单将介绍用Karma让Jasmine测试自动化完成。Jasmine的介绍，请参考文章：jasmine行为驱动,测试先行</p>
-<p>istanbul是一个单元测试代码覆盖率检查工具，可以很直观地告诉我们，单元测试对代码的控制程度。</p>
-<ol>
-<li>Karma的安装<br>系统环境:</li>
-</ol>
-<p>win7 64bit, node v0.10.5, npm 1.2.19<br>安装Karma</p>
-<p>~ D:\workspace\javascript&gt;mkdir karma<br>~ D:\workspace\javascript&gt;cd karma<br>~ D:\workspace\javascript\karma&gt;npm install -g karma</p>
-<p>测试是否安装成功<br>~ D:\workspace\javascript\karma&gt;karma start<br>INFO [karma]: Karma v0.10.2 server started at <a href="http://localhost:9876/" target="_blank" rel="external">http://localhost:9876/</a><br>INFO [Chrome 28.0.1500 (Windows 7)]: Connected on socket nIlM1yUy6ELMp5ZTN9Ek</p>
-<ol>
-<li>Karma + Jasmine配置<br>初始化karma配置文件karma.conf.js</li>
-</ol>
-<p>~ D:\workspace\javascript\karma&gt;karma init</p>
-<p>Which testing framework do you want to use ?<br>Press tab to list possible options. Enter to move to the next question.</p>
-<blockquote>
-<p>jasmine</p>
-</blockquote>
-<p>Do you want to use Require.js ?<br>This will add Require.js plugin.<br>Press tab to list possible options. Enter to move to the next question.</p>
-<blockquote>
-<p>no</p>
-</blockquote>
-<p>Do you want to capture a browser automatically ?<br>Press tab to list possible options. Enter empty string to move to the next question.</p>
-<blockquote>
-<p>Chrome</p>
-</blockquote>
-<p>What is the location of your source and test files ?<br>You can use glob patterns, eg. “js/<em>.js” or “test/**/</em>Spec.js”.<br>Enter empty string to move to the next question.<br>&gt;</p>
-<p>Should any of the files included by the previous patterns be excluded ?<br>You can use glob patterns, eg. “<em>*/</em>.swp”.<br>Enter empty string to move to the next question.<br>&gt;</p>
-<p>Do you want Karma to watch all the files and run the tests on change ?<br>Press tab to list possible options.</p>
-<blockquote>
-<p>yes</p>
-</blockquote>
-<p>Config file generated at “D:\workspace\javascript\karma\karma.conf.js”.<br>安装集成包karma-jasmine</p>
-<p>~ D:\workspace\javascript\karma&gt;npm install karma-jasmine</p>
-<ol>
-<li><p>自动化单元测试<br>3步准备工作：</p>
-</li>
-<li><p>创建源文件：用于实现某种业务逻辑的文件，就是我们平时写的js脚本</p>
-</li>
-<li>创建测试文件：符合jasmineAPI的测试js脚本</li>
-<li>修改karma.conf.js配置文件<br>1). 创建源文件：用于实现某种业务逻辑的文件，就是我们平时写的js脚本<br>有一个需求，要实现单词倒写的功能。如：”ABCD” ==&gt; “DCBA”</li>
-</ol>
-<p>~ vi src.js</p>
-<p>function reverse(name){<br>    return name.split(“”).reverse().join(“”);<br>}<br>2). 创建测试文件：符合jasmineAPI的测试js脚本</p>
-<p>describe(“A suite of basic functions”, function() {<br>    it(“reverse word”,function(){<br>        expect(“DCBA”).toEqual(reverse(“ABCD”));<br>    });<br>});<br>3). 修改karma.conf.js配置文件<br>我们这里需要修改：files和exclude变量</p>
-<p>module.exports = function (config) {<br>    config.set({<br>        basePath: ‘’,<br>        frameworks: [‘jasmine’],<br>        files: [‘*.js’],<br>        exclude: [‘karma.conf.js’],<br>        reporters: [‘progress’],<br>        port: 9876,<br>        colors: true,<br>        logLevel: config.LOG_INFO,<br>        autoWatch: true,<br>        browsers: [‘Chrome’],<br>        captureTimeout: 60000,<br>        singleRun: false<br>    });<br>};<br>启动karma<br>单元测试全自动执行</p>
-<p>~ D:\workspace\javascript\karma&gt;karma start karma.conf.js<br>INFO [karma]: Karma v0.10.2 server started at <a href="http://localhost:9876/" target="_blank" rel="external">http://localhost:9876/</a><br>INFO [launcher]: Starting browser Chrome<br>WARN [launcher]: The path should not be quoted.<br>  Normalized the path to C:\Program Files (x86)\Google\Chrome\Application\chrome.exe<br>INFO [Chrome 28.0.1500 (Windows 7)]: Connected on socket bVGffDWpc1c7QNdYye_6<br>INFO [Chrome 28.0.1500 (Windows 7)]: Connected on socket DtTdVbd4ZsgnMQrgye_7<br>Chrome 28.0.1500 (Windows 7): Executed 1 of 1 SUCCESS (3.473 secs / 0.431 secs)<br>Chrome 28.0.1500 (Windows 7): Executed 1 of 1 SUCCESS (0.068 secs / 0.021 secs)<br>TOTAL: 2 SUCCESS<br>我们修改test.js</p>
-<p>~ vi test.js</p>
-<p>describe(“A suite of basic functions”, function() {<br>    it(“reverse word”,function(){<br>        expect(“DCBA”).toEqual(reverse(“ABCD”));<br>        expect(“Conan”).toEqual(reverse(“nano”));<br>    });<br>});<br>由于karma.conf.js配置文件中autoWatch: true, 所以test.js文件保存后，会自动执行单元测试。</p>
-<p>执行日志如下：提示我们单元测试出错了。</p>
-<p>INFO [watcher]: Changed file “D:/workspace/javascript/karma/test.js”.<br>Chrome 28.0.1500 (Windows 7) A suite of basic functions reverse word FAILED<br>        Expected ‘Conan’ to equal ‘onan’.<br>        Error: Expected ‘Conan’ to equal ‘onan’.<br>            at null. (D:/workspace/javascript/karma/test.js:4:25)<br>Chrome 28.0.1500 (Windows 7): Executed 1 of 1 (1 FAILED) ERROR (0.3 secs / 0.006 secs)</p>
-<ol>
-<li>Karma和istanbul代码覆盖率<br>增加代码覆盖率检查和报告，增加istanbul依赖</li>
-</ol>
-<p>~ D:\workspace\javascript\karma&gt;npm install karma-coverage<br>修改karma.conf.js配置文件</p>
-<p>~ vi karma.conf.js</p>
-<p>reporters: [‘progress’,’coverage’],<br>preprocessors : {‘src.js’: ‘coverage’},<br>coverageReporter: {<br>    type : ‘html’,<br>    dir : ‘coverage/‘<br>}<br>启动karma start，在工程目录下面找到index.html文件，coverage/chrome/index.html</p>
-<p>打开后，我们看到代码测试覆盖绿报告</p>
-<h4 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h4><p>jasmine支持异步测试，这个非常常见！需要好好重视！</p>
-<p>在beforeEach、it、和afterEach中，使用done作为函数参数，当异步工作结束以后，这些done函数才会被调用！</p>
-<p>例如，在一个describe中，只用当 beforeEach中的done函数被调用了，下面的it中的done才会被调用，直到所有的done函数被调用，整个describe才会结束。</p>
-<p>jasmine超时默认等待5秒，可以根据需要设置 jasmine.DEFAULT_TIMEOUT_INTERVAL的值。</p>
-<p>对于这个异步测试，还不是很清楚！以后在实践中一定要好好注意！认真总结！</p>
-<p>1、spy 可以监听函数是否被调用，以及对应的参数的值！如果被调用 toHaveBeenCalled返回true，如果参数的值是指定的值，则toHaveBeenCalledWith（args）返回true</p>
-<p>2、spyOn(….).and.callThrough()，这个函数，比较难懂，附上英文解释：<br>     By chaining the spy with  and.callThrough ，the spy will still track all calls to it but in addition it will delegate to the actual implementation.</p>
-<p>3、spyOn(…).and.returnValue(val) 这个函数是用val替换监听函数的返回值！</p>
-<p>4、spyOn(…).and.callFake(function(){…}) ,这个函数表示结果返回指定的函数。</p>
-<p>5、spyOn(…).and.throwError(val)，这个函数是用指定的val作为抛出的错误</p>
-<p>6、and.stub()  这个方法是配合callThrough使用，相当于取出存根，原来的变量又重获自由！</p>
-<p>7、其他跟踪属性：calls，每次调用用spy监听的函数的过程都会被calls跟踪和暴露！ </p>
-<p>8、xxx.calls.any()，如果监听的函数没有被调用过 返回 false，如果起码调用了一次就返回 true</p>
-<p>9、xxx.calls.count(num), 监听函数被调用的次数，num表示几次</p>
-<p>10、xxx.calls.argsFor(index), 表示第index次调用监听函数使用的参数</p>
-<p>11、xxx.calls.allArgs()，表示所有调用监听函数使用过的参数</p>
-<p>12、xxx.calls.all()：表示调用监听函数的所有的参数的this上下文内容</p>
-<p>13、xxx.calls.mostRecent()，表示返回最近一次调用监听函数的参数的this上下文内容</p>
-<p>14、xxx.calls.first()，表示返回第一次调用监听函数的参数的this上下文内容</p>
-<p>15、不管all、mostRecent、first都带有object属性，返回的是对象<br>          eg: expect ( xxx.calls.first().object ).toBe( Myobj )</p>
-<p>16、xxx.calls.reset()，表示清空监听函数的跟踪信息！</p>
-<p>1、Jasmine以 describe开头，里面可以包含多个 it ，而且定义在describe中的变量，任何在describe内声明的 it 都可以调用这个变量，要明确变量的作用域！</p>
-<p>2、expect 语法：</p>
-<pre><code>expect( exp ).toBe (true / false / undefined)
-
-expect( exp ).not.toBe( true /false / undefined)
-</code></pre><p>3、自定义的匹配测试方法 custom matchers</p>
-<p>4、toMatch 专门是为了：正则表达式！<br>     . not . toMatch :(和上面toMatch相反)</p>
-<p>5、toBeDefined() 是为了比较是否定义 （‘undefined ’）<br>     . not . toBeDefined() ：表示未定义！</p>
-<p>6、toBeUndefined() 含义整好和上面的相反， .not.tobeUndefined() 表示已经定义！</p>
-<p>7、toBeNull() 匹配变量是否为null，相反加 not 即：.not.toBeNull()</p>
-<p>8、toBeTruthy() 表示布尔值的真<br>      toBeFalsy()  表示布尔值的假</p>
-<p>9、toContain(‘ele’) 表示数组中是否含 ‘ele’，不包含加 not，即：.not.toContain(‘ele’)</p>
-<p>10、toBeLessThan( ‘ele ‘) 小于ele ,  not.toBeLessThan(‘ ele ‘)  不小于ele</p>
-<p>11、 toBeGreaterThan( ‘ele ‘)  大于ele ，不大于 前面加 not</p>
-<p>12、toBeCloseTo(ele,num) 比较是否和ele接近，num表示精度</p>
-<p>13、toThrow() :表示一个函数抛出异常，不抛出异常，加 not ， 即 .not.toThrow()</p>
-<p>14、beforeEach(function(){…}) ,全局函数，这个函数在测试之前调用，而且只调用一次！</p>
-<p>15、afterEach(function(){…})，全局函数，这个函数在所有测试结束后调用。</p>
-<p>16、this关键字，通过this可以在beforeEach、it、afterEach之间共享变量！但是不能在 it….it 之间共享变量！</p>
-<p>17、支持嵌套的describe，会依然先访问beforeEach，结束以后再访问afterEach，先由外到里，访问beforeEach，然后再由外向里，访问afterEach。</p>
-<p>18、可以设置 xdescribe 和 xit  使对应的代码块不可用！如果设置了，尽管里面的断言代码报错了，也不会被响应</p>
-<p>19、pending()，相当于 ”挂起 “  ，如果 it函数声明没有实现function，那么也相当于pending()，测试结果会以黄色的文字显示。<br>1、jasmine.createSpy(’spyName’)：创建监听对象，这个监听对象是JavaScript对象，可以用“笔记二”中的那些属性方法。</p>
-<p>2、jasmine.createSpyObj 用于模拟创建多个监听函数，带一个字符串数组 ，它返回一个对象，这个对象的属性就是那些字符串数组的元素。</p>
-<p>3、jasmine.any(obj)：表示返回obj的构造函数或者类型名称</p>
-<p>4、jasmine.objectContaining()：表示局部匹配，这个函数不要全看字面意思</p>
-<p>5、jasmine.clock().install：当使用setTimeOut和setInterval回调函数时，会模拟一个JavaScript时间回调函数。这个函数使时间回调函数同步，当时间一到就执行注册的函数。</p>
-<p>6、相对应的，在结束后使用 jasmine.clock().uninstall，恢复原始的时间调用函数！</p>
-<h4 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h4><p>问题1</p>
-<p><div align="center"><br> <img src="/images/karma-jasmine/1_1.png"><br></div><br>解决办法：如果出现上述问题，则我们就在其所提示的安装路径下全局安装该模块。例如 npm install -g fs-access，如果还缺少其它模块，则处理方式类同。<br>问题2</p>
-<p><div align="center"><br> <img src="/images/karma-jasmine/1_2.png"><br></div><br>解决办法：</p>
+        <a id="more"></a>
 
       
 
@@ -650,7 +379,7 @@ expect( exp ).not.toBe( true /false / undefined)
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jade/">jade</a></li></ul>
 	</div>
 
       
@@ -663,76 +392,7 @@ expect( exp ).not.toBe( true /false / undefined)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/10/karma-jasmine/#more">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo中主题yilia下的搜索功能" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/22/hexo中主题yilia下的搜索功能/">hexo中主题yilia下的搜索功能</a>
-    </h1>
-  
-
-        <a href="/2015/12/22/hexo中主题yilia下的搜索功能/" class="archive-article-date">
-  	<time datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-22</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.swiftype官网进行注册swiftype注册<br>2.登陆swiftype后，点击CREATE SEARCH ENGINE，之后填入自己需要加入搜索功能页面的网址<br>3.进入install页面进行设置，分别为：外观、安装代码、搜索框、起动。<br>4.在外观(appearance)一项，建议使用默认，一直NEXT，最后SAVA&amp;PREVIEW<br>5.进入安装代码(install code)一项，将生成的代码复制一份，后面用到。<br>6.进入搜索框(search field)一项，注意不同用户设置的id值是不同的，具体是什么在swiftype中会给出。<br>7.进入最后一项(activate)，找到右下角的ACTIVATE SWIFTYPE按钮，点击即可，此时你已经完成了swiftype网站上的所有配置。<br>8.liuhong-blog\themes\yilia\layout_partial\footer.ejs下粘贴第5步复制的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">(function(w,d,t,u,n,s,e)&#123;w[&apos;SwiftypeObject&apos;]=n;w[n]=w[n]||function()&#123;</div><div class="line">(w[n].q=w[n].q||[]).push(arguments);&#125;;s=d.createElement(t);</div><div class="line">e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);</div><div class="line">&#125;)(window,document,&apos;script&apos;,&apos;//s.swiftypecdn.com/install/v2/st.js&apos;,&apos;_st&apos;);</div><div class="line">_st(&apos;install&apos;,&apos;JEb1Y8kupG5T1657HWBP&apos;,&apos;2.0.0&apos;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
-<p>9.打开Yilia主题下的_config.yml文件，在其末尾处，添加代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">swift_search:</div><div class="line">  enable: true</div></pre></td></tr></table></figure></p>
-<p>10.到hexo的source目录下（注意不是主题目录），建立search文件夹，再在这个文件夹下建立index.md，在这个文件中写入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">layout: search</div><div class="line">title: RESULT</div><div class="line">toc: false</div><div class="line">comments: false</div><div class="line">&lt;div id=&quot;st-results-container&quot;&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>因为Yilia主题中可以控制评论时候开启，所以在这里直接将comments设置为false，这样在搜索界面就不会出现多说评论框了。同时加入<div></div>表明这是一个显示搜索结果页面。      </p>
-<ol>
-<li><p>打开目录hexo\themes\yilia\layout_partial，打开文件left-col.ejs。选择将搜索框添加到左侧头部处，在如下位置加入如下代码(if语句处的代码)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">	&lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;</div><div class="line">	&lt;div class=&quot;intrude-less&quot;&gt;</div><div class="line"></div><div class="line">		&lt;% if (theme.swift_search&amp;&amp;theme.swift_search.enable)&#123; %&gt;</div><div class="line">			&lt;form class=&quot;search&quot; action=&quot;&lt;%- config.root %&gt;search/index.html&quot; method=&quot;get&quot; accept-charset=&quot;utf-8&quot;&gt;</div><div class="line">				&lt;label&gt;Search&lt;/label&gt;</div><div class="line">				&lt;input type=&quot;text&quot; id=&quot;st-search-input&quot; class=&quot;st-search-input_my&quot; maxlength=&quot;30&quot; placeholder=&quot;Search&quot; /&gt;</div><div class="line">			&lt;/form&gt;</div><div class="line">		&lt;% &#125; %&gt;</div><div class="line"></div><div class="line">		&lt;header id=&quot;header&quot; class=&quot;inner&quot;&gt;</div><div class="line"></div><div class="line"></div><div class="line">			&lt;a href=&quot;/&quot; class=&quot;profilepic&quot;&gt;</div><div class="line">```		</div><div class="line">12.同时在此文件夹下，新建一个search.ejs文件，将如下代码拷贝其中：</div><div class="line">&lt;pre&gt;</div><div class="line">	&lt;% if(theme.swift_search.enable) &#123; %&gt;</div><div class="line">	&lt;div  id=&quot;container&quot; class=&quot;page&quot;&gt;</div><div class="line">	  &lt;div id=&quot;st-results-container&quot; style=&quot;width:80%&quot;&gt;正在加载搜索结果，请稍等。&lt;/div&gt;</div><div class="line">	  &lt;style&gt;.st-result-text &#123;</div><div class="line">	  background: #fafafa;</div><div class="line">	  display: block;</div><div class="line">	  border-left: 0.5em solid #ccc;</div><div class="line">	  -webkit-transition: border-left 0.45s;</div><div class="line">	  -moz-transition: border-left 0.45s;</div><div class="line">	  -o-transition: border-left 0.45s;</div><div class="line">	  -ms-transition: border-left 0.45s;</div><div class="line">	  transition: border-left 0.45s;</div><div class="line">	  padding: 0.5em;</div><div class="line">	&#125;</div><div class="line">	@media only screen and (min-width: 768px) &#123;</div><div class="line">	  .st-result-text &#123;</div><div class="line">	    padding: 1em;</div><div class="line">	  &#125;</div><div class="line">	&#125;</div><div class="line">	.st-result-text:hover &#123;</div><div class="line">	  border-left: 0.5em solid #ea6753;</div><div class="line">	&#125;</div><div class="line">	.st-result-text h3 a&#123;</div><div class="line">	  color: #2ca6cb;</div><div class="line">	  line-height: 1.5;</div><div class="line">	  font-size: 22px;</div><div class="line">	&#125;</div><div class="line">	.st-snippet em &#123;</div><div class="line">	  font-weight: bold;</div><div class="line">	  color: #ea6753;</div><div class="line">	&#125;&lt;/style&gt;</div><div class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">	  (function(w,d,t,u,n,s,e)&#123;w[&apos;SwiftypeObject&apos;]=n;w[n]=w[n]||function()&#123;</div><div class="line">	  (w[n].q=w[n].q||[]).push(arguments);&#125;;s=d.createElement(t);</div><div class="line">	  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);</div><div class="line">	  &#125;)(window,document,&apos;script&apos;,&apos;//s.swiftypecdn.com/install/v1/st.js&apos;,&apos;_st&apos;);</div><div class="line"></div><div class="line">	  _st(&apos;install&apos;,&apos;71Sb61uESndnsvWykuYK&apos;);//换成自己的ID</div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;% &#125; </div><div class="line">	%&gt;		</div><div class="line">&lt;/pre&gt;</div><div class="line">(注意：一定要换成swiftype为你所生成的代码)		</div><div class="line">13.打开目录hexo\themes\yilia\source\css，在myStyle.css文件的末尾添加如下代码：</div></pre></td></tr></table></figure>
-<p>.search {<br>padding: 1em 0 0 2.5em;<br>}<br>.search input {<br>line-height: 1.8em;<br>border: 1px solid color-white;<br>color: color-white;<br>background: transparent;<br>padding-left: 4em;<br>}<br>@media tablet {<br>.search input {<br> width: 4em;<br> -webkit-transition: 0.5s width;<br> -moz-transition: 0.5s width;<br> -ms-transition: 0.5s width;<br> transition: 0.5s width;<br>}<br>.search input:focus {<br> width: 8em;<br>}<br>}<br>.search label {<br>display: none;<br>}<br>form input.st-search-input_my {<br>font-size: 12px;<br>padding: 4px 9px 4px 27px;<br>height: 20px;<br>width: 190px;<br>color: #666;<br>border: 1px solid #ccc;<br>-webkit-border-radius: 15px;<br>-moz-border-radius: 15px;<br>-ms-border-radius: 15px;<br>-o-border-radius: 15px;<br>-webkit-border-radius: 15px;<br>border-radius: 15px;<br>-webkit-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);<br>-moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);<br>-webkit-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);<br>box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.17);<br>outline: none;<br>background: #fcfcfc url(“/img/search.png”) no-repeat 7px 7px;<br>}<br>```<br>14.浏览页面测试搜索效果</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swiftype/">swiftype</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yilia/">yilia</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book"></i>
-	<a class="article-category-link" href="/categories/studies/">studies</a>
-	
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/22/hexo中主题yilia下的搜索功能/#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2016/04/18/jade/#more">阅读全文 >></a>
         </p>
       
 
@@ -810,66 +470,6 @@ expect( exp ).not.toBe( true /false / undefined)
 
 
   
-    <article id="post-谈web中静态页面和动态页面的区别" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/25/谈web中静态页面和动态页面的区别/">谈web中静态页面和动态页面的区别</a>
-    </h1>
-  
-
-        <a href="/2015/11/25/谈web中静态页面和动态页面的区别/" class="archive-article-date">
-  	<time datetime="2015-11-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-25</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>让我们一起先来了解静态web页面和动态web页面的定义。<br>
-        <a class="article-more-a"  href="/2015/11/25/谈web中静态页面和动态页面的区别/#more"></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-book"></i>
-	<a class="article-category-link" href="/categories/studies/">studies</a>
-	
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/11/25/谈web中静态页面和动态页面的区别/#more">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-青春永远~你好，未来" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -888,7 +488,7 @@ expect( exp ).not.toBe( true /false / undefined)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="今夜心情美美哒-在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图"><a href="#今夜心情美美哒-在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图" class="headerlink" title="今夜心情美美哒~在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图"></a>今夜心情美美哒~在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图</h2>
+        <p>&#160; &#160; &#160; &#160;今夜心情美美哒~在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图<br>
         <a class="article-more-a"  href="/2015/11/11/青春永远~你好，未来/#more"></a>
       
 
@@ -930,25 +530,26 @@ expect( exp ).not.toBe( true /false / undefined)
 
 
   
-    <article id="post-Git" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-谈web中静态页面和动态页面的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/22/Git/">Git</a>
+      <a class="article-title" href="/2015/10/25/谈web中静态页面和动态页面的区别/">谈web中静态页面和动态页面的区别</a>
     </h1>
   
 
-        <a href="/2015/09/22/Git/" class="archive-article-date">
-  	<time datetime="2015-09-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-22</time>
+        <a href="/2015/10/25/谈web中静态页面和动态页面的区别/" class="archive-article-date">
+  	<time datetime="2015-10-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-25</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>让我们一起先来了解静态web页面和动态web页面的定义。<br>
+        <a class="article-more-a"  href="/2015/10/25/谈web中静态页面和动态页面的区别/#more"></a>
       
 
       
@@ -958,7 +559,7 @@ expect( exp ).not.toBe( true /false / undefined)
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 	</div>
 
       
@@ -971,7 +572,67 @@ expect( exp ).not.toBe( true /false / undefined)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/22/Git/#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2015/10/25/谈web中静态页面和动态页面的区别/#more">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-css之光晕效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/17/css之光晕效果/">CSS之光晕效果</a>
+    </h1>
+  
+
+        <a href="/2015/10/17/css之光晕效果/" class="archive-article-date">
+  	<time datetime="2015-10-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-17</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div align="center"><br> <img src="/images/css/1_1.png" /><br></div>
+        <a class="article-more-a"  href="/2015/10/17/css之光晕效果/#more"></a>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/10/17/css之光晕效果/#more">阅读全文 >></a>
         </p>
       
 
@@ -1007,10 +668,8 @@ expect( exp ).not.toBe( true /false / undefined)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div align="center"><br><img src="/images/life/7_1.jpg"><br></div>
-
-<p>我，已经踏上研究生这条道路，开启我的研究生生涯。回想大学四年的美好时光，这段期间确实留给我太多太多美好的回忆，它也教会了我许多我不曾想过的东西。<br>如今，我所期待的研究生生活想必会更加的精彩。<br>初来大学，肯定是要先见见我亲爱的老师和师兄师姐的咯。哈哈~我们老师幽默风趣，我们确实可以像朋友一样去相处，毫无师生之间的隔阂感。老师在潜心科研的同时带给我们诸多生活的趣事。师兄师姐们那也自然是相当的棒的啦，第一天相见我们就爽聚一波，气氛别提有多好啦。<br>我很庆幸能遇到可爱的她们，我们终成为相亲相爱的一家人。</p>
-
+        <p><div align="center"><br><img src="/images/life/7_1.jpg"><br></div><br>
+        <a class="article-more-a"  href="/2015/09/12/相亲相爱的一家人/#more"></a>
       
 
       
@@ -1051,143 +710,26 @@ expect( exp ).not.toBe( true /false / undefined)
 
 
   
-    <article id="post-http" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-html5之Canvas笑脸效果" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/11/http/">http</a>
+      <a class="article-title" href="/2015/09/10/html5之Canvas笑脸效果/">html5之Canvas笑脸效果</a>
     </h1>
   
 
-        <a href="/2015/09/11/http/" class="archive-article-date">
-  	<time datetime="2015-09-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-11</time>
+        <a href="/2015/09/10/html5之Canvas笑脸效果/" class="archive-article-date">
+  	<time datetime="2015-09-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-10</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>HTTP简介</p>
-<pre><code>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。
-
-在了解HTTP如何工作之前，我们先了解计算机之间的通信。
-</code></pre></li>
-<li><p>计算机相互之间的通信</p>
-<pre><code>互联网的关键技术就是TCP/IP协议。两台计算机之间的通信是通过TCP/IP协议在因特网上进行的。实际上这个是两个协议：
-
-TCP : Transmission Control Protocol 传输控制协议和IP： Internet Protocol  网际协议。
-
-IP：计算机之间的通信
-
-IP协议是计算机用来相互识别的通信的一种机制，每台计算机都有一个IP.用来在internet上标识这台计算机。  IP 负责在因特网上发送和接收数据包。通过 IP，消息（或者其他数据）被分割为小的独立的包，并通过因特网在计算机之间传送。IP 负责将每个包路由至它的目的地。
-
-IP协议仅仅是允许计算机相互发消息，但它并不检查消息是否以发送的次序到达而且没有损坏（只检查关键的头数据）。为了提供消息检验功能，直接在IP协议上设计了传输控制协议TCP.
-</code></pre></li>
-</ol>
-<pre><code>TCP : 应用程序之间的通信
-
-TCP确保数据包以正确的次序到达，并且尝试确认数据包的内容没有改变。TCP在IP地址之上引端口（port），它允许计算机通过网络提供各种服务。一些端口号为不同的服务保留，而且这些端口号是众所周知。
-
-服务或者守护进程：在提供服务的机器上，有程序监听特定端口上的通信流。例如大多数电子邮件通信流出现在端口25上，用于wwww的HTTP通信流出现在80端口上。
-
-当应用程序希望通过 TCP 与另一个应用程序通信时，它会发送一个通信请求。这个请求必须被送到一个确切的地址。在双方“握手”之后，TCP 将在两个应用程序之间建立一个全双工 (full-duplex) 的通信，占用两个计算机之间整个的通信线路。TCP 用于从应用程序到网络的数据传输控制。TCP 负责在数据传送之前将它们分割为 IP 包，然后在它们到达的时候将它们重组。
-
-TCP/IP 就是TCP 和 IP 两个协议在一起协同工作，有上下层次的关系。
-
-TCP 负责应用软件（比如你的浏览器）和网络软件之间的通信。IP 负责计算机之间的通信。TCP 负责将数据分割并装入 IP 包，IP 负责将包发送至接受者，传输过程要经IP路由器负责根据通信量、网络中的错误或者其他参数来进行正确地寻址，然后在它们到达的时候重新组合它们。
-</code></pre><ol>
-<li><p>HTTP协议所在的协议层</p>
-<p>   HTTP是基于TCP协议之上的。在TCP/IP协议参考模型的各层对应的协议如下图,其中HTTP是应用层的协议。</p>
-<div align="center"><br><img src="/images/http/1_1.jpg"><br></div>
-</li>
-<li><p>HTTP请求响应模型   </p>
-<pre><code>HTTP由请求和响应构成，是一个标准的客户端服务器模型（B/S）。HTTP协议永远都是客户端发起请求，服务器回送响应。见下图:
-</code></pre><div align="center"><br><img src="/images/http/1_2.jpg"><br></div>       
-
-<p>HTTP是一个无状态的协议。无状态是指客户机（Web浏览器）和服务器之间不需要建立持久的连接，这意味着当一个客户端向服务器端发出请求，然后服务器返回响应(response)，连接就被关闭了，在服务器端不保留连接的有关信息.HTTP遵循请求(Request)/应答(Response)模型。客户机（浏览器）向服务器发送请求，服务器处理请求并返回适当的应答。所有HTTP连接都被构造成一套请求和应答。</p>
-</li>
-</ol>
-<ol>
-<li><p>HTTP工作过程      </p>
-<p>  一次HTTP操作称为一个事务，其工作整个过程如下：</p>
-<p>  1 ) 、地址解析，</p>
-<p>  如用客户端浏览器请求这个页面：<a href="http://localhost.com:8080/index.htm" target="_blank" rel="external">http://localhost.com:8080/index.htm</a></p>
-<p>  从中分解出协议名、主机名、端口、对象路径等部分，对于我们的这个地址，解析得到的结果如下：<br>  协议名：http<br>  主机名：localhost.com<br>  端口：8080<br>  对象路径：/index.htm</p>
-<p>   在这一步，需要域名系统DNS解析域名localhost.com,得主机的IP地址。</p>
-</li>
-</ol>
-<pre><code>2）、封装HTTP请求数据包
-
- 把以上部分结合本机自己的信息，封装成一个HTTP请求数据包
-
-
- 3）封装成TCP包，建立TCP连接（TCP的三次握手）
-
-   在HTTP工作开始之前，客户机（Web浏览器）首先要通过网络与服务器建立连接，该连接是通过TCP来完成的，该协议与IP协议共同构建Internet，即著名的TCP/IP协议族，因此Internet又被称作是TCP/IP网络。HTTP是比TCP更高层次的应用层协议，根据规则，只有低层协议建立之后才能，才能进行更层协议的连接，因此，首先要建立TCP连接，一般TCP连接的端口号是80。这里是8080端口
-
- 4）客户机发送请求命令
-
-   建立连接后，客户机发送一个请求给服务器，请求方式的格式为：统一资源标识符（URL）、协议版本号，后边是MIME信息包括请求修饰符、客户机信息和可内容。
-
- 5）服务器响应
-
- 服务器接到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后边是MIME信息包括服务器信息、实体信息和可能的内容。
-
-    实体消息是服务器向浏览器发送头信息后，它会发送一个空白行来表示头信息的发送到此为结束，接着，它就以Content-Type应答头信息所描述的格式发送用户所请求的实际数据
-
- 6）服务器关闭TCP连接
-
- 一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码
-
-Connection:keep-alive
-</code></pre><p>   TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求。保持连接节省了为每个请求建立新连接所需的时间，还节约了网络带宽。</p>
-<ol>
-<li><p>HTTP协议栈中各层数据流      </p>
-<pre><code>首先我们看看客户端请求的时候，数据在各层协议的数据组织如下图：
-&lt;div align=&quot;center&quot;&gt;
-</code></pre><p><img src="/images/html/1_3.jpg"><br><br>而服务器解析客户机请求就是反向操作的过程，如下图：</p>
-<pre><code>&lt;div align=&quot;center&quot;&gt;
-</code></pre><p><img src="/images/http/1_4.jpg"><br><br>客户机发起一次请求的时候：</p>
-<pre><code>客户机会将请求封装成http数据包–&gt;封装成Tcp数据包–&gt;封装成Ip数据包—&gt;封装成数据帧—&gt;硬件将帧数据转换成bit流（二进制数据）–&gt;最后通过物理硬件（网卡芯片）发送到指定地点。
-
-服务器硬件首先收到bit流……. 然后转换成ip数据包。于是通过ip协议解析Ip数据包，然后又发现里面是tcp数据包，就通过tcp协议解析Tcp数据包，接着发现是http数据包通过http协议再解析http数据包得到数据。
-</code></pre></li>
-<li><p>HTTPS实现原理    </p>
-</li>
-</ol>
-<pre><code>       HTTPS（全称：Hypertext Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL。其所用的端口号是443。
-
-
-   SSL：安全套接层，是netscape公司设计的主要用于web的安全传输协议。这种协议在WEB上获得了广泛的应用。通过证书认证来确保客户端和网站服务器之间的通信数据是加密安全的。
-
-
-
-
-有两种基本的加解密算法类型：
-
-1）对称加密（symmetrcic encryption）：密钥只有一个，加密解密为同一个密码，且加解密速度快，典型的对称加密算法有DES、AES，RC5，3DES等；
-
- 对称加密主要问题是共享秘钥，除你的计算机（客户端）知道另外一台计算机（服务器）的私钥秘钥，否则无法对通信流进行加密解密。解决这个问题的方案非对称秘钥。
-
-2）非对称加密：使用两个秘钥：公共秘钥和私有秘钥。私有秘钥由一方密码保存（一般是服务器保存），另一方任何人都可以获得公共秘钥。
-
-这种密钥成对出现（且根据公钥无法推知私钥，根据私钥也无法推知公钥），加密解密使用不同密钥（公钥加密需要私钥解密，私钥加密需要公钥解密），相对对称加密速度较慢，典型的非对称加密算法有RSA、DSA等。
-</code></pre><p>   下面看一下https的通信过程：<br>    <div align="center"><br> <img src="/images/http/1_5.jpg"><br></div><br>过程大致如下：</p>
-<pre><code> 1） SSL客户端通过TCP和服务器建立连接之后（443端口），并且在一般的tcp连接协商（握手）过程中请求证书。
-
-       即客户端发出一个消息给服务器，这个消息里面包含了自己可实现的算法列表和其它一些需要的消息，SSL的服务器端会回应一个数据包，这里面确定了这次通信所需要的算法，然后服务器向客户端返回证书。（证书里面包含了服务器信息：域名。申请证书的公司，公共秘钥）。                 
-
-2）Client在收到服务器返回的证书后，判断签发这个证书的公共签发机构，并使用这个机构的公共秘钥确认签名是否有效，客户端还会确保证书中列出的域名就是它正在连接的域名。
-
-3）  如果确认证书有效，那么生成对称秘钥并使用服务器的公共秘钥进行加密。然后发送给服务器，服务器使用它的私钥对它进行解密，这样两台计算机可以开始进行对称加密进行通信。
-</code></pre><p>https通信的优点：</p>
-<p>1）客户端产生的密钥只有客户端和服务器端能得到；</p>
-<p>2）加密的数据只有客户端和服务器端才能得到明文；</p>
-<p>3）客户端到服务端的通信是安全的。</p>
-
+        <p><div align="center"><br> <img src="/images/html/2_1.png" /><br></div><br>
+        <a class="article-more-a"  href="/2015/09/10/html5之Canvas笑脸效果/#more"></a>
       
 
       
@@ -1197,7 +739,7 @@ Connection:keep-alive
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jade/">jade</a></li></ul>
 	</div>
 
       
@@ -1210,7 +752,7 @@ Connection:keep-alive
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/11/http/#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2015/09/10/html5之Canvas笑脸效果/#more">阅读全文 >></a>
         </p>
       
 
@@ -1294,7 +836,7 @@ Connection:keep-alive
 	}
 	
 </script>
-<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
 <script src="/./js/main.js"></script>
 <script src="/./js/myJs.js"></script>
 
@@ -1359,8 +901,7 @@ Connection:keep-alive
   	  	
     	</section>
     
-  </div>
-  
+  </div> 
 </div>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

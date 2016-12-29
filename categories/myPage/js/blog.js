@@ -20,6 +20,8 @@
      	window.location.href="myPage.html";
      	});
      	
+     	
+     	
      	//页面滚动模块
      		var h = $(window).height();
    			function docscroll(){
@@ -246,5 +248,13 @@
 	            return getComputedStyle(obj,false)[attr];
 	        }
 	    }
+	    
+	    
+     if($('a.lang.selected').attr("href")=="myPage-En.html"){
+     	   $('.userMsg span').addClass('En');
+     	}
+     	else{
+     		$('.userMsg span').removeClass('En');
+     		}
      
 })();

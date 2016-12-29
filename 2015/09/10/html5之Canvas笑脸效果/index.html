@@ -37,7 +37,8 @@
 <div class="intrude-less">
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -83,7 +84,37 @@
 		        
 			</div>
 		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
 	</header>		
+	
+	
 </div>
 
     </div>
@@ -345,18 +376,18 @@ body
   
 <nav id="article-nav">
   
-    <a href="/2015/09/11/http/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/09/12/相亲相爱的一家人/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          上一篇：http
+          上一篇：相亲相爱的一家人
         
       </div>
     </a>
   
   
     <a href="/2015/09/01/我的小窝/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">下一篇：�ҵ�С��</div>
+      <div class="article-nav-title">下一篇：我的小窝</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -449,7 +480,7 @@ body
 	}
 	
 </script>
-<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
 <script src="/./js/main.js"></script>
 <script src="/./js/myJs.js"></script>
 
@@ -514,8 +545,7 @@ body
   	  	
     	</section>
     
-  </div>
-  
+  </div> 
 </div>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

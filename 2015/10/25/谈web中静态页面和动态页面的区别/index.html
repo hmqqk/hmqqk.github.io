@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>谈web中静态页面和动态页面的区别 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="让我们一起先来了解静态web页面和动态web页面的定义。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈web中静态页面和动态页面的区别">
+<meta property="og:url" content="http://yoursite.com/2015/10/25/谈web中静态页面和动态页面的区别/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="让我们一起先来了解静态web页面和动态web页面的定义。">
+<meta property="og:image" content="http://yoursite.com/images/html/1_1.png">
+<meta property="og:image" content="http://yoursite.com/images/html/1_2.png">
+<meta property="og:image" content="http://yoursite.com/images/html/1_3.png">
+<meta property="og:image" content="http://yoursite.com/images/html/1_4.png">
+<meta property="og:updated_time" content="2016-12-29T07:06:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈web中静态页面和动态页面的区别">
+<meta name="twitter:description" content="让我们一起先来了解静态web页面和动态web页面的定义。">
+<meta name="twitter:image" content="http://yoursite.com/images/html/1_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/title.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
+	</header>		
+	
+	
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/title.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-谈web中静态页面和动态页面的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      谈web中静态页面和动态页面的区别
+    </h1>
+  
+
+        <a href="/2015/10/25/谈web中静态页面和动态页面的区别/" class="archive-article-date">
+  	<time datetime="2015-10-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-10-25</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>让我们一起先来了解静态web页面和动态web页面的定义。<br><a id="more"></a></p>
+<h5 id="一-静态web页面："><a href="#一-静态web页面：" class="headerlink" title="一. 静态web页面："></a>一. 静态web页面：</h5><ol>
+<li>在静态Web程序中，客户端使用Web浏览器（IE、FireFox等）经过网络(Network)连接到服务器上，使用HTTP协议发起一个请求（Request），告诉服务器我现在需要得到哪个页面，所有的请求交给Web服务器，之后WEB服务器根据用户的需要，从文件系统（存放了所有静态页面的磁盘）取出内容。之后通过Web服务器返回给客户端，客户端接收到内容之后经过浏览器渲染解析，得到显示的效果。</li>
+<li>为了让静态web页面显示更加好看，使用javascript／VBScript／ajax（AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。）但是这些特效都是在客户端上借助于浏览器展现给用户的，所以在服务器上本身并没有任何的变化。</li>
+<li>静态web无法连接数据库；</li>
+<li>静态web资源开发技术：HTML；</li>
+<li>由于现在的web页面中，大量使用JS，导致浏览器打开页面，就会占用大量的内存，服务端的压力是减轻了，但压力转移到了客户端。<h5 id="二-动态web页面："><a href="#二-动态web页面：" class="headerlink" title="二. 动态web页面："></a>二. 动态web页面：</h5>动态WEB中，程序依然使用客户端和服务端，客户端依然使用浏览器（IE、FireFox等），通过网络(Network)连接到服务器上，使用HTTP协议发起请求（Request），现在的所有请求都先经过一个WEB Server来处理。<br>如果客户端请求的是静态资源(<em>.htm或者是</em>.htm)，则将请求直接转交给WEB服务器，之后WEB服务器从文件系统中取出内容，发送回客户端浏览器进行解析执行。<br>如果客户端请求的是动态资源（<em>.jsp、</em>.asp/<em>.aspx、</em>.php），则先将请求转交给WEB Container(WEB容器)，在WEB Container中连接数据库，从数据库中取出数据等一系列操作后动态拼凑页面的展示内容，拼凑页面的展示内容后，把所有的展示内容交给WEB服务器，之后通过WEB服务器将内容发送回客户端浏览器进行解析执行。<br><div align="center"><br><img src="/images/html/1_1.png"><br></div><br>再进一步深入分析动态web的访问过程：浏览器访问web时，看似是直接访问的jsp页面，其实是，最先到达的地方是服务器，服务器创建好req和resp对象后再给jsp页面使用。在jsp中完成设置字符集和取得表单参数后再调用servlet，完成业务处理。然后返回到jsp，jsp就会生成相应的html页面。该页面会返回到服务器，再由服务器，通过response对象返回给客户端。<br><div align="center"><br><img src="/images/html/1_2.png"><br></div><br>为什么需要web服务器？(web server)</li>
+<li>不管什么web资源，想被远程计算机访问，都必须有一个与之对应的网络通信程序，当用户来访问时，这个网络通信程序读取web资源数据，并把数据发送给来访者。</li>
+<li>WEB服务器就是这样一个程序，它用于完成底层网络通迅，处理http协议。使用这些服务器，We应用的开发者只需要关注web资源怎么编写，而不需要关心资源如何发送到客户端手中，从而极大的减轻了开发者的开发工作量。<br>常用动态web资源开发技术：JSP/Servlet、ASP、PHP等。<h5 id="三-关于两者区别的简单直接的描述"><a href="#三-关于两者区别的简单直接的描述" class="headerlink" title="三. 关于两者区别的简单直接的描述"></a>三. 关于两者区别的简单直接的描述</h5></li>
+<li>静态页面就是设计者把页面上所有东西都设定好、做死了，然后放上去，不管是谁在任何时候看到的页面内容都是一样的，一成不变（除非手动修改页面内容）。静态html页面文件，可以直接用本地的浏览器打开。比如：file:///Users/Phil/Documents/DevOps/HBuilderProjects/testJSP/index.html。</li>
+<li>动态页面的内容一般都是依靠服务器端的程序来生成的，不同人、不同时候访问页面，显示的内容都可能不同。网页设计者在写好服务器端的页面程序后，不需要手工控制，页面内容会按照页面程序的安排自动更改变换。</li>
+<li>html是w3c规范的一种网页书写格式，是一种统一协议语言，静态网页。我们上网看的网页都是大部分都是基于html语言的。jsp是一种基于动态语言，jsp可以实现html的所有任务，4、HTML（Hypertext Markup Language）文本标记语言，它是静态页面，和JavaScript一样解释性语言，为什么说是解释性语言呢？因为，只要你有一个浏览器那么它就可以正常显示出来，而不需要指定的编译工具，只需在TXT文档中写上HTML标记就可以正常显示。<br>JSP（Java Server Page）是Java服务端的页面，所以它是动态的，它是需要经过JDK编译后把内容发给客户端去显示，我们都知道，Java文件编译后会产生一个class文件，最终执行的就是这个class文件，5、JSP的前身是servlet；6、html和jsp的表头不一样，这个是JSP的头“ &lt;%@ page language=”java” import=”java.util.*” pageEncoding=”gbk”%&gt;”在表头中有编码格式和倒入包等。也是很好区分的，在jsp中用&lt;%%&gt;就可以写Java代码了，而html没有&lt;%%&gt;。</li>
+<li>不认识jsp或者asp什么什么的，但是有时候界面需要逻辑控制，所以我们就用相应的技术来实现，这样比较方便。而jsp在后台通过服务器解析为相应的html，然后在供浏览器识别显示。例如<br> <code>&lt;%
+ if(flag == a){
+ &lt;label&gt;a&lt;label&gt;
+ }else {
+ &lt;label&gt;b&lt;label&gt;
+ }
+ %&gt;</code><br>服务器在读取到这段代码后，根据相应的业务逻辑，编译成相应的servlet，再由servlet输出到页面（输出的就是html）。<h5 id="四-实验测试"><a href="#四-实验测试" class="headerlink" title="四. 实验测试"></a>四. 实验测试</h5></li>
+<li>在HBuilder中创建jsp页面，其内置的web静态服务器不能解析jsp表头，只能作为文本显示输出，但是可以解析其中的html部分。浏览器不能直接打开jsp文件。jsp页面如果想正确的显示，需要web容器进行解析。<div align="center"><br><img src="/images/html/1_3.png"><br></div></li>
+<li>在IntelliJ中创建web application，需要启动tomcat，才能运行jsp，可以顺利解析jsp的表头。<div align="center"><br><img src="/images/html/1_4.png"><br></div>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2015/11/11/青春永远~你好，未来/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：青春永远~你好，未来&amp;华为猛料会&amp;双11
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/17/css之光晕效果/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：CSS之光晕效果</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="谈web中静态页面和动态页面的区别" data-title="谈web中静态页面和动态页面的区别" data-url="http://yoursite.com/2015/10/25/谈web中静态页面和动态页面的区别/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
+<script src="/./js/main.js"></script>
+<script src="/./js/myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div> 
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>

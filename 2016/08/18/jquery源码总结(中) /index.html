@@ -8,26 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>jquery源码总结(中) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题：初始化与链式调用基础答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。
-jQuery = function(selector,context){
-  return new jQuery.fn.init(selector,context,rootjQuery);
-}
-...
-rootjQuery = jQuery(document);
-...
-jQuery">
+  <meta name="description" content="此部分介绍了。。。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jquery源码总结(中)">
 <meta property="og:url" content="http://yoursite.com/2016/08/18/jquery源码总结(中) /index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题：初始化与链式调用基础答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。
-jQuery = function(selector,context){
-  return new jQuery.fn.init(selector,context,rootjQuery);
-}
-...
-rootjQuery = jQuery(document);
-...
-jQuery">
+<meta property="og:description" content="此部分介绍了。。。">
 <meta property="og:image" content="http://yoursite.com/images/jquery/5_1.png">
 <meta property="og:image" content="http://yoursite.com/images/jquery/5_3.png">
 <meta property="og:image" content="http://yoursite.com/images/jquery/5_4.png">
@@ -53,17 +39,10 @@ jQuery">
 <meta property="og:image" content="http://yoursite.com/images/jquery/4_2.png">
 <meta property="og:image" content="http://yoursite.com/images/jquery/4_3.png">
 <meta property="og:image" content="http://yoursite.com/images/jquery/4_4.png">
-<meta property="og:updated_time" content="2016-12-23T11:36:38.000Z">
+<meta property="og:updated_time" content="2016-12-29T04:24:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery源码总结(中)">
-<meta name="twitter:description" content="问题：初始化与链式调用基础答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。
-jQuery = function(selector,context){
-  return new jQuery.fn.init(selector,context,rootjQuery);
-}
-...
-rootjQuery = jQuery(document);
-...
-jQuery">
+<meta name="twitter:description" content="此部分介绍了。。。">
 <meta name="twitter:image" content="http://yoursite.com/images/jquery/5_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -85,7 +64,8 @@ jQuery">
 <div class="intrude-less">
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -131,7 +111,37 @@ jQuery">
 		        
 			</div>
 		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
 	</header>		
+	
+	
 </div>
 
     </div>
@@ -205,7 +215,8 @@ jQuery">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="问题：初始化与链式调用基础"><a href="#问题：初始化与链式调用基础" class="headerlink" title="问题：初始化与链式调用基础"></a>问题：初始化与链式调用基础</h5><p>答：jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。</p>
+        <p>此部分介绍了。。。<br><a id="more"></a></p>
+<h5 id="初始化与链式调用基础"><a href="#初始化与链式调用基础" class="headerlink" title="初始化与链式调用基础"></a>初始化与链式调用基础</h5><p>jQuery之所以能够链式调用在于每次调用返回来jQuery本身。实现关键代码如下。</p>
 <pre><code>jQuery = function(selector,context){
   return new jQuery.fn.init(selector,context,rootjQuery);
 }
@@ -235,7 +246,7 @@ window.jQuery = window.$ = jQuery;
 </code></pre><p>没什么好讲，jQuery.prototype为jQuery的原型方法，这里用jQuery.fn来代替jQuery.prototype，只是为了少写几个字符，平常写插件时就是在这东东上面做修改.    </p>
 <pre><code>jQuery.fn.init.prototype = jQuery.fn
 </code></pre><p>很好很绕的一个语句，上面说了$(’#casper‘)返回的其实是个jQuery.fn.init对象。所以，这里的作用，是让jQuery.fn上的方法都成为jQuery.fn.init对象的原型方法。 这个语句应该让很多刚接触jQuery源码的人感到困惑，包括我（=_=），可以试jQuery.fn.init.prototype.init.prototype.init…，如果你愿意可以一直写下去。</p>
-<h5 id="问题：jQuery-type函数用来识别对象类型"><a href="#问题：jQuery-type函数用来识别对象类型" class="headerlink" title="问题：jQuery.type函数用来识别对象类型"></a>问题：jQuery.type函数用来识别对象类型</h5><p>答：JavaScript也自带有一个typeof运算符，可以确定数据的类型。不过，对于绝大多数对象而言，typeof运算符都返回”object”，无法区分具体的类型。jQuery.type()可以更加精确地确定JS内置对象的类型。</p>
+<h5 id="jQuery-type函数用来识别对象类型"><a href="#jQuery-type函数用来识别对象类型" class="headerlink" title="jQuery.type函数用来识别对象类型"></a>jQuery.type函数用来识别对象类型</h5><p>JavaScript也自带有一个typeof运算符，可以确定数据的类型。不过，对于绝大多数对象而言，typeof运算符都返回”object”，无法区分具体的类型。jQuery.type()可以更加精确地确定JS内置对象的类型。</p>
 <pre><code>jQuery.type( undefined ); // &quot;undefined&quot;
 jQuery.type( null ); // &quot;null&quot;
 
@@ -266,22 +277,10 @@ jQuery.type( new RegExp(&quot;\\d+&quot;) ); // &quot;regexp&quot;
 jQuery.type( {} ); // &quot;object&quot;
 function User() { }
 jQuery.type( new User() ); // &quot;object&quot;    
-</code></pre><h5 id="问题：ownerDocument和-documentElement的区别"><a href="#问题：ownerDocument和-documentElement的区别" class="headerlink" title="问题：ownerDocument和 documentElement的区别"></a>问题：ownerDocument和 documentElement的区别</h5><p>ownerDocument是Node对象的一个属性，返回的是某个元素的根节点文档对象：即document对象；documentElement是Document对象的属性，返回的是文档根节点对于HTML文档来说，documentElement是<html>标签对应的Element对象，ownerDocument是document对象.接下开始正题。</html></p>
-<h5 id="问题：jQuery-noConflict-函数详解"><a href="#问题：jQuery-noConflict-函数详解" class="headerlink" title="问题：jQuery.noConflict() 函数详解"></a>问题：jQuery.noConflict() 函数详解</h5><p>jQuery.noConflict()函数用于让出jQuery库对变量$(和变量jQuery)的控制权。</p>
-<p>一般情况下，在jQuery库中，变量$是变量jQuery的别名，它们之间是等价的，例如jQuery(“p”)和$(“p”)是等价的。由于变量$只有一个字符，并且特点鲜明，因此我们更加习惯使用$来操作jQuery库。</p>
-<p>不过，其他JS库也可能使用变量$来进行操作，例如Prototype库。这个时候两个库可能会由于变量$的控制权问题而发生冲突。</p>
-<p>此时，你可以使用该函数让出jQuery库对变量$的控制权，将该变量交给上一个实现它的JS库，之后我们只能使用变量jQuery来操作jQuery库。</p>
-<p>此外，使用该函数，还可以同时让出变量$和变量jQuery的控制权，从而实现多个不同版本的jQuery库共存(详情见下面的示例说明)。</p>
-<p>该函数属于全局jQuery对象。</p>
-<p>语法</p>
-<p>静态函数jQuery.noConflict()的语法如下：</p>
+</code></pre><h5 id="ownerDocument和-documentElement的区别"><a href="#ownerDocument和-documentElement的区别" class="headerlink" title="ownerDocument和 documentElement的区别"></a>ownerDocument和 documentElement的区别</h5><p>ownerDocument是Node对象的一个属性，返回的是某个元素的根节点文档对象：即document对象；documentElement是Document对象的属性，返回的是文档根节点对于HTML文档来说，documentElement是<html>标签对应的Element对象，ownerDocument是document对象.接下开始正题。</html></p>
+<h5 id="jQuery-noConflict-函数详解"><a href="#jQuery-noConflict-函数详解" class="headerlink" title="jQuery.noConflict() 函数详解"></a>jQuery.noConflict() 函数详解</h5><p>jQuery.noConflict()函数用于让出jQuery库对变量$(和变量jQuery)的控制权。<br>一般情况下，在jQuery库中，变量$是变量jQuery的别名，它们之间是等价的，例如jQuery(“p”)和$(“p”)是等价的。由于变量$只有一个字符，并且特点鲜明，因此我们更加习惯使用$来操作jQuery库。<br>不过，其他JS库也可能使用变量$来进行操作，例如Prototype库。这个时候两个库可能会由于变量$的控制权问题而发生冲突。<br>此时，你可以使用该函数让出jQuery库对变量$的控制权，将该变量交给上一个实现它的JS库，之后我们只能使用变量jQuery来操作jQuery库。<br>此外，使用该函数，还可以同时让出变量$和变量jQuery的控制权，从而实现多个不同版本的jQuery库共存(详情见下面的示例说明)。<br>该函数属于全局jQuery对象。<br>语法<br>静态函数jQuery.noConflict()的语法如下：</p>
 <pre><code>jQuery.noConflict( [ removeAll ] )
-</code></pre><p>参数</p>
-<p> 参数                                   描述<br>removeAll    可选/Boolean类型是否彻底移交对变量jQuery的控制权，默认为false。<br>如果省略了参数removeAll或该参数不为true，则表示只让出对变量$的控制权；如果该参数为true，则表示同时让出变量$和jQuery的控制权。</p>
-<p>返回值</p>
-<p>jQuery.noConflict()函数的返回值是jQuery类型，返回变量jQuery的引用。</p>
-<p>示例&amp;说明</p>
-<p>以下是加载Prototype和jQuery库的情况：</p>
+</code></pre><p>参数<br> 参数描述<br>removeAll    可选/Boolean类型是否彻底移交对变量jQuery的控制权，默认为false。<br>如果省略了参数removeAll或该参数不为true，则表示只让出对变量$的控制权；如果该参数为true，则表示同时让出变量$和jQuery的控制权<br>返回值<br>jQuery.noConflict()函数的返回值是jQuery类型，返回变量jQuery的引用。<br>示例&amp;说明<br>以下是加载Prototype和jQuery库的情况：</p>
 <pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;prototype.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
@@ -294,8 +293,7 @@ jQuery(&quot;#uname&quot;).hide();
 // 使用Prototype进行DOM操作
 $(&quot;myDiv&quot;).setStyle( {color: &quot;#ffffff&quot;} );
 &lt;/script&gt;    
-</code></pre><p>(以下代码请自行复制到演示页面运行，注意不要同时执行，请分别执行)</p>
-<p>此外，我们还可以使用其他自定义的变量名来操作jQuery：</p>
+</code></pre><p>(以下代码请自行复制到演示页面运行，注意不要同时执行，请分别执行)<br>此外，我们还可以使用其他自定义的变量名来操作jQuery：</p>
 <pre><code>// 让出对变量$的控制权，并将jQuery赋给新的别名j
 var j = jQuery.noConflict();
 
@@ -352,25 +350,157 @@ document.writeln( jQuery.fn.jquery ); // 1.8.3
 document.writeln( $.fn.jquery ); // 1.4.2
 &lt;/script&gt;     
 </code></pre><p>注意：多个可能存在全局变量重名冲突的JS库，变量的实际控制权一般取决于JS库的加载顺序。以上面三个版本的jQuery库的示例代码为例，后加载的jQuery库的变量覆盖了之前版本的变量，因此每次让出变量的控制权，控制权就会交给上一个JS库。</p>
-<h5 id="问题：jQuery-Data源码-数据缓存系统"><a href="#问题：jQuery-Data源码-数据缓存系统" class="headerlink" title="问题：jQuery.Data源码(数据缓存系统)"></a>问题：jQuery.Data源码(数据缓存系统)</h5><p>对于DOM元素，通过分配一个唯一的关联id把DOM元素和该DOM元素的数据缓存对象关联起来，关联id被附加到以jQuery.expando的值命名的属性上，数据存储在全局缓存对象jQuery.cache中。在读取、设置、移除数据时，将通过关联id从全局缓存对象jQuery.cache中找到关联的数据缓存对象，然后在数据缓存对象上执行读取、设置、移除操作。</p>
-<p>对于Javascript对象，数据则直接存储在该Javascript对象的属性jQuery.expando上。在读取、设置、移除数据时，实际上是对Javascript对象的数据缓存对象执行读取、设置、移除操作。</p>
-<p>为了避免jQuery内部使用的数据和用户自定义的数据发生冲突，数据缓存模块把内部数据存储在数据缓存对象上，把自定义数据存储在数据缓存对象的属性data上。<br><a href="http://www.cnblogs.com/yaoyinglong/p/5738979.html" target="_blank" rel="external">http://www.cnblogs.com/yaoyinglong/p/5738979.html</a><br>P.S. 下图解释了Data的处理机制（也阐明了不会出现内存泄露问题的原因）</p>
-<div align="center"><br><img src="/images/jquery/5_1.png"><br></div><br>相同的元素是只分配同一个id的，如下图<br><div align="center"><br><img src="/images/jquery/5_3.png"><br><img src="/images/jquery/5_4.png"><br></div><br>##### 问题：jauery回调Callbacks<br>jQuery.Callbacks()提供的回调函数队列管理本来是延时回调处理的一部分，但是后面将其独立出来作为一个模块。jQuery就是这样，各个模块间的代码耦合度是处理的比较好的，值得学习。虽然是从延时回调处理中独立出来的，但是它的功能非常强大，提供了一种强大的方法来管理回调函数队列。<br>　　大家都明白封装函数的目的：去耦合与简化操作。<br>　　通常情况下函数队列的处理方式<br><br>    //执行函数<br>    function runList(arr){<br>        for(var i = 0; i &lt; arr.length; i++){<br>            arr<a href="">i</a>;　　　　<br>        }<br>    　　arr.length = 0;<br>    }<br><br>    var list = [];<br>    //添加函数队列<br>    list[list.length] = function(){alert(1)};<br>    list[list.length] = function(){alert(2)};<br>    list[list.length] = function(){alert(3)};<br>    //执行<br>    runList(list);//三个函数顺序执行<br><br>使用$.callbacks封装以后的处理为<br><br>    var callbacks = $.Callbacks(“unique”);<br><br>    callbacks.add( function(){alert(1)} );<br>    callbacks.add( function(){alert(2)} );<br>    callbacks.add( function(){alert(3)} );<br>    //执行<br>    callbacks.fire();//三个函数顺序执行<br><br>干净了很多。而且代码可读性比最开始的那个要好很多。list[list.length]神马的最讨厌了。还有主要的是$.callbacks有四个属性可以组合，这个组合可就很强大了。<br><br>　　<br><br>a. Callbacks的四个可设置的属性分析<br><br><br><br>once: 确保这个回调列表只执行（ .fire() ）一次(像一个递延 Deferred).<br><br>       设置“once”在执行第一次fire后会直接禁用该Callbacks(fire函数代码段else {self.disable();})<br><br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once’);<br><br>    callbacks.add(f1);//无执行结果,添加一个回调<br>    callbacks.fire(1);//执行结果1。清除回调列表<br>    callbacks.add(f1);//没有添加回调直接返回<br>    callbacks.fire(2);//无执行结果<br>    callbacks.add(f1);//没有添加回调直接返回<br>    callbacks.fire(3);//无执行结果<br><br>memory: 保持以前的值（参数），将函数添加到这个列表的后面，并使用先前保存的参数立即执行该函数。 内部变量会保存上次执行的场景。<br><br>　　他有一个特点，就是在第一次fire之前使用add添加的回调都不会马上执行，只有调用了一次fire之后使用add添加的回调会马上执行。该设置本身不会清除之前的回调列表。<br><br>　　需要注意的是每次add内部执行fire函数都会将firingStart置为0，只有下次add的时候会从新设置firingStart的值。<br><br>　　eg:<br><br>    var f1 = function(value) {    console.log(value); };<br>    var callbacks = $.Callbacks(“memory”);<br><br>    callbacks.add( fn1 );//无执行结果<br>    callbacks.fire( “1” );//执行结果1。保存场景参数1<br><br>    callbacks.add( fn1 );//执行结果1。使用上次保存的场景参数1<br>    callbacks.fire( “2” );//执行结果2,2。保存场景参数2<br><br>    callbacks.add( fn1 );//执行结果2。使用上次保存的场景参数2<br>    callbacks.fire( “3” );//执行结果3,3,3。保存场景参数3<br><br>    callbacks.add( fn1 );//执行结果3。使用上次保存的场景参数3<br>    callbacks.fire( “4” );//执行结果4,4,4,4。保存场景参数4<br><br>　组合使用，组合使用中间使用空格隔开<br><br>　　设置“once memory”, options.once=options.memory=true。在执行第一次fire后会把回到列表清空，而且之后每次add马上执行后页同样会把回调列表清空（fire函数代码段else if ( memory ) {list = [];}）。<br><br>       eg:<br><br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once memory’);<br><br>    callbacks.add(f1);//无执行结果,添加一个回调<br>    callbacks.fire(1);//执行结果1。清除回调列表，保存场景参数1<br>    callbacks.add(f1);//添加一个回调并执行结果1，使用上次保存的场景参数。清除回调列表<br>    callbacks.fire(2);//无执行结果<br>    callbacks.add(f1);//添加一个回调并执行结果1，使用上次保存的场景参数。清除回调列表<br>    callbacks.fire(3);//无执行结果<br><br>两个设置之间用空格，不支持其他符号，比如设置“once,memory”等同于没有设置。<br><br>　　eg:<br><br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once,memory’);<br><br>    callbacks.add(f1);//无执行结果,添加一个回调<br>    callbacks.fire(1);//执行结果1<br>    callbacks.add(f1);//添加一个回调<br>    callbacks.fire(2);//执行结果2,2<br>    callbacks.add(f1);//添加一个回调<br>    callbacks.fire(3);//执行结果3,3,3<br>    callbacks.add(f1);//添加一个回调<br>    callbacks.fire(4);//执行结果4,4,4,4<br><br>unique: 确保一次只能添加一个回调(所以在列表中没有重复的回调).<br><br><br><br>stopOnFalse: 当一个回调返回false 时中断调用<br><br>       当有一个回调返回false的时候，会设置memory为false。导致memory失去作用（后续add的函数不会马上执行，当然先前memory保证了前面执行过得函数不再执行这也条也就不起作用了。下次fire会从回调列表的第一个开始执行）。<br><br><br><br>b. 整体结构<br><br>　　使用缓存是jQuery中最常见的技巧。$.Callbacks中也不例外。主要是缓存Callbacks中遇到的选项（字符串）。<br><br>    // 使用过的选项缓存<br>    var optionsCache = {};<br><br>    // 新增和缓存回调设置于optionsCache中<br>    function createOptions( options ) {<br>        var object = optionsCache[ options ] = {};<br>        jQuery.each( options.match( core<em>rnotwhite ) || [], function( </em>, flag ) {<br>            object[ flag ] = true;<br>        });<br>        return object;<br>    }<br><br>    jQuery.Callbacks = function( options ) {<br>        // 尽可能读取缓存，没有则新增缓存<br>        options = typeof options === “string” ?<br>        ( optionsCache[ options ] || createOptions( options ) ) :<br>        jQuery.extend( {}, options );<br><br>        var // 回调列表正在执行（为true的时候）的标志<br>            firing,<br>            // 最后执行的值（为memory选项下保存）<br>            memory,<br>            // 回调已经被执行过的标志<br>            fired,<br>            // 循环执行回调列表的结束位置<br>            firingLength,<br>            // 当前真正执行的回调的索引值 (执行下个回调的时候回更改【如果必要的话】)<br>            firingIndex,<br>            // 循环执行回调列表的开始位置(在函数add和fireWith中使用)<br>            firingStart,<br>            // 回调列表<br>            list = [],<br>            // Stack记录要重复执行的回调列表<br>            stack = !options.once &amp;&amp; [],<br>            // data数组一般第一个元素是上下文环境，第二个元素是参数<br>            //执行回调列表<br>            fire = function( data ) {…},<br>            // 回调对象<br>            self = {<br>                // 添加回调<br>                add: function() {…},<br>                // 移除回调<br>                remove: function() {…},<br>                …<br>                // 给定 context 和 arguments执行所有回调<br>                fireWith: function( context, args ) {<br>                    args = args || [];<br>                    //组装args，第一个元素为上下文环境，第二个元素为参数列表<br>                    args = [ context, args.slice ? args.slice() : args ];<br>                    //有list且函数列表没有被执行过或者存在要循环执行的函数列表<br>                    if ( list &amp;&amp; ( !fired || stack ) ) {<br>                        //如果正在fire，则把函数场景记录在stack中<br>                        if ( firing ) {<br>                            stack.push( args );<br>                        //否则，至此那个fire<br>                        } else {<br>                            fire( args );<br>                        }<br>                    }<br>                    return this;<br>                },<br>                // 使用给定的arguments执行所有回调<br>                fire: function() {<br>                    self.fireWith( this, arguments );<br>                    return this;<br>                },<br>                …<br>            };<br>        return self;<br>    };<br><br>下面分析两个最重要的两个函数，添加回调函数add和执行回调函数fire<br><br>c. add:添加回调<br><br>　　添加回调函数比较简单，针对可能传递的值（函数或者函数数组）将回调添加到回调列表中即可，这里使用了一个闭包，使用了外部变量list。<br><br>     (function add( args ) {<br>                jQuery.each( args, function( <em>, arg ) {<br>                    var type = jQuery.type( arg );<br>                    if ( type === “function” ) {<br>                        //当$.Callbacks(‘unique’)时，保证列表里面不会出现重复的回调<br>                        if ( !options.unique || !self.has( arg ) ) {<br>                            list.push( arg );<br>                        }<br>                    //如果是数组则递归添加<br>                    } else if ( arg &amp;&amp; arg.length &amp;&amp; type !== “string” ) {<br>                        add( arg );<br>                    }<br>                });<br>            })( arguments );<br><br>　但是这里需要对用户初始化设置的属性做一些特殊的处理。<br><br>　　如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义），直接返回list<br><br>    //如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义）<br>        if ( list ) {<br>            …<br>        }<br>        return this;<br><br>当有回调真正执行的时候，需要重新设定回调列表的结束位置firingLength，使后续添加的函数也会执行。实际上这个功能很受争议，不过正常情况一般不会出现添加函数的时候正在执行某个回调。<br><br>　　还有一个比较重要的判断：对于设置了’memory’选项并fire过了回调列表，并且没有还在等待中的回调要fire,则应当马上执行新添加的回调（执行fire(memory)）<br><br>    // 如果正在fire，则设定要执行结束的点firingLength，使后续添加的函数最后不会执行<br>            if ( firing ) {<br>                firingLength = list.length;<br>            // 对于memory（设置了’memory’ option并fire过了，memory才能通过该else if语句）,<br>            //如果没有回调真正fire,应当马上执行fire(memory)。<br>            } else if ( memory ) {<br>                //这里保证了前面执行过得函数不再执行<br>                firingStart = start;<br>                fire( memory );<br>            }<br><br>完整的源码如下<br><br>    add: function() {<br>        //如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义）<br>        if ( list ) {<br>            // 保存当前list长度，为memory处理备用<br>            var start = list.length;<br>            (function add( args ) {<br>                jQuery.each( args, function( </em>, arg ) {<br>                    var type = jQuery.type( arg );<br>                    if ( type === “function” ) {<br>                        //当$.Callbacks(‘unique’)时，保证列表里面不会出现重复的回调<br>                        if ( !options.unique || !self.has( arg ) ) {<br>                            list.push( arg );<br>                        }<br>                    //如果是数组则递归添加<br>                    } else if ( arg &amp;&amp; arg.length &amp;&amp; type !== “string” ) {<br>                        add( arg );<br>                    }<br>                });<br>            })( arguments );<br>            // 如果正在fire，则设定要执行结束的点firingLength，使后续添加的函数最后执行<br>            if ( firing ) {<br>                firingLength = list.length;<br>            // 对于memory（设置了’memory’ option并fire过了，memory才能通过该else if语句）,<br>            //如果我们后续没有fire,应当马上执行fire(memory)。<br>            } else if ( memory ) {<br>                //这里保证了前面执行过得函数不再执行<br>                firingStart = start;<br>                fire( memory );<br>            }<br>        }<br>        return this;<br>    }<br><br>d. fire函数详解<br><br>　　该函数执行回调，最终执行代码段为<br><br>    if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false &amp;&amp; options.stopOnFalse ) {<br>           memory = false; // 阻止未来可能由于add所产生的回调<br>           break;<br>    }<br>    fire = function( data ) {<br>    　　//有memory才给memory赋值当前场景data<br>    　　memory = options.memory &amp;&amp; data;<br>    　　fired = true;<br>    　　firingIndex = firingStart || 0;<br>    　　//每次fire后都会重置成0，下次$.callbacks.fire调用都会从0开始。当然设置为‘memory’使用add函数内部fire会设置firingStart的值导致回调函数列表执行起始位置更改<br>    　　firingStart = 0;<br>    　　firingLength = list.length;<br>    　　firing = true;<br><br>    　　//函数开始执行从firingStart到firingLength的所有函数<br>    　　for ( ; list &amp;&amp; firingIndex &lt; firingLength; firingIndex++ ) {<br>    　　　　//执行firingIndex对应的函数，如果设置是遇到false返回就停止，则设置memory，阻止后续函数执行<br>    　　　　if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false &amp;&amp; options.stopOnFalse ) {<br>    　　　　　　memory = false; // 阻止未来可能由于add所产生的回调<br>    　　　　　　break;<br>    　　　　}<br>    　　}<br><br>    　　//标记回调结束<br>    　　firing = false;<br><br>    　　//如果列表存在<br>    　　if ( list ) {<br>    　　　　//如果堆栈存在（一般没有设置once的时候都进入该分支）<br>    　　　　if ( stack ) {<br>    　　　　　　//如果堆栈不为空<br>    　　　　　　if ( stack.length ) {<br>    　　　　　　　　//执行stack中第一个元素<br>    　　　　　　　　fire( stack.shift() );<br>    　　　　　　}<br>    　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>    　　　　} else if ( memory ) {<br>    　　　　　　list = [];<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>    　　}<br>    },<br><br>真正重要的是执行完成回调以后的处理<br><br>    //如果列表存在<br>    　　if ( list ) {<br>    　　　　//如果堆栈存在（一般没有设置once的时候都进入该分支）<br>    　　　　if ( stack ) {<br>    　　　　　　//如果堆栈不为空<br>    　　　　　　if ( stack.length ) {<br>    　　　　　　　　//执行stack中第一个元素<br>    　　　　　　　　fire( stack.shift() );<br>    　　　　　　}<br>    　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>    　　　　} else if ( memory ) {<br>    　　　　　　list = [];<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>    　　}<br><br>首先看最外层的判断<br><br>    if ( list ){<br>        …<br>    }<br><br>什么时候会进不了这个分支呢？唯有当self.disable()被调用的时候，下一次fire就进入不了这个分支。查看self.disable源码<br><br>    disable: function() {<br>                        list = stack = memory = undefined;<br>                        return this;<br>                    }<br><br>根据里面的判断唯有当options选项有once，并且选项中没有memory或选项中有stopOnFalse且执行的回调返回false。这个时候回进入到里面的分支直接将整个回调禁用掉。<br><br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br><br>　　第一个内部分支if ( stack )主要是选项中没有once就进入。<br><br>　　第二个内部分支只有在选项至少有once和memory的时候才会进入。当然，如果还有stopOnFalse且执行的回调返回false会进入到第三个分支。<br><br>　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>　　　　<br>    } else if ( memory ) {<br><br><br><div align="center"><br>实例1<br><img src="/images/jquery/3_1.png"><br>实例2<br><img src="/images/jquery/3_2.png"><br>实例3<br><img src="/images/jquery/3_3.png"><br>实例4<br><img src="/images/jquery/3_4.png"><br>实例5<br><img src="/images/jquery/3_5.png"><br></div><br>##### 问题：Deferred<br><div align="center"><br>实例1<br><img src="/images/jquery/2_1.png"><br>实例2<br><img src="/images/jquery/2_2.png"><br>实例3<br><img src="/images/jquery/2_3.png"><br>实例4<br><img src="/images/jquery/2_4.png"><br>实例5<br><img src="/images/jquery/2_5.png"><br>实例6<br><img src="/images/jquery/2_6.png"><br>实例7<br><img src="/images/jquery/2_7.png"><br>实例8<br><img src="/images/jquery/2_8.png"><br>实例9<br><img src="/images/jquery/2_9.png"><br>实例10<br><img src="/images/jquery/2_10.png"><br>实例11<br><img src="/images/jquery/2_11.png"><br>实例12<br><img src="/images/jquery/2_12.png"><br></div><br>when方法要求返回的一定是延迟对象状态，若果某个函数不返回状态，则它将不会被认定为延迟对象。因此会被跳过。<br>如下图运行结果可证：<br><div align="center"><br><img src="/images/jquery/2_13.png"><br></div>    
+<h5 id="jQuery-Data源码-数据缓存系统"><a href="#jQuery-Data源码-数据缓存系统" class="headerlink" title="jQuery.Data源码(数据缓存系统)"></a>jQuery.Data源码(数据缓存系统)</h5><p>对于DOM元素，通过分配一个唯一的关联id把DOM元素和该DOM元素的数据缓存对象关联起来，关联id被附加到以jQuery.expando的值命名的属性上，数据存储在全局缓存对象jQuery.cache中。在读取、设置、移除数据时，将通过关联id从全局缓存对象jQuery.cache中找到关联的数据缓存对象，然后在数据缓存对象上执行读取、设置、移除操作。<br>对于Javascript对象，数据则直接存储在该Javascript对象的属性jQuery.expando上。在读取、设置、移除数据时，实际上是对Javascript对象的数据缓存对象执行读取、设置、移除操作。<br>为了避免jQuery内部使用的数据和用户自定义的数据发生冲突，数据缓存模块把内部数据存储在数据缓存对象上，把自定义数据存储在数据缓存对象的属性data上。<br><a href="http://www.cnblogs.com/yaoyinglong/p/5738979.html" target="_blank" rel="external">http://www.cnblogs.com/yaoyinglong/p/5738979.html</a><br>P.S. 下图解释了Data的处理机制（也阐明了不会出现内存泄露问题的原因）</p>
+<p><div align="center"><br><img src="/images/jquery/5_1.png"><br></div><br>相同的元素是只分配同一个id的，如下图</p>
+<p><div align="center"><br><img src="/images/jquery/5_3.png"><br><img src="/images/jquery/5_4.png"><br></div><br><br></p>
+<h5 id="jauery回调Callbacks"><a href="#jauery回调Callbacks" class="headerlink" title="jauery回调Callbacks"></a>jauery回调Callbacks</h5><p>jQuery.Callbacks()提供的回调函数队列管理本来是延时回调处理的一部分，但是后面将其独立出来作为一个模块。jQuery就是这样，各个模块间的代码耦合度是处理的比较好的，值得学习。虽然是从延时回调处理中独立出来的，但是它的功能非常强大，提供了一种强大的方法来管理回调函数队列。<br>大家都明白封装函数的目的：去耦合与简化操作。<br>通常情况下函数队列的处理方式</p>
+<pre><code>    //执行函数
+    function runList(arr){
+        for(var i = 0; i &lt; arr.length; i++){
+            `arr[i]();　`　　　
+        }
+    　　arr.length = 0;
+    }
 
-<p>详解</p>
+    var list = [];
+    //添加函数队列
+    list[list.length] = function(){alert(1)};
+    list[list.length] = function(){alert(2)};
+    list[list.length] = function(){alert(3)}; 
+    //执行 
+    runList(list);//三个函数顺序执行
+
+使用$.callbacks封装以后的处理为
+
+    var callbacks = $.Callbacks(&quot;unique&quot;);
+
+    callbacks.add( function(){alert(1)} );
+    callbacks.add( function(){alert(2)} );
+    callbacks.add( function(){alert(3)} );
+    //执行
+    callbacks.fire();//三个函数顺序执行    
+</code></pre><p>干净了很多。而且代码可读性比最开始的那个要好很多。list[list.length]神马的最讨厌了。还有主要的是$.callbacks有四个属性可以组合，这个组合可就很强大了。<br>a. Callbacks的四个可设置的属性分析<br>once: 确保这个回调列表只执行（ .fire() ）一次(像一个递延 Deferred).<br>设置“once”在执行第一次fire后会直接禁用该Callbacks(fire函数代码段else {self.disable();})<br>        var f1 = function(value) { console.log(value); };<br>        var callbacks = $.Callbacks(‘once’);</p>
+<pre><code>callbacks.add(f1);//无执行结果,添加一个回调
+callbacks.fire(1);//执行结果1。清除回调列表
+callbacks.add(f1);//没有添加回调直接返回
+callbacks.fire(2);//无执行结果
+callbacks.add(f1);//没有添加回调直接返回
+callbacks.fire(3);//无执行结果   
+</code></pre><p>memory: 保持以前的值（参数），将函数添加到这个列表的后面，并使用先前保存的参数立即执行该函数。 内部变量会保存上次执行的场景。他有一个特点，就是在第一次fire之前使用add添加的回调都不会马上执行，只有调用了一次fire之后使用add添加的回调会马上执行。该设置本身不会清除之前的回调列表。<br>需要注意的是每次add内部执行fire函数都会将firingStart置为0，只有下次add的时候会从新设置firingStart的值。<br>eg:<br>    var f1 = function(value) {    console.log(value); };<br>    var callbacks = $.Callbacks(“memory”);</p>
+<pre><code>callbacks.add( fn1 );//无执行结果
+callbacks.fire( &quot;1&quot; );//执行结果1。保存场景参数1
+
+callbacks.add( fn1 );//执行结果1。使用上次保存的场景参数1
+callbacks.fire( &quot;2&quot; );//执行结果2,2。保存场景参数2
+
+callbacks.add( fn1 );//执行结果2。使用上次保存的场景参数2
+callbacks.fire( &quot;3&quot; );//执行结果3,3,3。保存场景参数3
+
+callbacks.add( fn1 );//执行结果3。使用上次保存的场景参数3
+callbacks.fire( &quot;4&quot; );//执行结果4,4,4,4。保存场景参数4    
+</code></pre><p>组合使用，组合使用中间使用空格隔开<br>设置“once memory”, options.once=options.memory=true。在执行第一次fire后会把回到列表清空，而且之后每次add马上执行后页同样会把回调列表清空（fire函数代码段else if ( memory ) {list = [];}）。<br>eg:<br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once memory’);</p>
+<pre><code>callbacks.add(f1);//无执行结果,添加一个回调
+callbacks.fire(1);//执行结果1。清除回调列表，保存场景参数1
+callbacks.add(f1);//添加一个回调并执行结果1，使用上次保存的场景参数。清除回调列表
+callbacks.fire(2);//无执行结果
+callbacks.add(f1);//添加一个回调并执行结果1，使用上次保存的场景参数。清除回调列表
+callbacks.fire(3);//无执行结果   
+</code></pre><p>两个设置之间用空格，不支持其他符号，比如设置“once,memory”等同于没有设置。<br>eg:<br>    var f1 = function(value) { console.log(value); };<br>    var callbacks = $.Callbacks(‘once,memory’);</p>
+<pre><code>callbacks.add(f1);//无执行结果,添加一个回调
+callbacks.fire(1);//执行结果1
+callbacks.add(f1);//添加一个回调
+callbacks.fire(2);//执行结果2,2
+callbacks.add(f1);//添加一个回调
+callbacks.fire(3);//执行结果3,3,3
+callbacks.add(f1);//添加一个回调
+callbacks.fire(4);//执行结果4,4,4,4
+</code></pre><p>unique: 确保一次只能添加一个回调(所以在列表中没有重复的回调).<br>stopOnFalse: 当一个回调返回false 时中断调用<br>当有一个回调返回false的时候，会设置memory为false。导致memory失去作用（后续add的函数不会马上执行，当然先前memory保证了前面执行过得函数不再执行这也条也就不起作用了。下次fire会从回调列表的第一个开始执行）。<br>b. 整体结构<br>使用缓存是jQuery中最常见的技巧。$.Callbacks中也不例外。主要是缓存Callbacks中遇到的选项（字符串）。</p>
+<pre><code>// 使用过的选项缓存
+var optionsCache = {};
+
+// 新增和缓存回调设置于optionsCache中
+function createOptions( options ) {
+    var object = optionsCache[ options ] = {};
+    jQuery.each( options.match( core_rnotwhite ) || [], function( _, flag ) {
+        object[ flag ] = true;
+    });
+    return object;
+}
+
+jQuery.Callbacks = function( options ) {
+    // 尽可能读取缓存，没有则新增缓存
+    options = typeof options === &quot;string&quot; ?
+    ( optionsCache[ options ] || createOptions( options ) ) :
+    jQuery.extend( {}, options );
+
+    var // 回调列表正在执行（为true的时候）的标志
+        firing,
+        // 最后执行的值（为memory选项下保存）
+        memory,
+        // 回调已经被执行过的标志
+        fired,
+        // 循环执行回调列表的结束位置
+        firingLength,
+        // 当前真正执行的回调的索引值 (执行下个回调的时候回更改【如果必要的话】)
+        firingIndex,
+        // 循环执行回调列表的开始位置(在函数add和fireWith中使用)
+        firingStart,
+        // 回调列表
+        list = [],
+        // Stack记录要重复执行的回调列表
+        stack = !options.once &amp;&amp; [],
+        // data数组一般第一个元素是上下文环境，第二个元素是参数
+        //执行回调列表
+        fire = function( data ) {…},
+        // 回调对象
+        self = {
+            // 添加回调
+            add: function() {…},
+            // 移除回调
+            remove: function() {…},
+            ...
+            // 给定 context 和 arguments执行所有回调
+            fireWith: function( context, args ) {
+                args = args || [];
+                //组装args，第一个元素为上下文环境，第二个元素为参数列表
+                args = [ context, args.slice ? args.slice() : args ];
+                //有list且函数列表没有被执行过或者存在要循环执行的函数列表
+                if ( list &amp;&amp; ( !fired || stack ) ) {
+                    //如果正在fire，则把函数场景记录在stack中
+                    if ( firing ) {
+                        stack.push( args );
+                    //否则，至此那个fire
+                    } else {
+                        fire( args );
+                    }
+                }
+                return this;
+            },
+            // 使用给定的arguments执行所有回调
+            fire: function() {
+                self.fireWith( this, arguments );
+                return this;
+            },
+            ...
+        };
+    return self;
+};
+</code></pre><p>下面分析两个最重要的两个函数，添加回调函数add和执行回调函数fire<br>c. add:添加回调<br>添加回调函数比较简单，针对可能传递的值（函数或者函数数组）将回调添加到回调列表中即可，这里使用了一个闭包，使用了外部变量list。<br>     (function add( args ) {<br>                jQuery.each( args, function( <em>, arg ) {<br>                    var type = jQuery.type( arg );<br>                    if ( type === “function” ) {<br>                        //当$.Callbacks(‘unique’)时，保证列表里面不会出现重复的回调<br>                        if ( !options.unique || !self.has( arg ) ) {<br>                            list.push( arg );<br>                        }<br>                    //如果是数组则递归添加<br>                    } else if ( arg &amp;&amp; arg.length &amp;&amp; type !== “string” ) {<br>                        add( arg );<br>                    }<br>                });<br>            })( arguments );<br>但是这里需要对用户初始化设置的属性做一些特殊的处理。<br>如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义），直接返回list<br>//如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义）<br>        if ( list ) {<br>            …<br>        }<br>        return this;<br>当有回调真正执行的时候，需要重新设定回调列表的结束位置firingLength，使后续添加的函数也会执行。实际上这个功能很受争议，不过正常情况一般不会出现添加函数的时候正在执行某个回调。<br>还有一个比较重要的判断：对于设置了’memory’选项并fire过了回调列表，并且没有还在等待中的回调要fire,则应当马上执行新添加的回调（执行fire(memory)）<br>// 如果正在fire，则设定要执行结束的点firingLength，使后续添加的函数最后不会执行<br>            if ( firing ) {<br>                firingLength = list.length;<br>            // 对于memory（设置了’memory’ option并fire过了，memory才能通过该else if语句）,<br>            //如果没有回调真正fire,应当马上执行fire(memory)。<br>            } else if ( memory ) {<br>                //这里保证了前面执行过得函数不再执行<br>                firingStart = start;<br>                fire( memory );<br>            }<br>完整的源码如下<br>    add: function() {<br>        //如果列表没有定义或null（一般只有在用户设置once且执行过一次后list才会白置为未定义）<br>        if ( list ) {<br>            // 保存当前list长度，为memory处理备用<br>            var start = list.length;<br>            (function add( args ) {<br>                jQuery.each( args, function( </em>, arg ) {<br>                    var type = jQuery.type( arg );<br>                    if ( type === “function” ) {<br>                        //当$.Callbacks(‘unique’)时，保证列表里面不会出现重复的回调<br>                        if ( !options.unique || !self.has( arg ) ) {<br>                            list.push( arg );<br>                        }<br>                    //如果是数组则递归添加<br>                    } else if ( arg &amp;&amp; arg.length &amp;&amp; type !== “string” ) {<br>                        add( arg );<br>                    }<br>                });<br>            })( arguments );<br>            // 如果正在fire，则设定要执行结束的点firingLength，使后续添加的函数最后执行<br>            if ( firing ) {<br>                firingLength = list.length;<br>            // 对于memory（设置了’memory’ option并fire过了，memory才能通过该else if语句）,<br>            //如果我们后续没有fire,应当马上执行fire(memory)。<br>            } else if ( memory ) {<br>                //这里保证了前面执行过得函数不再执行<br>                firingStart = start;<br>                fire( memory );<br>            }<br>        }<br>        return this;<br>    }<br>d. fire函数详解<br>该函数执行回调，最终执行代码段为<br>if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false &amp;&amp; options.stopOnFalse ) {<br>           memory = false; // 阻止未来可能由于add所产生的回调<br>           break;<br>    }<br>    fire = function( data ) {<br>    　　//有memory才给memory赋值当前场景data<br>    　　memory = options.memory &amp;&amp; data;<br>    　　fired = true;<br>    　　firingIndex = firingStart || 0;<br>    　　//每次fire后都会重置成0，下次$.callbacks.fire调用都会从0开始。当然设置为‘memory’使用add函数内部fire会设置firingStart的值导致回调函数列表执行起始位置更改<br>    　　firingStart = 0;<br>    　　firingLength = list.length;<br>    　　firing = true;<br>    　　//函数开始执行从firingStart到firingLength的所有函数<br>    　　for ( ; list &amp;&amp; firingIndex &lt; firingLength; firingIndex++ ) {<br>    　　　　//执行firingIndex对应的函数，如果设置是遇到false返回就停止，则设置memory，阻止后续函数执行<br>    　　　　if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false &amp;&amp; options.stopOnFalse ) {<br>    　　　　　　memory = false; // 阻止未来可能由于add所产生的回调<br>    　　　　　　break;<br>    　　　　}<br>    　　}<br>    　　//标记回调结束<br>    　　firing = false;<br>    　　//如果列表存在<br>    　　if ( list ) {<br>    　　　　//如果堆栈存在（一般没有设置once的时候都进入该分支）<br>    　　　　if ( stack ) {<br>    　　　　　　//如果堆栈不为空<br>    　　　　　　if ( stack.length ) {<br>    　　　　　　　　//执行stack中第一个元素<br>    　　　　　　　　fire( stack.shift() );<br>    　　　　　　}<br>    　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>    　　　　} else if ( memory ) {<br>    　　　　　　list = [];<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>    　　}<br>    },<br>真正重要的是执行完成回调以后的处理<br>//如果列表存在<br>    　　if ( list ) {<br>    　　　　//如果堆栈存在（一般没有设置once的时候都进入该分支）<br>    　　　　if ( stack ) {<br>    　　　　　　//如果堆栈不为空<br>    　　　　　　if ( stack.length ) {<br>    　　　　　　　　//执行stack中第一个元素<br>    　　　　　　　　fire( stack.shift() );<br>    　　　　　　}<br>    　　　　//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>    　　　　} else if ( memory ) {<br>    　　　　　　list = [];<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>    　　}<br>首先看最外层的判断<br>    if ( list ){<br>        …<br>    }<br>什么时候会进不了这个分支呢？唯有当self.disable()被调用的时候，下一次fire就进入不了这个分支。查看self.disable源码<br>disable: function() {<br>                        list = stack = memory = undefined;<br>                        return this;<br>                    }<br>根据里面的判断唯有当options选项有once，并且选项中没有memory或选项中有stopOnFalse且执行的回调返回false。这个时候回进入到里面的分支直接将整个回调禁用掉。<br>    　　　　//禁用回调,该callbacks将不可用，将list/stack/memory都设为未定义<br>    　　　　} else {<br>    　　　　　　self.disable();<br>    　　　　}<br>第一个内部分支if ( stack )主要是选项中没有once就进入。<br>第二个内部分支只有在选项至少有once和memory的时候才会进入。当然，如果还有stopOnFalse且执行的回调返回false会进入到第三个分支。<br>//如果有记忆，则清空列表(在设置为once且memory的时候会进入到此分支)<br>} else if ( memory ) {     </p>
+<p><div align="center"><br>实例1<br><img src="/images/jquery/3_1.png"><br>实例2<br><img src="/images/jquery/3_2.png"><br>实例3<br><img src="/images/jquery/3_3.png"><br>实例4<br><img src="/images/jquery/3_4.png"><br>实例5<br><img src="/images/jquery/3_5.png"><br></div>       </p>
+<h5 id="Deferred"><a href="#Deferred" class="headerlink" title="Deferred"></a>Deferred</h5><p><div align="center"><br>实例1<br><img src="/images/jquery/2_1.png"><br>实例2<br><img src="/images/jquery/2_2.png"><br>实例3<br><img src="/images/jquery/2_3.png"><br>实例4<br><img src="/images/jquery/2_4.png"><br>实例5<br><img src="/images/jquery/2_5.png"><br>实例6<br><img src="/images/jquery/2_6.png"><br>实例7<br><img src="/images/jquery/2_7.png"><br>实例8<br><img src="/images/jquery/2_8.png"><br>实例9<br><img src="/images/jquery/2_9.png"><br>实例10<br><img src="/images/jquery/2_10.png"><br>实例11<br><img src="/images/jquery/2_11.png"><br>实例12<br><img src="/images/jquery/2_12.png"><br></div><br>when方法要求返回的一定是延迟对象状态，若果某个函数不返回状态，则它将不会被认定为延迟对象。因此会被跳过。<br>如下图运行结果可证：</p>
+<p><div align="center"><br><img src="/images/jquery/2_13.png"><br></div><br>详解</p>
 <pre><code>//document ready简便写法$(function(){…})
 } else if ( jQuery.isFunction( selector ) ) {
     return rootjQuery.ready( selector );
 }        
-</code></pre><p>所以$(fn)===$(document).ready(fn)。</p>
-<p>　　来看一下jQuery.fn.ready的源码</p>
+</code></pre><p>所以$(fn)===$(document).ready(fn)。<br>来看一下jQuery.fn.ready的源码</p>
 <pre><code>ready: function( fn ) {
     // Add the callback
     jQuery.ready.promise().done( fn );
 
     return this;
 }    
-</code></pre><p>很明显在jQuery.ready.promise函数中设置了延时，当延时对象解决的时候执行fn函数。<br>主要的处理流程：<br>　　创建一个延时对象，并将文档准备好后的处理事件添加到该延时对象成功事件列表上。    </p>
+</code></pre><p>很明显在jQuery.ready.promise函数中设置了延时，当延时对象解决的时候执行fn函数。<br>主要的处理流程：<br>创建一个延时对象，并将文档准备好后的处理事件添加到该延时对象成功事件列表上。    </p>
 <pre><code>jQuery.ready.promise = function( obj ) {
 　　if ( !readyList ) {
 　　　　readyList = jQuery.Deferred();
@@ -456,10 +586,7 @@ jQuery.ready: function( wait ) { 　　 　　
         jQuery( document ).trigger(&quot;ready&quot;).off(&quot;ready&quot;); 　　
     }  
 }
-</code></pre><p>a. 文档加载状态document.readyState</p>
-<p>　　document.readyState用来判断文档加载状态，是一个只读属性，可能的值有：</p>
-<p>　　0-uninitialized：XML 对象被产生，但没有任何文件被加载。<br>　　1-loading：加载程序进行中，但文件尚未开始解析。<br>　　2-loaded：部分的文件已经加载且进行解析，但对象模型尚未生效。<br>　　3-interactive：仅对已加载的部分文件有效，在此情况下，对象模型是有效但只读的。<br>　　4-complete：文件已完全加载，代表加载成功。</p>
-<p>　　实例:</p>
+</code></pre><p>a. 文档加载状态document.readyState<br>　　document.readyState用来判断文档加载状态，是一个只读属性，可能的值有：<br>　　0-uninitialized：XML 对象被产生，但没有任何文件被加载。<br>　　1-loading：加载程序进行中，但文件尚未开始解析。<br>　　2-loaded：部分的文件已经加载且进行解析，但对象模型尚未生效。<br>　　3-interactive：仅对已加载的部分文件有效，在此情况下，对象模型是有效但只读的。<br>　　4-complete：文件已完全加载，代表加载成功。<br>　　实例:</p>
 <pre><code>document.onreadystatechange = stateChange;//当页面加载状态改变的时候执行这个方法.
 function stateChange() { 　　
 　　if(document.readyState == &quot;complete&quot;){ //当页面加载状态为完全结束时进入 　　　　
@@ -467,132 +594,33 @@ function stateChange() { 　　
 　　} 
 }
 </code></pre><p>但是，老版本的Firefox并不支持document.readyState【最新的Firefox已经支持了】。所以想要兼容所有浏览器监听文档准备完成分两种情况来处理：</p>
-<p>　　- 标准浏览器使用addEventListener添加DOMContentLoaded和load监听，任何一个事件被触发即可</p>
-<p>　　- 老版本IE浏览器使用attachEvent添加onreadystatechange和onload来监听，任何一个被触发，并且onreadystatechange时document.readyState === “complete”即可。</p>
-<p>　　jQuery的处理也就是如此了</p>
-<pre><code>jQuery.ready.promise = function(){
-　　...
-　　//标准浏览器支持DOMContentLoaded事件
-　　else if ( document.addEventListener ) {
-            //绑定DOMContentLoaded事件和响应函数，响应函数会解决延时
-            document.addEventListener( &quot;DOMContentLoaded&quot;, completed, false );
-
-            //回退到window.onload事件绑定，所有的浏览器都支持
-            window.addEventListener( &quot;load&quot;, completed, false );
-
-    //如果是IE事件模型
-    } else {
-            //确保在onload之前执行延时，可能时间比较迟，但是对于iframes来说比较安全
-            document.attachEvent( &quot;onreadystatechange&quot;, completed );
-
-            //回退到window.onload事件绑定，所有的浏览器都支持
-            window.attachEvent( &quot;onload&quot;, completed );
-　　　　　　　...
-　　}
-}
-//ready事件处理函数
-completed = function( event ) {
-    // readyState === &quot;complete&quot;在老版本IE上适用
-    if ( document.addEventListener || event.type === &quot;load&quot; || document.readyState === &quot;complete&quot; ) {
-        detach();
-        jQuery.ready();
-    }
-}    
-</code></pre><p>b.doScroll检测文档加载完成</p>
-<p>　　这是Diego Perini 发现的一种检测IE是否加载完成的方式。详细链接</p>
-<p>　　原理是当页面 DOM 未加载完成时调用 doScroll 方法时会产生异常。那么不断的取检测异常是否发生就可以知道文档有没有加载完成。当没有发生异常，表明文档加载完成了。</p>
-<pre><code>(function doScrollCheck() {
-                    if ( !jQuery.isReady ) {
-                        try {
-                            // Use the trick by Diego Perini
-                            // http://javascript.nwbox.com/IEContentLoaded/
-                            top.doScroll(&quot;left&quot;);
-                        } catch(e) {
-                            return setTimeout( doScrollCheck, 50 );
-                        }
-
-                        //移除之前绑定的事件
-                        detach();
-
-                        //执行延迟
-                        jQuery.ready();
-                    }
-                })();    
-</code></pre><h5 id="问题：Support-功能检测，重点是内部使用-主要检测样式style的兼容性"><a href="#问题：Support-功能检测，重点是内部使用-主要检测样式style的兼容性" class="headerlink" title="问题：Support(功能检测，重点是内部使用,主要检测样式style的兼容性)"></a>问题：Support(功能检测，重点是内部使用,主要检测样式style的兼容性)</h5><p>Support所解决的并不是常用性的浏览器兼容问题</p>
-<p><div align="center"><br><img src="/images/jquery/4_1.png"><br><img src="/images/jquery/4_2.png"><br><img src="/images/jquery/4_3.png"><br></div><br>则上图中通过检测返回false的就需要我们做兼容性处理了（针对不同的浏览器）<br>Support只是用来检测不同浏览器存在哪些兼容性问题，而具体的解决是由Hooks(钩子机制)来完成的</p>
-<pre><code>jQuery.support = {
-　　//当使用.innerHTML的时候,IE吞掉开头的空白。
-　　leadingWhitespace:  true/false(空白还在/空白被吞掉（IE）), 
-
-　　//IE浏览器会自动给空表插入tbody标签。
-　　tbody:  true/false(tbody可用/tbody会被自动插入（IE）),
-　　
-　　// IE6-8下确保link/ script/ style或其他html5标签元素能使用innerHTML正确载入的前提是需要一个元素包裹他们。使用div元素来包裹，并且div之前要一个不换行的字符。例如“X&lt;div&gt;&lt;link/&gt;&lt;/div&gt;”。
-　　htmlSerialize:  true/false(不用包裹能正确加载/需要包裹（IE）),
-　　
-　　//获取节点的style属性时：现代浏览器使用elem.getAttribute(&quot;style&quot;),而IE使用elem.style.cssText
-　　style:  true/fasle(使用. getAttribute/IE下使用.cssTex),
-　　
-　　//确保节点的css特征opacity存在 (IE使用filter)
-　　opacity:  true/false(opacity存在/opacity不存在),
-　　
-　　//验证float样式存在, (IE使用styleFloat而不是cssFloat)
-　　cssFloat:  true/fasle(float样式使用cssFloat特征名/使用styleFloat特征名),
-　　
-　　//检查checkbox/radio的默认值(老版本WebKit 默认为&quot;&quot;，其他浏览器默认为&quot;on&quot;)
-　　checkOn:  true/false(默认值为on/默认值为空),
-　　
-　　//确保一个默认选项有一个可用的selected特征值.
-　　//(如果他是一个option组，WebKit的默认选项的selected特征值为false，IE也是。)
-　　optSelected:  true/false(有默认选中/没有默认选中，兼容处理时需要设置一个),
-　　 
-　　//确保克隆的html5节点（没有内容）不会出现问题。
-　　//比如document.createElement(&quot;nav&quot;).cloneNode( true ).outerHTML应该得到&quot;&lt;nav&gt;&lt;/nav&gt;&quot;,而IE却是&quot;&lt;:nav&gt;&lt;/:nav&gt;&quot;
-　　html5Clone:  true/false(能够正常克隆/IE下使用cloneNode有问题),
-　　 
-　　//确保节点的checked状态也能被克隆
-　　noCloneChecked:  true/false(能够正常克隆/IE下克隆checked状态没有被克隆),
-　　 
-　　//确保option选项disabled而select不被标记为disabled(WebKit会把两者都标记为disabled)
-　　optDisabled:  true/false(disabled正常/两者都会标记为disabled)
-　　 
-　　//测试是否能使用delete div.test的方式来删除特征，否则使用delete div[test]（IE&lt;9）
-　　deleteExpando: true/false(可以使用delete div.test/不能使用delete div.test)
-　　 
-　　//检查input标签是否可以使用getAttribute(&quot;value&quot;)来获取值（IE下不行，需要使用elem[‘value’]）
-　　input: true/false(能信任getAttribute(&quot;value&quot;)/不能信任getAttribute(&quot;value&quot;))
-　　 
-　　//检查一个input标签在更改为radio类型后他的值是否还是先前的值（ie会变成默认值”on”,其他浏览器不变）
-　　radioValue: true/false(值不会改变/会改变成默认值),
-　　 
-　　// webkit不能正确克隆fragments中的checked状态
-　　checkClone:  true/false(能正确克隆/不能正确克隆)
-　　 
-　　//判断事件是否被克隆。（兼容IE&lt;9。 Opera不克隆事件(并且typeof div.attachEvent === undefined). IE9-10克隆事件通过attachEvent,但是不能通过 .click()来触发）
-　　noCloneEvent:  true/false(现代浏览器克隆节点时事件不被克隆/ie8浏览器克隆节点的时候事件也被克隆)
-　　 
-　　// IE&lt;9 (缺少submit/change事件冒泡)，Firefox 17+ (缺少focusin事件)
-　　submitBubbles:  true/false(支持冒泡/不支持冒泡),
-　　changeBubbles:  true/false（支持冒泡/不支持冒泡）,
-　　focusinBubbles:  true/false（支持冒泡/不支持冒泡）,
-　　 
-　　//检查是否能准确克隆css样式，比如一些可以继承父节点的样式没有设值的时候值应该是inherit，但是并非每个浏览器都能获取到该值。
-　　clearCloneStyle：true/false（能准确克隆/不能准确克隆）,
-　　 
-　　//（判断前提条件：DOM加载完成）判断offsetWidth/Height是否可靠（主要用于判断元素是否占用空间，如果元素占用空间了，就认为是可见的，否则就认为是不可见：hidden）；IE8下表格的空cell依然有offsetWidth/Height。
-　　reliableHiddenOffsets： true/false（【offsetWidth/Height值可靠】/【offsetWidth/Height值不可靠】）
-　　 
-　　//（判断前提条件：DOM加载完成）测试getComputedStyle获取的位置是否是像素单位。webkit的bug,使用getComputedStyle返回的最终样式中top/left/right/bottom不一定是像素为单位的，可能是指定的百分比等
-　　pixelPosition： true/false（位置css样式以像素为单位返回/位置css样式以指定的格式返回）
-　　 
-　　//（判断前提条件：DOM加载完成）测试设置的boxSizing是否可靠。使用getComputedStyle获取的最总计算样式的浏览器可能会出现问题。
-　　boxSizingReliable:  true/false（可靠/不可靠）
-　　 
-　　//（判断前提条件：DOM加载完成）检测使用getComputedStyle 返回的margin-right值是否正确：WebKit Bug 13343 – getComputedStyle返回错误的margin-right值。解决办法：处理元素的display临时设置为inline-block的解决来计算。
-　　reliableMarginRight： true/false(返回值可靠/返回值不可靠)
-}
-
-//还有一部分没有在jQuery.support中，但是在Sizzle引擎中有描述
+<ul>
+<li>标准浏览器使用addEventListener添加DOMContentLoaded和load监听，任何一个事件被触发即可</li>
+<li>老版本IE浏览器使用attachEvent添加onreadystatechange和onload来监听，任何一个被触发，并且onreadystatechange时document.readyState === “complete”即可。<br>jQuery的处理也就是如此了<br>jQuery.ready.promise = function(){<br>…<br>//标准浏览器支持DOMContentLoaded事件<br>else if ( document.addEventListener ) {<br>//绑定DOMContentLoaded事件和响应函数，响应函数会解决延时<br>document.addEventListener( “DOMContentLoaded”, completed, false );<br>//回退到window.onload事件绑定，所有的浏览器都支持<br>window.addEventListener( “load”, completed, false );<br>//如果是IE事件模型<br>} else {<br>//确保在onload之前执行延时，可能时间比较迟，但是对于iframes来说比较安全<br>document.attachEvent( “onreadystatechange”, completed );<br>//回退到window.onload事件绑定，所有的浏览器都支持<br>window.attachEvent( “onload”, completed );<br>…<br>　　}<br>}<br>//ready事件处理函数<br>completed = function( event ) {<br>// readyState === “complete”在老版本IE上适用<br>if ( document.addEventListener || event.type === “load” || document.readyState === “complete” ) {<br>detach();<br>jQuery.ready();<br>  }<br>}<br>Scroll检测文档加载完成<br>这是Diego Perini 发现的一种检测IE是否加载完成的方式。详细链接<br>原理是当页面 DOM 未加载完成时调用 doScroll 方法时会产生异常。那么不断的取检测异常是否发生就可以知道文档有没有加载完成。当没有发生异常，表明文档加载完成了。<br>(function doScrollCheck() {<br>if ( !jQuery.isReady ) {<br>try {<br>// Use the trick by Diego Perini<br>// <a href="http://javascript.nwbox.com/IEContentLoaded/" target="_blank" rel="external">http://javascript.nwbox.com/IEContentLoaded/</a><br>top.doScroll(“left”);<br>} catch(e) {<br>return setTimeout( doScrollCheck, 50 );<br>}<br>//移除之前绑定的事件<br>detach();<br>//执行延迟<br>jQuery.ready();<br>}<br>})();    <h5 id="Support-功能检测，重点是内部使用-主要检测样式style的兼容性"><a href="#Support-功能检测，重点是内部使用-主要检测样式style的兼容性" class="headerlink" title="Support(功能检测，重点是内部使用,主要检测样式style的兼容性)"></a>Support(功能检测，重点是内部使用,主要检测样式style的兼容性)</h5>Support所解决的并不是常用性的浏览器兼容问题<br><div align="center"><br><img src="/images/jquery/4_1.png"><br><img src="/images/jquery/4_2.png"><br><img src="/images/jquery/4_3.png"><br></div><br>则上图中通过检测返回false的就需要我们做兼容性处理了（针对不同的浏览器）<br>Support只是用来检测不同浏览器存在哪些兼容性问题，而具体的解决是由Hooks(钩子机制)来完成的<br>jQuery.support = {</li>
+</ul>
+<p>//当使用.innerHTML的时候,IE吞掉开头的空白。<br>leadingWhitespace:  true/false(空白还在/空白被吞掉（IE）), </p>
+<p>//IE浏览器会自动给空表插入tbody标签。<br>tbody:  true/false(tbody可用/tbody会被自动插入（IE）),　　</p>
+<p>// IE6-8下确保link/ script/ style或其他html5标签元素能使用innerHTML正确载入的前提是需要一个元素包裹他们。使用div元素来包裹，并且div之前要一个不换行的字符。例如<code>“X&lt;div&gt;&lt;link/&gt;&lt;/div&gt;”</code>。<br>htmlSerialize:  true/false(不用包裹能正确加载/需要包裹（IE）),</p>
+<p>//获取节点的style属性时：现代浏览器使用elem.getAttribute(“style”),而IE使用elem.style.cssText<br>style:  true/fasle(使用. getAttribute/IE下使用.cssTex),　</p>
+<p>//确保节点的css特征opacity存在 (IE使用filter)<br>opacity:  true/false(opacity存在/opacity不存在),　</p>
+<p>//验证float样式存在, (IE使用styleFloat而不是cssFloat)<br>cssFloat:  true/fasle(float样式使用cssFloat特征名/使用styleFloat特征名),　</p>
+<p>  //检查checkbox/radio的默认值(老版本WebKit 默认为””，其他浏览器默认为”on”)<br>checkOn:  true/false(默认值为on/默认值为空),　　</p>
+<p>  //确保一个默认选项有一个可用的selected特征值.<br>//(如果他是一个option组，WebKit的默认选项的selected特征值为false，IE也是。)<br>optSelected:  true/false(有默认选中/没有默认选中，兼容处理时需要设置一个),　　 </p>
+<p>  //确保克隆的html5节点（没有内容）不会出现问题。<br>//比如document.createElement(“nav”).cloneNode( true ).outerHTML应该得到”<nav></nav>“,而IE却是”&lt;:nav&gt;&lt;/:nav&gt;”<br>html5Clone:  true/false(能够正常克隆/IE下使用cloneNode有问题),　　 </p>
+<p>  //确保节点的checked状态也能被克隆<br>noCloneChecked:  true/false(能够正常克隆/IE下克隆checked状态没有被克隆),　　 </p>
+<p>  //确保option选项disabled而select不被标记为disabled(WebKit会把两者都标记为disabled)<br>optDisabled:  true/false(disabled正常/两者都会标记为disabled)　　 </p>
+<p>  //测试是否能使用delete div.test的方式来删除特征，否则使用delete div[test]（IE&lt;9）<br>deleteExpando: true/false(可以使用delete div.test/不能使用delete div.test)　　 </p>
+<p>  //检查input标签是否可以使用getAttribute(“value”)来获取值（IE下不行，需要使用elem[‘value’]）<br>input: true/false(能信任getAttribute(“value”)/不能信任getAttribute(“value”))　 </p>
+<p>  //检查一个input标签在更改为radio类型后他的值是否还是先前的值（ie会变成默认值”on”,其他浏览器不变）<br>radioValue: true/false(值不会改变/会改变成默认值),　　 </p>
+<p>  // webkit不能正确克隆fragments中的checked状态<br>checkClone:  true/false(能正确克隆/不能正确克隆)　　 </p>
+<p>  //判断事件是否被克隆。（兼容IE&lt;9。 Opera不克隆事件(并且typeof div.attachEvent === undefined). IE9-10克隆事件通过attachEvent,但是不能通过 .click()来触发）<br>noCloneEvent:  true/false(现代浏览器克隆节点时事件不被克隆/ie8浏览器克隆节点的时候事件也被克隆)    　　 </p>
+<p>  // IE&lt;9 (缺少submit/change事件冒泡)，Firefox 17+ (缺少focusin事件)<br>submitBubbles:  true/false(支持冒泡/不支持冒泡),<br>changeBubbles:  true/false（支持冒泡/不支持冒泡）,<br>focusinBubbles:  true/false（支持冒泡/不支持冒泡）,　　 </p>
+<p>  //检查是否能准确克隆css样式，比如一些可以继承父节点的样式没有设值的时候值应该是inherit，但是并非每个浏览器都能获取到该值。<br>clearCloneStyle：true/false（能准确克隆/不能准确克隆）,　　 </p>
+<p>  //（判断前提条件：DOM加载完成）判断offsetWidth/Height是否可靠（主要用于判断元素是否占用空间，如果元素占用空间了，就认为是可见的，否则就认为是不可见：hidden）；IE8下表格的空cell依然有offsetWidth/Height。<br>reliableHiddenOffsets： true/false（【offsetWidth/Height值可靠】/【offsetWidth/Height值不可靠】）　　 </p>
+<p>  //（判断前提条件：DOM加载完成）测试getComputedStyle获取的位置是否是像素单位。webkit的bug,使用getComputedStyle返回的最终样式中top/left/right/bottom不一定是像素为单位的，可能是指定的百分比等<br>pixelPosition： true/false（位置css样式以像素为单位返回/位置css样式以指定的格式返回）　　 </p>
+<p>  //（判断前提条件：DOM加载完成）测试设置的boxSizing是否可靠。使用getComputedStyle获取的最总计算样式的浏览器可能会出现问题。<br>boxSizingReliable:  true/false（可靠/不可靠）　　 </p>
+<p>  //（判断前提条件：DOM加载完成）检测使用getComputedStyle 返回的margin-right值是否正确：WebKit Bug 13343 – getComputedStyle返回错误的margin-right值。解决办法：处理元素的display临时设置为inline-block的解决来计算。<br>reliableMarginRight： true/false(返回值可靠/返回值不可靠)<br>    }</p>
+<pre><code>//还有一部分没有在jQuery.support中，但是在Sizzle引擎中有描述
 support = {
 　　//IE8下对节点的一些没有存在的属性（attributes）获取值返回一个字符串
 　　attributes:  true/false(返回正确/返回字符串)
@@ -610,25 +638,8 @@ support = {
 　　matchesSelector： ture/false(支持/不支持)　　      
 }       
 </code></pre><p>知识小点：1.elem.getAttribute(“href”/”src”)都是写入什么返回什么，elem.href/elem.src都是返回绝对路径</p>
-<h6 id="钩子（hooks）机制"><a href="#钩子（hooks）机制" class="headerlink" title="钩子（hooks）机制"></a>钩子（hooks）机制</h6><p>钩子机制是jQuery用来处理浏览器兼容的手法。钩子在.attr(), .prop(), .val() and .css() 四种操作中会涉及。<br>钩子机制是怎么样的？<br>我们将以一个属性（attribute）钩子来举例。IE9-浏览器中，将input标签更改类型（type）为radio类型以后，value属性可能出现异常。所以我们定义了一个属性钩子（attrHooks）中类型（type）在更改设置（set）的一个处理。结构如下　</p>
-<pre><code>//属性钩子对象（所有的属性钩子都放在里面）
-attrHooks: {
-　　//属性为type的钩子
-　　type: {
-　　　　//操作为set的钩子
-　　　　set: function( elem, value ) {
-　　　　　　if ( !jQuery.support.radioValue &amp;&amp; value === &quot;radio&quot; &amp;&amp; jQuery.nodeName(elem, &quot;input&quot;) ) {
-　　　　　　　　//IE6-9设置完type后恢复value属性（attr）
-　　　　　　　　var val = elem.value;
-　　　　　　　　elem.setAttribute( &quot;type&quot;, value );
-　　　　　　　　if ( val ) { elem.value = val; }
-　　　　　　　　　　return value;
-　　　　　　　　}
-　　　　　　}
-　　　　}
-　　}
-}
-</code></pre><p>后续的钩子结构都是这样的：钩子对象：{钩子类型：{钩子操作：xxx},……}<br>　　钩子结构我们就清楚了。然后我们来看看jQuery如何使用这些钩子。只看与钩子例子相关的部分</p>
+<h6 id="钩子（hooks）机制"><a href="#钩子（hooks）机制" class="headerlink" title="钩子（hooks）机制"></a>钩子（hooks）机制</h6><p>钩子机制是jQuery用来处理浏览器兼容的手法。钩子在.attr(), .prop(), .val() and .css() 四种操作中会涉及。<br>钩子机制是怎么样的？<br>我们将以一个属性（attribute）钩子来举例。IE9-浏览器中，将input标签更改类型（type）为radio类型以后，value属性可能出现异常。所以我们定义了一个属性钩子（attrHooks）中类型（type）在更改设置（set）的一个处理。结构如下　<br>    //属性钩子对象（所有的属性钩子都放在里面）<br>    attrHooks: {<br>    　　//属性为type的钩子<br>    　　type: {<br>    　　　　//操作为set的钩子<br>    　　　　set: function( elem, value ) {<br>    　　　　　　if ( !jQuery.support.radioValue &amp;&amp; value === “radio” &amp;&amp; jQuery.nodeName(elem, “input”) ) {<br>    　　　　　　　　//IE6-9设置完type后恢复value属性（attr）<br>    　　　　　　　　var val = elem.value;<br>    　　　　　　　　elem.setAttribute( “type”, value );<br>    　　　　　　　　if ( val ) { elem.value = val; }<br>    　　　　　　　　　　return value;<br>    　　　　　　　　}<br>    　　　　　　}<br>    　　　　}<br>    　　}<br>    }</p>
+<p>后续的钩子结构都是这样的：钩子对象：{钩子类型：{钩子操作：xxx},……}<br>钩子结构我们就清楚了。然后我们来看看jQuery如何使用这些钩子。只看与钩子例子相关的部分</p>
 <pre><code>//先获取钩子，此时name=&quot;type&quot;　　
 hooks = jQuery.attrHooks[ name ] || ( rboolean.test( name ) ? boolHook : nodeHook );
 　　
@@ -641,29 +652,23 @@ if ( value !== undefined ) {
 　　　　...
 　　}
 }
-</code></pre><p>使用流程也比较清晰，先获取指定类型（”type”）的钩子(hooks)对象，然后判断如果钩子操作(“set”)在钩子对象中，则执行之。<br>　　可以想象，任何标签属性的任何类型的操作需要做兼容就都可以放在钩子对象中，如果是新的没有出现过的新操作则在实现的时候添加一行对新操作的判断语句处理即可；绝大多数情况是不会出现新操作兼容的，执行添加一个新的钩子对象的元素即可。可以说拓展性非常好。<br>接下来一一分析各种钩子，顺便了解相关的浏览器的兼容问题。</p>
-<p>a. 属性操作的钩子</p>
-<p>　　属性钩子种类：</p>
-<p>　　propFix</p>
-<p>　　propHooks</p>
-<p>　　attrHooks</p>
-<p>　　valHooks</p>
-<p>jQuery.propFix</p>
-<pre><code>propFix: {
-        tabindex: &quot;tabIndex&quot;,
-        readonly: &quot;readOnly&quot;,
-        &quot;for&quot;: &quot;htmlFor&quot;,
-        &quot;class&quot;: &quot;className&quot;,
-        maxlength: &quot;maxLength&quot;,
-        cellspacing: &quot;cellSpacing&quot;,
-        cellpadding: &quot;cellPadding&quot;,
-        rowspan: &quot;rowSpan&quot;,
-        colspan: &quot;colSpan&quot;,
-        usemap: &quot;useMap&quot;,
-        frameborder: &quot;frameBorder&quot;,
-        contenteditable: &quot;contentEditable&quot;
-}
-</code></pre><p>propFix对属性名称做了驼峰修正（修正为浏览器所支持的标签属性），即使用户大小写输入错误也能得到修正。<br>　　需要特别提示的是由于class属于JavaScript保留值，因此当我们要操作元素的class属性（attribute）值时，直接使用obj.getAttribute(‘class’)和obj.setAttribute(‘class’, ‘value’)可能会遭遇浏览器兼容性问题，W3C DOM标准为每个节点提供了一个可读写的className属性（attribute），作为节点class属性的映射，标准浏览器的都提供了这一属性的支持，因此，可以使用e.className访问元素的class属性值，也可对该属性进行重新斌值。而IE和Opera中也可使用e.getAttribute(‘className’)和e.setAttribute(‘className’, ‘value’)访问及修改class属性值。相比之下，e.className是W3C DOM标准，仍然是兼容性最强的解决办法。、<br>　　同理htmlFor用于读取label标签的for属性<br>jQuery.propHooks特征（property）方法</p>
+</code></pre><p>使用流程也比较清晰，先获取指定类型（”type”）的钩子(hooks)对象，然后判断如果钩子操作(“set”)在钩子对象中，则执行之。<br>可以想象，任何标签属性的任何类型的操作需要做兼容就都可以放在钩子对象中，如果是新的没有出现过的新操作则在实现的时候添加一行对新操作的判断语句处理即可；绝大多数情况是不会出现新操作兼容的，执行添加一个新的钩子对象的元素即可。可以说拓展性非常好。<br>接下来一一分析各种钩子，顺便了解相关的浏览器的兼容问题。<br>a. 属性操作的钩子<br>属性钩子种类：<br>propFix<br>propHooks<br>attrHooks<br>valHooks</p>
+<pre><code>jQuery.propFix
+    propFix: {
+            tabindex: &quot;tabIndex&quot;,
+            readonly: &quot;readOnly&quot;,
+            &quot;for&quot;: &quot;htmlFor&quot;,
+            &quot;class&quot;: &quot;className&quot;,
+            maxlength: &quot;maxLength&quot;,
+            cellspacing: &quot;cellSpacing&quot;,
+            cellpadding: &quot;cellPadding&quot;,
+            rowspan: &quot;rowSpan&quot;,
+            colspan: &quot;colSpan&quot;,
+            usemap: &quot;useMap&quot;,
+            frameborder: &quot;frameBorder&quot;,
+            contenteditable: &quot;contentEditable&quot;
+    }
+</code></pre><p>propFix对属性名称做了驼峰修正（修正为浏览器所支持的标签属性），即使用户大小写输入错误也能得到修正。<br>需要特别提示的是由于class属于JavaScript保留值，因此当我们要操作元素的class属性（attribute）值时，直接使用obj.getAttribute(‘class’)和obj.setAttribute(‘class’, ‘value’)可能会遭遇浏览器兼容性问题，W3C DOM标准为每个节点提供了一个可读写的className属性（attribute），作为节点class属性的映射，标准浏览器的都提供了这一属性的支持，因此，可以使用e.className访问元素的class属性值，也可对该属性进行重新斌值。而IE和Opera中也可使用e.getAttribute(‘className’)和e.setAttribute(‘className’, ‘value’)访问及修改class属性值。相比之下，e.className是W3C DOM标准，仍然是兼容性最强的解决办法。、<br>同理htmlFor用于读取label标签的for属性<br>jQuery.propHooks特征（property）方法</p>
 <pre><code>    propHooks: {
     　　tabIndex: {
     　　　　get: function( elem ) {
@@ -893,7 +898,7 @@ jQuery.each([ &quot;radio&quot;, &quot;checkbox&quot; ], function() {
         ret == null ? &quot;&quot; : ret;
 }    
 </code></pre><p>通过jQuery.valHooks匹配对应的钩子处理方法</p>
-<p><div align="center"><br><img src="/images/jquery/4_4.png"><br></div><br>节点属性的差异对比:<br>　　select : 创建单选或多选菜单 </p>
+<p><div align="center"><br><img src="/images/jquery/4_4.png"><br></div><br>节点属性的差异对比:<br>select : 创建单选或多选菜单 </p>
 <pre><code>type:&quot;select-one&quot;
 tagName: &quot;SELECT&quot;
 value: &quot;111&quot;
@@ -915,14 +920,7 @@ value: &quot;11111&quot;
 if ( hooks &amp;&amp; &quot;get&quot; in hooks &amp;&amp; (ret = hooks.get( elem, &quot;value&quot; )) !== undefined ) {
     return ret;
 } 
-</code></pre><p>上面分析了jQuery.support、钩子原理和属性钩子。下面主要分析CSS钩子<br>b. css操作的钩子</p>
-<p>　　CSS钩子种类：</p>
-<p>　　cssHooks</p>
-<p>　　cssNumber</p>
-<p>　　cssProps</p>
-<p>jQuery.cssHooks的对象</p>
-<p>　　不过cssHooks中的set函数的作用有些不同，set函数并没有真正的设置相应的值，而是修正要设置到CSS中的值。获取到修正值以后，设置在jQuery.style函数中进行。后面分析几个CSS钩子</p>
-<p>　　获取opacity返回的值需要时数字</p>
+</code></pre><p>上面分析了jQuery.support、钩子原理和属性钩子。下面主要分析CSS钩子<br>b. css操作的钩子<br>　　CSS钩子种类：<br>　　cssHooks<br>　　cssNumber<br>　　cssProps<br>jQuery.cssHooks的对象<br>不过cssHooks中的set函数的作用有些不同，set函数并没有真正的设置相应的值，而是修正要设置到CSS中的值。获取到修正值以后，设置在jQuery.style函数中进行。后面分析几个CSS钩子<br>获取opacity返回的值需要时数字</p>
 <pre><code>cssHooks: {
 　　opacity: {
 　　　　get: function( elem, computed ) {
@@ -1087,13 +1085,11 @@ cssProps: {
     // normalize float css property
     &quot;float&quot;: jQuery.support.cssFloat ? &quot;cssFloat&quot; : &quot;styleFloat&quot;
 },
-</code></pre><p>拓展：</p>
-<p>　　有一些CSS属性需要在某些特定条件下才能获取正确。这种情况需要模拟场景获取值，然后恢复先前的场景。swap就是用来专门模拟场景，获取值以后恢复场景的函数。</p>
+</code></pre><p>拓展：<br>有一些CSS属性需要在某些特定条件下才能获取正确。这种情况需要模拟场景获取值，然后恢复先前的场景。swap就是用来专门模拟场景，获取值以后恢复场景的函数。</p>
 <pre><code>// 一种快速切换输入/输出css特征值（计算前保存css特征，计算中更改css特征以获取计算结果，计算结束后恢复先前保存的css特征）以获取正确计算结果的方法
 swap: function( elem, options, callback, args ) {
     var ret, name,
         old = {};
-
     // 保存原来的特征值,设置为保证计算成功而修改的特征（property）值
     for ( name in options ) {
            old[ name ] = elem.style[ name ];
@@ -1284,18 +1280,18 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
   
 <nav id="article-nav">
   
-    <a href="/2016/08/18/jquery-2.0.3源码及解析/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/18/jquery源码总结(上)/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          上一篇：jquery2.0.3源码及解析
+          上一篇：jquery源码总结(上)
         
       </div>
     </a>
   
   
-    <a href="/2016/08/18/jquery源码总结(上)/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">下一篇：jquery源码总结(上)</div>
+    <a href="/2016/07/28/hexo中主题yilia下的搜索功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：hexo中主题yilia下的搜索功能</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -1388,7 +1384,7 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 	}
 	
 </script>
-<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
 <script src="/./js/main.js"></script>
 <script src="/./js/myJs.js"></script>
 
@@ -1453,8 +1449,7 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
   	  	
     	</section>
     
-  </div>
-  
+  </div> 
 </div>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

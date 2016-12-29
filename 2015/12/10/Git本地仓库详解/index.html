@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/images/Git/1_3.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/1_4.png">
 <meta property="og:image" content="http://yoursite.com/images/Git/1_5.png">
-<meta property="og:updated_time" content="2016-12-05T12:37:00.000Z">
+<meta property="og:updated_time" content="2016-12-29T03:45:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git本地仓库详解">
 <meta name="twitter:description" content="大纲：一、前言二、概述三、在Windows上安装Git四、创建本地仓库五、本地仓库管理详解六、总结">
@@ -44,7 +44,8 @@
 <div class="intrude-less">
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -90,7 +91,37 @@
 		        
 			</div>
 		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
 	</header>		
+	
+	
 </div>
 
     </div>
@@ -164,11 +195,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>大纲：<br>一、前言<br>二、概述<br>三、在Windows上安装Git<br>四、创建本地仓库<br>五、本地仓库管理详解<br>六、总结<br><a id="more"></a><br>一. 前言<br>    清晰理解Git，力求适用于所有读者阅读。<br>二. 概述<br>Git 本地仓库详解<br>Git与GitHub总结<br>三. 在Windows上安装Git    </p>
-<ul>
+        <p>大纲：<br>一、前言<br>二、概述<br>三、在Windows上安装Git<br>四、创建本地仓库<br>五、本地仓库管理详解<br>六、总结<br><a id="more"></a></p>
+<h5 id="一-前言"><a href="#一-前言" class="headerlink" title="一. 前言"></a>一. 前言</h5><p>清晰理解Git，力求适用于所有读者阅读。</p>
+<h5 id="二-概述"><a href="#二-概述" class="headerlink" title="二. 概述"></a>二. 概述</h5><p>Git 本地仓库详解<br>Git与GitHub总结</p>
+<h5 id="三-在Windows上安装Git"><a href="#三-在Windows上安装Git" class="headerlink" title="三. 在Windows上安装Git"></a>三. 在Windows上安装Git</h5><ul>
 <li>下载地址：<a href="http://msysgit.github.io/" target="_blank" rel="external">http://msysgit.github.io/</a> 双击安装即可</li>
 <li>开始菜单——Git Bash,出现如下界面则安装成功<div align="center"><br><img src="/images/Git/1_1.png"><br></div></li>
-<li>基本测试<br>  $ git config –global user.name “Your Name”<br>  $ git config –global user.email “email@example.com”<br>  注：我设置的情况如下<br>  $    git config –global user.name “hmqqk”<br>  $ git config –global user.email “2442501113@qq.com”<br>P.S. Git是分布式控制系统，所以，每个客户端都必须设置：你的名字和邮箱。这样才容易区分是哪个用户提交的Git版本.git config 后面接的是–global参数，这表示你的机器上所有的Git仓库都会使用这个配置，当然你也可以对不同的仓库指定不同的用户名和邮箱。<br>四. 创建本地仓库</li>
+<li>基本测试<br>  $ git config –global user.name “Your Name”<br>  $ git config –global user.email “email@example.com”<br>  注：我设置的情况如下<br>  $    git config –global user.name “hmqqk”<br>  $ git config –global user.email “2442501113@qq.com”<br>P.S. Git是分布式控制系统，所以，每个客户端都必须设置：你的名字和邮箱。这样才容易区分是哪个用户提交的Git版本.git config 后面接的是–global参数，这表示你的机器上所有的Git仓库都会使用这个配置，当然你也可以对不同的仓库指定不同的用户名和邮箱。<h5 id="四-创建本地仓库"><a href="#四-创建本地仓库" class="headerlink" title="四. 创建本地仓库"></a>四. 创建本地仓库</h5></li>
 <li>版本库又称仓库<br>版本库或者是仓库，英文名Repository，可简易理解为目录且这个目录中的所以文件都被git管理，所有操作如增加、删除、修改文件等都会被记录下来，以便后来跟踪与修改相关记录，甚至被还原。<br>创建一个版本库（即创建目录，避免用中文，一方带来不必要的麻烦）<div align="center"><br><img src="/images/Git/1_2.png"><br></div></li>
 <li>目录变仓库<br><div align="center"><br><img src="/images/Git/1_3.png"><br></div><br>P.S. git init为初始化一个空目录，在该目录下生成了.git目录，git目录下即为控制和管理版本库相关文件。</li>
 <li><p>向本地仓库中增加文件<br>版本库中只能跟踪和管理文本文件，如txt文件、js文件、php文件、java文件等所有的程序代码均可。但如视频、图片等二进制文件，虽然能由git管理，但是只能记录大小，无法跟踪具体修改。<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ vim readme.txt</p>
@@ -179,14 +212,7 @@
 </ul>
 <ul>
 <li><p>git status:查询文件当前状态</p>
-<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git status<br>  On branch master</p>
-<p>  Initial commit</p>
-<p>  Untracked files:</p>
-<pre><code>(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-
-      readme.txt
-</code></pre><p>  nothing added to commit but untracked files present (use “git add” to track)</p>
-<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)</p>
+<p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git status<br>  On branch master<br>  Initial commit<br>  Untracked files:<br>  (use “git add <file>…” to include in what will be committed)<br>  readme.txt<br>  nothing added to commit but untracked files present (use “git add” to track)<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)</file></p>
 </li>
 <li><p>git add：提交文件到仓库中去<br>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $ git add readme.txt<br>  warning: LF will be replaced by CRLF in readme.txt.<br>  The file will have its original line endings in your working directory.</p>
 <p>  liuhong@liuhong-PC MINGW64 ~/hmqqk (master)<br>  $</p>
@@ -200,9 +226,11 @@
 <li>添加文件到本地Git仓中，分为两步：<ul>
 <li>使用git add命令，注意，可以多次使用，添加多个文件</li>
 <li>使用git commit命令，完成添加。</li>
-<li>为什么Git添加文件需要两步呢？一步add，一步commit。嘿嘿，因为commit命令可以一次提交多个文件，所以你可以多次使用add命令呢。<br>五. 本地仓库管理详解 </li>
+<li>为什么Git添加文件需要两步呢？一步add，一步commit。嘿嘿，因为commit命令可以一次提交多个文件，所以你可以多次使用add命令呢。</li>
 </ul>
 </li>
+</ul>
+<h5 id="五-本地仓库管理详解"><a href="#五-本地仓库管理详解" class="headerlink" title="五.本地仓库管理详解"></a>五.本地仓库管理详解</h5><ul>
 <li>git status git diff 当文件等有所改动时可通过这2个文件进行查看</li>
 <li>版本回滚：git log git reset</li>
 <li>工作区、提交区/暂存区（stage/index）、版本库<br><div align="center"><br><img src="/images/Git/1_4.png"><br></div><br>工作区即开发目录，如hmqqk.上面所述的hmqqk下的.git是Git的版本库。在“.git”目录中有很多文件，其中一个重要的文件index，就是我们说的提交区/暂存区（stage/index）。暂存区（stage, index）是 Git 最重要的概念之一。<br><div align="center"><br><img src="/images/Git/1_5.png"><br></div><br>在上图中，我们可以看到部分 Git 命令是如何影响工作区和暂存区（stage/index）的。<br>图中左侧为工作区，右侧为版本库。在版本库中标记为 “index” 的区域是暂存区（stage/index），标记为 “master” 的是 master 分支所代表的目录树。图中我们可以看出此时 “HEAD” 实际是指向 master 分支的一个“指针”。所以，图示的命令中出现 HEAD 的地方可以用 master 来替换。图中的 objects 标识的区域为 Git 的对象库，实际位于 “.git/objects” 目录下。<br>当对工作区新增或修改的文件执行 “git add” 命令时，暂存区的目录树被更新，同时工作区新增或修改的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。（如上图）<br>当执行提交操作 “git commit” 时，暂存区的目录树写到版本库的对象库（objects）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。（如上图）<br>当执行 “git reset HEAD” 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。 当执行 “git rm –cached <file>“ 命令时，会直接从暂存区删除文件，工作区则不做出改变。<br>当执行 “git checkout .” 或者 “git checkout – <file>“ 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。<br>当执行 “git checkout HEAD .” 或者 “git checkout HEAD <file>“ 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</file></file></file></li>
@@ -211,7 +239,7 @@
 </ul>
 </li>
 <li>取消（撤消）修改<br>Git会告诉你有你个文件被修改，你有两个选择，一个用 git add 提交到暂存区，另一个是用git checkout可以丢弃工作区的修改。命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>一种是readme.txt自修改后还没有被放到暂存区，现在撤销修改就回到和版本库一模一样的状态；<br>另一种是readme.txt已经添加到暂存区后，又作了修改，现在撤销修改就回到添加到暂存区后的状态。<br>总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>P.S. git checkout – file命令中的“–”很重要，没有“–”，就变成了“创建一个新分支”的命令<br>git reset HEAD file 可以把暂存区中的修改撤消掉，重新放回工作区,git reset命令既可以回退版本，也可以把工作区的某些文件替换为版本库中的文件。当我们用HEAD时，表示最新的版本。我们再用 git status 查看一下发现，现在的暂存区是干净的，工作区有修改。</li>
-<li>文件删除<br>git rm 命令用于删除一个文件<br>六. 总结<br>Git 本地版本库的讲解</li>
+<li>文件删除<br>git rm 命令用于删除一个文件<h5 id="六-总结"><a href="#六-总结" class="headerlink" title="六. 总结"></a>六. 总结</h5>Git 本地版本库的讲解</li>
 </ul>
 
       
@@ -293,18 +321,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2015/12/22/hexo中主题yilia下的搜索功能/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/18/jade/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          上一篇：hexo中主题yilia下的搜索功能
+          上一篇：jade
         
       </div>
     </a>
   
   
-    <a href="/2015/11/25/谈web中静态页面和动态页面的区别/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">下一篇：谈web中静态页面和动态页面的区别</div>
+    <a href="/2015/11/11/青春永远~你好，未来/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：青春永远~你好，未来&amp;华为猛料会&amp;双11</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -397,7 +425,7 @@
 	}
 	
 </script>
-<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
 <script src="/./js/main.js"></script>
 <script src="/./js/myJs.js"></script>
 
@@ -462,8 +490,7 @@
   	  	
     	</section>
     
-  </div>
-  
+  </div> 
 </div>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

@@ -6,27 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>js集锦（中） | Hexo</title>
+  <title>js集锦（下） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="javaScript中的装箱和拆箱 http://www.108js.com/article/article1/10034.html?id=175
-javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/10108.html?id=732
-我的问题依然是（+Var）到底代表什么意思？
-答案：变量前加上+后，变量将转换">
+  <meta name="description" content="此部分介绍了。。。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js集锦（中）">
+<meta property="og:title" content="js集锦（下）">
 <meta property="og:url" content="http://yoursite.com/2016/12/14/js集锦(下)/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="javaScript中的装箱和拆箱 http://www.108js.com/article/article1/10034.html?id=175
-javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/10108.html?id=732
-我的问题依然是（+Var）到底代表什么意思？
-答案：变量前加上+后，变量将转换">
-<meta property="og:updated_time" content="2016-12-24T09:13:28.000Z">
+<meta property="og:description" content="此部分介绍了。。。">
+<meta property="og:updated_time" content="2016-12-29T04:16:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js集锦（中）">
-<meta name="twitter:description" content="javaScript中的装箱和拆箱 http://www.108js.com/article/article1/10034.html?id=175
-javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/10108.html?id=732
-我的问题依然是（+Var）到底代表什么意思？
-答案：变量前加上+后，变量将转换">
+<meta name="twitter:title" content="js集锦（下）">
+<meta name="twitter:description" content="此部分介绍了。。。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -47,7 +38,8 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
 <div class="intrude-less">
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -93,7 +85,37 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
 		        
 			</div>
 		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
 	</header>		
+	
+	
 </div>
 
     </div>
@@ -156,7 +178,7 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
         
   
     <h1 class="article-title" itemprop="name">
-      js集锦（中）
+      js集锦（下）
     </h1>
   
 
@@ -167,85 +189,55 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>javaScript中的装箱和拆箱 <a href="http://www.108js.com/article/article1/10034.html?id=175" target="_blank" rel="external">http://www.108js.com/article/article1/10034.html?id=175</a></p>
-<p>javaScript中的Object.valueOf()方法 <a href="http://www.108js.com/article/article1/10108.html?id=732" target="_blank" rel="external">http://www.108js.com/article/article1/10108.html?id=732</a></p>
-<p>我的问题依然是（+Var）到底代表什么意思？</p>
-<p>答案：变量前加上+后，变量将转换为数字，进行数字运算。比如：<br> var x = “3”;<br> var y = x + 10; // 310<br> var z = +x + 10 // 13</p>
-<p>  赋予x值为3，y=x + 3，运算结果为310，其中的+号为连接作用，这不难理解。z=+x + 10，运算结果为13，这是将+x的值3与后方的10做数字运算，所以结果13，这就是+var的用意。</p>
-<p> Javascript面向对象编程（三）：非构造函数的继承<br>   这个系列的第一部分介绍了”封装”，第二部分介绍了使用构造函数实现”继承”。<br>今天是最后一个部分，介绍不使用构造函数实现”继承”。<br>一、什么是”非构造函数”的继承？<br>比如，现在有一个对象，叫做”中国人”。<br>　 var Chinese = {<br>　   nation:’中国’<br>  };</p>
-<p>还有一个对象，叫做”医生”。<br>  var Doctor ={<br>    career:’医生’<br>  }</p>
-<p>   请问怎样才能让”医生”去继承”中国人”，也就是说，我怎样才能生成一个”中国医生”的对象？<br>   这里要注意，这两个对象都是普通对象，不是构造函数，无法使用构造函数方法实现”继承”。</p>
-<p>二、object()方法<br>json格式的发明人Douglas Crockford，提出了一个object()函数，可以做到这一点。<br> function object(o) {<br>   function F() {}<br>   F.prototype = o;<br>   return new F();<br> }</p>
-<p>  这个object()函数，其实只做一件事，就是把子对象的prototype属性，指向父对象，从而使得子对象与父对象连在一起。<br>使用的时候，第一步先在父对象的基础上，生成子对象：</p>
-<p>  var Doctor = object(Chinese);</p>
-<p>然后，再加上子对象本身的属性：<br>  Doctor.career = ‘医生’;</p>
-<p>这时，子对象已经继承了父对象的属性了。<br>  alert(Doctor.nation); //中国</p>
-<p>三、浅拷贝<br>  除了使用”prototype链”以外，还有另一种思路：把父对象的属性，全部拷贝给子对象，也能实现继承。<br>下面这个函数，就是在做拷贝：<br> function extendCopy(p) {<br>  var c = {};<br>  for (var i in p) {<br>    c[i] = p[i];<br>  }<br>  c.uber = p;<br>  return c;<br> }</p>
-<p>使用的时候，这样写：<br>  var Doctor = extendCopy(Chinese);<br>  Doctor.career = ‘医生’;<br>  alert(Doctor.nation); // 中国</p>
-<p>  但是，这样的拷贝有一个问题。那就是，如果父对象的属性等于数组或另一个对象，那么实际上，子对象获得的只是一个内存地址，而不是真正拷贝，因此存在父对象被篡改的可能。</p>
-<p>请看，现在给Chinese添加一个”出生地”属性，它的值是一个数组。<br> Chinese.birthPlaces = [‘北京’,’上海’,’香港’];</p>
-<p>通过extendCopy()函数，Doctor继承了Chinese。<br> var Doctor = extendCopy(Chinese);</p>
-<p>然后，我们为Doctor的”出生地”添加一个城市：<br> Doctor.birthPlaces.push(‘厦门’);</p>
-<p>发生了什么事？Chinese的”出生地”也被改掉了！<br> alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门<br> alert(Chinese.birthPlaces); //北京, 上海, 香港, 厦门<br>所以，extendCopy()只是拷贝基本类型的数据，我们把这种拷贝叫做”浅拷贝”。这是早期jQuery实现继承的方式。</p>
-<p>四、深拷贝<br>  所谓”深拷贝”，就是能够实现真正意义上的数组和对象的拷贝。它的实现并不难，只要递归调用”浅拷贝”就行了。<br>  function deepCopy(p, c){<br>    var c = c || {};<br>    for (var i in p){<br>     if (typeof p[i] === ‘object’){<br>      c[i] = (p[i].constructor === Array) ? [] : {};<br>      deepCopy(p[i], c[i]);<br>     }else{<br>      c[i] = p[i];<br>　　 }<br>   }<br>   return c;<br>  }</p>
-<p>使用的时候这样写：<br>　 var Doctor = deepCopy(Chinese);</p>
-<p>现在，给父对象加一个属性，值为数组。然后，在子对象上修改这个属性：<br>　 Chinese.birthPlaces = [‘北京’,’上海’,’香港’];<br>   Doctor.birthPlaces.push(‘厦门’);</p>
-<p>这时，父对象就不会受到影响了。<br>alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门<br>alert(Chinese.birthPlaces); //北京, 上海, 香港<br>目前，jQuery库使用的就是这种继承方法。</p>
-<p>prototype.js中创建类的方式<br>各种库的写类方式虽然千奇百怪，但仍然逃离不了本质—用构造函数和原型来组装类。<br>一、prototype.js中的代码<br> var Class = {<br>  create: function() {<br>   return function() {<br>     this.initialize.apply(this, arguments);<br>   }<br>  }<br>}<br>//简化后的<br> function Clazz() {<br>   return function(){<br>    this.initialize.apply(this,arguments);<br> }<br>} </p>
-<p>Class用来创建一种类型，注意其属性create是一个方法，返回一个构造函数。 一般使用如下：</p>
-<p> var X = Class.create(); </p>
-<p>   返回一个类型，类似于java的一个Class实例。要使用X类型，需继续用new X()来获取一个实例，如同java的Class.newInstance()方法。 返回的构造函数会执行名为initialize的方法，此时initialize方法还没有定义，其后的代码中创建新类型时会建立相应的同名方法。<br>  Class.create实际上是返回一个函数，那么new的时候，做了些什么呢。new的时候会执行该返回的函数，即执行<br>   this.initialize.apply(this, arguments);<br>此时的this就是新生成的对象，这也就是说了所有对象的初始化工作全部委托给initialize函数了。</p>
-<p>二、怎样写一个类</p>
-<p>//类名Person<br>//这里得到的是Person的initialize调用, 所以是Person.initialize(arguments)<br>//相当于构造函数persion(name){ this.name=name }<br> var Person = Class.create();<br>//通过原型重写来定义Person<br>Person.prototype = {<br> initialize : function(name) {<br>  this.name = name;<br> },<br> getName : function() {<br>   return this.name;<br> },<br> setName : function(name) {<br>   this.name = name;<br> }<br>}<br>//创建对象<br> var p = new Person(“jack”);<br> alert(p.getName());<br> alert(p.constructor == Person);//false<br>  initialize完成对象的初始化（相当于构造函数），方法依次往下写即可。 有个问题，通过这句p.constructor == Person为false可以看到，这正是Prototype.js一个小小的缺陷。原因是重写了Person的原型。为了使constructor能指向正确的构造器，只需在原型重写时维护好constructor属性即可。</p>
-<p> Person.prototype = {<br>  constructor : Person,//注意这里<br>  initialize : function(name) {<br>    this.name = name;<br>  },<br>  getName : function() {<br>    return this.name;<br>  },<br>  setName : function(name) {<br>    this.name = name;<br>  }<br> }</p>
-<p>好了，这时候p.constructor == Person就是true了。</p>
-<p>Js函数声明与函数表达式之区别</p>
-<p>在定义函数时，我们一般使用下面这两种方法：<br>使用函数声明定义：<br> function sum (a, b) {<br>   return a + b;<br> }</p>
-<p>  使用函数表达式定义：<br>  var sum = function (a, b) {<br>    return a + b;<br>  }</p>
-<p>调用方法都是一样的：如求“1+1”等于几：<br>   alert(sum(1, 1)); </p>
-<p>  但这两种方法还是有区别的。解析器在向执行环境中加载数据时，对函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，并使其在执行任何代码之前可用；而函数表达式，则必须等到解析器执行到它所在的代码行，才会真正被解释执行。</p>
-<p>示例：<br>  alert(sum(1, 1));<br>  function sum (a, b) {<br>    return a + b;<br>  }<br>   以上代码可以正常执行。因为在代码执行之前，解析器就已经通过一个名为函数声明提升的过程，读取并将函数声明添加到执行环境中。在对代码求值时，Javascript引擎在第一遍会声明函数并将它们放到源代码树的顶部。所以，即使声明函数的代码放到了调用它的代码的后面，Javascript 引擎也能把函数声明提升到顶部。如果像下面例子所示，把上面的函数声明改为函数表达式，就会在执行期间导致错误。</p>
-<p>  alert(sum(1, 1));<br>  var sum = function (a, b) {<br>   return a + b;<br>  }</p>
-<p>  以上代码之所以会在执行期间产生错误，原因在于函数位于一个初始化语句中，而不是一个函数声明。换句话说，在执行到函数所在的语句之前，变量sum不会保存有对函数的引用，并且第一行代码已经产生错误，也就不会执行到下一行。</p>
-<p>总体来说，除了什么时候可以通过变量访问函数这一点区别之外，函数声明与函数表达式的语法其实是等价的。</p>
-<p>通常我们会看到以下两种定义函数的方式：<br> // 函数语句<br> function fn(str)<br> {<br>  console.log(str);<br> };</p>
+        <p>此部分介绍了。。。<br><a id="more"></a></p>
+<h5 id="javaScript中的装箱和拆箱-http-www-108js-com-article-article1-10034-html-id-175"><a href="#javaScript中的装箱和拆箱-http-www-108js-com-article-article1-10034-html-id-175" class="headerlink" title="javaScript中的装箱和拆箱 http://www.108js.com/article/article1/10034.html?id=175"></a>javaScript中的装箱和拆箱 <a href="http://www.108js.com/article/article1/10034.html?id=175" target="_blank" rel="external">http://www.108js.com/article/article1/10034.html?id=175</a></h5><h5 id="javaScript中的Object-valueOf-方法-http-www-108js-com-article-article1-10108-html-id-732"><a href="#javaScript中的Object-valueOf-方法-http-www-108js-com-article-article1-10108-html-id-732" class="headerlink" title="javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/10108.html?id=732"></a>javaScript中的Object.valueOf()方法 <a href="http://www.108js.com/article/article1/10108.html?id=732" target="_blank" rel="external">http://www.108js.com/article/article1/10108.html?id=732</a></h5><h5 id="我的问题依然是（-Var）到底代表什么意思？"><a href="#我的问题依然是（-Var）到底代表什么意思？" class="headerlink" title="我的问题依然是（+Var）到底代表什么意思？"></a>我的问题依然是（+Var）到底代表什么意思？</h5><p>变量前加上+后，变量将转换为数字，进行数字运算。比如：</p>
+<pre><code>var x = &quot;3&quot;;
+var y = x + 10; // 310
+var z = +x + 10 // 13
+</code></pre><p>赋予x值为3，y=x + 3，运算结果为310，其中的+号为连接作用，这不难理解。z=+x + 10，运算结果为13，这是将+x的值3与后方的10做数字运算，所以结果13，这就是+var的用意。 </p>
+<h5 id="Javascript面向对象编程（三）：非构造函数的继承"><a href="#Javascript面向对象编程（三）：非构造函数的继承" class="headerlink" title="Javascript面向对象编程（三）：非构造函数的继承"></a>Javascript面向对象编程（三）：非构造函数的继承</h5><p>这个系列的第一部分介绍了”封装”，第二部分介绍了使用构造函数实现”继承”。<br>今天是最后一个部分，介绍不使用构造函数实现”继承”。<br>一、什么是”非构造函数”的继承？<br>比如，现在有一个对象，叫做”中国人”。<br>　 var Chinese = {<br>　   nation:’中国’<br>  };<br>还有一个对象，叫做”医生”。<br>  var Doctor ={<br>    career:’医生’<br>  }<br>请问怎样才能让”医生”去继承”中国人”，也就是说，我怎样才能生成一个”中国医生”的对象？<br>这里要注意，这两个对象都是普通对象，不是构造函数，无法使用构造函数方法实现”继承”。<br>二、object()方法<br>json格式的发明人Douglas Crockford，提出了一个object()函数，可以做到这一点。<br> function object(o) {<br>   function F() {}<br>   F.prototype = o;<br>   return new F();<br> }<br>这个object()函数，其实只做一件事，就是把子对象的prototype属性，指向父对象，从而使得子对象与父对象连在一起。<br>使用的时候，第一步先在父对象的基础上，生成子对象：<br>var Doctor = object(Chinese);<br>然后，再加上子对象本身的属性：<br>Doctor.career = ‘医生’;<br>这时，子对象已经继承了父对象的属性了。<br>alert(Doctor.nation); //中国<br>三、浅拷贝<br>除了使用”prototype链”以外，还有另一种思路：把父对象的属性，全部拷贝给子对象，也能实现继承。<br>下面这个函数，就是在做拷贝：<br> function extendCopy(p) {<br>  var c = {};<br>  for (var i in p) {<br>    c[i] = p[i];<br>  }<br>  c.uber = p;<br>  return c;<br> }<br>使用的时候，这样写：<br>  var Doctor = extendCopy(Chinese);<br>  Doctor.career = ‘医生’;<br>  alert(Doctor.nation); // 中国<br>但是，这样的拷贝有一个问题。那就是，如果父对象的属性等于数组或另一个对象，那么实际上，子对象获得的只是一个内存地址，而不是真正拷贝，因此存在父对象被篡改的可能。<br>请看，现在给Chinese添加一个”出生地”属性，它的值是一个数组。<br>Chinese.birthPlaces = [‘北京’,’上海’,’香港’];<br>通过extendCopy()函数，Doctor继承了Chinese。<br>var Doctor = extendCopy(Chinese);<br>然后，我们为Doctor的”出生地”添加一个城市：<br>Doctor.birthPlaces.push(‘厦门’);<br>发生了什么事？Chinese的”出生地”也被改掉了！<br> alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门<br> alert(Chinese.birthPlaces); //北京, 上海, 香港, 厦门<br>所以，extendCopy()只是拷贝基本类型的数据，我们把这种拷贝叫做”浅拷贝”。这是早期jQuery实现继承的方式。<br>四、深拷贝<br>所谓”深拷贝”，就是能够实现真正意义上的数组和对象的拷贝。它的实现并不难，只要递归调用”浅拷贝”就行了。<br>  function deepCopy(p, c){<br>    var c = c || {};<br>    for (var i in p){<br>     if (typeof p[i] === ‘object’){<br>      c[i] = (p[i].constructor === Array) ? [] : {};<br>      deepCopy(p[i], c[i]);<br>     }else{<br>      c[i] = p[i];<br>　　 }<br>   }<br>   return c;<br>  }<br>使用的时候这样写：<br>var Doctor = deepCopy(Chinese);<br>现在，给父对象加一个属性，值为数组。然后，在子对象上修改这个属性：<br>　 Chinese.birthPlaces = [‘北京’,’上海’,’香港’];<br>   Doctor.birthPlaces.push(‘厦门’);<br>这时，父对象就不会受到影响了。<br>alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门<br>alert(Chinese.birthPlaces); //北京, 上海, 香港<br>目前，jQuery库使用的就是这种继承方法。</p>
+<h5 id="prototype-js中创建类的方式"><a href="#prototype-js中创建类的方式" class="headerlink" title="prototype.js中创建类的方式"></a>prototype.js中创建类的方式</h5><p>各种库的写类方式虽然千奇百怪，但仍然逃离不了本质—用构造函数和原型来组装类。<br>一、prototype.js中的代码<br> var Class = {<br>  create: function() {<br>   return function() {<br>     this.initialize.apply(this, arguments);<br>   }<br>  }<br>}<br>//简化后的<br> function Clazz() {<br>   return function(){<br>    this.initialize.apply(this,arguments);<br> }<br>}<br>Class用来创建一种类型，注意其属性create是一个方法，返回一个构造函数。 一般使用如下：<br>var X = Class.create();<br>返回一个类型，类似于java的一个Class实例。要使用X类型，需继续用new X()来获取一个实例，如同java的Class.newInstance()方法。 返回的构造函数会执行名为initialize的方法，此时initialize方法还没有定义，其后的代码中创建新类型时会建立相应的同名方法。<br> Class.create实际上是返回一个函数，那么new的时候，做了些什么呢。new的时候会执行该返回的函数，即执行<br> this.initialize.apply(this, arguments);<br>此时的this就是新生成的对象，这也就是说了所有对象的初始化工作全部委托给initialize函数了。<br>二、怎样写一个类<br>//类名Person<br>//这里得到的是Person的initialize调用, 所以是Person.initialize(arguments)<br>//相当于构造函数persion(name){ this.name=name }<br> var Person = Class.create();<br>//通过原型重写来定义Person<br>Person.prototype = {<br> initialize : function(name) {<br>  this.name = name;<br> },<br> getName : function() {<br>   return this.name;<br> },<br> setName : function(name) {<br>   this.name = name;<br> }<br>}<br>//创建对象<br> var p = new Person(“jack”);<br> alert(p.getName());<br> alert(p.constructor == Person);//false<br>  initialize完成对象的初始化（相当于构造函数），方法依次往下写即可。 有个问题，通过这句p.constructor == Person为false可以看到，这正是Prototype.js一个小小的缺陷。原因是重写了Person的原型。为了使constructor能指向正确的构造器，只需在原型重写时维护好constructor属性即可。<br> Person.prototype = {<br>  constructor : Person,//注意这里<br>  initialize : function(name) {<br>    this.name = name;<br>  },<br>  getName : function() {<br>    return this.name;<br>  },<br>  setName : function(name) {<br>    this.name = name;<br>  }<br> }<br>好了，这时候p.constructor == Person就是true了。<br>Js函数声明与函数表达式之区别<br>在定义函数时，我们一般使用下面这两种方法：<br>使用函数声明定义：<br> function sum (a, b) {<br>   return a + b;<br> }<br>  使用函数表达式定义：<br>  var sum = function (a, b) {<br>    return a + b;<br>  }<br>调用方法都是一样的：如求“1+1”等于几：<br>   alert(sum(1, 1));<br>但这两种方法还是有区别的。解析器在向执行环境中加载数据时，对函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，并使其在执行任何代码之前可用；而函数表达式，则必须等到解析器执行到它所在的代码行，才会真正被解释执行。<br>示例：<br>  alert(sum(1, 1));<br>  function sum (a, b) {<br>    return a + b;<br>  }<br>   以上代码可以正常执行。因为在代码执行之前，解析器就已经通过一个名为函数声明提升的过程，读取并将函数声明添加到执行环境中。在对代码求值时，Javascript引擎在第一遍会声明函数并将它们放到源代码树的顶部。所以，即使声明函数的代码放到了调用它的代码的后面，Javascript 引擎也能把函数声明提升到顶部。如果像下面例子所示，把上面的函数声明改为函数表达式，就会在执行期间导致错误。</p>
+<p>  alert(sum(1, 1));<br>  var sum = function (a, b) {<br>   return a + b;<br>  }<br>以上代码之所以会在执行期间产生错误，原因在于函数位于一个初始化语句中，而不是一个函数声明。换句话说，在执行到函数所在的语句之前，变量sum不会保存有对函数的引用，并且第一行代码已经产生错误，也就不会执行到下一行。<br>总体来说，除了什么时候可以通过变量访问函数这一点区别之外，函数声明与函数表达式的语法其实是等价的。<br>通常我们会看到以下两种定义函数的方式：<br> // 函数语句<br> function fn(str)<br> {<br>  console.log(str);<br> };</p>
 <p> // 表达式定义<br> var fnx=function(str)<br> {<br>   console.log(str+ ‘ from fnx’);<br> };</p>
-<p>   以前都是凭借自己手指的感觉随心所欲使用两者 -_- || ，今天看了js基础，总算是解决了心中对他们的困惑：<br>   两种方式都创建了新的函数对象， 但函数声明语句的函数名是一个变量名，变量指向函数对象，和通过var声明变量一样，函数定义语句中的函数被显示地提前到了脚本或函数的顶部，因此它们在整个脚本和函数内都是可见的，但是使用var表达式定义函数，只有变量声明提前了，变量初始化代码仍然在原来的位置，用函数语句创建的函数，函数名称和函数体均被提前，所以我们可以在声明它之前就使用它。</p>
-<p>代码例子如下:<br>  console.log(typeof(fn)); // function<br>  fn(‘abc’); // abc</p>
+<p>以前都是凭借自己手指的感觉随心所欲使用两者 -_- || ，今天看了js基础，总算是解决了心中对他们的困惑：<br>两种方式都创建了新的函数对象， 但函数声明语句的函数名是一个变量名，变量指向函数对象，和通过var声明变量一样，函数定义语句中的函数被显示地提前到了脚本或函数的顶部，因此它们在整个脚本和函数内都是可见的，但是使用var表达式定义函数，只有变量声明提前了，变量初始化代码仍然在原来的位置，用函数语句创建的函数，函数名称和函数体均被提前，所以我们可以在声明它之前就使用它。<br>代码例子如下:<br>  console.log(typeof(fn)); // function<br>  fn(‘abc’); // abc</p>
 <p>  console.log(typeof(fnx)); // undefined</p>
 <p>  if(fnx)<br>    fnx(‘abc’); // will not execute<br>  else<br>    console.log(‘fnx is undefined’); // fnx is undefined</p>
 <p> // 函数语句<br> function fn(str)<br> {<br>   console.log(str);<br>  };</p>
-<p>  // 表达式定义<br>   var fnx=function(str)<br>   {<br>    console.log(str+ ‘ from fnx’);<br>   };<br> 代码很简单， 希望和我之前一样没有弄明白两者区别的同学能有所收获 。</p>
-<p> 回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合(Coupling)，流程会很混乱，而且每个任务只能指定一个回调函数。</p>
-<p>javaScript中克隆对象的三种方法</p>
-<p>方法1 （点击查看结果）<br>function clone(obj){<br>   var o;<br>   if(typeof obj == “object”){<br>      if(obj === null){<br>        o = null;<br>      }else{<br>        if(obj instanceof Array){<br>          o = [];<br>          for(var i = 0, len = obj.length; i &lt; len; i++){<br>            o.push(clone(obj[i]));<br>          }<br>        }else{<br>          o = {};<br>          for(var k in obj){<br>             o[k] = clone(obj[k]);<br>          }<br>        }<br>     }<br>   }else{<br>     o = obj;<br>   }<br>  return o;<br> }</p>
+<p>  // 表达式定义<br>   var fnx=function(str)<br>   {<br>    console.log(str+ ‘ from fnx’);<br>   };<br> 代码很简单， 希望和我之前一样没有弄明白两者区别的同学能有所收获 。<br> 回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合(Coupling)，流程会很混乱，而且每个任务只能指定一个回调函数。</p>
+<h5 id="javaScript中克隆对象的三种方法"><a href="#javaScript中克隆对象的三种方法" class="headerlink" title="javaScript中克隆对象的三种方法"></a>javaScript中克隆对象的三种方法</h5><p>方法1 （点击查看结果）<br>function clone(obj){<br>   var o;<br>   if(typeof obj == “object”){<br>      if(obj === null){<br>        o = null;<br>      }else{<br>        if(obj instanceof Array){<br>          o = [];<br>          for(var i = 0, len = obj.length; i &lt; len; i++){<br>            o.push(clone(obj[i]));<br>          }<br>        }else{<br>          o = {};<br>          for(var k in obj){<br>             o[k] = clone(obj[k]);<br>          }<br>        }<br>     }<br>   }else{<br>     o = obj;<br>   }<br>  return o;<br> }</p>
 <p> //测试<br>  var parent = {<br>   data: {<br>    name: ‘jack’,<br>    age: 30,<br>    isMarried: false<br>   },<br>   language: [‘Java’],<br>   show:function(){ return “ok” ;}<br>  }<br>  var Cparent=clone(parent);<br>  alert(Cparent.data.age);<br>  alert(Cparent.language[0]);<br>  alert(Cparent.show());<br>方法2：（点击查看结果）<br>function clone(obj){<br>    var o, obj;<br>    if (obj.constructor == Object){<br>        o = new obj.constructor();<br>    }else{<br>        o = new obj.constructor(obj.valueOf());<br>    }<br>    for(var key in obj){<br>        if ( o[key] != obj[key] ){<br>            if ( typeof(obj[key]) == ‘object’ ){<br>                o[key] = clone(obj[key]);<br>            }else{<br>                o[key] = obj[key];<br>            }<br>        }<br>    }<br>    o.toString = obj.toString;<br>    o.valueOf = obj.valueOf;<br>    return o;<br>  }<br>  //测试<br>  var parent = {<br>   data: {<br>    name: ‘jack’,<br>    age: 30,<br>    isMarried: false<br>   },<br>   language: [‘Java’],<br>   show:function(){ return “ok” ;}<br>  }<br>  var Cparent=clone(parent);<br>  alert(Cparent.data.age);<br>  alert(Cparent.language[0]);<br>  alert(Cparent.show());<br>方法3 （点击查看结果）<br>function clone(obj){<br>    function Fn(){}<br>    Fn.prototype = obj;<br>    var o = new Fn();<br>    for(var a in o){<br>        if(typeof o[a] == “object”) {<br>            o[a] = clone(o[a]);<br>        }<br>    }<br>    return o;<br>   }<br>   //测试<br>  var parent = {<br>   data: {<br>    name: ‘jack’,<br>    age: 30,<br>    isMarried: false<br>   },<br>   language: [‘Java’],<br>   show:function(){ return “ok” ;}<br>  }<br>  var Cparent=clone(parent);<br>  alert(Cparent.data.age);<br>  alert(Cparent.language[0]);<br>  alert(Cparent.show());</p>
-<p>  JavaScript原型继承之陷阱  <a href="http://www.108js.com/article/article1/10130.html?id=766" target="_blank" rel="external">http://www.108js.com/article/article1/10130.html?id=766</a></p>
-<p>  javascript中的function与感叹号  其实无论是括号，还是感叹号，让整个语句合法做的事情只有一件，就是让一个函数声明语句变成了一个表达式。<br>  javascript中双感叹号的使用<br>  js中的双感叹号判断。他相当于三元运算符，返回boolean值。<br>今天发现一段很奇怪的代码，虽然能领会他的意思，但是不明白双感叹号起到的作用。 代码如下:<br>  function id( name ) {<br>   return !!( typeof document !== “undefined” &amp;&amp; document &amp;&amp; document.getElementById ) &amp;&amp;<br>   document.getElementById( name );<br>  }<br>然后去网上查了些资料，他相当于三元运算符，返回boolean值。<br>   var ret = !!document.getElementById<br>等价于：<br>   var ret = document.getElementById ? true : false;　</p>
-<p>当值是非空字符串和非零数字返回true，当值是空字符串、0或者null返回false。<br>代码如下:<br>  var a = “ “; alert(!!a);//true<br>  var a = “s”; alert(!!a);//true<br>  var a = true; alert(!!a);//true<br>  var a = 1; alert(!!a);//true<br>  var a = -1; alert(!!a);//true<br>  var a = -2; alert(!!a);//true</p>
-<p>  var a = 0; alert(!!a);//false<br>  var a = “”; alert(!!a);//false<br>  var a = false; alert(!!a);//false<br>  var a = null; alert(!!a);//false</p>
-<p>  JS笔试题</p>
-<p>  1，考察this (点击查看结果）</p>
-<p> var length = 10<br> function fn(){<br>   alert(this.length)<br> }<br> var obj = {<br>  length: 5,<br>  method: function(fn) {<br>  fn() // ?<br>  arguments<a href="">0</a> // ?<br> }<br>}<br>obj.method(fn)</p>
-<p>  这里的坑主要是arguments，我们知道取对象属于除了点操作符还可以用中括号，这里fn的scope是arguments，即fn内的this===arguments，调用时仅传了一个参数fn，因此length为1。</p>
-<p>  2，函数表达式具名（函数声明同时赋值给另一个变量）或函数声明立即执行时，名仅在该函数内可访问<br>  ~function() {<br>    alert(typeof next) // ?<br>    ~function next() {<br>      alert(typeof next) // ?<br>    }()<br>  }()</p>
-<p>外层匿名函数自执行，打印next，接着内层具名函数自执行。会发现具名的next仅在其自身函数体内可访问，即输出为function。外面是不可见的，typeof就为undefined了。（注：此题IE6/7/8中输出为function function， 标准浏览器为undefined function）</p>
-<p>同样的情况也发生在将具名函数赋值给一个变量时，如下<br> var func = function a() {<br>   alert(typeof a)<br> }<br> func() // ?<br> alert(typeof a) // ?</p>
-<p>   这条规则是标准中(ES3/ES5)都已明确指出，但IE6、7、8没有严格遵从。可参见w3help的分析或李松峰老师的翻译《命名函数表达式探秘》</p>
-<p>3，给基本类型数据添加属性，不报错，但取值时是undefined</p>
-<p> a = 3<br> a.prop = 4<br> alert(a + a.prop) // ?</p>
-<p>  变量a为数字3，给其添加prop属性，值为4（奇怪吧在JS中这是允许的，且不会有语法错误）。然后alert出a+a.prop的结果。结果是NaN。a.prop为undefined，3+undefined为NAN。</p>
-<p>举一反三，给字符串添加属性</p>
-<p> str = ‘a’<br> str.prop = ‘b’<br> alert(str + str.prop) // ?</p>
-<p>结果呢？点击查看结果。</p>
-<p>4，隐式的全局变量 （点击查看结果）<br> var a = 1<br> function func() {<br>  a = b = 2<br> }<br> func()<br> alert(a)<br> alert(b) // ?</p>
-<p>JS中不用var声明的变量默认是全局变量，而这里的连等使的情况更加隐蔽。这里的b是全局的，因此func外可以访问。</p>
-<p>5，变量声明早于代码运行（Scoping and Hoisting）<br> var uname = ‘jack’<br> function change() {<br>   alert(uname) // ?<br>   var uname = ‘lily’<br>   alert(uname)<br> }<br>change()</p>
-<p>这里容易犯迷糊的是第一个alert，如果认为函数change外已经声明赋值了，此时应该是jack，实际函数内又var了一次（虽然var在其后），预解析时仍然会将其置undefined。这也是为什么书里都建议变量声明都放在代码块的最前面。</p>
-<p>6，函数声明早于变量声明 （点击看结果）<br> function change() {<br>  alert(typeof fn) // ?<br>  function fn() {<br>    alert(‘hello’)<br>  }<br>   var fn<br> }<br>change()；</p>
-<p>   change内先alert出fn，后函数声明，再变量声明。如果fn没有函数声明而仅是变量声明，那么结果与5一样是undefined。但这里却是function。即同一个作用域内，函数声明放在代码块后面和前面都没有关系，函数可以正常使用。而变量声明则需先置前，先使用则是undefined。</p>
-<p>  变态题<br>  <a href="http://www.108js.com/article/article1/10112.html?id=738" target="_blank" rel="external">http://www.108js.com/article/article1/10112.html?id=738</a><br>  <a href="http://www.108js.com/article/article1/10113.html?id=739" target="_blank" rel="external">http://www.108js.com/article/article1/10113.html?id=739</a><br>  <a href="http://www.108js.com/article/article1/10110.html?id=739" target="_blank" rel="external">http://www.108js.com/article/article1/10110.html?id=739</a><br>  <a href="http://www.108js.com/article/article1/10167.html?id=885" target="_blank" rel="external">http://www.108js.com/article/article1/10167.html?id=885</a></p>
-<p>问题：js之Genreator<br>  Generator基础相关知识<br>       Generator是ECMAScript6(代号harmory)中提供的新特性<br>       1、Generator的定义<br>             和普通函数相比，只是在function关键字后加个*号<br>Generator对象具有一个next方法，调用一次next方法才能执行定义的逻辑代码<br>       2、yield关键字<br>             yield关键字让Generator内部的逻辑能够切割成多个部分<br>                  A、切割函数逻辑<br>                        将一个函数的逻辑拆分为n(n=该函数中yield关键字数目)个，且它们共享上下文<br>                  B、yield关键字对next()方法的影响<br>                        每次.next()调用时，返回一个对象，这个对象具备两个属性，其中一个属性是表示这个Generator对象的逻辑块是否执行完成的布尔类型的done，另一个是yield语句后的表达式的结果value。若value属性值为一个函数，能直接通过value属性调用该函数<br>                  C、yield暂停Generator逻辑的理解<br>                        yield只能暂停Generator内部的逻辑，它并不是真正暂停整个线程，Generator外的业务逻辑依然会继续执行下去<br>       3、next()方法<br>             A、next()方法对yield关键字的影响<br>                 可以通过.next()传递参数，赋值给yield关键字前面的变量声明<br>       PS：对于Generator而言，它不仅可以将逻辑的单元切分得更细外，还能在暂停和继续执行的间隔中，动态传入数据，使得代码逻辑可以更灵活</p>
+<h5 id="JavaScript原型继承之陷阱-http-www-108js-com-article-article1-10130-html-id-766"><a href="#JavaScript原型继承之陷阱-http-www-108js-com-article-article1-10130-html-id-766" class="headerlink" title="JavaScript原型继承之陷阱  http://www.108js.com/article/article1/10130.html?id=766"></a>JavaScript原型继承之陷阱  <a href="http://www.108js.com/article/article1/10130.html?id=766" target="_blank" rel="external">http://www.108js.com/article/article1/10130.html?id=766</a></h5><h5 id="记"><a href="#记" class="headerlink" title="记"></a>记</h5><p>javascript中的function与感叹号  其实无论是括号，还是感叹号，让整个语句合法做的事情只有一件，就是让一个函数声明语句变成了一个表达式。<br>javascript中双感叹号的使用<br>js中的双感叹号判断。他相当于三元运算符，返回boolean值。<br>今天发现一段很奇怪的代码，虽然能领会他的意思，但是不明白双感叹号起到的作用。 代码如下:<br>  function id( name ) {<br>   return !!( typeof document !== “undefined” &amp;&amp; document &amp;&amp; document.getElementById ) &amp;&amp;<br>   document.getElementById( name );<br>  }<br>然后去网上查了些资料，他相当于三元运算符，返回boolean值。<br>   var ret = !!document.getElementById<br>等价于：<br>   var ret = document.getElementById ? true : false;　<br>当值是非空字符串和非零数字返回true，当值是空字符串、0或者null返回false。<br>代码如下:</p>
+<pre><code>var a = &quot; &quot;; alert(!!a);//true
+var a = &quot;s&quot;; alert(!!a);//true
+var a = true; alert(!!a);//true
+var a = 1; alert(!!a);//true
+var a = -1; alert(!!a);//true
+var a = -2; alert(!!a);//true
+
+var a = 0; alert(!!a);//false
+var a = &quot;&quot;; alert(!!a);//false
+var a = false; alert(!!a);//false
+var a = null; alert(!!a);//false
+</code></pre><h4 id="JS笔试题"><a href="#JS笔试题" class="headerlink" title="JS笔试题"></a>JS笔试题</h4><h5 id="考察this-点击查看结果）"><a href="#考察this-点击查看结果）" class="headerlink" title="考察this (点击查看结果）"></a>考察this (点击查看结果）</h5><pre><code> var length = 10
+ function fn(){
+   alert(this.length)
+ }
+ var obj = {
+  length: 5,
+  method: function(fn) {
+  fn() // ?
+  arguments[0]() // ?
+ }
+}
+obj.method(fn)
+</code></pre><p>这里的坑主要是arguments，我们知道取对象属于除了点操作符还可以用中括号，这里fn的scope是arguments，即fn内的this===arguments，调用时仅传了一个参数fn，因此length为1。</p>
+<h5 id="函数表达式具名（函数声明同时赋值给另一个变量）或函数声明立即执行时，名仅在该函数内可访问"><a href="#函数表达式具名（函数声明同时赋值给另一个变量）或函数声明立即执行时，名仅在该函数内可访问" class="headerlink" title="函数表达式具名（函数声明同时赋值给另一个变量）或函数声明立即执行时，名仅在该函数内可访问"></a>函数表达式具名（函数声明同时赋值给另一个变量）或函数声明立即执行时，名仅在该函数内可访问</h5><p>  ~function() {<br>    alert(typeof next) // ?<br>    ~function next() {<br>      alert(typeof next) // ?<br>    }()<br>  }()<br>外层匿名函数自执行，打印next，接着内层具名函数自执行。会发现具名的next仅在其自身函数体内可访问，即输出为function。外面是不可见的，typeof就为undefined了。（注：此题IE6/7/8中输出为function function， 标准浏览器为undefined function）<br>同样的情况也发生在将具名函数赋值给一个变量时，如下<br> var func = function a() {<br>   alert(typeof a)<br> }<br> func() // ?<br> alert(typeof a) // ?<br>这条规则是标准中(ES3/ES5)都已明确指出，但IE6、7、8没有严格遵从。可参见w3help的分析或李松峰老师的翻译《命名函数表达式探秘》</p>
+<h5 id="给基本类型数据添加属性，不报错，但取值时是undefined"><a href="#给基本类型数据添加属性，不报错，但取值时是undefined" class="headerlink" title="给基本类型数据添加属性，不报错，但取值时是undefined"></a>给基本类型数据添加属性，不报错，但取值时是undefined</h5><p> a = 3<br> a.prop = 4<br> alert(a + a.prop) // ?<br>变量a为数字3，给其添加prop属性，值为4（奇怪吧在JS中这是允许的，且不会有语法错误）。然后alert出a+a.prop的结果。结果是NaN。a.prop为undefined，3+undefined为NAN。<br>举一反三，给字符串添加属性<br>   str = ‘a’<br>     str.prop = ‘b’<br>     alert(str + str.prop) // ？<br>结果呢？</p>
+<h5 id="隐式的全局变量"><a href="#隐式的全局变量" class="headerlink" title="隐式的全局变量"></a>隐式的全局变量</h5><p> var a = 1<br> function func() {<br>  a = b = 2<br> }<br> func()<br> alert(a)<br> alert(b) // ?<br>JS中不用var声明的变量默认是全局变量，而这里的连等使的情况更加隐蔽。这里的b是全局的，因此func外可以访问。</p>
+<h5 id="变量声明早于代码运行（Scoping-and-Hoisting）"><a href="#变量声明早于代码运行（Scoping-and-Hoisting）" class="headerlink" title="变量声明早于代码运行（Scoping and Hoisting）"></a>变量声明早于代码运行（Scoping and Hoisting）</h5><p> var uname = ‘jack’<br> function change() {<br>   alert(uname) // ?<br>   var uname = ‘lily’<br>   alert(uname)<br> }<br>change()<br>这里容易犯迷糊的是第一个alert，如果认为函数change外已经声明赋值了，此时应该是jack，实际函数内又var了一次（虽然var在其后），预解析时仍然会将其置undefined。这也是为什么书里都建议变量声明都放在代码块的最前面。</p>
+<h5 id="函数声明早于变量声明"><a href="#函数声明早于变量声明" class="headerlink" title="函数声明早于变量声明"></a>函数声明早于变量声明</h5><p> function change() {<br>  alert(typeof fn) // ?<br>  function fn() {<br>    alert(‘hello’)<br>  }<br>   var fn<br> }<br>change()；<br>change内先alert出fn，后函数声明，再变量声明。如果fn没有函数声明而仅是变量声明，那么结果与5一样是undefined。但这里却是function。即同一个作用域内，函数声明放在代码块后面和前面都没有关系，函数可以正常使用。而变量声明则需先置前，先使用则是undefined。</p>
+<h5 id="变态题"><a href="#变态题" class="headerlink" title="变态题"></a>变态题</h5><p>  <a href="http://www.108js.com/article/article1/10112.html?id=738" target="_blank" rel="external">http://www.108js.com/article/article1/10112.html?id=738</a><br>  <a href="http://www.108js.com/article/article1/10113.html?id=739" target="_blank" rel="external">http://www.108js.com/article/article1/10113.html?id=739</a><br>  <a href="http://www.108js.com/article/article1/10110.html?id=739" target="_blank" rel="external">http://www.108js.com/article/article1/10110.html?id=739</a><br>  <a href="http://www.108js.com/article/article1/10167.html?id=885" target="_blank" rel="external">http://www.108js.com/article/article1/10167.html?id=885</a></p>
+<h5 id="js之Genreator"><a href="#js之Genreator" class="headerlink" title="js之Genreator"></a>js之Genreator</h5><p>Generator基础相关知识<br>Generator是ECMAScript6(代号harmory)中提供的新特性<br>1、Generator的定义<br>和普通函数相比，只是在function关键字后加个*号<br>Generator对象具有一个next方法，调用一次next方法才能执行定义的逻辑代码<br>2、yield关键字<br>yield关键字让Generator内部的逻辑能够切割成多个部分<br>A、切割函数逻辑<br>将一个函数的逻辑拆分为n(n=该函数中yield关键字数目)个，且它们共享上下文<br>B、yield关键字对next()方法的影响<br>每次.next()调用时，返回一个对象，这个对象具备两个属性，其中一个属性是表示这个Generator对象的逻辑块是否执行完成的布尔类型的done，另一个是yield语句后的表达式的结果value。若value属性值为一个函数，能直接通过value属性调用该函数<br>C、yield暂停Generator逻辑的理解<br>yield只能暂停Generator内部的逻辑，它并不是真正暂停整个线程，Generator外的业务逻辑依然会继续执行下去<br>3、next()方法<br>A、next()方法对yield关键字的影响<br>可以通过.next()传递参数，赋值给yield关键字前面的变量声明<br>PS：对于Generator而言，它不仅可以将逻辑的单元切分得更细外，还能在暂停和继续执行的间隔中，动态传入数据，使得代码逻辑可以更灵活</p>
 
       
 
@@ -326,9 +318,18 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
   
 <nav id="article-nav">
   
+    <a href="/2016/12/29/jquery题库/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：jquery题库
+        
+      </div>
+    </a>
   
-    <a href="/2016/12/14/js集锦(中) /" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">下一篇：js集锦（中）</div>
+  
+    <a href="/2016/12/10/jquery-2.0.3源码及解析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：jquery2.0.3源码及解析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -341,7 +342,7 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="js集锦(下)" data-title="js集锦（中）" data-url="http://yoursite.com/2016/12/14/js集锦(下)/"></div>
+	<div class="ds-thread" data-thread-key="js集锦(下)" data-title="js集锦（下）" data-url="http://yoursite.com/2016/12/14/js集锦(下)/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -421,7 +422,7 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
 	}
 	
 </script>
-<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
 <script src="/./js/main.js"></script>
 <script src="/./js/myJs.js"></script>
 
@@ -486,8 +487,7 @@ javaScript中的Object.valueOf()方法 http://www.108js.com/article/article1/101
   	  	
     	</section>
     
-  </div>
-  
+  </div> 
 </div>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

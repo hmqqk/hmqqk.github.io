@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>jquery题库 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="此部分集锦了各种习题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery题库">
+<meta property="og:url" content="http://yoursite.com/2016/12/29/jquery题库/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="此部分集锦了各种习题">
+<meta property="og:image" content="http://yoursite.com/images/js/1_1.gif">
+<meta property="og:image" content="http://yoursite.com/images/js/1_2.gif">
+<meta property="og:image" content="http://yoursite.com/images/js/1_4.gif">
+<meta property="og:updated_time" content="2016-12-29T06:57:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jquery题库">
+<meta name="twitter:description" content="此部分集锦了各种习题">
+<meta name="twitter:image" content="http://yoursite.com/images/js/1_1.gif">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/myStyle.css">
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+
+		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
+		</form>
+	
+	<header id="header" class="inner">
+		<a href="/categories/myPage/myPage.html" class="profilepic">
+			
+			<img src="/images/title.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/categories/myPage/myPage.html">轻刻美</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">因上努力,果上随缘</p>
+		
+		
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
+	        
+				<li><a href="/categories/studies">学习</a></li>
+	        
+				<li><a href="/categories/lives">生活</a></li>
+	        
+				<li><a href="/categories/essays">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
+	</header>		
+	
+	
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">轻刻美</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/images/title.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">轻刻美</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">因上努力,果上随缘</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/myPage/myPage.html">我的小窝</a></li>
+		        
+					<li><a href="/">所有文章</a></li>
+		        
+					<li><a href="/categories/studies">学习</a></li>
+		        
+					<li><a href="/categories/lives">生活</a></li>
+		        
+					<li><a href="/categories/essays">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmqqk/hmqqk.github.io" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5738673016/home?wvr=5" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/hmqqk/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:2442501113@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-jquery题库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jquery题库
+    </h1>
+  
+
+        <a href="/2016/12/29/jquery题库/" class="archive-article-date">
+  	<time datetime="2016-12-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此部分集锦了各种习题<br><a id="more"></a></p>
+<h5 id="问题：jQuery的美元符号-有什么作用？"><a href="#问题：jQuery的美元符号-有什么作用？" class="headerlink" title="问题：jQuery的美元符号$有什么作用？"></a>问题：jQuery的美元符号$有什么作用？</h5><p>回答：其实美元符号$只是”jQuery”的别名，它是jQuery的选择器，如下代码：<br><code>$(document).ready(function(){
+});</code><br>当然你也可以用jQuery来代替$，如下代码：<br><code>jQuery(document).ready(function(){
+});</code><br>jQuery中就是通过这个美元符号来实现各种灵活的DOM元素选择的，例如$(“#main”)即选中id为main的元素。</p>
+<h5 id="问题：body中的onload-函数和jQuery中的document-ready-有什么区别？"><a href="#问题：body中的onload-函数和jQuery中的document-ready-有什么区别？" class="headerlink" title="问题：body中的onload()函数和jQuery中的document.ready()有什么区别？"></a>问题：body中的onload()函数和jQuery中的document.ready()有什么区别？</h5><p>回答：onload()和document.ready()的区别有以下两点：<br>1、我们可以在页面中使用多个document.ready()，但只能使用一次onload()。<br>2、document.ready()函数在页面DOM元素加载完以后就会被调用，而onload()函数则要在所有的关联资源（包括图像、音频）加载完毕后才会调用。</p>
+<h5 id="问题：jQuery中有哪几种类型的选择器？"><a href="#问题：jQuery中有哪几种类型的选择器？" class="headerlink" title="问题：jQuery中有哪几种类型的选择器？"></a>问题：jQuery中有哪几种类型的选择器？</h5><p>回答：从我自己的角度来讲，可以有3种类型的选择器，如下：<br>1、基本选择器：直接根据id、css类名、元素名返回匹配的dom元素。<br>2、层次选择器：也叫做路径选择器，可以根据路径层次来选择相应的DOM元素。<br>3、过滤选择器：在前面的基础上过滤相关条件，得到匹配的dom元素。</p>
+<h5 id="问题：请使用jQuery将页面上的所有元素边框设置为2px宽的虚线？"><a href="#问题：请使用jQuery将页面上的所有元素边框设置为2px宽的虚线？" class="headerlink" title="问题：请使用jQuery将页面上的所有元素边框设置为2px宽的虚线？"></a>问题：请使用jQuery将页面上的所有元素边框设置为2px宽的虚线？</h5><p>回答：这正是jQuery选择器上场的时候了，代码如下：</p>
+<pre><code>&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+     $(&quot;*&quot;).css(&quot;border&quot;, &quot;2px dotted red&quot;); 
+&lt;/script&gt;
+</code></pre><h5 id="问题：当CDN上的jQuery文件不可用时，该怎么办？"><a href="#问题：当CDN上的jQuery文件不可用时，该怎么办？" class="headerlink" title="问题：当CDN上的jQuery文件不可用时，该怎么办？"></a>问题：当CDN上的jQuery文件不可用时，该怎么办？</h5><p>回答：为了节省带宽和脚本引用的稳定性，我们会使用CDN上的jQuery文件，例如google的jquery cdn服务。但是如果这些CDN上的jQuery服务不可用，我们还可以通过以下代码来切换到本地服务器的jQuery版本：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; language=&quot;Javascript&quot; src=&quot;http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.1.min.js &quot;&gt;&lt;/script&gt;
+&lt;script type=&apos;text/javascript&apos;&gt;//&lt;![CDATA[
+if (typeof jQuery == &apos;undefined&apos;) {
+document.write(unescape(&quot;%3Cscript src=&apos;/Script/jquery-1.4.1.min.js&apos; type=&apos;text/javascript&apos; %3E%3C/script%3E&quot;));
+}//]]&gt;
+&lt;/script&gt;
+</code></pre><h5 id="问题：如何使用jQuery实现点击按钮弹出一个对话框？"><a href="#问题：如何使用jQuery实现点击按钮弹出一个对话框？" class="headerlink" title="问题：如何使用jQuery实现点击按钮弹出一个对话框？"></a>问题：如何使用jQuery实现点击按钮弹出一个对话框？</h5><p>回答：代码如下：<br>HTML：</p>
+<pre><code>&lt;input id=&quot;inputField&quot; type=&quot;text&quot; size=&quot;12&quot;/&gt;
+</code></pre><p>jQuery：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt; $(document).ready(function () { $(&apos;#Button1&apos;).click(function () { alert($(&apos;#inputField&apos;).attr(&quot;value&quot;)); }); }); &lt;/script&gt;
+</code></pre><h5 id="问题：jQuery中的Delegate-函数有什么作用？"><a href="#问题：jQuery中的Delegate-函数有什么作用？" class="headerlink" title="问题：jQuery中的Delegate()函数有什么作用？"></a>问题：jQuery中的Delegate()函数有什么作用？</h5><p>回答：delegate()会在以下两个情况下使用到：<br>1、如果你有一个父元素，需要给其下的子元素添加事件，这时你可以使用delegate()了，代码如下：</p>
+<pre><code>$(&quot;ul&quot;).delegate(&quot;li&quot;, &quot;click&quot;, function(){
+$(this).hide();
+});
+</code></pre><p>2、当元素在当前页面中不可用时，可以使用delegate()</p>
+<h5 id="问题：怎样用jQuery编码和解码URL？"><a href="#问题：怎样用jQuery编码和解码URL？" class="headerlink" title="问题：怎样用jQuery编码和解码URL？"></a>问题：怎样用jQuery编码和解码URL？</h5><p>回答：在jQuery中，我们可以使用以下方法实现URL的编码和解码。</p>
+<pre><code>encodeURIComponent(url) and decodeURIComponent(url)
+</code></pre><h5 id="问题：如何用jQuery禁用浏览器的前进后退按钮？"><a href="#问题：如何用jQuery禁用浏览器的前进后退按钮？" class="headerlink" title="问题：如何用jQuery禁用浏览器的前进后退按钮？"></a>问题：如何用jQuery禁用浏览器的前进后退按钮？</h5><p>回答：实现代码如下：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;
+    $(document).ready(function() {
+         window.history.forward(1);
+         //OR
+         window.history.forward(-1);
+    });
+</code></pre><p>  </p>
+<h5 id="下面哪种不是jquery的选择器？-单选"><a href="#下面哪种不是jquery的选择器？-单选" class="headerlink" title="下面哪种不是jquery的选择器？(单选)"></a>下面哪种不是jquery的选择器？(单选)</h5><p>A、 基本选择器 B、后代选择器 C、类选择器 D、进一步选择器 考点:jquery的选择器 (C) </p>
+<h5 id="当DOM加载完成后要执行的函数，下面哪个是正确的？-单选"><a href="#当DOM加载完成后要执行的函数，下面哪个是正确的？-单选" class="headerlink" title="当DOM加载完成后要执行的函数，下面哪个是正确的？(单选)"></a>当DOM加载完成后要执行的函数，下面哪个是正确的？(单选)</h5><p>jQuery(expression, [context]) B、jQuery(html, [ownerDocument]) C、jQuery(callback) D、jQuery(elements)<br>考点：jquery的核心函数 (C)  </p>
+<h5 id="下面哪一个是用来追加到指定元素的末尾的？-单选-A、insertAfter-B、append-C、appendTo-D、after-考点：jquery的核心函数-C"><a href="#下面哪一个是用来追加到指定元素的末尾的？-单选-A、insertAfter-B、append-C、appendTo-D、after-考点：jquery的核心函数-C" class="headerlink" title="下面哪一个是用来追加到指定元素的末尾的？(单选) A、insertAfter() B、append() C、appendTo() D、after() 考点：jquery的核心函数 (C)"></a>下面哪一个是用来追加到指定元素的末尾的？(单选) A、insertAfter() B、append() C、appendTo() D、after() 考点：jquery的核心函数 (C)</h5><h5 id="下面哪一个不是jquery对象访问的方法？-单选"><a href="#下面哪一个不是jquery对象访问的方法？-单选" class="headerlink" title="下面哪一个不是jquery对象访问的方法？(单选)"></a>下面哪一个不是jquery对象访问的方法？(单选)</h5><p>A、each(callback) B、size() C、index(subject) D、index()<br>考点： jquery的核心函数之对象访问 （D）  </p>
+<h5 id="jquery访问对象中的size-方法的返回值和jQuery对象的-属性一样"><a href="#jquery访问对象中的size-方法的返回值和jQuery对象的-属性一样" class="headerlink" title="jquery访问对象中的size()方法的返回值和jQuery对象的___属性一样."></a>jquery访问对象中的size()方法的返回值和jQuery对象的<strong>___</strong>属性一样.</h5><p>考点：jquery的核心函数之对象访问 （length）  </p>
+<h5 id="jquery中-this-get-0-的写法和-是等价的。"><a href="#jquery中-this-get-0-的写法和-是等价的。" class="headerlink" title="jquery中$(this).get(0)的写法和__是等价的。"></a>jquery中$(this).get(0)的写法和<strong><strong>__</strong></strong>是等价的。</h5><p>考点：jquery的核心函数之对象访问 （$(this)[0]）  </p>
+<h5 id="有这样一个表单元素-，想要找到这个hidden元素，下面哪个是正确的？-单选"><a href="#有这样一个表单元素-，想要找到这个hidden元素，下面哪个是正确的？-单选" class="headerlink" title="有这样一个表单元素 ，想要找到这个hidden元素，下面哪个是正确的？(单选)"></a>有这样一个表单元素 ，想要找到这个hidden元素，下面哪个是正确的？(单选)</h5><p> A、visible B、hidden C、visible() D、hidden()<br>考点：jquery的选择器 （B）  </p>
+<h5 id="如果需要匹配包含文本的元素，用下面哪种来实现？-单选"><a href="#如果需要匹配包含文本的元素，用下面哪种来实现？-单选" class="headerlink" title="如果需要匹配包含文本的元素，用下面哪种来实现？(单选)"></a>如果需要匹配包含文本的元素，用下面哪种来实现？(单选)</h5><p> A、text() B、contains() C、input() D、attr(name)<br>考点：jquery的选择器 （B）</p>
+<h5 id="现有一个表格，如果想要匹配所有行数为偶数的，用-实现，奇数的用-实现。"><a href="#现有一个表格，如果想要匹配所有行数为偶数的，用-实现，奇数的用-实现。" class="headerlink" title="现有一个表格，如果想要匹配所有行数为偶数的，用__实现，奇数的用___实现。"></a>现有一个表格，如果想要匹配所有行数为偶数的，用<strong><em>__</em></strong>实现，奇数的用<strong>___</strong>实现。</h5><p>考点：jquery的选择器 （even,odd）  </p>
+<h5 id="如果想要找到一个表格的指定行数的元素，用下面哪个方法可以快速找到指定元素？-单选"><a href="#如果想要找到一个表格的指定行数的元素，用下面哪个方法可以快速找到指定元素？-单选" class="headerlink" title="如果想要找到一个表格的指定行数的元素，用下面哪个方法可以快速找到指定元素？(单选)"></a>如果想要找到一个表格的指定行数的元素，用下面哪个方法可以快速找到指定元素？(单选)</h5><p>A、text() B、get() C、eq() D、contents（） 考点：jquery的选择器 （C）</p>
+<h5 id="在一个表单里，想要找到指定元素的第一个元素用-实现，那么第二个元素用-实现。"><a href="#在一个表单里，想要找到指定元素的第一个元素用-实现，那么第二个元素用-实现。" class="headerlink" title="在一个表单里，想要找到指定元素的第一个元素用_实现，那么第二个元素用_实现。"></a>在一个表单里，想要找到指定元素的第一个元素用<strong><strong>_</strong></strong>实现，那么第二个元素用<strong><strong>_</strong></strong>实现。</h5><p>考点：jquery的选择器 （first,eq(1)）  </p>
+<h5 id="下面哪种不属于jquery的筛选？（单选）"><a href="#下面哪种不属于jquery的筛选？（单选）" class="headerlink" title="下面哪种不属于jquery的筛选？（单选）"></a>下面哪种不属于jquery的筛选？（单选）</h5><p>A、过滤 B、自动 C、查找 D、串联 考点：jquery的筛选 (B)  </p>
+<h5 id="下面哪几种是属于jquery文档处理的？-（多选）"><a href="#下面哪几种是属于jquery文档处理的？-（多选）" class="headerlink" title="下面哪几种是属于jquery文档处理的？ （多选）"></a>下面哪几种是属于jquery文档处理的？ （多选）</h5><p> A、包裹 B、替换 C、删除 D、内部和外部插入<br>考点：jquery的文档处理 (ABD)</p>
+<h5 id="如果想在一个指定的元素后添加内容，下面哪个是实现该功能的？（单选）"><a href="#如果想在一个指定的元素后添加内容，下面哪个是实现该功能的？（单选）" class="headerlink" title="如果想在一个指定的元素后添加内容，下面哪个是实现该功能的？（单选）"></a>如果想在一个指定的元素后添加内容，下面哪个是实现该功能的？（单选）</h5><p>A、append(content) B、appendTo(content) C、insertAfter(content) D、after(content)<br>考点：jquery的文档处理 (D)  </p>
+<h5 id="在jquery中，用一个表达式来检查当前选择的元素集合，使用-来实现，如果这个表达式失效，则返回-值。"><a href="#在jquery中，用一个表达式来检查当前选择的元素集合，使用-来实现，如果这个表达式失效，则返回-值。" class="headerlink" title="在jquery中，用一个表达式来检查当前选择的元素集合，使用__来实现，如果这个表达式失效，则返回___值。"></a>在jquery中，用一个表达式来检查当前选择的元素集合，使用<strong>__</strong>来实现，如果这个表达式失效，则返回<strong><strong>___</strong></strong>值。</h5><p>考点：jquery的筛选 （is(expr),false）</p>
+<h5 id="在jquey中，如果想要从DOM中删除所有匹配的元素，下面哪一个是正确的？（单选）"><a href="#在jquey中，如果想要从DOM中删除所有匹配的元素，下面哪一个是正确的？（单选）" class="headerlink" title="在jquey中，如果想要从DOM中删除所有匹配的元素，下面哪一个是正确的？（单选）"></a>在jquey中，如果想要从DOM中删除所有匹配的元素，下面哪一个是正确的？（单选）</h5><p>A、delete() B、empty() C、remove() D、removeAll()<br>考点：jquery的文档处理 （C）  </p>
+<h5 id="在jquery中，想要给第一个指定的元素添加样式，下面哪一个是正确的？（单选）"><a href="#在jquery中，想要给第一个指定的元素添加样式，下面哪一个是正确的？（单选）" class="headerlink" title="在jquery中，想要给第一个指定的元素添加样式，下面哪一个是正确的？（单选）"></a>在jquery中，想要给第一个指定的元素添加样式，下面哪一个是正确的？（单选）</h5><p>A、first B、eq(1) C、css(name) D、css(name,value)<br>考点： jquery的css处理 （C）  </p>
+<h5 id="在编写页面的时候，如果想要获取指定元素在当前窗口的相对偏移，用-来实现，该方法的返回值有两个属性，分别是-和-。"><a href="#在编写页面的时候，如果想要获取指定元素在当前窗口的相对偏移，用-来实现，该方法的返回值有两个属性，分别是-和-。" class="headerlink" title="在编写页面的时候，如果想要获取指定元素在当前窗口的相对偏移，用_来实现，该方法的返回值有两个属性，分别是__和__。"></a>在编写页面的时候，如果想要获取指定元素在当前窗口的相对偏移，用<strong><strong>_</strong></strong>来实现，该方法的返回值有两个属性，分别是<strong><em>__</em></strong>和<strong><strong>__</strong></strong>。</h5><p>考点：jquery的css处理 （offset,top,left）</p>
+<h5 id="在jquery中，如果想要获取当前窗口的宽度值，下面哪个是实现该功能的？-（单选）"><a href="#在jquery中，如果想要获取当前窗口的宽度值，下面哪个是实现该功能的？-（单选）" class="headerlink" title="在jquery中，如果想要获取当前窗口的宽度值，下面哪个是实现该功能的？ （单选）"></a>在jquery中，如果想要获取当前窗口的宽度值，下面哪个是实现该功能的？ （单选）</h5><p>A、width() B、width(val) C、width D、innerWidth()<br>考点：jquery的css处理 （A）   </p>
+<h5 id="在一个表单中，如果将所有的div元素都设置为绿色，实现功能是-。"><a href="#在一个表单中，如果将所有的div元素都设置为绿色，实现功能是-。" class="headerlink" title="在一个表单中，如果将所有的div元素都设置为绿色，实现功能是__。"></a>在一个表单中，如果将所有的div元素都设置为绿色，实现功能是<strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong>。</h5><p>考点：jquery的css处理 ($(“div”).css(“color”,”green”))   </p>
+<h5 id="为每一个指定元素的指定事件（像click）绑定一个事件处理器函数，下面哪个是用来实现该功能的？-（单选）"><a href="#为每一个指定元素的指定事件（像click）绑定一个事件处理器函数，下面哪个是用来实现该功能的？-（单选）" class="headerlink" title="为每一个指定元素的指定事件（像click）绑定一个事件处理器函数，下面哪个是用来实现该功能的？ （单选）"></a>为每一个指定元素的指定事件（像click）绑定一个事件处理器函数，下面哪个是用来实现该功能的？ （单选）</h5><p>A、trigger (type) B、bind(type) C、one(type) D、bind<br>考点：jquery的事件操作 (B)</p>
+<h5 id="在jquery中，鼠标移动到一个指定的元素上，会触发指定的一个方法，实现该操作的是-。"><a href="#在jquery中，鼠标移动到一个指定的元素上，会触发指定的一个方法，实现该操作的是-。" class="headerlink" title="在jquery中，鼠标移动到一个指定的元素上，会触发指定的一个方法，实现该操作的是__。"></a>在jquery中，鼠标移动到一个指定的元素上，会触发指定的一个方法，实现该操作的是<strong><strong><strong>__</strong></strong></strong>。</h5><p>考点：jquery的事件操作 (hover(over,out))  </p>
+<h5 id="下面哪几个不是属于jquery的事件处理-多选-A、bind-type-B、click-C、change-D、one-type"><a href="#下面哪几个不是属于jquery的事件处理-多选-A、bind-type-B、click-C、change-D、one-type" class="headerlink" title="下面哪几个不是属于jquery的事件处理? (多选) A、bind(type) B、click() C、change() D、one(type)"></a>下面哪几个不是属于jquery的事件处理? (多选) A、bind(type) B、click() C、change() D、one(type)</h5><p>考点：jquery的事件处理 (BC)  </p>
+<h5 id="在一个表单中，如果想要给输入框添加一个输入验证，可以用下面的哪个事件实现？-单选"><a href="#在一个表单中，如果想要给输入框添加一个输入验证，可以用下面的哪个事件实现？-单选" class="headerlink" title="在一个表单中，如果想要给输入框添加一个输入验证，可以用下面的哪个事件实现？ (单选)"></a>在一个表单中，如果想要给输入框添加一个输入验证，可以用下面的哪个事件实现？ (单选)</h5><p>A、hover(over ,out) B、keypress（fn） C、change() D、change(fn)<br>考点：jquery的事件处理 (D) </p>
+<h5 id="当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）"><a href="#当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）" class="headerlink" title="当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）"></a>当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）</h5><p>A、click(fn) B、change(fn) C、select(fn) D、bind(fn)<br>考点：jquery的事件处理 (C)  </p>
+<h5 id="在jquery中，想让一个元素隐藏，用-实现，显示隐藏的元素用-实现。"><a href="#在jquery中，想让一个元素隐藏，用-实现，显示隐藏的元素用-实现。" class="headerlink" title="在jquery中，想让一个元素隐藏，用__实现，显示隐藏的元素用_实现。"></a>在jquery中，想让一个元素隐藏，用<strong><em>__</em></strong>实现，显示隐藏的元素用<strong><strong>_</strong></strong>实现。</h5><p>考点：jquery的页面效果 （hide(),show()）  </p>
+<h5 id="在一个表单中，用600毫秒缓慢的将段落滑上，用-来实现。"><a href="#在一个表单中，用600毫秒缓慢的将段落滑上，用-来实现。" class="headerlink" title="在一个表单中，用600毫秒缓慢的将段落滑上，用__来实现。"></a>在一个表单中，用600毫秒缓慢的将段落滑上，用<strong><strong><strong><strong><strong><strong><strong><strong>__</strong></strong></strong></strong></strong></strong></strong></strong>来实现。</h5><p>考点：jquery的页面效果 （$(“p”).slideUp(“slow”)</p>
+<h5 id="当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）-1"><a href="#当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）-1" class="headerlink" title="当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）"></a>当一个文本框中的内容被选中时，想要执行指定的方法时，可以使用下面哪个事件来实现？（单选）</h5><p>A、click(fn) B、change(fn) C、select(fn) D、bind(fn)<br>考点：jquery的事件处理 (C)  </p>
+<h5 id="在jquery中，想让一个元素隐藏，用-实现，显示隐藏的元素用-实现。-1"><a href="#在jquery中，想让一个元素隐藏，用-实现，显示隐藏的元素用-实现。-1" class="headerlink" title="在jquery中，想让一个元素隐藏，用__实现，显示隐藏的元素用_实现。"></a>在jquery中，想让一个元素隐藏，用<strong><em>__</em></strong>实现，显示隐藏的元素用<strong><strong>_</strong></strong>实现。</h5><p>考点：jquery的页面效果 （hide(),show()）  </p>
+<h5 id="在一个表单中，用600毫秒缓慢的将段落滑上，用-来实现。-1"><a href="#在一个表单中，用600毫秒缓慢的将段落滑上，用-来实现。-1" class="headerlink" title="在一个表单中，用600毫秒缓慢的将段落滑上，用__来实现。"></a>在一个表单中，用600毫秒缓慢的将段落滑上，用<strong><strong><strong><strong><strong><strong><strong><strong>__</strong></strong></strong></strong></strong></strong></strong></strong>来实现。</h5><p>考点：jquery的页面效果 （$(“p”).slideUp(“slow”)</p>
+<h5 id="在jquery中，如果想要自定义一个动画，用-函数来实现。"><a href="#在jquery中，如果想要自定义一个动画，用-函数来实现。" class="headerlink" title="在jquery中，如果想要自定义一个动画，用___函数来实现。"></a>在jquery中，如果想要自定义一个动画，用<strong><strong><strong><strong><strong><strong>___</strong></strong></strong></strong></strong></strong>函数来实现。</h5><p>考点：jquery的页面效果 (animate(params, options))  </p>
+<h5 id="在jquery中想要实现通过远程http-get请求载入信息功能的是下面的哪一下事件？-单选"><a href="#在jquery中想要实现通过远程http-get请求载入信息功能的是下面的哪一下事件？-单选" class="headerlink" title="在jquery中想要实现通过远程http get请求载入信息功能的是下面的哪一下事件？ (单选)"></a>在jquery中想要实现通过远程http get请求载入信息功能的是下面的哪一下事件？ (单选)</h5><p>A、$.ajax() B、load(url) C、$.get(url) D、$. getScript(url)<br>考点：jquery的ajax (C)  </p>
+<h5 id="下面不属于ajax事件的是？-单选"><a href="#下面不属于ajax事件的是？-单选" class="headerlink" title="下面不属于ajax事件的是？ (单选)"></a>下面不属于ajax事件的是？ (单选)</h5><p>A、ajaxComplete(callback) B、ajaxSuccess(callback) C、$.post(url) D、ajaxSend(callback)<br>考点：jquery的ajax （C）  </p>
+<h5 id="彻底将jQuery变量还原，可以使用-方法实现。"><a href="#彻底将jQuery变量还原，可以使用-方法实现。" class="headerlink" title="彻底将jQuery变量还原，可以使用___方法实现。"></a>彻底将jQuery变量还原，可以使用<strong><strong><strong><strong>___</strong></strong></strong></strong>方法实现。</h5><p>考点：jquery的多库共存 ($.noConflict(extreme)) </p>
+<h5 id="在一个表单中，查找所有选中的input元素，可以用jquery中的-来实现。"><a href="#在一个表单中，查找所有选中的input元素，可以用jquery中的-来实现。" class="headerlink" title="在一个表单中，查找所有选中的input元素，可以用jquery中的__来实现。"></a>在一个表单中，查找所有选中的input元素，可以用jquery中的<strong><strong><strong><strong><em>__</em></strong></strong></strong></strong>来实现。</h5><p>考点：jquery的选择器（:not()）  </p>
+<h5 id="下面哪几种是jquery中表单的对象属性？（多选）"><a href="#下面哪几种是jquery中表单的对象属性？（多选）" class="headerlink" title="下面哪几种是jquery中表单的对象属性？（多选）"></a>下面哪几种是jquery中表单的对象属性？（多选）</h5><p>A、:checked B、: enabled C、:hidden D、:selected E、:file F、: disabled<br>考点：jquery的选择器（ABDF）  </p>
+<h5 id="在jquery中如果将一个“名-值”形式的对象设置为所有指定元素的属性，可以用-实现。"><a href="#在jquery中如果将一个“名-值”形式的对象设置为所有指定元素的属性，可以用-实现。" class="headerlink" title="在jquery中如果将一个“名/值”形式的对象设置为所有指定元素的属性，可以用__实现。"></a>在jquery中如果将一个“名/值”形式的对象设置为所有指定元素的属性，可以用<strong><strong><strong><em>__</em></strong></strong></strong>实现。</h5><p>考点：jquery选择器之属性 （attr(pro)）  </p>
+<h5 id="在jquery中指定一个类，如果存在就执行删除功能，如果不存在就执行添加功能，下面哪一个是可以直接完成该功能的？（单选）"><a href="#在jquery中指定一个类，如果存在就执行删除功能，如果不存在就执行添加功能，下面哪一个是可以直接完成该功能的？（单选）" class="headerlink" title="在jquery中指定一个类，如果存在就执行删除功能，如果不存在就执行添加功能，下面哪一个是可以直接完成该功能的？（单选）"></a>在jquery中指定一个类，如果存在就执行删除功能，如果不存在就执行添加功能，下面哪一个是可以直接完成该功能的？（单选）</h5><p>A、removeClass() B、deleteClass() C、toggleClass(class) D、addClass()<br>考点：jquery的属性 （C） </p>
+<h5 id="在jquery中想要找到所有元素的同辈元素，下面哪一个是可以实现的？（单选）"><a href="#在jquery中想要找到所有元素的同辈元素，下面哪一个是可以实现的？（单选）" class="headerlink" title="在jquery中想要找到所有元素的同辈元素，下面哪一个是可以实现的？（单选）"></a>在jquery中想要找到所有元素的同辈元素，下面哪一个是可以实现的？（单选）</h5><p>A、eq(index) B、find(expr) C、siblings([expr]) D、next()<br>考点：jquery的筛选 （C）</p>
+<h5 id="什么是jQuery"><a href="#什么是jQuery" class="headerlink" title="什么是jQuery?"></a>什么是jQuery?</h5><p>jQuery是继prototype之后又一个优秀的Javascrīpt框架。</p>
+<h5 id="HTML代码-This-is-a-DIV1-把这个HTML元素转化为jQuery对象的语句是？2-得到div元素内文本的语句可以是哪些？3-把元素内文本设置为粗体的方法有？4-清空文本的方法有？"><a href="#HTML代码-This-is-a-DIV1-把这个HTML元素转化为jQuery对象的语句是？2-得到div元素内文本的语句可以是哪些？3-把元素内文本设置为粗体的方法有？4-清空文本的方法有？" class="headerlink" title="HTML代码:This is a DIV1) 把这个HTML元素转化为jQuery对象的语句是？2) 得到div元素内文本的语句可以是哪些？3) 把元素内文本设置为粗体的方法有？4) 清空文本的方法有？"></a>HTML代码:<br>This is a DIV<br>1) 把这个HTML元素转化为jQuery对象的语句是？<br>2) 得到div元素内文本的语句可以是哪些？<br>3) 把元素内文本设置为粗体的方法有？<br>4) 清空文本的方法有？</h5><p>1.$(“div”)<br>2.$(“div”).text(),$(“div”).html ()<br>3.$(“div”).text(“This is DIV”)<br>4.$(“div”).text(“”)</p>
+<h5 id="有一个button执行以下jQuery语句：-‘-btn’-click-function-alert-‘click-me’-‘-btn’-click-function-alert-‘click-me-again-’-单击这个button会有什么效果？"><a href="#有一个button执行以下jQuery语句：-‘-btn’-click-function-alert-‘click-me’-‘-btn’-click-function-alert-‘click-me-again-’-单击这个button会有什么效果？" class="headerlink" title="有一个button执行以下jQuery语句：$(‘#btn’).click(function(){ alert(‘click me’); });$(‘#btn’).click(function(){ alert(‘click me again.’)});单击这个button会有什么效果？"></a>有一个button<br>执行以下jQuery语句：<br>$(‘#btn’).click(function(){ alert(‘click me’); });<br>$(‘#btn’).click(function(){ alert(‘click me again.’)});<br>单击这个button会有什么效果？</h5><p>弹出2次对话框 分别是 click me, click meagain</p>
+<h5 id="你在公司是怎么用jquery的？"><a href="#你在公司是怎么用jquery的？" class="headerlink" title="你在公司是怎么用jquery的？"></a>你在公司是怎么用jquery的？</h5><p>在项目中是怎么用的是看看你有没有项目经验(根据自己的实际情况来回答)           你用过的选择器啊，复选框啊，表单啊，ajax啊，事件等           配置Jquery环境 下载jquery类库 在jsp页面引用jquery类库即可        <scripttype="text javascript"src="jquery/jquery-1.7.2.min.js">         接下来通过在         <script>             $(function(){                             });           </script></scripttype="text></p>
+<h5 id="你为什么要使用jquery？"><a href="#你为什么要使用jquery？" class="headerlink" title="你为什么要使用jquery？"></a>你为什么要使用jquery？</h5><p>因为jQuery是轻量级的框架，大小不到30kb,它有强大的选择器，        出色的DOM操作的封装，有可靠的事件处理机制(jQuery在处理事件绑定的时候相当的可靠)，        完善的ajax(它的ajax封装的非常的好，不需要考虑复杂浏览器的兼容性和XMLHttpRequest         对象的创建和使用的问题。) 出色的浏览器的兼容性。 而且支持链式操作，隐式迭代。        行为层和结构层的分离，还支持丰富的插件，jquery的文档也非常的丰富。</p>
+<h5 id="你觉得jquery有哪些好处？-答案同上"><a href="#你觉得jquery有哪些好处？-答案同上" class="headerlink" title="你觉得jquery有哪些好处？     答案同上"></a>你觉得jquery有哪些好处？     答案同上</h5><h5 id="你使用jquery遇到过哪些问题，你是怎么解决的？"><a href="#你使用jquery遇到过哪些问题，你是怎么解决的？" class="headerlink" title="你使用jquery遇到过哪些问题，你是怎么解决的？"></a>你使用jquery遇到过哪些问题，你是怎么解决的？</h5><p>这个答案是开发的，看你是否有相关的项目经验。        例 前台拿不到值，JSON 可是出现的错误(多了一个空格等)这编译是不会报错的        jquery库与其他库冲突：         1&gt;如果其他库在jquery库之前导入的话           1.我们可以通过jquery.noconflict()将变量的$的控制权过度给其他库            2.自定义快捷键,用一个变量接住jquery.noconflict()           3.通过函数传参           2&gt;如果jquery库在其他库之前导入就直接使用jquery         今天在处理一个数据问题时，发现jQuery.ajax()方法返回的值一直有问题，清除缓存后数据无误，          多次测试后发现返回的值都是之前的值，并且一直未执行url(后台为JAVA，设置断点一直未进入)。在网上查找下,发现是未设置type的原因。        如果没设置jQuery.ajax的type=”Post”，那么ajax就会默认type=”Get”，这就会导致之前数据被缓存起来。加上type=”Post”，问题解决！</p>
+<h5 id="你知道jquery中的选择器吗，请讲一下有哪些选择器？"><a href="#你知道jquery中的选择器吗，请讲一下有哪些选择器？" class="headerlink" title="你知道jquery中的选择器吗，请讲一下有哪些选择器？"></a>你知道jquery中的选择器吗，请讲一下有哪些选择器？</h5><p>jQuery中的选择器大致分为:基本选择器，层次选择器，过滤选择器，表单选择器</p>
+<h5 id="jquery中的选择器-和-css中的选择器有区别吗？"><a href="#jquery中的选择器-和-css中的选择器有区别吗？" class="headerlink" title="jquery中的选择器 和 css中的选择器有区别吗？"></a>jquery中的选择器 和 css中的选择器有区别吗？</h5><p>jQuery选择器支持CSS里的选择器,jQuery选择器可用来添加样式和添加相应的行为,CSS 中的选择器是只能添加相应的样式</p>
+<h5 id="你觉得jquery中的选择器有什么优势？"><a href="#你觉得jquery中的选择器有什么优势？" class="headerlink" title="你觉得jquery中的选择器有什么优势？"></a>你觉得jquery中的选择器有什么优势？</h5><p>简单的写法  $(‘ID’) 来代替document.getElementById()函数,支持CSS1 到CSS3选择器,完善的处理机制(就算写错了id也不会报错)  </p>
+<h5 id="你在使用选择器的时候有有没有什么觉得要注意的地方？"><a href="#你在使用选择器的时候有有没有什么觉得要注意的地方？" class="headerlink" title="你在使用选择器的时候有有没有什么觉得要注意的地方？"></a>你在使用选择器的时候有有没有什么觉得要注意的地方？</h5><p>1 选择器中含有”.”,”#”,”[“ 等特殊字符的时候需要进行转译<br>2 属性选择器的引号问题<br>3 选择器中含有空格的注意事项          </p>
+<h5 id="jquery对象和dom对象是怎样转换的？"><a href="#jquery对象和dom对象是怎样转换的？" class="headerlink" title="jquery对象和dom对象是怎样转换的？"></a>jquery对象和dom对象是怎样转换的？</h5><p>jquery转DOM对象:jQuery 对象是一个数组对象，可以通过[index]的丰富得到相应的DOM对象,还可以通过get[index]去得到相应的DOM对象。 DOM对象转jQuery对象:$(DOM对象)</p>
+<h5 id="你是如何使用jquery中的ajax的？"><a href="#你是如何使用jquery中的ajax的？" class="headerlink" title="你是如何使用jquery中的ajax的？"></a>你是如何使用jquery中的ajax的？</h5><p>如果是一些常规的ajax程序的话，使用load(),$.get(),$.post(),就可以搞定了，一般我会使用的是$.post() 方法。如果需要设定beforeSend(提交前回调函数),error(失败后处理),success(成功后处理)及complete(请求完成后处理)回调函数等，这个时候我会使用$.ajax()</p>
+<h5 id="你觉得jquery中的ajax好用吗，为什么？"><a href="#你觉得jquery中的ajax好用吗，为什么？" class="headerlink" title="你觉得jquery中的ajax好用吗，为什么？"></a>你觉得jquery中的ajax好用吗，为什么？</h5><p>好用的。因为jQuery提供了一些日常开发中夙瑶的快捷操作，例load，ajax，get，post等等，所以使用jQuery开发ajax将变得极其简单，我们就可以集中精力在业务和用户的体验上，不需要去理会那些繁琐的XMLHttpRequest对象了。</p>
+<h5 id="jquery中-get-提交和-post-提交有区别吗？"><a href="#jquery中-get-提交和-post-提交有区别吗？" class="headerlink" title="jquery中$.get()提交和$.post()提交有区别吗？"></a>jquery中$.get()提交和$.post()提交有区别吗？</h5><p>1 $.get() 方法使用GET方法来进行异步请求的。$.post() 方法使用POST方法来进行异步请求的。2 get请求会将参数跟在URL后进行传递，而POST请求则是作为HTTP消息的实体         内容发送给Web服务器的，这种传递是对用户不可见的。      3 get方式传输的数据大小不能超过2KB 而POST要大的多       4 GET 方式请求的数据会被浏览器缓存起来，因此有安全问题。      </p>
+<h5 id="jquery中的load方法一般怎么用的？"><a href="#jquery中的load方法一般怎么用的？" class="headerlink" title="jquery中的load方法一般怎么用的？"></a>jquery中的load方法一般怎么用的？</h5><p>load方法一般在 载入远程HTML 代码并插入到DOM中的时候用通常用来从Web服务器上获取静态的数据文件。如果要传递参数的话，可以使用$.get() 或 $.post() </p>
+<h5 id="在jquery中你是如何去操作样式的？"><a href="#在jquery中你是如何去操作样式的？" class="headerlink" title="在jquery中你是如何去操作样式的？"></a>在jquery中你是如何去操作样式的？</h5><p>addClass() 来追加样式  removeClass() 来删除样式  toggle() 来切换样式         </p>
+<h5 id="简单的讲叙一下jquery是怎么处理事件的，你用过哪些事件？"><a href="#简单的讲叙一下jquery是怎么处理事件的，你用过哪些事件？" class="headerlink" title="简单的讲叙一下jquery是怎么处理事件的，你用过哪些事件？"></a>简单的讲叙一下jquery是怎么处理事件的，你用过哪些事件？</h5><p>首先去装载文档，在页面家在完毕后，浏览器会通过javascript 为DOM 元素添加事件。</p>
+<h5 id="你使用过jquery中的动画吗，是怎样用的？"><a href="#你使用过jquery中的动画吗，是怎样用的？" class="headerlink" title="你使用过jquery中的动画吗，是怎样用的？"></a>你使用过jquery中的动画吗，是怎样用的？</h5><p>使用过。hide()和 show() 同时修改多个样式属性。像高度，宽度，不透明度。fadeIn() 和fadeOut() fadeTo() 只改变不透明度  slideUp() 和slideDown() slideToggle() 只改变高度  animate() 属于自定义动画的方法.       </p>
+<h5 id="你使用过jquery中的插件吗？"><a href="#你使用过jquery中的插件吗？" class="headerlink" title="你使用过jquery中的插件吗？"></a>你使用过jquery中的插件吗？</h5><p>答:看个人的实力和经验来回答了。          </p>
+<h5 id="你一般用什么去提交数据，为什么？"><a href="#你一般用什么去提交数据，为什么？" class="headerlink" title="你一般用什么去提交数据，为什么？"></a>你一般用什么去提交数据，为什么？</h5><p>一般我会使用的是$.post()方法。如果需要设定beforeSend(提交前回调函数),error(失败后处理),success(成功后处理)及complete(请求完成后处理)回调函数等，这个时候我会使用$.ajax()</p>
+<h5 id="在jquery中引入css有几种方式？"><a href="#在jquery中引入css有几种方式？" class="headerlink" title="在jquery中引入css有几种方式？"></a>在jquery中引入css有几种方式？</h5><p>四种 行内式，内嵌式，导入式，链接式       </p>
+<h5 id="你在jquery中使用过哪些插入节点的方法，它们的区别是什么？"><a href="#你在jquery中使用过哪些插入节点的方法，它们的区别是什么？" class="headerlink" title="你在jquery中使用过哪些插入节点的方法，它们的区别是什么？"></a>你在jquery中使用过哪些插入节点的方法，它们的区别是什么？</h5><p>答:append(),appendTo(),prepend(),prependTo(),after(),insertAfter()  before(),insertBefore() 大致可以分为 内部追加和外部追加 append() 表式向每个元素内部追加内容。appendTo() 表示 讲所有的元素追加到指定的元素中。例$(A)appendTo(B) 是将A追加到B中,下面的方法解释类似</p>
+<h5 id="你使用过包裹节点的方法吗，包裹节点有方法有什么好处？"><a href="#你使用过包裹节点的方法吗，包裹节点有方法有什么好处？" class="headerlink" title="你使用过包裹节点的方法吗，包裹节点有方法有什么好处？"></a>你使用过包裹节点的方法吗，包裹节点有方法有什么好处？</h5><p>wrapAll(),wrap(), wrapInner()需要在文档中插入额外的结构化标记的时候可以使用这些包裹的方法应为它不会帛画原始文档的语义</p>
+<h5 id="jquery中如何来获取或和设置属性？"><a href="#jquery中如何来获取或和设置属性？" class="headerlink" title="jquery中如何来获取或和设置属性？"></a>jquery中如何来获取或和设置属性？</h5><p>jQuery中可以用attr()方法来获取和设置元素属性 removeAttr() 方法来删除元素属性</p>
+<h5 id="如何来设置和获取HTML-和文本的值？"><a href="#如何来设置和获取HTML-和文本的值？" class="headerlink" title="如何来设置和获取HTML 和文本的值？"></a>如何来设置和获取HTML 和文本的值？</h5><p>html()方法 类似于innerHTML属性 可以用来读取或者设置某个元素中的HTML内容 .注意：html() 可以用于xhtml文档 不能用于xml文档  text()类似于innerText属性 可以用来读取或设置某个元素中文本内容。val() 可以用来设置和获取元素的值      </p>
+<h5 id="你jquery中有哪些方法可以遍历节点？"><a href="#你jquery中有哪些方法可以遍历节点？" class="headerlink" title="你jquery中有哪些方法可以遍历节点？"></a>你jquery中有哪些方法可以遍历节点？</h5><p>children() 取得匹配元素的子元素集合,只考虑子元素不考虑后代元素  next() 取得匹配元素后面紧邻的同辈元素  prev() 取得匹配元素前面紧邻的同辈元素  siblings() 取得匹配元素前后的所有同辈元素  closest() 取得最近的匹配元素  find() 取得匹配元素中的元素集合包括子代和后代       </p>
+<h5 id="子元素选择器-和后代选择器元素有什么区别？"><a href="#子元素选择器-和后代选择器元素有什么区别？" class="headerlink" title="子元素选择器 和后代选择器元素有什么区别？"></a>子元素选择器 和后代选择器元素有什么区别？</h5><p>子代元素是找子节点下的所有元素,后代元素是找子节点或子节点的子节点中的元素       </p>
+<h5 id="在jquery中可以替换节点吗？"><a href="#在jquery中可以替换节点吗？" class="headerlink" title="在jquery中可以替换节点吗？"></a>在jquery中可以替换节点吗？</h5><p>可以 在jQuery中有两者替换节点的方式  replaceWith() 和 replaceAll()  例如在<br><code>&lt;p title=&quot;hao are you&quot;&gt;hao are you&lt;/p&gt;</code><br>    替换成<br><code>&lt;strong&gt;I amfine&lt;strong&gt;   $(&#39;p&#39;).replaceWith(&#39;&lt;strong&gt;I amfine&lt;/strong&gt;&#39;);</code><br>     replaceAll与replaceWith的用法前后调换一下即可。  </p>
+<h5 id="你觉得beforeSend方法有什么用？"><a href="#你觉得beforeSend方法有什么用？" class="headerlink" title="你觉得beforeSend方法有什么用？"></a>你觉得beforeSend方法有什么用？</h5><p>发送请求前可以修改XMLHttpRequest对象的函数，在beforeSend中如果返回false 可以取消本次的Ajax请求。XMLHttpRequest对象是唯一的参数所以在这个方法里可以做验证         </p>
+<h5 id="siblings-方法-和-‘prev-div’-选择器是一样的嘛？"><a href="#siblings-方法-和-‘prev-div’-选择器是一样的嘛？" class="headerlink" title="siblings() 方法 和 $(‘prev~div’)选择器是一样的嘛？"></a>siblings() 方法 和 $(‘prev~div’)选择器是一样的嘛？</h5><p>$(‘prev~div’) 只能选择’#prev’元素后面的同辈<code>&lt;div&gt;</code>元素而siblings()方法与前后的文职无关，只要是同辈节点就都能匹配。</p>
+<h5 id="你在ajax中使用过JSON吗，你是如何用的？"><a href="#你在ajax中使用过JSON吗，你是如何用的？" class="headerlink" title="你在ajax中使用过JSON吗，你是如何用的？"></a>你在ajax中使用过JSON吗，你是如何用的？</h5><p>使用过，在$.getJSON()方法的时候就是。     因为 $.getJSON() 就是用于加载JSON文件的     </p>
+<h5 id="有哪些查询节点的选择器？"><a href="#有哪些查询节点的选择器？" class="headerlink" title="有哪些查询节点的选择器？"></a>有哪些查询节点的选择器？</h5><p>我在公司使用过 :first 查询第一个，:last 查询最后一个，:odd查询奇数但是索引从0开始 :even 查询偶数，:eq(index)查询相等的 ,:gt(index)查询大于index的 ,:lt查询小于index :header 选取所有的标题等   </p>
+<h5 id="nextAll-能-替代-‘prev-siblindgs’-选择器吗？"><a href="#nextAll-能-替代-‘prev-siblindgs’-选择器吗？" class="headerlink" title="nextAll() 能 替代$(‘prev~siblindgs’)选择器吗？"></a>nextAll() 能 替代$(‘prev~siblindgs’)选择器吗？</h5><p>能。使用nextAll()和使用$(‘prev~siblindgs’) 是一样的      </p>
+<h5 id="jQuery中有几种方法可以来设置和获取-样式"><a href="#jQuery中有几种方法可以来设置和获取-样式" class="headerlink" title="jQuery中有几种方法可以来设置和获取 样式"></a>jQuery中有几种方法可以来设置和获取 样式</h5><p>addClass() 方法，attr() 方法     </p>
+<h5 id="document-ready-方法和window-onload有什么区别？"><a href="#document-ready-方法和window-onload有什么区别？" class="headerlink" title="$(document).ready()方法和window.onload有什么区别？"></a>$(document).ready()方法和window.onload有什么区别？</h5><p>两个方法有相似的功能，但是在实行时机方面是有区别的。1 window.onload方法是在网页中所有的元素(包括元素的所有关联文件)完全加载到浏览器后才执行的。        2 $(document).ready() 方法可以在DOM载入就绪时就对其进行操纵，并调用           执行绑定的函数。    </p>
+<h5 id="jQuery是如何处理缓存的？"><a href="#jQuery是如何处理缓存的？" class="headerlink" title="jQuery是如何处理缓存的？"></a>jQuery是如何处理缓存的？</h5><p>要处理缓存就是禁用缓存. 1 通过$.post() 方法来获取数据，那么默认就是禁用缓存的。2 通过$.get()方法 来获取数据，可以通过设置时间戳来避免缓存。可以在URL后面加上+(+new Date)<br>例<br>    $.get(‘ajax.xml?’+(+newDate),function () {                  //内容            });<br>3通过$.ajax 方法来获取数据，只要设置cache:false即可。    </p>
+<h5 id="getScript-方法-和-getJson-方法有什么区别？"><a href="#getScript-方法-和-getJson-方法有什么区别？" class="headerlink" title="$.getScript()方法 和 $.getJson() 方法有什么区别？"></a>$.getScript()方法 和 $.getJson() 方法有什么区别？</h5><p>1 $.getScript() 方法可以直接加载.js文件，并且不需要对javascript文件进行处理，javascript文件会自动执行.2 $.getJson() 是用于加载JSON 文件的 ，用法和$.getScript()    </p>
+<h5 id="你读过有关于jQuery的书吗？"><a href="#你读过有关于jQuery的书吗？" class="headerlink" title="你读过有关于jQuery的书吗？"></a>你读过有关于jQuery的书吗？</h5><p>《jquery基础教程》   《jquery实战》   《锋利的jquery》《巧用jquery》  《jQuery用户界面库学习指南》等     </p>
+<h5 id="“-msg”-text-和-“-msg”-text-“newcontent“-有什么区别？"><a href="#“-msg”-text-和-“-msg”-text-“newcontent“-有什么区别？" class="headerlink" title="$(“#msg”).text(); 和 $(“#msg”).text(“newcontent“);有什么区别？"></a>$(“#msg”).text(); 和 $(“#msg”).text(“<b>newcontent</b>“);有什么区别？</h5><p>1 $(“#msg”).text() 是返回id为msg的元素节点的文本内容<br>2$(“#msg”).text(“<b>new content</b>“); 是 将“<b>new content</b>” 作为普通文本串写入id为msg的元素节点内容中,页面显示粗体的<code>&lt;b&gt;new content&lt;/b&gt;</code></p>
+<h5 id="radio单选组的第二个元素为当前选中值，该怎么去取？"><a href="#radio单选组的第二个元素为当前选中值，该怎么去取？" class="headerlink" title="radio单选组的第二个元素为当前选中值，该怎么去取？"></a>radio单选组的第二个元素为当前选中值，该怎么去取？</h5><p><code>$(&#39;input[name=items]&#39;).get(1).checked = true;</code> </p>
+<h5 id="选择器中-id，class有什么区别？"><a href="#选择器中-id，class有什么区别？" class="headerlink" title="选择器中 id，class有什么区别？"></a>选择器中 id，class有什么区别？</h5><p>在网页中 每个id名称只能用一次，class可以允许重复使用               </p>
+<h5 id="你使用过哪些数据格式，它们各有什么特点？"><a href="#你使用过哪些数据格式，它们各有什么特点？" class="headerlink" title="你使用过哪些数据格式，它们各有什么特点？"></a>你使用过哪些数据格式，它们各有什么特点？</h5><p>HTML格式  ,JSON格式,javascript格式,XML格式<br>1、HTML片段提供外部数据一般来说是最简单的。<br>2、如果数据需要重用，而且其他应用程序也可能一次受到影响，那么在性能和文件大小方面具有优势的JSON通常是不错的选择。<br>3、而当远程应用程序未知时，XML则能够为良好的互操作性提供最可靠的保证。      </p>
+<h5 id="jQuery-能做什么？"><a href="#jQuery-能做什么？" class="headerlink" title="jQuery 能做什么？"></a>jQuery 能做什么？</h5><p>1 获取页面的元素            2 修改页面的外观         3 改变页面大的内容          4 响应用户的页面操作         5 为页面添加动态效果        6 无需刷新页面，即可以从服务器获取信息        7 简化常见的javascript任务              </p>
+<h5 id="在ajax中data主要有几种方式？"><a href="#在ajax中data主要有几种方式？" class="headerlink" title="在ajax中data主要有几种方式？"></a>在ajax中data主要有几种方式？</h5><p>三种，html拼接的，json数组，form表单经serialize()序列化的。      </p>
+<h5 id="jQuery中的hover-和toggle-有什么区别？"><a href="#jQuery中的hover-和toggle-有什么区别？" class="headerlink" title="jQuery中的hover()和toggle()有什么区别？"></a>jQuery中的hover()和toggle()有什么区别？</h5><p>hover()和toggle()都是jQuery中两个合成事件。hover()方法用于模拟光标悬停事件。toggle()方法是连续点击事件。      </p>
+<h5 id="你知道jQuery中的事件冒泡吗，它是怎么执行的，何如来停止冒泡事件？"><a href="#你知道jQuery中的事件冒泡吗，它是怎么执行的，何如来停止冒泡事件？" class="headerlink" title="你知道jQuery中的事件冒泡吗，它是怎么执行的，何如来停止冒泡事件？"></a>你知道jQuery中的事件冒泡吗，它是怎么执行的，何如来停止冒泡事件？</h5><p>答: 知道, 事件冒泡是从里面的往外面开始触发。在jQuery中提供了stopPropagation()方法可以停止冒泡。      </p>
+<h5 id="例如-单击超链接后会自动跳转，单击”提交”按钮后表单会提交等，有时候我想阻止这些默认的行为，该怎么办？"><a href="#例如-单击超链接后会自动跳转，单击”提交”按钮后表单会提交等，有时候我想阻止这些默认的行为，该怎么办？" class="headerlink" title="例如 单击超链接后会自动跳转，单击”提交”按钮后表单会提交等，有时候我想阻止这些默认的行为，该怎么办？"></a>例如 单击超链接后会自动跳转，单击”提交”按钮后表单会提交等，有时候我想阻止这些默认的行为，该怎么办？</h5><p>可以用event.preventDefault()或在事件处理函数中返回false，即 return false;      </p>
+<h5 id="jquery表单提交前有几种校验方法？分别为？"><a href="#jquery表单提交前有几种校验方法？分别为？" class="headerlink" title="jquery表单提交前有几种校验方法？分别为？"></a>jquery表单提交前有几种校验方法？分别为？</h5><p>formData:返回一个数组，可以通过循环调用来校验    jaForm：返回一个jQuery对象，所有需要先转换成dom对象       fieldValue：返回一个数组beforeSend()     </p>
+<h5 id="在jquery中你有没有编写过插件，插件有什么好处？你编写过那些插件？它应该注意那些？"><a href="#在jquery中你有没有编写过插件，插件有什么好处？你编写过那些插件？它应该注意那些？" class="headerlink" title="在jquery中你有没有编写过插件，插件有什么好处？你编写过那些插件？它应该注意那些？"></a>在jquery中你有没有编写过插件，插件有什么好处？你编写过那些插件？它应该注意那些？</h5><p>插件的好处：对已有的一系列方法或函数的封装，以便在其他地方重新利用，方便后期维护和提高开发效率<br>插件的分类：封装对象方法插件、封装全局函数插件、选择器插件<br>注意的地方：<br>1.插件的文件名推荐命名为jquery.[插件名].js，以免和其他的javaScript库插件混淆<br>2.所有的对象方法都应当附加到jQuery.fn对象上，而所有的全局函数都应当附加到jQuery对象本身上<br>3.插件应该返回一个jQuery对象，以保证插件的可链式操作<br>4.避免在插件内部使用$作为jQuery对象的别名,而应使用完整的jQuery来表示，这样可以避免冲突或使用闭包来避免<br>5.所有的方法或函数插件，都应当一分好结尾，否则压缩的时候可能出现问题。在插件头部加上分号，这样可以避免他人的不规范代码给插件带来影响<br>6.在插件中通过$.extent({})封装全局函数,选择器插件，扩展已有的object对象通过$.fn.extend({})封装对象方法插件<br>怎样给jquery动态附加新的元素?那么怎样给新生成的元素绑定事件呢？jQuery的html()可以给现在元素附加新的元素直接在元素还未生成前就绑定肯定是无效的，因为所绑定的元素目前根本不存在。所以我们可以通过live和livequery来动态绑定事件</p>
+<h5 id="JQuery试题总结（上篇）http-blog-csdn-net-dyllove98-article-details-9280527"><a href="#JQuery试题总结（上篇）http-blog-csdn-net-dyllove98-article-details-9280527" class="headerlink" title="JQuery试题总结（上篇）http://blog.csdn.net/dyllove98/article/details/9280527"></a>JQuery试题总结（上篇）<a href="http://blog.csdn.net/dyllove98/article/details/9280527" target="_blank" rel="external">http://blog.csdn.net/dyllove98/article/details/9280527</a></h5><h5 id="jQuery中的text-、html-和val-以及innerText、innerHTML和value"><a href="#jQuery中的text-、html-和val-以及innerText、innerHTML和value" class="headerlink" title="jQuery中的text()、html()和val()以及innerText、innerHTML和value"></a>jQuery中的text()、html()和val()以及innerText、innerHTML和value</h5><h5 id="jQuery中设置或者获取所选内容的值："><a href="#jQuery中设置或者获取所选内容的值：" class="headerlink" title="jQuery中设置或者获取所选内容的值："></a>jQuery中设置或者获取所选内容的值：</h5><p>text();设置或者获取所选元素的文本内容；<br>html();设置或者获取所选元素的内容（包括html标记）；<br>val();设置或者获取表单字段的值（前提是表单设置了value属性）；<br>(text()和html()的区别是：前者是处理的文本内容，只能写文本如果写了上面的标记则会以文本形式输出；后者可以解析文本中的html标记，就是你可以添加像<code>&lt;a&gt;&lt;/a&gt;、&lt;p&gt;&lt;/p&gt;</code>等标记，最后会解析为其效果。<br>)</p>
+<h5 id="JavaScript中设置或者获取所选内容的值"><a href="#JavaScript中设置或者获取所选内容的值" class="headerlink" title="JavaScript中设置或者获取所选内容的值"></a>JavaScript中设置或者获取所选内容的值</h5><p>同理innerText、innerHTML和value，innerText和innerHTML都是将字符串放入hmtl标签中的一个函数但是innerHTMl他可以解析hmtl标记。例如 你放入一个<a>斯蒂芬</a>  如果在DIV中它里面就会出现一个带下划线的a元素；但是innerText只支持普通字符串；</p>
+<h5 id="具体代码如下："><a href="#具体代码如下：" class="headerlink" title="具体代码如下："></a>具体代码如下：</h5><p>jQuery中：</p>
+<pre><code>    &lt;html&gt;
+      &lt;head&gt;
+        &lt;script src=&quot;/jquery/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+        $(document).ready(function(){
+          $(&quot;#btn1&quot;).click(function(){
+            alert(&quot;Text: &quot; + $(&quot;#test&quot;).text());
+          });
+          $(&quot;#btn2&quot;).click(function(){
+            alert(&quot;HTML: &quot; + $(&quot;#test&quot;).html());
+           });
+         });
+      &lt;/script&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;p id=&quot;test&quot;&gt;这是段落中的&lt;b&gt;粗体&lt;/b&gt;文本。&lt;/p&gt;
+        &lt;button id=&quot;btn1&quot;&gt;显示文本&lt;/button&gt;
+        &lt;button id=&quot;btn2&quot;&gt;显示 HTML&lt;/button&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+JavaScript中：
+
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;script src=&quot;/jquery/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+                function getInnerHTML(){
+                alert(document.getElementById(&quot;btn1&quot;).value);
+                }
+       &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p id=&quot;test&quot;&gt;这是段落中的&lt;b&gt;粗体&lt;/b&gt;文本。&lt;/p&gt;
+        &lt;button id=&quot;btn1&quot;  onclick=&quot;getInnerHTML()&quot;  &gt;显示文本&lt;/button&gt;
+        &lt;button id=&quot;btn2&quot;&gt;显示 HTML&lt;/button&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>jQuery和JavaScript的区别总结：<br>前者click事件是获取元素id进行处理；后者是onclick=”getInnerHTML()”;<br>前者获取元素值时是text()；后者是innerText,无();设置值时，前者是text(“jing”),后者是innerText=”jing”;<br>注意:两者的设置时，会覆盖原有内容，如果想要插入，使用插入方法。<br>另：<br>.html()用为读取和修改元素的HTML标签    对应js中的innerHTML<br>.html()是用来读取元素的HTML内容（包括其Html标签）,.html()方法使用在多个元素上时，只读取第一个元素<br>.text()用来读取或修改元素的纯文本内容  对应js中的innerText<br>text()用来读取元素的纯文本内容，包括其后代元素;.text()方法不能使用在表单元素上<br>.val()用来读取或修改表单元素的value值<br>.val()是用来读取表单元素的”value”值,.val()只能使用在表单元素上<br>关于三者的区别<br>1.val()方法和.html()相同，如果其应用在多个元素上时，只能读取第一个表单元素的”value”值，但是.text()和他们不一样，如果.text()应用在多个元素上时，将会读取所有选中元素的文本内容。<br>2.html(),.text(),.val()都可以使用回调函数的返回值来动态的改变多个元素的内容。</p>
+<h5 id="jQuery中-wrap-wrapAll-与-wrapInner-的区别：http-blog-csdn-net-qq-20545159-article-details-48323553"><a href="#jQuery中-wrap-wrapAll-与-wrapInner-的区别：http-blog-csdn-net-qq-20545159-article-details-48323553" class="headerlink" title="jQuery中 wrap() wrapAll() 与 wrapInner()的区别：http://blog.csdn.net/qq_20545159/article/details/48323553"></a>jQuery中 wrap() wrapAll() 与 wrapInner()的区别：<a href="http://blog.csdn.net/qq_20545159/article/details/48323553" target="_blank" rel="external">http://blog.csdn.net/qq_20545159/article/details/48323553</a></h5><h5 id="jQuery-库中的-是什么？"><a href="#jQuery-库中的-是什么？" class="headerlink" title="jQuery 库中的 $() 是什么？"></a>jQuery 库中的 $() 是什么？</h5><p>$() 函数是 jQuery() 函数的别称，乍一看这很怪异，还使 jQuery 代码晦涩难懂。一旦你适应了，你会爱上它的简洁。$() 函数用于将任何对象包裹成 jQuery 对象，接着你就被允许调用定义在 jQuery 对象上的多个不同方法。你甚至可以将一个选择器字符串传入 $() 函数，它会返回一个包含所有匹配的 DOM 元素数组的 jQuery 对象。这个问题我已经见过好几次被提及，尽管它非常基础，它经常被用来区分一个开发人员是否了解 jQuery。</p>
+<h5 id="网页上有-5-个-div-元素，如何使用-jQuery来选择它们？"><a href="#网页上有-5-个-div-元素，如何使用-jQuery来选择它们？" class="headerlink" title="网页上有 5 个  div  元素，如何使用 jQuery来选择它们？"></a>网页上有 5 个  div  元素，如何使用 jQuery来选择它们？</h5><p>另 一个重要的 jQuery 问题是基于选择器的。jQuery 支持不同类型的选择器，例如 ID 选择器、class 选择器、标签选择器。鉴于这个问题没提到 ID 和 class，你可以用标签选择器来选择所有的 div 元素。jQuery 代码：$(“div”)，这样会返回一个包含所有 5 个 div 标签的 jQuery 对象。更详细的解答参见上面链接的文章。</p>
+<h5 id="jQuery-里的-ID-选择器和-class-选择器有何不同？"><a href="#jQuery-里的-ID-选择器和-class-选择器有何不同？" class="headerlink" title="jQuery 里的 ID 选择器和 class 选择器有何不同？"></a>jQuery 里的 ID 选择器和 class 选择器有何不同？</h5><p>如果你用过 CSS，你也许就知道 ID 选择器和 class 选择器之间的差异，jQuery 也同样如此。ID 选择器使用 ID 来选择元素，比如 #element1，而 class 选择器使用 CSS class 来选择元素。当你只需要选择一个元素时，使用 ID 选择器，而如果你想要选择一组具有相同 CSS class 的元素，就要用 class 选择器。在面试过程中，你有很大几率会被要求使用 ID 选择器和 class 选择器来写代码。下面的 jQuery 代码使用了 ID 选择器和 class 选择器：<br>$(‘#LoginTextBox’)  // Returns element wrapped as jQuery object with id=’LoginTextBox’<br>$(‘.active’) // Returns all elements with CSS class active.<br>正如你所见，从语法角度来说，ID 选择器和 class 选择器的另一个不同之处是，前者用字符”#”而后者用字符”.”。更详细的分析和讨论参见上面的答案链接。</p>
+<h5 id="如何在点击一个按钮时使用-jQuery-隐藏一个图片？"><a href="#如何在点击一个按钮时使用-jQuery-隐藏一个图片？" class="headerlink" title="如何在点击一个按钮时使用 jQuery 隐藏一个图片？"></a>如何在点击一个按钮时使用 jQuery 隐藏一个图片？</h5><p>答案：这是一个事件处理问题。jQuery为按钮点击之类的事件提供了很好的支持。你可以通过以下代码去隐藏一个通过ID或class定位到的图片。你需要知道如何为按钮设置事件并执行hide() 方法，代码如下所示：<br>$(‘#ButtonToClick’).click(function(){<br>    $(‘#ImageToHide’).hide();<br>});<br>我喜欢这个问题，因为很贴近实际使用，代码也不复杂。</p>
+<h5 id="document-ready-是个什么函数？为什么要用它？"><a href="#document-ready-是个什么函数？为什么要用它？" class="headerlink" title="$(document).ready() 是个什么函数？为什么要用它？"></a>$(document).ready() 是个什么函数？为什么要用它？</h5><p>答案：这 个问题很重要，并且常常被问到。 ready() 函数用于在文档进入ready状态时执行代码。当DOM 完全加载（例如HTML被完全解析DOM树构建完成时），jQuery允许你执行代码。使用$(document).ready()的最大好处在于它适用 于所有浏览器，jQuery帮你解决了跨浏览器的难题。需要进一步了解的用户可以点击 answer链接查看详细讨论。</p>
+<h5 id="JavaScript-window-onload-事件和-jQuery-ready-函数有何不同？"><a href="#JavaScript-window-onload-事件和-jQuery-ready-函数有何不同？" class="headerlink" title="JavaScript window.onload 事件和 jQuery ready 函数有何不同？"></a>JavaScript window.onload 事件和 jQuery ready 函数有何不同？</h5><p>这 个问答是紧接着上一个的。JavaScript window.onload 事件和 jQuery ready 函数之间的主要区别是，前者除了要等待 DOM 被创建还要等到包括大型图片、音频、视频在内的所有外部资源都完全加载。如果加载图片和媒体内容花费了大量时间，用户就会感受到定义在 window.onload 事件上的代码在执行时有明显的延迟。<br>另 一方面，jQuery ready() 函数只需对 DOM 树的等待，而无需对图像或外部资源加载的等待，从而执行起来更快。使用 jQuery $(document).ready() 的另一个优势是你可以在网页里多次使用它，浏览器会按它们在 HTML 页面里出现的顺序执行它们，相反对于 onload 技术而言，只能在单一函数里使用。鉴于这个好处，用 jQuery ready() 函数比用 JavaScript window.onload 事件要更好些。</p>
+<h5 id="如何找到所有-HTML-select-标签的选中项？"><a href="#如何找到所有-HTML-select-标签的选中项？" class="headerlink" title="如何找到所有 HTML select 标签的选中项？"></a>如何找到所有 HTML select 标签的选中项？</h5><p>答案：这是面试里比较棘手的 jQuery 问题之一。这是个基础的问题，但是别期望每个 jQuery 初学者都知道它。你能用下面的 jQuery 选择器获取所有具备 multiple=true 的  select   标签的选中项：<br>$(‘[name=NameOfSelectedTag] :selected’)<br>这段代码结合使用了属性选择器和 :selected 选择器，结果只返回被选中的选项。你可按需修改它，比如用 id 属性而不是 name 属性来获取  select  标签。</p>
+<h5 id="jQuery-里的-each-是什么函数？你是如何使用它的？"><a href="#jQuery-里的-each-是什么函数？你是如何使用它的？" class="headerlink" title="jQuery 里的 each() 是什么函数？你是如何使用它的？"></a>jQuery 里的 each() 是什么函数？你是如何使用它的？</h5><p>答案：each() 函数就像是 Java 里的一个 Iterator，它允许你遍历一个元素集合。你可以传一个函数给 each() 方法，被调用的 jQuery 对象会在其每个元素上执行传入的函数。有时这个问题会紧接着上面一个问题，举个例子，如何在 alert 框里显示所有选中项。我们可以用上面的选择器代码找出所有选中项，然后我们在 alert 框中用 each() 方法来一个个打印它们，代码如下：<br>$(‘[name=NameOfSelectedTag] :selected’).each(function(selected) {<br>    alert($(selected).text());<br>});<br>其中 text() 方法返回选项的文本。</p>
+<h5 id="你是如何将一个-HTML-元素添加到-DOM-树中的？"><a href="#你是如何将一个-HTML-元素添加到-DOM-树中的？" class="headerlink" title="你是如何将一个 HTML 元素添加到 DOM 树中的？"></a>你是如何将一个 HTML 元素添加到 DOM 树中的？</h5><p>答案：你 可以用 jQuery 方法 appendTo() 将一个 HTML 元素添加到 DOM 树中。这是 jQuery 提供的众多操控 DOM 的方法中的一个。你可以通过 appendTo() 方法在指定的 DOM 元素末尾添加一个现存的元素或者一个新的 HTML 元素。</p>
+<h5 id="你能用-jQuery-代码选择所有在段落内部的超链接吗？"><a href="#你能用-jQuery-代码选择所有在段落内部的超链接吗？" class="headerlink" title="你能用 jQuery 代码选择所有在段落内部的超链接吗？"></a>你能用 jQuery 代码选择所有在段落内部的超链接吗？</h5><p>答案：这是另一个关于选择器的 jQuery 面试题。就像其他问题那样，只需一行 jQuery 代码就能搞定。你可以使用下面这个 jQuery 代码片段来选择所有嵌套在段落（ p 标签）内部的超链接（ a 标签）……</p>
+<h5 id="this-和-this-关键字在-jQuery-中有何不同？"><a href="#this-和-this-关键字在-jQuery-中有何不同？" class="headerlink" title="$(this) 和 this 关键字在 jQuery 中有何不同？"></a>$(this) 和 this 关键字在 jQuery 中有何不同？</h5><p>答案：这 对于很多 jQuery 初学者来说是一个棘手的问题，其实是个简单的问题。$(this) 返回一个 jQuery 对象，你可以对它调用多个 jQuery 方法，比如用 text() 获取文本，用val() 获取值等等。而 this 代表当前元素，它是 JavaScript 关键词中的一个，表示上下文中的当前 DOM 元素。你不能对它调用 jQuery 方法，直到它被 $() 函数包裹，例如 $(this)。</p>
+<h5 id="你如何使用jQuery来提取一个HTML-标记的属性-例如-链接的href"><a href="#你如何使用jQuery来提取一个HTML-标记的属性-例如-链接的href" class="headerlink" title="你如何使用jQuery来提取一个HTML 标记的属性 例如. 链接的href?"></a>你如何使用jQuery来提取一个HTML 标记的属性 例如. 链接的href?</h5><p>答案：attr() 方法被用来提取任意一个HTML元素的一个属性的值. 你首先需要利用jQuery选择及选取到所有的链接或者一个特定的链接，然后你可以应用attr()方法来获得他们的href属性的值。下面的代码会找到页面中所有的链接并返回href值：<br>$(‘a’).each(function(){<br>   alert($(this).attr(‘href’));<br>});</p>
+<h5 id="你如何使用jQuery设置一个属性值"><a href="#你如何使用jQuery设置一个属性值" class="headerlink" title="你如何使用jQuery设置一个属性值?"></a>你如何使用jQuery设置一个属性值?</h5><p>前面这个问题之后额外的一个后续问题是，attr()方法和jQuery中的其它方法一样，能力不止一样. 如果你在调用attr()的同时带上一个值 例如. attr(name, value), 这里name是属性的名称，value是属性的新值。</p>
+<h5 id="jQuery中-detach-和-remove-方法的区别是什么"><a href="#jQuery中-detach-和-remove-方法的区别是什么" class="headerlink" title="jQuery中 detach() 和 remove() 方法的区别是什么?"></a>jQuery中 detach() 和 remove() 方法的区别是什么?</h5><p>尽 管 detach() 和 remove() 方法都被用来移除一个DOM元素, 两者之间的主要不同在于 detach() 会保持对过去被解除元素的跟踪, 因此它可以被取消解除, 而 remove() 方法则会保持过去被移除对象的引用. 你也还可以看看 用来向DOM中添加元素的 appendTo() 方法.</p>
+<h5 id="你如何利用jQuery来向一个元素中添加和移除CSS类"><a href="#你如何利用jQuery来向一个元素中添加和移除CSS类" class="headerlink" title="你如何利用jQuery来向一个元素中添加和移除CSS类?"></a>你如何利用jQuery来向一个元素中添加和移除CSS类?</h5><p>通过利用 addClass() 和 removeClass() 这两个 jQuery 方法。动态的改变元素的class属性可以很简单例如. 使用类“.active”来标记它们的未激活和激活状态，等等.</p>
+<h5 id="使用-CDN-加载-jQuery-库的主要优势是什么"><a href="#使用-CDN-加载-jQuery-库的主要优势是什么" class="headerlink" title="使用 CDN 加载 jQuery 库的主要优势是什么 ?"></a>使用 CDN 加载 jQuery 库的主要优势是什么 ?</h5><p>这 是一个稍微高级点儿的jQuery问题。好吧，除了报错节省服务器带宽以及更快的下载速度这许多的好处之外, 最重要的是，如果浏览器已经从同一个CDN下载类相同的 jQuery 版本, 那么它就不会再去下载它一次. 因此今时今日，许多公共的网站都将jQuery用于用户交互和动画, 如果浏览器已经有了下载好的jQuery库，网站就能有非常好的展示机会。</p>
+<h5 id="jQuery-get-和-jQuery-ajax-方法之间的区别是什么"><a href="#jQuery-get-和-jQuery-ajax-方法之间的区别是什么" class="headerlink" title="jQuery.get() 和 jQuery.ajax() 方法之间的区别是什么?"></a>jQuery.get() 和 jQuery.ajax() 方法之间的区别是什么?</h5><p>ajax() 方法更强大，更具可配置性, 让你可以指定等待多久，以及如何处理错误。get() 方法是一个只获取一些数据的专门化方法。</p>
+<h5 id="jQuery-中的方法链是什么？使用方法链有什么好处？"><a href="#jQuery-中的方法链是什么？使用方法链有什么好处？" class="headerlink" title="jQuery 中的方法链是什么？使用方法链有什么好处？"></a>jQuery 中的方法链是什么？使用方法链有什么好处？</h5><p>方法链是对一个方法返回的结果调用另一个方法，这使得代码简洁明了，同时由于只对 DOM 进行了一轮查找，性能方面更加出色。</p>
+<h5 id="你要是在一个-jQuery-事件处理程序里返回了-false-会怎样？"><a href="#你要是在一个-jQuery-事件处理程序里返回了-false-会怎样？" class="headerlink" title="你要是在一个 jQuery 事件处理程序里返回了 false 会怎样？"></a>你要是在一个 jQuery 事件处理程序里返回了 false 会怎样？</h5><p>这通常用于阻止事件向上冒泡。</p>
+<h5 id="哪种方式更高效：document-getElementbyId-“myId”-还是-“-myId”-？"><a href="#哪种方式更高效：document-getElementbyId-“myId”-还是-“-myId”-？" class="headerlink" title="哪种方式更高效：document.getElementbyId(“myId”) 还是 $(“#myId”)？"></a>哪种方式更高效：document.getElementbyId(“myId”) 还是 $(“#myId”)？</h5><p>第一种，因为它直接调用了 JavaScript 引擎.</p>
+<h5 id="javascript编程模式：私有函数公有化"><a href="#javascript编程模式：私有函数公有化" class="headerlink" title="javascript编程模式：私有函数公有化"></a>javascript编程模式：私有函数公有化</h5><div align="center"><br> <img src="/images/js/1_1.gif"><br> <img src="/images/js/1_2.gif"><br> <img src="/images/js/1_4.gif"><br></div>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book"></i>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
+	
+	</div>
+
+
+      
+
+      
+        <div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode"></div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/01/07/karma-jasmine/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          上一篇：karma-jasmine
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/14/js集锦(下)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：js集锦（下）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jquery题库" data-title="jquery题库" data-url="http://yoursite.com/2016/12/29/jquery题库/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 轻刻美
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten ---&copy 轻刻美
+      	</div>
+    </div>
+    
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','JEb1Y8kupG5T1657HWBP','2.0.0');
+</script>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+	
+</script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
+<script src="/./js/main.js"></script>
+<script src="/./js/myJs.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div> 
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+  </div>
+</body>
+</html>

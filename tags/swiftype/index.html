@@ -34,7 +34,8 @@
 <div class="intrude-less">
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
-			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="搜一搜" />
+			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
+			<a hre="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -80,7 +81,37 @@
 		        
 			</div>
 		</nav>
+		
+		<div id="music-panel">
+    <a id="music-control" href="javascript:void(0);" target="_blank"></a>
+    <div id="music-content" class="hide">
+       <div class="cover"><img src="/images/title.png"></div>
+       <div class="ctrl">
+					<div class="tag"></div>
+					<div class="control">
+						<div>
+							<div class="rewind icon"></div>
+							<div class="playback icon"></div>
+							<div class="fastforward icon"></div>
+						</div>
+					</div>
+					<div class="progress">
+						<div class="control-icon right">
+							<div class="repeat icon"></div>
+							<div class="shuffle icon"></div>
+						</div>
+					</div>
+					<audio></audio>
+					<ul id="playlist"></ul>
+				</div>
+				
+			</div>
+		
+</div>
+    </div>
 	</header>		
+	
+	
 </div>
 
     </div>
@@ -145,7 +176,7 @@
       
       <section class="archives-wrap">
         <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
+          <a href="/archives/2016" class="archive-year">2016</a>
         </div>
         <div class="archives">
     
@@ -153,14 +184,14 @@
   <div class="archive-article-inner">
     <header class="archive-article-header">
       	<div class="article-meta">
-	      	<a href="/2015/12/22/hexo中主题yilia下的搜索功能/" class="archive-article-date">
-  	<time datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-22</time>
+	      	<a href="/2016/07/28/hexo中主题yilia下的搜索功能/" class="archive-article-date">
+  	<time datetime="2016-07-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-28</time>
 </a>
         </div>
     	 
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/22/hexo中主题yilia下的搜索功能/">hexo中主题yilia下的搜索功能</a>
+      <a class="archive-article-title" href="/2016/07/28/hexo中主题yilia下的搜索功能/">hexo中主题yilia下的搜索功能</a>
     </h1>
   
 
@@ -251,7 +282,7 @@
 	}
 	
 </script>
-<script src="/./js/jquery-1.10.2.min.js"></script>
+<script src="/./js/jquery-1.7.2.min.js"></script>
 <script src="/./js/main.js"></script>
 <script src="/./js/myJs.js"></script>
 
@@ -316,8 +347,7 @@
   	  	
     	</section>
     
-  </div>
-  
+  </div> 
 </div>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

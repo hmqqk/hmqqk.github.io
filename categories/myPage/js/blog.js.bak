@@ -1,0 +1,262 @@
+/**
+ * Created by liuhong on 2016/12/4.
+ */
+
+(function(){
+
+     $(".menu").click(function(){
+         if($(".bar").hasClass("active")){
+             $(".bar.top,.bar.center,.bar.bottom").removeClass("active");
+             $('.menu_wrap').removeClass('show').addClass('hide');
+         }
+
+         else{
+             $(".bar.top,.bar.center,.bar.bottom").addClass("active");
+             $('.menu_wrap').removeClass('hide').addClass('show');
+         }
+
+     });
+     $('.userMsg').click(function(){
+     	window.location.href="myPage.html";
+     	});
+     	
+     	
+     	
+     	//页面滚动模块
+     		var h = $(window).height();
+   			function docscroll(){
+   			    var dt = parseInt($(document).scrollTop());
+   			    var i = parseInt(dt/h);
+   			    if(i<8){
+   			        $(".topnav li a").removeClass("current");
+   			        $(".topnav li").eq(i).find("a").addClass("current");
+   			        if(!$(".section").eq(i).hasClass("current")){
+   			            $(".section").eq(i).addClass("current");
+   			        }else{
+   			            return false;
+   			        }
+   			    }else{
+   			        return false;
+   			    }
+   			}
+    		$(function() {
+    		    $(".section").height($(window).height());
+    		    $.scrollify({
+    		        section: '.section2',
+    		    });
+    		    jQuery.scrollto = function(scrolldom,scrolltime) {
+    		        $(scrolldom).click( function(){
+    		        	
+    		            var scrolltodom = $(this).attr("date-scroll");
+    		           
+    		            $(scrolldom).removeClass("current");
+    		          
+    		            $(this).addClass("current");
+    		            $('html,body').animate({
+    		                scrollTop:$(scrolltodom).offset().top},scrolltime
+    		            );
+    		            return false;
+    		        });
+    		    };
+    		    $.scrollto(".topnav a",600);
+    		    $.scrollto(".scroll",600);
+    		    $(window).scroll(function(){
+    		        docscroll();
+    		       
+    		    });
+    		    
+    		    $(window).resize(function(){
+    		        $(".section").height($(window).height());
+    		    });
+    		});
+     		
+				//实习经历模块		
+				$(function(){
+					// 数据数组
+					var data = {
+						'1':[
+							{'title':'亚信前端开发工程师','content':'工作情况描述信息','date':'2014年7月 - 2014年11月'},
+							{'title':'绿地景观UI设计','content':'工作情况描述信息','date':'2012年7月 - 2012年9月'},
+						],
+					};
+					var j;
+					for(var i = 0; i<data[1].length; i++){
+						if(i%2==0){
+							j = 1;
+						}else{
+							j = 2;
+						}
+						$('.cd-container').append('<div class="cd-timeline-block"><div class="cd-timeline-img cd-picture pic-'+j+'"></div><div class="cd-timeline-content"><h2>'+data[1][i].title+'</h2><p>'+data[1][i].content+'</p><a href="#" class="cd-read-more">阅读更多</a><span class="cd-date">'+data[1][i].date+'</span></div></div>');
+					}
+				})
+				
+				//心愿墙
+	    	$.fn.drag = function() {
+	    		var parent=this.parent();
+    			this.css({
+					"background":colorArr[parseInt(Math.random() * 6)],//随机颜色
+					"left":parseInt((parent.width()-200)*Math.random()),//随机定位left
+					"top":parseInt((parent.height()-200)*Math.random())//随机定位top
+				});
+				var _this=this;
+				$(".closeBtn",_this).on("click",function(){
+					_this.remove();
+				})
+	    	    this.on('mousedown', function(e) {
+	    	        var e = e || window.e,
+	    	            ex = e.clientX - parseInt($(this).css('left')),
+	    	            ey = e.clientY - parseInt($(this).css('top')),
+	    	            $this = $(this);
+	    	            stopDefault(e);//阻止浏览器的默认行为【防止字体被选中】
+	    	        $(document).on('mousemove', function(e) {
+	    	            var e = e || window.e,
+	    	                left = e.clientX - ex,
+	    	                top = e.clientY - ey;
+	    	            if (left < 0) {
+	    	                left = 0;
+	    	            } else if (left > winW - $this.width()) {
+	    	                left = winW - $this.width();
+	    	                console.log(left)
+	    	            }
+	    	            if (top < 0) {
+	    	                top = 0
+	    	            } else if (top > $(document).height() - $this.height()-150) {
+	    	                top = $(document).height() - $this.height()-150
+	    	            }
+	    	            $this.css({
+	    	                'left': left + 'px',
+	    	                'top': top + 'px',
+	    	                "z-index":"1"
+	    	            }).siblings().css({
+	    	            	"z-index":"0"
+	    	            })
+	    	            stopDefault(e);//阻止浏览器的默认行为【防止字体被选中】
+	    	            return false;//阻止浏览器的默认行为【防止字体被选中】
+	    	        });
+	    	        $(document).on('mouseup', function(event) {
+	    	        	 event.stopPropagation(); 
+	    	            $(document).unbind('mousemove');
+	    	            $(document).unbind('mouseup');
+	    	        });
+	    	    })
+	    	    function stopDefault(e){
+	    	    	if ( e && e.stopPropagation ){
+	    	    		//阻止默认浏览器动作(W3C) 
+	    	    		e.preventDefault();
+	    	    	}else{
+	    	    		//IE中阻止函数器默认动作的方式  
+		  	      	window.event.returnValue = false; 
+						return false;
+	    	    	}
+	    	    }
+		  	}
+				var winW=$(document).width();
+				var winH=$(document).height();
+				var contianer=$("#ideas");	
+				var textEle=["嫁给幸福,快乐守望人生的这片风景!跟轻刻美小姐一起,去旅行、去摄影、去阅读、去体验、去思考.一起来玩转生活,拥抱每一个当下."]//初始化文本
+				var colorArr=["#BBE1F1","#FFC2EC","#C6CCF7","#FFF9D2",'#F8B3D0', '#FFCC00'];//初始化背景颜色
+				var box=null;
+				function createEle(){
+					for(var i=0;i<textEle.length;i++){
+						AddEle(textEle[i]);//添加节点
+					}
+					$(".sendBtn").on("click",function(){//点击发送按钮
+						var value=$("#inputvalue").val();//获取input里面的value
+						if(value!=""){
+							AddEle(value)
+							$("#inputvalue").val("");//清空input里面的value
+						}
+					});
+					$("#inputvalue").on("keypress",function(event){
+						if(event.keyCode&&event.keyCode==13){
+							var value=$("#inputvalue").val();
+							if(value!=""){
+								AddEle(value);
+								$("#inputvalue").val("");
+							}
+						}
+					});
+					function AddEle(value){
+						box=$('<div class="box"><p>'+value+'</p><span class="closeBtn"></span></div>');
+						box.appendTo(contianer).drag();
+					}
+				}
+				createEle();
+				
+				//个人中心模块
+				var oLeft=document.getElementById('left');
+	    var oRight=document.getElementById('right');
+	    var oNext=document.getElementById('Next');
+	    var oPrev=document.getElementById('Prev');
+	    var oImg=document.getElementsByName('img1');
+	    var arr=[];
+	    var timer=null;
+	    jQuery.extend(jQuery.easing,{
+	        easeOutBounce: function (x, t, b, c, d) {
+	            if ((t/=d) < (1/2.75)) {
+	                return c*(7.5625*t*t) + b;
+	            } else if (t < (2/2.75)) {
+	                return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+	            } else if (t < (2.5/2.75)) {
+	                return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+	            } else {
+	                return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+	            }
+	        },
+	    });
+	    for(var i=0;i<oImg.length;i++){
+	        //保存每个图片的left,width，opacity,zIndex到二维数组中
+	        arr.push([parseInt(getStyle(oImg[i],"left")),parseInt(getStyle(oImg[i],"top")),parseInt(getStyle(oImg[i],"width")),parseFloat(getStyle(oImg[i],"opacity"))*100,parseInt(getStyle(oImg[i],"zIndex"))]);
+	    }
+	    oNext.onclick=function(){
+	        clearInterval(timer);
+	        arr.unshift(arr[arr.length-1]);
+	        arr.pop();
+	        for(var i=0;i<oImg.length;i++){
+	            startMove(oImg[i],{'left':arr[i][0],'top':arr[i][1],'width':arr[i][2],'opacity':arr[i][3],'zIndex':arr[i][4]});
+	        }
+	    };
+	    oPrev.onclick=function(){
+	        clearInterval(timer);
+	        tab();
+	
+	    };
+	    function tab(){
+	        arr.push(arr[0]);
+	        arr.shift();
+	        for(var i=0;i<oImg.length;i++){
+	                startMove(oImg[i],{'left':arr[i][0],'top':arr[i][1],'width':arr[i][2],'opacity':arr[i][3],'zIndex':arr[i][4]});
+	        }
+	    }
+	    function startMove(obj,json,fn){
+	            obj=$(obj);
+	        obj.css({zIndex:json.zIndex});
+	        obj.stop(true).animate({
+	            opacity:json.opacity/100,
+	            top:json.top+'px',
+	            width:json.width+'px',
+	            left:[json.left+'px','easeOutBounce']
+	        },300);
+	    }
+	    /*
+	    * 通用获取dom对象的非行间属性*/
+	    function getStyle(obj,attr){
+	        if(obj.currentStyle){//兼容IEcurrentStyle和getComputedStyle两个返回的都是一个对象
+	            return obj.currentStyle[attr];
+	        }
+	        else {
+	            return getComputedStyle(obj,false)[attr];
+	        }
+	    }
+	    
+	    
+     if($('a.lang.selected').attr("href")=="myPage-En.html"){
+     	alert(1);
+     	   $('.userMsg span').addClass('En');
+     	}
+     	else{
+     		$('.userMsg span').removeClass('En');
+     		alert(2);
+     		}
+     
+})();
