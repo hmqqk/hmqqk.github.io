@@ -1,4 +1,4 @@
-# Blog of Wenli Zhang
+# Blog of Hong Liu
 
 Blog: https://hmqqk.github.io.
 
