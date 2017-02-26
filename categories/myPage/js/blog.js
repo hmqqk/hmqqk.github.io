@@ -27,6 +27,7 @@
    			function docscroll(){
    			    var dt = parseInt($(document).scrollTop());
    			    var i = parseInt(dt/h);
+   			    //左侧7个点在滚动滑屏时触发的动作
    			    if(i<8){
    			        $(".topnav li a").removeClass("current");
    			        $(".topnav li").eq(i).find("a").addClass("current");
@@ -41,9 +42,11 @@
    			}
     		$(function() {
     		    $(".section").height($(window).height());
+    		    //活动鼠标时的滚屏效果
     		    $.scrollify({
     		        section: '.section2',
     		    });
+    		    
     		    jQuery.scrollto = function(scrolldom,scrolltime) {
     		        $(scrolldom).click( function(){
     		        	
@@ -58,11 +61,12 @@
     		            return false;
     		        });
     		    };
+    		    //左侧7个小点点击时做出的响应
     		    $.scrollto(".topnav a",600);
+    		    //点击页面中向下翻页的按钮时做出的响应
     		    $.scrollto(".scroll",600);
     		    $(window).scroll(function(){
-    		        docscroll();
-    		       
+    		        docscroll(); 
     		    });
     		    
     		    $(window).resize(function(){
@@ -75,9 +79,8 @@
 					// 数据数组
 					var data = {
 						'1':[
-							{'title':'亚信前端开发工程师','content':'工作情况描述信息','date':'2014年7月 - 2014年11月'},
-							{'title':'绿地景观UI设计','content':'工作情况描述信息','date':'2012年7月 - 2012年9月'},
-						],
+							{'title':'亚信前端开发工程师','content':'负责可视化案例搜集及公司调度监督系统界面开发工作（网页版），该系统可方便负责人查看自己调度的任务的执行详情。','date':'2014年7月 - 2014年11月'}
+						]
 					};
 					var j;
 					for(var i = 0; i<data[1].length; i++){
@@ -86,7 +89,7 @@
 						}else{
 							j = 2;
 						}
-						$('.cd-container').append('<div class="cd-timeline-block"><div class="cd-timeline-img cd-picture pic-'+j+'"></div><div class="cd-timeline-content"><h2>'+data[1][i].title+'</h2><p>'+data[1][i].content+'</p><a href="#" class="cd-read-more">阅读更多</a><span class="cd-date">'+data[1][i].date+'</span></div></div>');
+						$('.cd-container').append('<div class="cd-timeline-block"><div class="cd-timeline-img cd-picture pic-'+j+'"></div><div class="cd-timeline-content"><h2>'+data[1][i].title+'</h2><p class="experienceDes">'+data[1][i].content+'</p><a href="#" class="cd-read-more">阅读更多</a><span class="cd-date">'+data[1][i].date+'</span></div></div>');
 					}
 				})
 				

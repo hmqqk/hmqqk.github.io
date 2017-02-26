@@ -158,7 +158,7 @@ a{
 .userMsg span.En::after{
     content:"Carve your beauty slightly";
     position: absolute;
-    top:35%;
+    top:40%;
     left:15%;
     color: #FFF;
     font-weight: bold;
@@ -500,7 +500,7 @@ canvas{
 	list-style:none;
 	float:left;
 	top:80px;
-	left:320px;
+	left:152px;
 	}
 .projects li{
 	position:relative;
@@ -701,7 +701,7 @@ canvas{
 			.cd-timeline-content p{
 				margin:1em 0;
 				line-height: 1.6;
-				font-size: 13px;
+				font-size: 16px;
 			}
 			.cd-timeline-content .cd-read-more{
 				display: inline-block;
@@ -726,3 +726,4 @@ canvas{
 	background:red;
 	z-index:20;
 	}
+	
