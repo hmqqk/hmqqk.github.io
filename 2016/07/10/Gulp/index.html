@@ -6,17 +6,54 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>相亲相爱的一家人 | Hexo</title>
+  <title>Gulp | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="相亲相爱的一家人">
-<meta property="og:url" content="http://yoursite.com/2015/09/12/相亲相爱的一家人/index.html">
+  <meta name="description" content="Gulp：任务自动管理工具目录
+安装
+gulpfile.js
+gulp模块的方法
+src()
+dest()
+task()
+watch()
+
+
+gulp-load-plugins模块
+gulp-livereload模块
+参考链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gulp">
+<meta property="og:url" content="http://yoursite.com/2016/07/10/Gulp/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/life/7_1.jpg">
-<meta property="og:updated_time" content="2016-12-29T15:15:39.201Z">
+<meta property="og:description" content="Gulp：任务自动管理工具目录
+安装
+gulpfile.js
+gulp模块的方法
+src()
+dest()
+task()
+watch()
+
+
+gulp-load-plugins模块
+gulp-livereload模块
+参考链接">
+<meta property="og:updated_time" content="2017-01-04T14:34:31.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相亲相爱的一家人">
-<meta name="twitter:image" content="http://oiyahh2nw.bkt.clouddn.com/life/7_1.jpg">
+<meta name="twitter:title" content="Gulp">
+<meta name="twitter:description" content="Gulp：任务自动管理工具目录
+安装
+gulpfile.js
+gulp模块的方法
+src()
+dest()
+task()
+watch()
+
+
+gulp-load-plugins模块
+gulp-livereload模块
+参考链接">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -170,25 +207,172 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-相亲相爱的一家人" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Gulp" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      相亲相爱的一家人
+      Gulp
     </h1>
   
 
-        <a href="/2015/09/12/相亲相爱的一家人/" class="archive-article-date">
-  	<time datetime="2015-09-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-12</time>
+        <a href="/2016/07/10/Gulp/" class="archive-article-date">
+  	<time datetime="2016-07-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-10</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div align="center"><br><img src="http://oiyahh2nw.bkt.clouddn.com/life/7_1.jpg"><br></div><br><a id="more"></a><br>&#160; &#160; &#160; &#160;今夜心情美美哒~在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图我，已经踏上研究生这条道路，开启我的研究生生涯。回想大学四年的美好时光，这段期间确实留给我太多太多美好的回忆，它也教会了我许多我不曾想过的东西。如今，我所期待的研究生生活想必会更加的精彩。<br>&#160; &#160; &#160; &#160;今夜心情美美哒~在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图初来大学，肯定是要先见见我亲爱的老师和师兄师姐的咯。哈哈~我们老师幽默风趣，我们确实可以像朋友一样去相处，毫无师生之间的隔阂感。老师在潜心科研的同时带给我们诸多生活的趣事。师兄师姐们那也自然是相当的棒的啦，第一天相见我们就爽聚一波，气氛别提有多好啦。<br>&#160; &#160; &#160; &#160;今夜心情美美哒~在这专属于我们滴迎新晚会上，我们玩儿的特别的嗨！来，上图我很庆幸能遇到可爱的她们，我们终成为相亲相爱的一家人。</p>
+        <h5 id="Gulp：任务自动管理工具"><a href="#Gulp：任务自动管理工具" class="headerlink" title="Gulp：任务自动管理工具"></a>Gulp：任务自动管理工具</h5><h6 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h6><ul>
+<li>安装</li>
+<li>gulpfile.js</li>
+<li>gulp模块的方法<ul>
+<li>src()</li>
+<li>dest()</li>
+<li>task()</li>
+<li>watch()</li>
+</ul>
+</li>
+<li>gulp-load-plugins模块</li>
+<li>gulp-livereload模块</li>
+<li><p>参考链接</p>
+<a id="more"></a>
+<p>Gulp与Grunt一样，也是一个自动任务运行器。它充分借鉴了Unix操作系统的管道（pipe）思想，很多人认为，在操作上，它要比Grunt简单。</p>
+<h5 id="1安装"><a href="#1安装" class="headerlink" title="1安装"></a>1安装</h5><p>Gulp需要全局安装，然后再在项目的开发目录中安装为本地模块。先进入项目目录，运行下面的命令。</p>
+<p>  npm install -g gulp<br>  npm install –save-dev gulp</p>
+</li>
+</ul>
+<p>除了安装gulp以外，不同的任务还需要安装不同的gulp插件模块。举例来说，下面代码安装了gulp-uglify模块。</p>
+<h5 id="2gulpfile-js"><a href="#2gulpfile-js" class="headerlink" title="2gulpfile.js"></a>2gulpfile.js</h5><p>项目根目录中的gulpfile.js，是Gulp的配置文件。下面就是一个典型的gulpfile.js文件。</p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+var uglify = require(&apos;gulp-uglify&apos;);
+
+gulp.task(&apos;minify&apos;, function () {
+  gulp.src(&apos;js/app.js&apos;)
+    .pipe(uglify())
+    .pipe(gulp.dest(&apos;build&apos;))
+});
+</code></pre><p>上面代码中，gulpfile.js加载gulp和gulp-uglify模块之后，使用gulp模块的task方法指定任务minify。task方法有两个参数，第一个是任务名，第二个是任务函数。在任务函数中，使用gulp模块的src方法，指定所要处理的文件，然后使用pipe方法，将上一步的输出转为当前的输入，进行链式处理。<br>task方法的回调函数使用了两次pipe方法，也就是说做了两种处理。第一种处理是使用gulp-uglify模块，压缩源码；第二种处理是使用gulp模块的dest方法，将上一步的输出写入本地文件，这里是build.js（代码中省略了后缀名js）。<br>执行minify任务时，就在项目目录中执行下面命令就可以了。</p>
+<pre><code>gulp minify
+</code></pre><p>从上面的例子中可以看到，gulp充分使用了“管道”思想，就是一个数据流（stream）：src方法读入文件产生数据流，dest方法将数据流写入文件，中间是一些中间步骤，每一步都对数据流进行一些处理。<br>下面是另一个数据流的例子。</p>
+<pre><code>gulp.task(&apos;js&apos;, function () {
+  return gulp.src(&apos;js/*.js&apos;)
+    .pipe(jshint())
+    .pipe(uglify())
+    .pipe(concat(&apos;app.js&apos;))
+    .pipe(gulp.dest(&apos;build&apos;));
+});
+</code></pre><p>上面代码使用pipe命令，分别进行jshint、uglify、concat三步处理。</p>
+<h5 id="3gulp模块的方法"><a href="#3gulp模块的方法" class="headerlink" title="3gulp模块的方法"></a>3gulp模块的方法</h5><h6 id="3-1src"><a href="#3-1src" class="headerlink" title="3.1src()"></a>3.1src()</h6><p>gulp模块的src方法，用于产生数据流。它的参数表示所要处理的文件，这些指定的文件会转换成数据流。参数的写法一般有以下几种形式。<br>js/app.js：指定确切的文件名。<br>js/<em>.js：某个目录所有后缀名为js的文件。<br>js/**/</em>.js：某个目录及其所有子目录中的所有后缀名为js的文件。<br>!js/app.js：除了js/app.js以外的所有文件。<br>*.+(js|css)：匹配项目根目录下，所有后缀名为js或css的文件。<br>src方法的参数还可以是一个数组，用来指定多个成员。</p>
+<pre><code>gulp.src([&apos;js/**/*.js&apos;, &apos;!js/**/*.min.js&apos;])
+</code></pre><h6 id="3-2dest"><a href="#3-2dest" class="headerlink" title="3.2dest()"></a>3.2dest()</h6><p>dest方法将管道的输出写入文件，同时将这些输出继续输出，所以可以依次调用多次dest方法，将输出写入多个目录。如果有目录不存在，将会被新建。</p>
+<pre><code>gulp.src(&apos;./client/templates/*.jade&apos;)
+  .pipe(jade())
+  .pipe(gulp.dest(&apos;./build/templates&apos;))
+  .pipe(minify())
+  .pipe(gulp.dest(&apos;./build/minified_templates&apos;));
+</code></pre><p>dest方法还可以接受第二个参数，表示配置对象。</p>
+<pre><code>gulp.dest(&apos;build&apos;, {
+  cwd: &apos;./app&apos;,
+  mode: &apos;0644&apos;
+})
+</code></pre><p>配置对象有两个字段。cwd字段指定写入路径的基准目录，默认是当前目录；mode字段指定写入文件的权限，默认是0777。      </p>
+<p>####### 3.33task()<br>task方法用于定义具体的任务。它的第一个参数是任务名，第二个参数是任务函数。下面是一个非常简单的任务函数。</p>
+<pre><code>gulp.task(&apos;greet&apos;, function () {
+   console.log(&apos;Hello world!&apos;);
+});
+</code></pre><p>task方法还可以指定按顺序运行的一组任务。</p>
+<pre><code>gulp.task(&apos;build&apos;, [&apos;css&apos;, &apos;js&apos;, &apos;imgs&apos;]);
+</code></pre><p>上面代码先指定build任务，它由css、js、imgs三个任务所组成，task方法会并发执行这三个任务。注意，由于每个任务都是异步调用，所以没有办法保证js任务的开始运行的时间，正是css任务运行结束。<br>如果希望各个任务严格按次序运行，可以把前一个任务写成后一个任务的依赖模块。</p>
+<pre><code>gulp.task(&apos;css&apos;, [&apos;greet&apos;], function () {
+   // Deal with CSS here
+});
+</code></pre><p>上面代码表明，css任务依赖greet任务，所以css一定会在greet运行完成后再运行。<br>task方法的回调函数，还可以接受一个函数作为参数，这对执行异步任务非常有用。</p>
+<pre><code>// 执行shell命令
+var exec = require(&apos;child_process&apos;).exec;
+gulp.task(&apos;jekyll&apos;, function(cb) {
+  // build Jekyll
+  exec(&apos;jekyll build&apos;, function(err) {
+    if (err) return cb(err); // return error
+    cb(); // finished task
+  });
+});
+</code></pre><p>如果一个任务的名字为default，就表明它是“默认任务”，在命令行直接输入gulp命令，就会运行该任务。</p>
+<pre><code>gulp.task(&apos;default&apos;, function () {
+  // Your default task
+});
+</code></pre><p>// 或者</p>
+<pre><code>gulp.task(&apos;default&apos;, [&apos;styles&apos;, &apos;jshint&apos;, &apos;watch&apos;]);
+</code></pre><p>执行的时候，直接使用gulp，就会运行styles、jshint、watch三个任务。</p>
+<h5 id="3-4watch"><a href="#3-4watch" class="headerlink" title="3.4watch()"></a>3.4watch()</h5><p>watch方法用于指定需要监视的文件。一旦这些文件发生变动，就运行指定任务。</p>
+<pre><code>gulp.task(&apos;watch&apos;, function () {
+   gulp.watch(&apos;templates/*.tmpl.html&apos;, [&apos;build&apos;]);
+});
+</code></pre><p>上面代码指定，一旦templates目录中的模板文件发生变化，就运行build任务。</p>
+<p>watch方法也可以用回调函数，代替指定的任务。</p>
+<pre><code>gulp.watch(&apos;templates/*.tmpl.html&apos;, function (event) {
+   console.log(&apos;Event type: &apos; + event.type);
+   console.log(&apos;Event path: &apos; + event.path);
+});
+</code></pre><p>另一种写法是watch方法所监控的文件发生变化时（修改、增加、删除文件），会触发change事件。可以对change事件指定回调函数。</p>
+<pre><code>var watcher = gulp.watch(&apos;templates/*.tmpl.html&apos;, [&apos;build&apos;]);
+watcher.on(&apos;change&apos;, function (event) {
+   console.log(&apos;Event type: &apos; + event.type);
+   console.log(&apos;Event path: &apos; + event.path);
+});
+</code></pre><p>除了change事件，watch方法还可能触发以下事件。<br>end：回调函数运行完毕时触发。<br>error：发生错误时触发。<br>ready：当开始监听文件时触发。<br>nomatch：没有匹配的监听文件时触发。<br>watcher对象还包含其他一些方法。<br>watcher.end()：停止watcher对象，不会再调用任务或回调函数。<br>watcher.files()：返回watcher对象监视的文件。<br>watcher.add(glob)：增加所要监视的文件，它还可以附件第二个参数，表示回调函数。<br>watcher.remove(filepath)：从watcher对象中移走一个监视的文件。</p>
+<h5 id="4gulp-load-plugins模块"><a href="#4gulp-load-plugins模块" class="headerlink" title="4gulp-load-plugins模块"></a>4gulp-load-plugins模块</h5><p>一般情况下，gulpfile.js中的模块需要一个个加载。</p>
+<pre><code>var gulp = require(&apos;gulp&apos;),
+    jshint = require(&apos;gulp-jshint&apos;),
+    uglify = require(&apos;gulp-uglify&apos;),
+    concat = require(&apos;gulp-concat&apos;);
+
+gulp.task(&apos;js&apos;, function () {
+   return gulp.src(&apos;js/*.js&apos;)
+      .pipe(jshint())
+      .pipe(jshint.reporter(&apos;default&apos;))
+      .pipe(uglify())
+      .pipe(concat(&apos;app.js&apos;))
+      .pipe(gulp.dest(&apos;build&apos;));
+});
+</code></pre><p>上面代码中，除了gulp模块以外，还加载另外三个模块。<br>这种一一加载的写法，比较麻烦。使用gulp-load-plugins模块，可以加载package.json文件中所有的gulp模块。上面的代码用gulp-load-plugins模块改写，就是下面这样。    </p>
+<pre><code>var gulp = require(&apos;gulp&apos;),
+    gulpLoadPlugins = require(&apos;gulp-load-plugins&apos;),
+    plugins = gulpLoadPlugins();
+gulp.task(&apos;js&apos;, function () {
+   return gulp.src(&apos;js/*.js&apos;)
+      .pipe(plugins.jshint())
+      .pipe(plugins.jshint.reporter(&apos;default&apos;))
+      .pipe(plugins.uglify())
+      .pipe(plugins.concat(&apos;app.js&apos;))
+      .pipe(gulp.dest(&apos;build&apos;));
+});
+</code></pre><p>上面代码假设package.json文件包含以下内容。</p>
+<pre><code>{
+   &quot;devDependencies&quot;: {
+      &quot;gulp-concat&quot;: &quot;~2.2.0&quot;,
+      &quot;gulp-uglify&quot;: &quot;~0.2.1&quot;,
+      &quot;gulp-jshint&quot;: &quot;~1.5.1&quot;,
+      &quot;gulp&quot;: &quot;~3.5.6&quot;
+   }
+}
+</code></pre><h5 id="5gulp-livereload模块"><a href="#5gulp-livereload模块" class="headerlink" title="5gulp-livereload模块"></a>5gulp-livereload模块</h5><p>gulp-livereload模块用于自动刷新浏览器，反映出源码的最新变化。它除了模块以外，还需要在浏览器中安装插件，用来配合源码变化。</p>
+<pre><code>var gulp = require(&apos;gulp&apos;),
+    less = require(&apos;gulp-less&apos;),
+    livereload = require(&apos;gulp-livereload&apos;),
+    watch = require(&apos;gulp-watch&apos;);
+
+gulp.task(&apos;less&apos;, function() {
+   gulp.src(&apos;less/*.less&apos;)
+      .pipe(watch())
+      .pipe(less())
+      .pipe(gulp.dest(&apos;css&apos;))
+      .pipe(livereload());
+});
+</code></pre><p>上面代码监视less文件，一旦编译完成，就自动刷新浏览器。</p>
+<h5 id="6参考链接"><a href="#6参考链接" class="headerlink" title="6参考链接"></a>6参考链接</h5><p><a href="https://www.smashingmagazine.com/2014/06/building-with-gulp/" target="_blank" rel="external">https://www.smashingmagazine.com/2014/06/building-with-gulp/</a></p>
 
       
 
@@ -199,13 +383,13 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/">life</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gulp/">Gulp</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
 	<i class="icon-book"></i>
-	<a class="article-category-link" href="/categories/lives/">lives</a>
+	<a class="article-category-link" href="/categories/studies/">studies</a>
 	
 	</div>
 
@@ -269,18 +453,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2015/10/17/css之光晕效果/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/07/12/js集锦(上)/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          上一篇：CSS之光晕效果
+          上一篇：js集锦(上)
         
       </div>
     </a>
   
   
-    <a href="/2015/09/10/html5之Canvas笑脸效果/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">下一篇：html5之Canvas笑脸效果</div>
+    <a href="/2016/07/03/Git/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">下一篇：Git</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -293,7 +477,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="相亲相爱的一家人" data-title="相亲相爱的一家人" data-url="http://yoursite.com/2015/09/12/相亲相爱的一家人/"></div>
+	<div class="ds-thread" data-thread-key="Gulp" data-title="Gulp" data-url="http://yoursite.com/2016/07/10/Gulp/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

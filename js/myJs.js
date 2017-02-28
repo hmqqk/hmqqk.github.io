@@ -20,8 +20,6 @@
 		$(this).css('opacity','0.8');
 		});
 		
-		
-		
 	$("#music-control").click(function(){
 		
 		if($("#music-content").hasClass("hide")){
@@ -65,7 +63,6 @@
 	// Load playlist
 	for (var i=0; i<playlist.length; i++){
 		var item = playlist[i];
-		//显示可以播放的歌曲的列表
 		$('#playlist').append('<li>'+item.title+'</li>');
 	}
 
@@ -105,7 +102,7 @@
 		}
 	});
 
-	// Switch track 切换播放哪首歌呢
+	// Switch track
 	var switchTrack = function(i){
 		if (i < 0){
 			track = currentTrack = playlist.length - 1;
@@ -170,7 +167,7 @@
 	}
 
 	loadMusic(currentTrack);
-	//音乐播放按钮
+	
 	$('.playback').on('click', function(){
 		if ($(this).hasClass('playing')){
 			pause();
@@ -197,9 +194,7 @@
 	$('#playlist li').each(function(i){
 		var _i = i;
 		$(this).on('click', function(){
-			//isPlaying=true的话就是播放当前点击的这首歌
 			isPlaying = true;
-			//切换到播放当前点击的这首歌
 			switchTrack(_i);
 		});
 	});
@@ -210,7 +205,7 @@
 	} else if (repeat == 2){
 		$('.repeat').addClass('all');
 	}
-  //是否单曲循环
+
 	$('.repeat').on('click', function(){
 		if ($(this).hasClass('once')){
 			repeat = localStorage.repeat = 2;
@@ -223,7 +218,7 @@
 			$(this).addClass('once');
 		}
 	});
-  //是否随机播放
+
 	$('.shuffle').on('click', function(){
 		if ($(this).hasClass('enable')){
 			shuffle = localStorage.shuffle = 'false';

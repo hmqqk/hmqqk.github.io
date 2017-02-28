@@ -16,7 +16,7 @@
 <meta property="og:description" content="Karma和Jasmine自动化单元测试前言在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做nodej">
 <meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/karma-jasmine/1_1.png">
 <meta property="og:image" content="http://oiyahh2nw.bkt.clouddn.com/karma-jasmine/1_2.png">
-<meta property="og:updated_time" content="2016-12-29T15:15:21.000Z">
+<meta property="og:updated_time" content="2017-01-04T14:49:14.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="karma-jasmine">
 <meta name="twitter:description" content="Karma和Jasmine自动化单元测试前言在Java领域，Apache, Spring, JBoss 三大社区的开源库，包罗万象，但每个库都在其领域中都鹤立鸡群。而Nodejs中各种各样的开源库，却让人眼花缭乱，不知从何下手。Nodejs领域: Jasmine做单元测试，Karma自动化完成单元测试，Grunt启动Karma统一项目管理，Yeoman最后封装成一个项目原型模板，npm做nodej">
@@ -42,7 +42,7 @@
 
 		<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 			<input type="text" id="st-search-input" class="st-search-input_my" maxlength="30" placeholder="憋别说,搜我！" />
-			<a hre="" class="go"></a>
+			<a href="" class="go"></a>
 		</form>
 	
 	<header id="header" class="inner">
@@ -241,6 +241,7 @@
 <p>1、jasmine.createSpy(’spyName’)：创建监听对象，这个监听对象是JavaScript对象，可以用“笔记二”中的那些属性方法。<br>2、jasmine.createSpyObj 用于模拟创建多个监听函数，带一个字符串数组 ，它返回一个对象，这个对象的属性就是那些字符串数组的元素。<br>3、jasmine.any(obj)：表示返回obj的构造函数或者类型名称<br>4、jasmine.objectContaining()：表示局部匹配，这个函数不要全看字面意思<br>5、jasmine.clock().install：当使用setTimeOut和setInterval回调函数时，会模拟一个JavaScript时间回调函数。这个函数使时间回调函数同步，当时间一到就执行注册的函数。<br>6、相对应的，在结束后使用 jasmine.clock().uninstall，恢复原始的时间调用函数！</p>
 <h5 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h5><p><div align="center"><br> <img src="http://oiyahh2nw.bkt.clouddn.com/karma-jasmine/1_1.png"><br></div><br>解决：如果出现上述问题，则我们就在其所提示的安装路径下全局安装该模块。例如 npm install -g fs-access，如果还缺少其它模块，则处理方式类同。</p>
 <p><div align="center"><br> <img src="http://oiyahh2nw.bkt.clouddn.com/karma-jasmine/1_2.png"><br></div><br>解决：</p>
+<p>P.S. Karma主要设计用来做低层级的测试（单元测试）。如果你想做高层级测试，我们推荐使用protractor</p>
 
       
 
@@ -447,7 +448,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
+    				<a href="/tags/Git/" style="font-size: 16px;">Git</a> <a href="/tags/Github/" style="font-size: 12px;">Github</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/essay/" style="font-size: 10px;">essay</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/jade/" style="font-size: 12px;">jade</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/jquery/" style="font-size: 18px;">jquery</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/life/" style="font-size: 20px;">life</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/swiftype/" style="font-size: 10px;">swiftype</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/科研/" style="font-size: 10px;">科研</a>
     			</div>
     	</section>
     
