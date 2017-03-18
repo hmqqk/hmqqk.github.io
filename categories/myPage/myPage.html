@@ -289,6 +289,26 @@
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="js/jquery.scrollify.min.js"></script>
 <script type='text/javascript', src='js/blog.js'></script> 	
+<script>
+	    	//实习经历模块		
+				$(function(){
+					// 数据数组
+					var data = {
+						'1':[	
+							{'title':'亚信前端开发工程师','content':'负责可视化案例搜集及公司调度监督系统界面开发工作（网页版），该系统可方便负责人查看自己调度的任务的执行详情。','date':'2014.07 - 2014.11'}
+						]
+					};
+					var j;
+					for(var i = 0; i<data[1].length; i++){
+						if(i%2==0){
+							j = 1;
+						}else{
+							j = 2;
+						}
+						$('.cd-container').append('<div class="cd-timeline-block"><div class="cd-timeline-img cd-picture pic-'+j+'"></div><div class="cd-timeline-content"><h2>'+data[1][i].title+'</h2><p class="experienceDes">'+data[1][i].content+'</p><a href="#" class="cd-read-more">更多</a><span class="cd-date">'+data[1][i].date+'</span></div></div>');
+					}
+				})
+	    </script>
 
 
         
