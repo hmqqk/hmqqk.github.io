@@ -305,7 +305,7 @@
 						}else{
 							j = 2;
 						}
-						$('.cd-container').append('<div class="cd-timeline-block"><div class="cd-timeline-img cd-picture pic-'+j+'"></div><div class="cd-timeline-content"><h2>'+data[1][i].title+'</h2><p class="experienceDes">'+data[1][i].content+'</p><a href="#" class="cd-read-more">More</a><span class="cd-date">'+data[1][i].date+'</span></div></div>');
+						$('.cd-container').append('<div class="cd-timeline-block"><div class="cd-timeline-img cd-picture pic-'+j+'"></div><div class="cd-timeline-content"><h2>'+data[1][i].title+'</h2><p class="experienceDes">'+data[1][i].content+'</p><a href="#" class="cd-read-more">更多</a><span class="cd-date">'+data[1][i].date+'</span></div></div>');
 					}
 				})
 	    </script>
