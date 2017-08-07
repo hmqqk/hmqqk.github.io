@@ -488,3 +488,417 @@ a {
 
 
 //test
+*{
+	margin:0;
+	padding:0;
+}
+.vepublic{
+	width:100%;
+	overflow:hidden;
+	background:rgba(47,47,47,0.98);
+	color:#bbb;
+	font-size:16px;
+
+}
+.venav_top{
+	width:100%;
+	height:60px;
+	margin-top:10px;
+
+}
+.navmain{
+	position:relative;
+	width:98%;
+	height:60px;
+	margin:0 auto;
+	border-bottom:1px solid rgba(255,255,255,0.2);
+}
+.vemain{
+	position:relative;
+	width:98%;
+	height:800px;
+	margin:15px auto;
+	background:#f2f3f5;
+	box-shadow:0 0 20px rgba(0,0,0,0.8);
+}
+.tleft{
+	position:absolute;
+	top:0;
+	left:0;
+	width:40px;
+	padding-right:16px;
+	line-height:40px;
+	border-right:1px solid rgba(255,255,255,0.2);
+}
+.tright{
+	position:relative;
+	height:60px;
+	line-height:25px;
+	padding-left:70px;
+}
+.tleft img{
+	width:40px;
+	height:40px;
+	vertical-align:middle;
+}
+.venav_left{
+	position:absolute;
+	top:0;
+	left:0;
+	width:12%;
+	height:800px;
+	background:#fff;
+
+}
+.vecontent{
+	position:absolute;
+	top:0;
+	right:0;
+	width:88%;
+	height:800px;
+}
+.portrait{
+	position:relative;
+	padding-top:20px;
+	
+}
+.portrait a{
+	display:block;
+	text-align:center;
+}
+.portrait img{
+	width:80px;
+	height:80px;
+	border-radius:100%;
+}
+.nav_lists{
+	position:relative;
+	margin-top:80px;
+}
+.importance,.security,.traction{
+	width:90%;
+	position:relative;
+	height:80px;
+	margin:0 auto;
+	margin-top:30px;
+	border-radius:5px;
+}
+.selected{
+	background:#F2F3F5;
+}
+.importance a,.security a,.traction a{
+	display:inline-block;
+	margin-left:20px;
+	line-height:80px;
+	text-decoration:none;
+	color:#000;
+	font-weight:400;
+}
+.importance img,.security img,.traction img{
+	width:40px;
+	height:40px;
+}
+.importance a img,.security a img,.traction a img{
+	vertical-align:middle;
+}
+
+.modelText{
+	font-weight:bold;
+	padding-left:20px;
+	color:#bbb;
+
+}
+
+.data{
+	position:relative;
+	top:20px;
+	width:97%;
+	text-align:center;
+	border-collapse:collapse;
+	margin:0 auto;
+	background:white;
+	box-shadow:0 0 20px rgba(235,236,238,0.8);
+}
+.data th,.data tr,.data td{
+	width:7%;
+}
+.data th{
+	height:60px;
+	
+}
+.data td{
+	height:52px;
+	font-size:15px;
+}
+.lamp{
+	background:url(images/lamp_red.png) 0 0 100% 100% no-repeat;
+	display:inline-block;
+	width:10%;
+	height:10%;
+}
+
+
+
+<!doctype html>
+<html>
+    <head>
+        <title>visible quality</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div>
+	        <div class="vepublic">
+                <div class="venav_top">
+                    <div class="navmain">
+                        <div class="tleft">
+                            <img src="images/logo_1.png">
+                        </div>
+                        <div class="tright">
+                            <p>Visual Quality</p>
+                            <p>description detail</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="vemain">
+                    <div class="venav_left">
+                        <div class="portrait">
+                            <a href=""><img src="images/logo_1.png"></a>
+                        </div>
+                        <div class="nav_lists">
+                            <div class="importance selected">
+                                <a href=""><img class="modelImg" src="images/logo_1.png"></img><span class="modelText">重点指标</span></a>
+                            </div>
+                            <div class="security">
+                                <a href=""><img class="modelImg" src="images/logo_1.png"></img><span class="modelText">安全指标</span></a>
+                            </div>
+                            <div class="traction">
+                                <a href=""><img class="modelImg" src="images/logo_1.png"></img><span class="modelText">牵引指标</span></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="vecontent">
+                        <table class="data">
+                            <tr>
+                                <th>LM</th>
+                                <th>项目组</th>
+                                <th>总规划</th>
+                                <th>累计交付</th>
+                                <th>本轮迭代</th>
+                                <th>DI</th>
+                                <th>静动态错误数</th>
+                                <th>需求交付率(story/ar)</th>
+                                <th>7天定位率</th>
+                                <th>UT覆盖率</th>
+                                <th>需求交付质量</th>
+                                <th>story澄清及时率</th>
+                                <th>规划代码量</th>
+                                <th>测试前移</th>
+                            </tr>
+                            <tr>
+                                <th rowspan="4">张鑫</th>
+                                <td>性能组</td>
+                                <td>3<span class="lamp"></span></td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>公共组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>MED组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>接入组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="4">张宁</th>
+                                <td>TS组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>增值组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>采集组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>北向组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="3">何佳若</th>
+                                <td>虚拟化</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>升级组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>ATAE组</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2">黎斌</th>
+                                <td>GUI</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>WEBLMT</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+	        </div>
+        </div>
+    </body>
+</html>
