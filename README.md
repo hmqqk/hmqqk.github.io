@@ -2,17 +2,20 @@
 | 目录/文件      | 说明                                 |
 |---------- |------------------------------------ |
 |node_modules     |	npm 加载的项目依赖模块  |
-|src	      | 源码目录，内含<br>assets:放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理。<br/>components:全局公用组件<br/>constants:设置常量<br/>directives:自定义指令<br/>filters:过滤器,如文本格式化<br>layouts:页面布局<br>pages:页面<br>plugins:插件,如注入到 Vue.prototype 中的属性或方法<br>router:路由控制<br>services:<br>      各module的api请求<br>       index.js：总 api<br>        xFetch.js：封装后的fetch方法<br>store:<br>      modules:模块,每个模块有State、Getter、Mutation和Action。<br>        mutation-types:设置常量替代Mutation事件类型<br>     index.js: 总Store<br>utils:工具包.<br>App.vue:根组件。<br>main.js:项目入口文件，引入根组件、框架、插件及路由设置等，并定义vue实例。|
-|description |	辅助性文字                         |
-|closable   |	是否可关闭                           |
-|center     |	文字是否居中                         |
-|close-text	| 关闭按钮自定义文本                    |
-|show-icon  |	是否显示图标                         |
-
-### Event
-| 事件名称      | 说明       | 回调参数   |
-|------------- |----------- |---------  |
-|close         |关闭alert时触发的事件| —  |
+|config     |	proxy.config.js：项目代理配置<br>template-date.json：模拟后端模板注入数据  |
+|lib     |	外部插件  |
+|src	      | 源码目录，内含<br>assets:放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理。<br/>components:全局公用组件<br/>constants:设置常量<br/>filters:过滤器,如文本格式化<br>layouts:页面布局<br>views:页面<br>plugins:插件,如注入到 Vue.prototype 中的属性或方法<br>routes:各module路由控制<br>services:<br> xxx.js：各module的api请求<br>index.js：总 api<br>xFetch.js：封装后的fetch方法<br>store:<br>modules:模块,每个模块有mutation-types(设置常量替代Mutation事件类型)、State、Getter、Mutation和Action。<br>index.js: 总Store<br>utils:工具包.<br>App.vue:根组件。<br>main.js:项目入口文件，引入根组件、框架、插件及路由设置等，并定义vue实例。<br>router.js：总路由控制<br>store.js：总store|
+public  |  静态资源，不被webpack处理，默认存放icon和index.html。<br>index.html：模板                         |
+|.eslintrc.js  |  es语法检查配置文件  |
+|.gitignore  |  git上传忽略的配置文件  |
+|.npmrc  |  npm配置文件  |
+|babel.config.js  |  babel 编译参数配置，将ES6代码转为浏览器识别的代码  |
+|.postcssrc.js  |  PostCSS(转换CSS)配置文件  |
+|build.sh  	| 项目发包shell脚本                    |
+|package.json  	| 项目描述文件(项目名称、作者等信息)。                    |
+|package-lock.json  |  锁定包版本号                |
+|vue.config.js  	| 配置文件(可选，可被@vue/cli-service 自动加载)，如若配置webpack,设置vue.config.js中 configWebpack 和 chainWebpack（参考：https://cli.vuejs.org/config/ 和 https://cli.vuejs.org/guide/webpack.html）                |
+|README.md  |  项目的说明文档，markdown 格式                |
 
 
 
