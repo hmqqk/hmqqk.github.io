@@ -2,8 +2,8 @@
 ### vue 3.x 项目目录结构
 | 目录/文件      | 说明                                 |
 |---------- |------------------------------------ |
-|node_modules     |	npm 加载的项目依赖模块<br/>assets:放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理。<br/>
-                    components:全局公用组件<br/>
+|node_modules     |	npm 加载的项目依赖模块<br/>assets:放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理。<br>
+                    components:全局公用组件<br>
                     constants:设置常量<br/>
                     directives:自定义指令<br/>
                     filters:过滤器,如文本格式化<br/>
