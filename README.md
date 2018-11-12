@@ -4,7 +4,7 @@
 |node_modules     |	npm 加载的项目依赖模块  |
 |config     |	proxy.config.js：项目代理配置<br>template-date.json：模拟后端模板注入数据  |
 |lib     |	外部插件  |
-|src	      | 源码目录，内含<br>assets:放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理。<br/>components:全局公用组件<br/>constants:设置常量<br/>filters:过滤器,如文本格式化<br>layouts:页面布局<br>views:页面<br>plugins:插件,如注入到 Vue.prototype 中的属性或方法<br>routes:各module路由控制<br>services:<br> xxx.js：各module的api请求<br>index.js：总 api<br>xFetch.js：封装后的fetch方法<br>store:<br>modules:模块,每个模块有mutation-types(设置常量替代Mutation事件类型)、State、Getter、Mutation和Action。<br>index.js: 总Store<br>utils:工具包.<br>App.vue:根组件。<br>main.js:项目入口文件，引入根组件、框架、插件及路由设置等，并定义vue实例。<br>router.js：总路由控制<br>store.js：总store|
+|src	      | 源码目录，内含<br>assets:放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理。<br/>components:全局公用组件<br/>constants:设置常量<br/>filters:过滤器,如文本格式化<br>layouts:页面布局<br>views:页面<br>plugins:插件,如注入到 Vue.prototype 中的属性或方法<br>routes:各module路由控制<br>services:<br> xxx.js：各module的api请求<br>index.js：总 api<br>xFetch.js：封装后的fetch方法<br>store:<br>&emsp;modules:模块,每个模块有mutation-types(设置常量替代Mutation事件类型)、State、Getter、Mutation和Action。<br>index.js: 总Store<br>utils:工具包.<br>App.vue:根组件。<br>main.js:项目入口文件，引入根组件、框架、插件及路由设置等，并定义vue实例。<br>router.js：总路由控制<br>store.js：总store|
 public  |  静态资源，不被webpack处理，默认存放icon和index.html。<br>index.html：模板                         |
 |.eslintrc.js  |  es语法检查配置文件  |
 |.gitignore  |  git上传忽略的配置文件  |
