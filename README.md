@@ -13,7 +13,7 @@ public  |  静态资源，不被webpack处理，默认存放icon和index.html。
 |.postcssrc.js  |  PostCSS(转换CSS)配置文件  |
 |build.sh  	| 项目发包shell脚本                    |
 |package.json  	| 项目描述文件(项目名称、作者等信息)。                    |
-|package-lock.json  |  锁定包版本号                |
+|package-lock.json       |  锁定包版本号                |
 |vue.config.js  	| 配置文件(可选，可被@vue/cli-service 自动加载)，如若配置webpack,设置vue.config.js中 configWebpack 和 chainWebpack（参考：https://cli.vuejs.org/config/ 和 https://cli.vuejs.org/guide/webpack.html）                |
 |README.md  |  项目的说明文档，markdown 格式                |
 
