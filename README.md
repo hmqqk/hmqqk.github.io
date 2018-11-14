@@ -8,8 +8,9 @@ project
 │       │   template-date.json: 模拟后端模板注入数据
 │   lib: 外部插件
 │───src: 源码目录
-│   └───   assets: 放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理
-│   └───   components: 全局公用组件<br/>constants：设置常量
+│   │───   assets: 放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理
+│   │───   components: 全局公用组件
+│   └───   constants: 设置常量
 │   └───   filters: 过滤器,如文本格式化
 │   └───   layouts: 页面布局
 │   └───   views: 页面
@@ -21,15 +22,15 @@ project
 │   │   │  xFetch.js：封装后的fetch方法
 │   └───store
 │   │   │  xxx.js：模块,每个模块有mutation-types(设置常量替代Mutation事件类型)、State、Getter、Mutation和Action
-│   │   │  index.js：总Store
+│   │   │  index.js：总 Store
 │   └───utils: 工具包
 │       App.vue: 根组件
 │       main.js: 项目入口文件，引入根组件、框架、插件及路由设置等，并定义vue实例
 │       router.js: 总路由控制
 │       store.js: 总store
 │───public: 静态资源，不被webpack处理，默认存放icon和index.html
-│       │    favicon.ico: logo图标
-│       │    index.html: 模板
+│       │  favicon.ico: logo图标
+│       │  index.html: 模板
 │   .eslintrc.js: es语法检查配置文件
 │   .gitignore: git上传忽略的配置文件
 │   .npmrc: npm配置文件
