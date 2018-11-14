@@ -1,5 +1,4 @@
 ### vue 3.x 项目目录结构
-### vue 3.x 项目目录结构
 ```
 project
 │   node_modules: npm 加载的项目依赖模块
@@ -10,36 +9,36 @@ project
 │───src: 源码目录
 │   │───   assets: 放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理
 │   │───   components: 全局公用组件
-│   └───   constants: 设置常量
-│   └───   filters: 过滤器,如文本格式化
-│   └───   layouts: 页面布局
-│   └───   views: 页面
-│   └───   plugins: 插件,如注入到 Vue.prototype 中的属性或方法
-│   └───   routes: 各module路由控制
-│   └───services
-│   │   │  xxx.js：各module的api请求
+│   │───   constants: 设置常量
+│   │───   filters: 过滤器,如文本格式化
+│   │───   layouts: 页面布局
+│   │───   views: 页面
+│   │───   plugins: 插件,如注入到 Vue.prototype 中的属性或方法
+│   │───   routes: 各 module 路由控制
+│   │───services
+│   │   │  xxx.js：各 module 的 api 请求
 │   │   │  index.js：总 api
-│   │   │  xFetch.js：封装后的fetch方法
-│   └───store
-│   │   │  xxx.js：模块,每个模块有mutation-types(设置常量替代Mutation事件类型)、State、Getter、Mutation和Action
+│   │   │  xFetch.js：封装后的 fetch 方法
+│   │───store
+│   │   │  xxx.js：模块,每个模块有 mutation-types (设置常量替代 Mutation 事件类型)、State、Getter、Mutation 和 Action
 │   │   │  index.js：总 Store
 │   └───utils: 工具包
 │       App.vue: 根组件
-│       main.js: 项目入口文件，引入根组件、框架、插件及路由设置等，并定义vue实例
+│       main.js: 项目入口文件，引入根组件、框架、插件及路由设置等，并定义 vue 实例
 │       router.js: 总路由控制
-│       store.js: 总store
-│───public: 静态资源，不被webpack处理，默认存放icon和index.html
-│       │  favicon.ico: logo图标
+│       store.js: 总 store
+│───public: 静态资源，不被 webpack 处理
+│       │  favicon.ico: icon
 │       │  index.html: 模板
-│   .eslintrc.js: es语法检查配置文件
-│   .gitignore: git上传忽略的配置文件
-│   .npmrc: npm配置文件
+│   .eslintrc.js: es 语法检查配置文件
+│   .gitignore: git 上传忽略的配置文件
+│   .npmrc: npm 配置文件
 │   babel.config.js: babel 编译参数配置，将ES6代码转为浏览器识别的代码
 │   .postcssrc.js: PostCSS(转换CSS)配置文件
-│   build.sh: 项目发包shell脚本
+│   build.sh: 项目发包 shell 脚本
 │   package.json: 项目描述文件(项目名称、作者等信息)
 │   package-lock.json: 锁定包版本号
-│   vue.config.js: 配置文件(可选，可被@vue/cli-service 自动加载)，如若配置webpack,设置vue.config.js中 configWebpack 和 chainWebpack（参考：https://cli.vuejs.org/config/ 和 https://cli.vuejs.org/guide/webpack.html）
+│   vue.config.js: 配置文件(可选，可被 @vue/cli-service 自动加载)，如若配置 webpack ,设置 vue.config.js 中 configWebpack 和 chainWebpack（参考: https://cli.vuejs.org/config/ 和 https://cli.vuejs.org/guide/webpack.html）
 │   README.md: 项目的说明文档，markdown 格式 
 
 ```
