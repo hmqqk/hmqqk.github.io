@@ -7,29 +7,29 @@ project
 │       │   template-date.json: 模拟后端模板注入数据
 │   lib: 外部插件
 │───src: 源码目录
-│   │───   assets: 放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理
-│   │───   components: 全局公用组件
-│   │───   constants: 设置常量
-│   │───   filters: 过滤器,如文本格式化
-│   │───   layouts: 页面布局
-│   │───   views: 页面
-│   │───   plugins: 插件,如注入到 Vue.prototype 中的属性或方法
-│   │───   routes: 各 module 路由控制
+│   │───    assets: 放置字体（fonts）、图标(icon)、图片(images)和样式(styles)等，经webpack解析处理
+│   │───    components: 全局公用组件
+│   │───    constants: 设置常量
+│   │───    filters: 过滤器,如文本格式化
+│   │───    layouts: 页面布局
+│   │───    views: 页面
+│   │───    plugins: 插件,如注入到 Vue.prototype 中的属性或方法
+│   │───    routes: 各 module 路由控制
 │   │───services
-│   │   │  xxx.js：各 module 的 api 请求
-│   │   │  index.js：总 api
-│   │   │  xFetch.js：封装后的 fetch 方法
+│   │   │   xxx.js：各 module 的 api 请求
+│   │   │   index.js：总 api
+│   │   │   xFetch.js：封装后的 fetch 方法
 │   │───store
-│   │   │  xxx.js：模块,每个模块有 mutation-types (设置常量替代 Mutation 事件类型)、State、Getter、Mutation 和 Action
-│   │   │  index.js：总 Store
+│   │   │   xxx.js：模块,每个模块有 mutation-types (设置常量替代 Mutation 事件类型)、State、Getter、Mutation 和 Action
+│   │   │   index.js：总 Store
 │   └───utils: 工具包
 │       App.vue: 根组件
 │       main.js: 项目入口文件，引入根组件、框架、插件及路由设置等，并定义 vue 实例
 │       router.js: 总路由控制
 │       store.js: 总 store
 │───public: 静态资源，不被 webpack 处理
-│       │  favicon.ico: icon
-│       │  index.html: 模板
+│       │   favicon.ico: icon
+│       │   index.html: 模板
 │   .eslintrc.js: es 语法检查配置文件
 │   .gitignore: git 上传忽略的配置文件
 │   .npmrc: npm 配置文件
